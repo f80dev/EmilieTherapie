@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://api.emiliepommier.fr",
+    "secure": true,
+    "changeOrigin": true
+  }
+}

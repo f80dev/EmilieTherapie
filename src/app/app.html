@@ -1,0 +1,354 @@
+<!-- Header / Navigation -->
+<mat-toolbar color="primary" class="header-toolbar">
+  <div class="header-content">
+    <span class="logo" (click)="scrollTo('accueil')">Intelligence Relationnelle</span>
+    <div class="nav-links" [class.mobile-open]="isMobileMenuOpen()">
+      <button mat-button (click)="scrollTo('accueil'); isMobileMenuOpen.set(false)">Accueil</button>
+      <button mat-button (click)="scrollTo('apropos'); isMobileMenuOpen.set(false)">À propos</button>
+      <button mat-button (click)="scrollTo('methode'); isMobileMenuOpen.set(false)">Ma méthode</button>
+      <button mat-flat-button color="accent" (click)="scrollTo('rdv'); isMobileMenuOpen.set(false)" class="rdv-btn">
+        <mat-icon>calendar_today</mat-icon>
+        Prendre rendez-vous
+      </button>
+    </div>
+    <button mat-icon-button class="hamburger" (click)="isMobileMenuOpen.set(!isMobileMenuOpen())">
+      <mat-icon>{{ isMobileMenuOpen() ? 'close' : 'menu' }}</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<!-- Hero Section -->
+<section id="accueil" class="hero-section">
+  <div class="hero-background"></div>
+  <div class="hero-content">
+    <img src="assets/logo.png" alt="Émilie Pommier" class="hero-logo">
+    <h1 class="hero-title">Retrouvez votre<br><span class="highlight">équilibre intérieur</span></h1>
+    <p class="hero-subtitle">
+      Thérapeute spécialisé en Intelligence Relationnelle®<br>
+      Guérison des blessures psychiques et profondes par l'engagement thérapeutique conscient
+    </p>
+    <div class="hero-actions">
+      <button mat-flat-button color="primary" (click)="scrollTo('rdv')" class="hero-btn-primary">
+        <mat-icon>calendar_today</mat-icon>
+        Réserver une consultation
+      </button>
+      <button mat-stroked-button (click)="scrollTo('methode')" class="hero-btn-secondary">
+        Découvrir ma méthode
+      </button>
+    </div>
+    <div class="hero-info">
+      <div class="info-item">
+        <mat-icon>location_on</mat-icon>
+        <span>Paris 10e</span>
+      </div>
+      <div class="info-item">
+        <mat-icon>video_call</mat-icon>
+        <span>Consultations en visio</span>
+      </div>
+      <div class="info-item">
+        <mat-icon>access_time</mat-icon>
+        <span>Du lundi au samedi</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-indicator">
+    <mat-icon>keyboard_arrow_down</mat-icon>
+  </div>
+</section>
+
+<!-- About / Profile Section -->
+<section id="apropos" class="section apropos-section">
+  <h2 class="section-title">
+    Émilie Pommier
+    <span class="title-subtitle">Psychologue clinicien & Psychothérapeute</span>
+  </h2>
+  <div class="apropos-content">
+    <div class="apropos-image">
+      <img src="assets/emilie-pommier.jpg" alt="Émilie Pommier" class="photo">
+    </div>
+    <div class="apropos-text">
+      <p class="apropos-intro">
+        Formée à l'Intelligence Relationnelle® de François Le Doze, elle vous accompagne
+        dans la guérison de vos blessures psychiques profondes et le renforcement
+        de votre sentiment de sécurité intérieure.
+      </p>
+      <div class="credentials">
+        <div class="credential">
+          <mat-icon>school</mat-icon>
+          <div>
+            <strong>Diplômes</strong>
+            <span>Master en psychologie clinique</span>
+          </div>
+        </div>
+        <div class="credential">
+          <mat-icon>verified</mat-icon>
+          <div>
+            <strong>Certification</strong>
+            <span>Intelligence Relationnelle® - Quantum Way</span>
+          </div>
+        </div>
+        
+      </div>
+      <p class="apropos-philosophy">
+        <em>"Le trauma n'est pas un dysfonctionnement psychique, mais une organisation
+        protectrice et durable de notre système nerveux façonnée par l'insécurité.
+        Ensemble, nous travaillerons à transformer cette protection en lien retrouvé."</em>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Method Section -->
+<section id="methode" class="section methode-section">
+  <h2 class="section-title">Ma méthode : Intelligence Relationnelle®</h2>
+  <p class="methode-intro">
+    L'Intelligence Relationnelle® est un modèle de psychothérapie dédié à la guérison
+    des blessures psychiques profondes et de la dissociation, s'appuyant sur les neurosciences
+    du trauma et la théorie de l'attachement.
+  </p>
+
+  <div class="principles-grid">
+    @for (principle of methodPrinciples; track principle.title) {
+      <mat-card class="principle-card">
+        <mat-icon class="principle-icon">{{ principle.icon }}</mat-icon>
+        <mat-card-title>{{ principle.title }}</mat-card-title>
+        <mat-card-content>
+          <p>{{ principle.description }}</p>
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
+
+  <div class="methode-details">
+    <div class="detail-block">
+      <h3>
+        <mat-icon>lightbulb</mat-icon>
+        L'Engagement Thérapeutique Conscient
+      </h3>
+      <p>
+        Au cœur de ma pratique se trouve l'Engagement Thérapeutique Conscient, une manière
+        d'être en relation qui me permet d'ajuster ma présence et mon rythme afin de vous
+        rejoindre là où le lien avec les autres et vous-même s'est rompu.
+      </p>
+    </div>
+    <div class="detail-block">
+      <h3>
+        <mat-icon>healing</mat-icon>
+        Pour qui ?
+      </h3>
+      <p>
+        Cette approche s'adresse aux personnes souffrants d'anxiété chronique, de dépression,
+        de troubles relationnels, de trauma complexe ou de dissociation. Elle est particulièrement
+        efficace pour ceux qui n'ont pas trouvé d'amélioration dans des approches plus traditionnelles.
+      </p>
+    </div>
+  </div>
+
+  <div class="focus-areas">
+    <h3>
+      <mat-icon>psychology</mat-icon>
+      Thématiques traitées
+    </h3>
+    <div class="focus-chips">
+      @for (area of focusAreas; track area) {
+        <mat-chip>{{ area }}</mat-chip>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Appointment Booking Section -->
+<section id="rdv" class="section rdv-section">
+  <h2 class="section-title">Prendre rendez-vous</h2>
+  <p class="rdv-intro">
+    Réservez votre séance en ligne en quelques clics. La première consultation
+    permet de faire connaissance et d'évaluer vos besoins.
+  </p>
+
+  <div class="seance-type-toggle">
+    <mat-button-toggle-group [value]="seanceType()" (change)="seanceType.set($event.value)">
+      <mat-button-toggle value="presentiel">
+        <mat-icon>apartment</mat-icon>
+        En présentiel
+      </mat-button-toggle>
+      <mat-button-toggle value="distant">
+        <mat-icon>videocam</mat-icon>
+        À distance
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+    <p class="seance-type-hint">
+      @if (seanceType() === 'distant') {
+        Séance par visioconférence — lien envoyé après confirmation
+      } @else {
+        Séance au cabinet — 12 rue Martel, Paris 10e
+      }
+    </p>
+  </div>
+
+  <div class="rdv-content">
+    <!-- Calendar & Time Slots -->
+    <mat-card class="calendar-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon>calendar_month</mat-icon>
+          Choisir une date
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-calendar
+          [minDate]="getMinDate()"
+          [maxDate]="getMaxDate()"
+          [(selected)]="selectedDate"
+          (selectedChange)="onDateSelected($event)">
+        </mat-calendar>
+
+        @if (selectedDate()) {
+          <div class="time-slots">
+            @if (loadingSlots()) {
+              <p class="loading-slots">Chargement des créneaux...</p>
+            } @else if (selectedDate()!.getDay() === 0) {
+              <p class="no-slots">Fermé le dimanche</p>
+            } @else {
+              @if (availableSlots().length > 0) {
+                <h4>Horaires disponibles <span class="slot-duration">(durée : 1h15)</span></h4>
+                <div class="slots-grid">
+                  @for (slot of availableSlots(); track slot) {
+                    <button
+                      mat-flat-button
+                      [class.slot-available]="true"
+                      [class.slot-selected]="selectedTime() === slot"
+                      (click)="selectTimeSlot(slot)">
+                      {{ slot }}
+                    </button>
+                  }
+                </div>
+              } @else {
+                <p class="no-slots">Aucun horaire disponible à cette date</p>
+              }
+            }
+          </div>
+        }
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Contact Form -->
+    <mat-card class="form-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon>person</mat-icon>
+          Vos coordonnées
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form class="appointment-form">
+          <div class="form-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Nom</mat-label>
+              <input matInput [value]="nom()" (input)="nom.set($any($event.target).value)" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Prénom</mat-label>
+              <input matInput [value]="prenom()" (input)="prenom.set($any($event.target).value)" required>
+            </mat-form-field>
+          </div>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <mat-icon matPrefix>email</mat-icon>
+            <input matInput type="email" [value]="email()" (input)="email.set($any($event.target).value)" required>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Téléphone</mat-label>
+            <mat-icon matPrefix>phone</mat-icon>
+            <input matInput type="tel" [value]="telephone()" (input)="telephone.set($any($event.target).value)" required>
+          </mat-form-field>
+
+          @if (selectedDate() && selectedTime()) {
+            <div class="selected-datetime">
+              <mat-icon>event</mat-icon>
+              <span>{{ selectedDate()!.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' }) }} à {{ selectedTime() }}</span>
+            </div>
+          }
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Message (optionnel)</mat-label>
+            <textarea matInput
+              [value]="message()"
+              (input)="message.set($any($event.target).value)"
+              rows="3"
+              placeholder="Décrivez brièvement votre situation ou vos attentes..."></textarea>
+          </mat-form-field>
+
+          <mat-checkbox [(ngModel)]="acceptTerms" name="terms" class="terms-checkbox">
+            J'accepte d'être recontacté(e) pour confirmer mon rendez-vous
+          </mat-checkbox>
+
+          <button
+            mat-flat-button
+            color="primary"
+            class="submit-btn"
+            (click)="submitAppointment()"
+            [disabled]="!isFormValid()">
+            <mat-icon>send</mat-icon>
+            Envoyer ma demande
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="practical-info">
+    <div class="info-card">
+      <mat-icon>location_on</mat-icon>
+      <div>
+        <strong>Adresse du cabinet</strong>
+        <p>12, rue Martel<br>75010 Paris</p>
+      </div>
+    </div>
+    <div class="info-card">
+      <mat-icon>subway</mat-icon>
+      <div>
+        <strong>Accès</strong>
+        <p>Métro Château d'Eau (ligne 4)<br>Métro Jacques Bonsergent (ligne 5)</p>
+      </div>
+    </div>
+    <div class="info-card">
+      <mat-icon>payments</mat-icon>
+      <div>
+        <strong>Tarif</strong>
+        <p>80€ la séance<br>Remboursement possible</p>
+      </div>
+    </div>
+    <div class="info-card">
+      <mat-icon>videocam</mat-icon>
+      <div>
+        <strong>Visio</strong>
+        <p>Consultations vidéo possibles<br>pour les résidents hors Paris</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-brand">
+      <h4>Intelligence Relationnelle®</h4>
+      <p>Psychothérapie par l'engagement thérapeutique conscient</p>
+    </div>
+    <div class="footer-links">
+      <a href="#accueil">Accueil</a>
+      <a href="#apropos">À propos</a>
+      <a href="#methode">Méthode</a>
+      <a href="#rdv">Rendez-vous</a>
+    </div>
+    <div class="footer-legal">
+      <p>© 2024 - Mention légales - Politique de confidentialité</p>
+      <p class="disclaimer">
+        <mat-icon>info</mat-icon>
+        Les soins psychologiques ne substituent pas à un suivi médical. En cas d'urgence, contactez le 15.
+      </p>
+    </div>
+  </div>
+</footer>
