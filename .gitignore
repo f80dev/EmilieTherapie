@@ -43,5 +43,6 @@ __screenshots__/
 .DS_Store
 Thumbs.db
 server/google_token.json
+google_token.json
 
 /server/sitewebprincipal-3d2b451b6b63.json
