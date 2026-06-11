@@ -1,72 +1,67 @@
 # Standalone proxy: Calendar busy slots + Tasks creation
-# No external script dependency — calls Google APIs directly via requests
-import json
+# Uses google-api-python-client for Google Calendar and Tasks APIs
 import os
-import urllib.parse
-import urllib.request
 from typing import Any
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-TOKEN_PATH = os.environ.get("GOOGLE_TOKEN", "/app/google_token.json")
-TOKEN_URI = "https://oauth2.googleapis.com/token"
-CAL_SCOPES = ["https://www.googleapis.com/auth/calendar"]
-TASK_SCOPES = ["https://www.googleapis.com/auth/tasks"]
-TASKLIST_ID = "MjlDa2tRTnk1Mjl2T1FYcA"
+from google.oauth2 import service_account
+from googleapiclient.discovery import build
+
+SCOPES = [
+    "https://www.googleapis.com/auth/calendar",
+    "https://www.googleapis.com/auth/tasks"
+]
+TASKLIST_ID = "@default"
+
+_calendar_service = None
+_tasks_service = None
 
 ALLOWED_ORIGINS = [
     "https://f80dev.github.io",
     "https://emilietherapie.netlify.app",
-    "https://emiliepommier.fr"
+    "https://emiliepommier.fr",
+    "http://localhost:4200",
+    "http://127.0.0.1:4200"
 ]
 ALLOWED_REFERERS = [".github.io", "netlify.app", "vercel.app", "cloudflarepages.com"]
 
 app = FastAPI()
 
 
-@app.middleware("http")
-async def verify_referer(request: Request, call_next):
-    origin = request.headers.get("origin", "")
-    referer = request.headers.get("referer", "")
-    path = request.url.path
-
-    if path == "/health":
-        return await call_next(request)
-
-    if path.startswith("/api"):
-        allowed = (
-            origin in ALLOWED_ORIGINS
-            or any(r in referer for r in ALLOWED_REFERERS) if referer else False
-        )
-        if not allowed:
-            return JSONResponse(status_code=403, content={"error": "Forbidden"})
-
-    return await call_next(request)
+SERVICE_ACCOUNT_PATH = r"C:\Users\hhoar\IdeaProjects\EmilieTherapie\server\google_service_account.json"
 
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["GET", "POST", "OPTIONS"],
-    allow_headers=["Content-Type"],
-)
+def get_credentials():
+    """Get Google credentials from Service Account (no OAuth/browser needed)."""
+    return service_account.Credentials.from_service_account_file(
+        SERVICE_ACCOUNT_PATH, scopes=SCOPES
+    )
 
 
-def get_access_token(scope: str) -> str:
-    with open(TOKEN_PATH) as f:
-        token = json.load(f)
-    body = urllib.parse.urlencode({
-        "client_id": token["client_id"],
-        "client_secret": token["client_secret"],
-        "refresh_token": token["refresh_token"],
-        "grant_type": "refresh_token",
-    }).encode()
-    req = urllib.request.Request(TOKEN_URI, data=body, method="POST")
-    req.add_header("Content-Type", "application/x-www-form-urlencoded")
-    with urllib.request.urlopen(req) as resp:
-        return json.loads(resp.read())["access_token"]
+def get_calendar_service():
+    """Get or create the Google Calendar service instance."""
+    global _calendar_service
+    if _calendar_service is None:
+        creds = get_credentials()
+        _calendar_service = build('calendar', 'v3', credentials=creds)
+    return _calendar_service
+
+
+def get_tasks_service():
+    """Get or create the Google Tasks service instance."""
+    global _tasks_service
+    if _tasks_service is None:
+        creds = get_credentials()
+        _tasks_service = build('tasks', 'v1', credentials=creds)
+    return _tasks_service
 
 
 def event_to_busy_slots(event: dict[str, Any]) -> list[dict[str, Any]]:
@@ -89,22 +84,33 @@ def event_to_busy_slots(event: dict[str, Any]) -> list[dict[str, Any]]:
     return [{"date": date_str, "time": f"{start_h:02d}:{start_m:02d}", "duration": duration}]
 
 
+
+
 @app.get("/api/calendar/busy")
 def get_busy_slots(start: str, end: str) -> dict[str, list[dict[str, Any]]]:
-    access_token = get_access_token(CAL_SCOPES[0])
+    """Get busy slots from Google Calendar using google-api-python-client.
+
+    Args:
+        start: Start date in YYYY-MM-DD format
+        end: End date in YYYY-MM-DD format
+
+    Returns:
+        Dictionary mapping dates to list of busy slots with time and duration
+    """
+    service = get_calendar_service()
     time_min = f"{start}T00:00:00Z"
     time_max = f"{end}T23:59:59Z"
-    url = (
-        "https://www.googleapis.com/calendar/v3/calendars/primary/events"
-        f"?timeMin={time_min}&timeMax={time_max}"
-        f"&singleEvents=true&orderBy=startTime"
-    )
-    req = urllib.request.Request(url)
-    req.add_header("Authorization", f"Bearer {access_token}")
-    with urllib.request.urlopen(req) as resp:
-        data = json.loads(resp.read())
+
+    events_result = service.events().list(
+        calendarId='primary',
+        timeMin=time_min,
+        timeMax=time_max,
+        singleEvents=True,
+        orderBy='startTime'
+    ).execute()
+
     busy_map: dict[str, list[dict[str, Any]]] = {}
-    for event in data.get("items", []):
+    for event in events_result.get('items', []):
         for slot in event_to_busy_slots(event):
             busy_map.setdefault(slot["date"], []).append({"time": slot["time"], "duration": slot["duration"]})
     return busy_map
@@ -112,18 +118,34 @@ def get_busy_slots(start: str, end: str) -> dict[str, list[dict[str, Any]]]:
 
 @app.post("/api/tasks/add-task")
 def add_task(body: dict[str, str]) -> dict[str, Any]:
+    """Add a task to Google Tasks using google-api-python-client.
+
+    Args:
+        body: Dictionary with 'title' and optional 'notes' keys
+
+    Returns:
+        The created task resource
+    """
     title = body.get("title", "")
     notes = body.get("notes", "")
-    access_token = get_access_token(TASK_SCOPES[0])
-    task_body = json.dumps({"title": title, "notes": notes, "status": "needsAction"}).encode()
-    req = urllib.request.Request(
-        f"https://tasks.googleapis.com/tasks/v1/lists/{TASKLIST_ID}/tasks",
-        data=task_body, method="POST"
-    )
-    req.add_header("Authorization", f"Bearer {access_token}")
-    req.add_header("Content-Type", "application/json")
-    with urllib.request.urlopen(req) as resp:
-        return json.loads(resp.read())
+
+    service = get_tasks_service()
+    task_body = {
+        'title': title,
+        'notes': notes,
+        'status': 'needsAction'
+    }
+
+    from urllib.parse import quote
+    encoded_tasklist_id = quote(TASKLIST_ID, safe='')
+
+    result = service.tasks().insert(
+        tasklist=encoded_tasklist_id,
+        body=task_body
+    ).execute()
+
+    logger.info(f"Task created: {result.get('id')}")
+    return result
 
 
 @app.get("/health")

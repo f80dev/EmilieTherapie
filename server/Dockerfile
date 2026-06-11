@@ -2,9 +2,9 @@ FROM python:3.12-alpine3.20
 
 WORKDIR /app
 
-RUN pip install --no-cache-dir fastapi uvicorn[standard]
+RUN pip install --no-cache-dir fastapi uvicorn[standard] PyJWT
 
-COPY sitewebprincipal-a89966284444.json /app/google_token.json
+COPY google_service_account.json /app/google_service_account.json
 COPY unified_proxy.py /app/unified_proxy.py
 
 EXPOSE 8080

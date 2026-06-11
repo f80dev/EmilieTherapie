@@ -20,6 +20,15 @@ interface BusySlot {
   duration: number;
 }
 
+interface UserContactData {
+  nom: string;
+  prenom: string;
+  email: string;
+  telephone: string;
+}
+
+const LOCALSTORAGE_KEY = 'emilie_therapie_user_data';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -107,7 +116,49 @@ export class App implements OnInit {
     'Estime de soi et confiance'
   ];
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loadUserDataFromLocalStorage();
+  }
+
+  private loadUserDataFromLocalStorage(): void {
+    console.log('[LocalStorage] Attempting to load user data...');
+    try {
+      const stored = localStorage.getItem(LOCALSTORAGE_KEY);
+      if (stored) {
+        const data: UserContactData = JSON.parse(stored);
+        console.log('[LocalStorage] Data found:', data);
+        this.nom.set(data.nom || '');
+        this.prenom.set(data.prenom || '');
+        this.email.set(data.email || '');
+        this.telephone.set(data.telephone || '');
+        console.log('[LocalStorage] User data loaded successfully');
+      } else {
+        console.log('[LocalStorage] No stored data found');
+      }
+    } catch (err) {
+      console.error('[LocalStorage] Failed to load user data:', err);
+    }
+  }
+
+  private saveUserDataToLocalStorage(): void {
+    console.log('[LocalStorage] Attempting to save user data...');
+    try {
+      const data: UserContactData = {
+        nom: this.nom(),
+        prenom: this.prenom(),
+        email: this.email(),
+        telephone: this.telephone()
+      };
+      localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(data));
+      console.log('[LocalStorage] User data saved:', data);
+    } catch (err) {
+      console.error('[LocalStorage] Failed to save user data:', err);
+    }
+  }
+
+  onContactFieldChange(): void {
+    this.saveUserDataToLocalStorage();
+  }
 
   scrollTo(section: string) {
     const element = document.getElementById(section);
@@ -171,6 +222,9 @@ export class App implements OnInit {
       return;
     }
 
+    // Save user data to localStorage before submitting
+    this.saveUserDataToLocalStorage();
+
     const date = this.selectedDate();
     const dateStr = date ? date.toLocaleDateString('fr-FR', {
       weekday: 'long',
@@ -196,10 +250,7 @@ export class App implements OnInit {
       panelClass: ['success-snackbar']
     });
 
-    this.nom.set('');
-    this.prenom.set('');
-    this.email.set('');
-    this.telephone.set('');
+    // Keep user contact info in localStorage, only reset appointment-specific fields
     this.message.set('');
     this.selectedDate.set(null);
     this.selectedTime.set('');
