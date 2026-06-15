@@ -20,12 +20,12 @@ echo Pushing to AF10...
 docker push %DOCKER_REPOSITORY%/%IMAGE_NAME%:latest
 
 
-echo Deploying to Cloud Run...
-gcloud run deploy %SERVICE_NAME% ^
-    --image %DOCKER_REPOSITORY%/%IMAGE_NAME%:latest ^
-    --platform managed ^
-    --region %REGION% ^
-    --allow-unauthenticated ^
-    --port 8080
-
-echo Deployment complete!
+@REM echo Deploying to Cloud Run...
+@REM gcloud run deploy %SERVICE_NAME% ^
+@REM     --image %DOCKER_REPOSITORY%/%IMAGE_NAME%:latest ^
+@REM     --platform managed ^
+@REM     --region %REGION% ^
+@REM     --allow-unauthenticated ^
+@REM     --port 8080
+@REM
+@REM echo Deployment complete!

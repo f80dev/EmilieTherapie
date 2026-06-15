@@ -14,6 +14,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FormsModule } from '@angular/forms';
+import * as packageJson from '../../package.json';
 
 interface BusySlot {
   time: string;
@@ -28,6 +29,7 @@ interface UserContactData {
 }
 
 const LOCALSTORAGE_KEY = 'emilie_therapie_user_data';
+const SITE_VERSION = packageJson.version;
 
 @Component({
   selector: 'app-root',
@@ -56,6 +58,7 @@ export class App implements OnInit {
   private snackBar = inject(MatSnackBar);
 
   protected readonly title = signal('Psychothérapie');
+  protected readonly siteVersion = SITE_VERSION;
 
   // Form fields
   nom = signal('');

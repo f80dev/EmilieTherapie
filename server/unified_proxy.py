@@ -12,9 +12,8 @@ import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-from fastapi import FastAPI, Request, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi import FastAPI, HTTPException
+
 
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
@@ -31,9 +30,9 @@ _calendar_service = None
 _tasks_service = None
 
 # Ionos SMTP configuration
-SMTP_HOST = os.environ.get("SMTP_HOST", "smtp.ionos.com")
-SMTP_PORT = int(os.environ.get("SMTP_PORT", "587"))
-SMTP_USER = os.environ.get("SMTP_USER", "")
+SMTP_HOST = os.environ.get("SMTP_HOST", "smtp.ionos.fr")
+SMTP_PORT = int(os.environ.get("SMTP_PORT", "465"))
+SMTP_USER = os.environ.get("SMTP_USER", "contact@emiliepommier.fr")
 SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD", "")
 
 ALLOWED_ORIGINS = [
@@ -50,7 +49,7 @@ BASE_URL = os.environ.get("BASE_URL", "http://localhost:8080")
 app = FastAPI()
 
 
-SERVICE_ACCOUNT_PATH = r"C:\Users\hhoar\IdeaProjects\EmilieTherapie\server\google_service_account.json"
+SERVICE_ACCOUNT_PATH = r"google_service_account.json"
 
 
 def get_credentials():
@@ -90,12 +89,12 @@ def send_email_smtp(to_email: str, subject: str, body: str, is_html: bool = Fals
     Returns:
         Dictionary with status and message info
     """
-    if not SMTP_USER or not SMTP_PASSWORD:
+    if not SMTP_PASSWORD:
         raise Exception("SMTP credentials not configured. Set SMTP_USER and SMTP_PASSWORD environment variables.")
 
     msg = MIMEMultipart('alternative')
     msg['to'] = to_email
-    msg['from'] = EMAIL
+    msg['from'] = SMTP_USER
     msg['subject'] = subject
 
     if is_html:
@@ -106,8 +105,7 @@ def send_email_smtp(to_email: str, subject: str, body: str, is_html: bool = Fals
     msg.attach(part)
 
     try:
-        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
-            server.starttls()
+        with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT,timeout=30) as server:
             server.login(SMTP_USER, SMTP_PASSWORD)
             server.sendmail(EMAIL, [to_email], msg.as_string())
 
@@ -547,9 +545,19 @@ def send_email(body: dict[str, str]) -> dict[str, Any]:
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.get("/health")
+@app.get("/api/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
+
+@app.get("/api/status_variables")
+def status_variable() -> dict:
+    #http://127.0.0.1:8080/status
+    return {"SMTP_USER": SMTP_USER,
+            "SMTP_PASSWORD": SMTP_PASSWORD[:5]+"..",
+            "SMTP_SERVER":SMTP_HOST,
+            "SMTP_PORT":SMTP_PORT
+            }
+
 
 
 if __name__ == "__main__":

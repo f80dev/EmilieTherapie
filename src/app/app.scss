@@ -283,6 +283,15 @@ $warm-light: #9a8b7a;
       color: $primary-400;
     }
   }
+
+  .hero-version {
+    position: absolute;
+    bottom: 12px;
+    right: 20px;
+    font-size: 0.75rem;
+    color: $primary-400;
+    opacity: 0.6;
+  }
 }
 
 @keyframes bounce {

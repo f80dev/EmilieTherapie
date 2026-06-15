@@ -1,6 +1,14 @@
-from unified_proxy import get_calendar_service
+from unified_proxy import get_calendar_service, send_email_smtp, app
 
-YOUR_EMAIL = "pommier.therapeute@gmail.com"
+YOUR_EMAIL = "hhoareau@gmail.com"
+
+try:
+    from fastapi.testclient import TestClient
+except ImportError:
+    # Fallback for older FastAPI versions
+    from starlette.testclient import TestClient
+
+client = TestClient(app)
 
 def test_direct_access():
   service = get_calendar_service()
@@ -28,3 +36,49 @@ def test_get_slot():
   ).execute()
 
   assert len(events_result.items)>0
+
+
+def test_send_email_smtp():
+    """Test sending an email via SMTP using Ionos server."""
+    result = send_email_smtp(
+        to_email=YOUR_EMAIL,
+        subject="Test Email - pytest",
+        body="This is a test email sent via SMTP to verify the configuration.",
+        is_html=False
+    )
+    assert result["status"] == "sent"
+    assert result["to"] == YOUR_EMAIL
+    print(f"Email sent successfully to {YOUR_EMAIL}")
+
+
+def test_send_email_api():
+    """Test the /api/email/send web service endpoint."""
+    response = client.post(
+        "/api/email/send",
+        json={
+            "to": YOUR_EMAIL,
+            "subject": "Test Email API - pytest",
+            "body": "This is a test email sent via the /api/email/send endpoint.",
+            "is_html": False
+        }
+    )
+    assert response.status_code == 200
+    data = response.json()
+    assert data["status"] == "sent"
+    assert data["to"] == YOUR_EMAIL
+    print(f"Email sent successfully via API to {YOUR_EMAIL}")
+
+
+def test_send_email_api_missing_fields():
+    """Test the /api/email/send endpoint with missing required fields."""
+    response = client.post(
+        "/api/email/send",
+        json={
+            "to": YOUR_EMAIL
+            # Missing subject and body
+        }
+    )
+    assert response.status_code == 400
+    data = response.json()
+    assert "detail" in data
+    print("Missing fields validation works correctly")
