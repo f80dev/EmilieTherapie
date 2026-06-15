@@ -238,10 +238,32 @@ export class App implements OnInit {
     const taskTitle = `RDV: ${this.prenom()} ${this.nom()} — ${dateStr} à ${this.selectedTime()}`;
     const taskNotes = `Type: ${seanceTypeLabel}\nEmail: ${this.email()}\nTéléphone: ${this.telephone()}\nMessage: ${this.message()}`;
 
-    // Add to Google Tasks
-    this.http.post('/api/tasks/add-task', { title: taskTitle, notes: taskNotes }).subscribe({
-      error: (err) => console.error('Failed to add task:', err)
-    });
+    // Calculate start and end times for calendar event
+    const selectedDate = this.selectedDate();
+    const selectedTime = this.selectedTime();
+    if (selectedDate && selectedTime) {
+      const [hours, minutes] = selectedTime.split(':').map(Number);
+      const startDateTime = new Date(selectedDate);
+      startDateTime.setHours(hours, minutes, 0, 0);
+
+      const endDateTime = new Date(startDateTime);
+      endDateTime.setMinutes(endDateTime.getMinutes() + 60); // 1 hour session
+
+      const formatDateTime = (d: Date) => d.toISOString().slice(0, 19) + '+02:00';
+
+      // Add to Google Calendar as "à confirmer"
+      this.http.post('/api/calendar/add-to-calendar', {
+        title: taskTitle,
+        start_time: formatDateTime(startDateTime),
+        end_time: formatDateTime(endDateTime),
+        description: taskNotes,
+        email: this.email(),
+        phone: this.telephone(),
+        seance_type: seanceTypeLabel
+      }).subscribe({
+        error: (err) => console.error('Failed to add calendar event:', err)
+      });
+    }
 
     const message = `Merci ${this.prenom()} ! Votre demande de rendez-vous a été envoyée.\n\nDétails :\n- Date : ${dateStr}\n- Heure : ${this.selectedTime()}\n- Type : ${seanceTypeLabel}\n\nJe vous contacterai sous 24h pour confirmer votre rendez-vous.`;
 
