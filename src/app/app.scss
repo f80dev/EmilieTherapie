@@ -145,6 +145,17 @@ $warm-light: #9a8b7a;
 }
 
 // ============================================
+// Section Divider
+// ============================================
+.section-divider {
+  width: 10%;
+  height: 1px;
+  background-color: $warm-light;
+  opacity: 0.5;
+  margin: 0 auto 32px;
+}
+
+// ============================================
 // Hero Section
 // ============================================
 .hero-section {

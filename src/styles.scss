@@ -139,6 +139,12 @@ html {
   }
 }
 
+.intro-section {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
 .text-center { text-align: center; }
 .text-muted { color: var(--text-secondary); }
 .mb-sm { margin-bottom: var(--space-sm); }
