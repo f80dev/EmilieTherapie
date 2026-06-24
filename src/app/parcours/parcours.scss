@@ -1,0 +1,61 @@
+.parcours-section {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f0e8 0%, #fff 100%);
+  padding: 40px 20px;
+}
+
+.parcours-container {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.back-btn {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  color: #8b7355;
+
+  &:hover {
+    background: rgba(139, 115, 85, 0.1);
+  }
+}
+
+.parcours-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: #5d4e37;
+  text-align: center;
+  margin-bottom: 48px;
+  padding-top: 40px;
+}
+
+.parcours-content {
+  background: white;
+  border-radius: 16px;
+  padding: 48px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+
+  .section-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #5d4e37;
+    margin-top: 40px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e8e0d5;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+
+  p {
+    color: #8b7355;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    margin-bottom: 24px;
+  }
+}
