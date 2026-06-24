@@ -7,6 +7,11 @@ export const routes: Routes = [
   },
 
   {
+    path: 'parcours',
+    loadComponent: () => import('./parcours/parcours').then(m => m.Parcours)
+  },
+
+  {
     path: 'admin',
     loadComponent: () => import('./admin/admin').then(m => m.Admin)
   },

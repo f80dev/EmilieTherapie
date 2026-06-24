@@ -256,6 +256,13 @@ $warm-light: #9a8b7a;
         background: rgba(255, 255, 255, 0.5);
       }
     }
+
+    .hero-btn-wrap {
+      height: auto;
+      white-space: normal;
+      padding: 12px 32px;
+      text-align: center;
+    }
   }
 
   .hero-info {
@@ -408,6 +415,14 @@ $warm-light: #9a8b7a;
       line-height: 1.7;
     }
   }
+
+  .apropos-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 32px;
+  }
 }
 
 // ============================================
@@ -543,9 +558,102 @@ $warm-light: #9a8b7a;
 }
 
 // ============================================
+// Consultations Section
+// ============================================
+.consultations-section {
+  background: $secondary-50;
+
+  .consultations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 48px;
+
+    .consultation-card {
+      background: white;
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      .consultation-icon {
+        font-size: 48px;
+        width: 48px;
+        height: 48px;
+        color: $primary-500;
+        margin-bottom: 16px;
+      }
+
+      mat-card-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.25rem;
+        font-weight: 500;
+        color: $warm-dark;
+        margin-bottom: 16px;
+      }
+
+      mat-card-content {
+        .tarif {
+          font-family: 'Playfair Display', serif;
+          font-size: 2rem;
+          font-weight: 600;
+          color: $primary-700;
+          margin-bottom: 8px;
+        }
+
+        p {
+          color: $warm-medium;
+          font-size: 0.95rem;
+          line-height: 1.6;
+          margin: 4px 0;
+        }
+      }
+    }
+  }
+
+  .remboursement-info {
+    background: white;
+    border-radius: 16px;
+    padding: 24px 32px;
+    margin-bottom: 48px;
+    text-align: center;
+
+    h3 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: $warm-dark;
+      margin-bottom: 16px;
+
+      mat-icon {
+        color: $primary-500;
+      }
+    }
+
+    p {
+      color: $warm-medium;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+}
+
+// ============================================
 // Appointment Section
 // ============================================
-.accompagnements-section {
+  .accompagnements-section {
   .accompagnements-intro {
     max-width: 700px;
     margin: 0 auto 48px;
@@ -553,6 +661,45 @@ $warm-light: #9a8b7a;
     font-size: 1.1rem;
     line-height: 1.7;
     text-align: center;
+  }
+
+  .focus-areas {
+    background: transparent;
+    border-radius: 16px;
+    padding: 24px 0;
+    border: none;
+    box-shadow: none;
+
+    h3 {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: $warm-dark;
+      margin-bottom: 24px;
+
+      mat-icon {
+        color: $primary-500;
+      }
+    }
+
+    .focus-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+
+      mat-chip {
+        background: $vert-100;
+        color: $primary-900;
+        font-size: 0.9rem;
+        padding: 8px 16px;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+      }
+    }
   }
 
   .accompagnements-grid {
@@ -580,6 +727,14 @@ $warm-light: #9a8b7a;
         font-weight: 500;
         color: $warm-dark;
         margin-bottom: 12px;
+      }
+
+      .accompagnement-icon {
+        font-size: 48px;
+        width: 48px;
+        height: 48px;
+        color: $primary-500;
+        margin-bottom: 16px;
       }
 
       p {

@@ -53,7 +53,7 @@ const SITE_VERSION = packageJson.version;
     MatExpansionModule,
   ],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class App implements OnInit {
   private http = inject(HttpClient);
@@ -76,9 +76,16 @@ export class App implements OnInit {
 
   // 75-minute slots from 8h to 20h (last start at 18h45 for a 75min session ending at 20h)
   timeSlots: string[] = [
-    '08:00', '09:15', '10:30', '11:45',
-    '13:00', '14:15', '15:30', '16:45',
-    '18:00', '19:15'
+    '08:00',
+    '09:15',
+    '10:30',
+    '11:45',
+    '13:00',
+    '14:15',
+    '15:30',
+    '16:45',
+    '18:00',
+    '19:15',
   ];
 
   // Busy slots fetched from Google Calendar: date string → busy slots for that day
@@ -91,34 +98,38 @@ export class App implements OnInit {
     {
       icon: 'favorite',
       title: 'Guérison relationnelle',
-      description: 'La relation thérapeutique comme levier biologique pour accéder aux parties de soi figées dans la protection.'
+      description:
+        'La relation thérapeutique comme levier biologique pour accéder aux parties de soi figées dans la protection.',
     },
     {
       icon: 'psychology',
       title: 'Engagement Thérapeutique Conscient',
-      description: 'Une présence ajustée qui rejoint le patient là où le lien avec soi-même et les autres s\'est rompu.'
+      description:
+        "Une présence ajustée qui rejoint le patient là où le lien avec soi-même et les autres s'est rompu.",
     },
     {
       icon: 'self_improvement',
       title: 'Réorganisation protectrice',
-      description: 'Comprendre le trauma comme une organisation défensive du système nerveux, pas un dysfonctionnement.'
+      description:
+        'Comprendre le trauma comme une organisation défensive du système nerveux, pas un dysfonctionnement.',
     },
     {
       icon: 'link',
       title: 'Rétablir le lien',
-      description: 'Relier la pensée et le corps pour transformer l\'insécurité chronique en sentiment de sécurité retrouvée.'
-    }
+      description:
+        "Relier la pensée et le corps pour transformer l'insécurité chronique en sentiment de sécurité retrouvée.",
+    },
   ];
 
   focusAreas = [
-    'Anxiété et stress chronique',
-    'Dépresso-anxiété et burn-out',
-    'Blessures relationnelles',
-    'Troubles de l\'attachement',
-    'Dissociation et dépersonnalisation',
-    'Trauma et souvenirs traumatiques',
-    'Difficultés relationnelles',
-    'Estime de soi et confiance'
+    'Stress chronique, anxiété',
+    'Emotions débordantes, hyper-réactivité',
+    'Vide émotionnel',
+    'Difficultés relationnelles (en couple, en famille, au travail...)',
+    'Isolement social',
+    'Epuisement, fatigue chronique',
+    'Mal-être diffus',
+    'Manifestations somatiques',
   ];
 
   ngOnInit() {
@@ -152,7 +163,7 @@ export class App implements OnInit {
         nom: this.nom(),
         prenom: this.prenom(),
         email: this.email(),
-        telephone: this.telephone()
+        telephone: this.telephone(),
       };
       localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(data));
       console.log('[LocalStorage] User data saved:', data);
@@ -196,7 +207,7 @@ export class App implements OnInit {
   }
 
   availableSlots(): string[] {
-    return this.timeSlots.filter(s => this.isSlotAvailable(s));
+    return this.timeSlots.filter((s) => this.isSlotAvailable(s));
   }
 
   selectTimeSlot(time: string) {
@@ -222,7 +233,7 @@ export class App implements OnInit {
     if (!this.isFormValid()) {
       this.snackBar.open('Veuillez remplir tous les champs obligatoires', 'Fermer', {
         duration: 3000,
-        panelClass: ['error-snackbar']
+        panelClass: ['error-snackbar'],
       });
       return;
     }
@@ -231,14 +242,19 @@ export class App implements OnInit {
     this.saveUserDataToLocalStorage();
 
     const date = this.selectedDate();
-    const dateStr = date ? date.toLocaleDateString('fr-FR', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    }) : '';
+    const dateStr = date
+      ? date.toLocaleDateString('fr-FR', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })
+      : '';
 
-    const seanceTypeLabel = this.seanceType() === 'distant' ? 'À distance (visioconférence)' : 'En présentiel (cabinet, 12 rue Martel)';
+    const seanceTypeLabel =
+      this.seanceType() === 'distant'
+        ? 'À distance (visioconférence)'
+        : 'En présentiel (cabinet, 12 rue Martel)';
 
     const taskTitle = `RDV: ${this.prenom()} ${this.nom()} — ${dateStr} à ${this.selectedTime()}`;
     const taskNotes = `Type: ${seanceTypeLabel}\nEmail: ${this.email()}\nTéléphone: ${this.telephone()}\nMessage: ${this.message()}`;
@@ -257,24 +273,26 @@ export class App implements OnInit {
       const formatDateTime = (d: Date) => d.toISOString().slice(0, 19) + '+02:00';
 
       // Add to Google Calendar as "à confirmer"
-      this.http.post('/api/calendar/add-to-calendar', {
-        title: taskTitle,
-        start_time: formatDateTime(startDateTime),
-        end_time: formatDateTime(endDateTime),
-        description: taskNotes,
-        email: this.email(),
-        phone: this.telephone(),
-        seance_type: seanceTypeLabel
-      }).subscribe({
-        error: (err) => console.error('Failed to add calendar event:', err)
-      });
+      this.http
+        .post('/api/calendar/add-to-calendar', {
+          title: taskTitle,
+          start_time: formatDateTime(startDateTime),
+          end_time: formatDateTime(endDateTime),
+          description: taskNotes,
+          email: this.email(),
+          phone: this.telephone(),
+          seance_type: seanceTypeLabel,
+        })
+        .subscribe({
+          error: (err) => console.error('Failed to add calendar event:', err),
+        });
     }
 
     const message = `Merci ${this.prenom()} ! Votre demande de rendez-vous a été envoyée.\n\nDétails :\n- Date : ${dateStr}\n- Heure : ${this.selectedTime()}\n- Type : ${seanceTypeLabel}\n\nJe vous contacterai sous 24h pour confirmer votre rendez-vous.`;
 
     this.snackBar.open(message, 'Fermer', {
       duration: 5000,
-      panelClass: ['success-snackbar']
+      panelClass: ['success-snackbar'],
     });
 
     // Keep user contact info in localStorage, only reset appointment-specific fields
@@ -315,9 +333,12 @@ export class App implements OnInit {
     const endStr = dateStr + 'T23:59:59Z';
 
     try {
-      const busyMap: Record<string, {time: string, duration: number}[]> = await this.http.get<Record<string, {time: string, duration: number}[]>>(
-        `/api/calendar/busy?start=${dateStr}&end=${dateStr}`
-      ).toPromise() || {};
+      const busyMap: Record<string, { time: string; duration: number }[]> =
+        (await this.http
+          .get<
+            Record<string, { time: string; duration: number }[]>
+          >(`/api/calendar/busy?start=${dateStr}&end=${dateStr}`)
+          .toPromise()) || {};
 
       // Update busySlots signal
       const newMap = new Map<string, BusySlot[]>();

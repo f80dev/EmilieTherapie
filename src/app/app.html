@@ -1,13 +1,17 @@
 <!-- Header / Navigation -->
 <mat-toolbar color="primary" class="header-toolbar">
   <div class="header-content">
-    <span class="logo" (click)="scrollTo('accueil')">Intelligence Relationnelle</span>
+    <span class="logo" (click)="scrollTo('accueil')">Emilie Pommier</span>
     <div class="nav-links" [class.mobile-open]="isMobileMenuOpen()">
-      <button mat-button (click)="scrollTo('accueil'); isMobileMenuOpen.set(false)">Accueil</button>
+      <button mat-button (click)="scrollTo('accueil'); isMobileMenuOpen.set(false)">
+        Bienvenue
+      </button>
+
+      <button mat-button (click)="scrollTo('apropos'); isMobileMenuOpen.set(false)">Me connaître</button>
       <button mat-button (click)="scrollTo('accompagnements'); isMobileMenuOpen.set(false)">Mes accompagnements</button>
-      <button mat-button (click)="scrollTo('apropos'); isMobileMenuOpen.set(false)">À propos</button>
-      <button mat-button (click)="scrollTo('methode'); isMobileMenuOpen.set(false)">Ma méthode</button>
-      <button mat-button (click)="scrollTo('ressources'); isMobileMenuOpen.set(false)">Ressources & FAQ</button>
+      <button mat-button (click)="scrollTo('methode'); isMobileMenuOpen.set(false)">Mon approche</button>
+      <button mat-button (click)="scrollTo('consultations'); isMobileMenuOpen.set(false)">Consultations & tarifs</button>
+      <button mat-button (click)="scrollTo('ressources'); isMobileMenuOpen.set(false)">Ressources <br>& FAQ</button>
       <button mat-flat-button color="accent" (click)="scrollTo('rdv'); isMobileMenuOpen.set(false)" class="rdv-btn">
         <mat-icon>calendar_today</mat-icon>
         Prendre rendez-vous
@@ -24,32 +28,38 @@
   <div class="hero-background"></div>
   <div class="hero-content">
     <img src="assets/logo.png" alt="Émilie Pommier" class="hero-logo">
-    <h1 class="hero-title">Retrouvez votre<br><span class="highlight">équilibre intérieur</span></h1>
+    <h1 class="hero-title">Bienvenue<br>dans cet espace sécure</h1>
     <p class="hero-subtitle">
-      Thérapeute spécialisé en Intelligence Relationnelle®<br>
-      Guérison des blessures psychiques et profondes par l'engagement thérapeutique conscient
+      où déposer ce qui a été heurté, blessé ou figé dans votre histoire ;<br>
+      où retrouver l'apaisement dans le lien et une connexion authentique à vous-même
+    </p>
+    <p class="hero-subtitle">
+      "Ce qui a été blessé dans la relation se guérit dans la relation"
     </p>
     <div class="hero-actions">
       <button mat-flat-button color="primary" (click)="scrollTo('rdv')" class="hero-btn-primary">
         <mat-icon>calendar_today</mat-icon>
-        Réserver une consultation
+        Prendre rendez-vous
       </button>
       <button mat-stroked-button (click)="scrollTo('methode')" class="hero-btn-secondary">
-        Découvrir ma méthode
+        Découvrir mon approche
       </button>
     </div>
     <div class="hero-info">
       <div class="info-item">
-        <mat-icon>location_on</mat-icon>
-        <span>Paris 10e</span>
+       <span><strong>Mes engagements</strong> :</span>
       </div>
       <div class="info-item">
-        <mat-icon>video_call</mat-icon>
-        <span>Consultations en visio</span>
+        <mat-icon>location_on</mat-icon>
+        <span>Premier échange gratuit</span>
       </div>
       <div class="info-item">
         <mat-icon>access_time</mat-icon>
-        <span>Du lundi au samedi</span>
+        <span>Rythme adapté à vos besoins</span>
+      </div>
+      <div class="info-item">
+        <mat-icon>video_call</mat-icon>
+        <span>Flexibilité du format</span>
       </div>
     </div>
   </div>
@@ -63,8 +73,7 @@
 <section id="apropos" class="section apropos-section">
   <div class="section-divider"></div>
   <h2 class="section-title">
-    Émilie Pommier
-    <span class="title-subtitle">Psychologue clinicien & Psychothérapeute</span>
+    Me connaître
   </h2>
   <div class="apropos-content">
     <div class="apropos-image">
@@ -72,123 +81,80 @@
     </div>
     <div class="apropos-text">
       <p class="apropos-intro">
-        Formée à l'Intelligence Relationnelle® de François Le Doze, elle vous accompagne
-        dans la guérison de vos blessures psychiques profondes et le renforcement
-        de votre sentiment de sécurité intérieure.
+        Je suis Emilie, thérapeute et praticienne en psychologie.<br>
+        <br>
+        Avant de me consacrer pleinement à la relation d'aide, j'ai passé plus de
+        20 ans dans des métiers où l'écoute active, le dialogue, la sensibilité à l'impact
+        et la quête du juste équilibre étaient au coeur de chaque projet.<br>
+        Ces expériences de vie guident toujours mes accompagnements, que j'oriente désormais
+        vers une "écologie" plus intérieure.<br>
+        <br>
+        Centrée sur la personne et la sécurité dans le lien, mon approche vise à recréer des ponts
+        entre votre tête, votre coeur et votre corps. Pour accompagner ce ré-alignement essentiel
+        où ce qui se joue en vous, ce que vous ressentez et ce que vous comprenez ne font plus qu'un...
+        vous redonnant ainsi l'élan et le pouvoir d'agir.
       </p>
       <div class="credentials">
         <div class="credential">
-          <mat-icon>school</mat-icon>
           <div>
-            <strong>Diplômes</strong>
-            <span>Master en psychologie clinique</span>
-          </div>
-        </div>
-        <div class="credential">
-          <mat-icon>verified</mat-icon>
-          <div>
-            <strong>Certification</strong>
-            <span>Intelligence Relationnelle® - Quantum Way</span>
+            <strong>Ma posture</strong>
+            <span><mat-icon>verified</mat-icon>Sécurité (un espace dédié)
+            <mat-icon>verified</mat-icon>Connexion (en lien)
+            <mat-icon>verified</mat-icon>Authenticité</span>
           </div>
         </div>
 
       </div>
-      <p class="apropos-philosophy">
-        <em>"Le trauma n'est pas un dysfonctionnement psychique, mais une organisation
-        protectrice et durable de notre système nerveux façonnée par l'insécurité.
-        Ensemble, nous travaillerons à transformer cette protection en lien retrouvé."</em>
-      </p>
     </div>
+  </div>
+  <div class="apropos-actions">
+    <a href="/parcours" mat-stroked-button class="hero-btn-secondary hero-btn-wrap">
+      En savoir plus sur<br>mon parcours et mon éthique
+    </a>
+    <button mat-stroked-button (click)="scrollTo('methode')" class="hero-btn-secondary">
+      Découvrir mon approche
+    </button>
   </div>
 </section>
 
-<!-- Method Section -->
-<section id="methode" class="section methode-section">
-  <div class="section-divider"></div>
-  <h2 class="section-title">Ma méthode : Intelligence Relationnelle®</h2>
-  <p class="intro-section">
-    L'Intelligence Relationnelle® est un modèle de psychothérapie dédié à la guérison
-    des blessures psychiques profondes et de la dissociation, s'appuyant sur les neurosciences
-    du trauma et la théorie de l'attachement.
-  </p>
 
-  <div class="principles-grid">
-    @for (principle of methodPrinciples; track principle.title) {
-      <mat-card class="principle-card">
-        <mat-icon class="principle-icon">{{ principle.icon }}</mat-icon>
-        <mat-card-title>{{ principle.title }}</mat-card-title>
-        <mat-card-content>
-          <p>{{ principle.description }}</p>
-        </mat-card-content>
-      </mat-card>
-    }
-  </div>
-
-  <div class="methode-details">
-    <div class="detail-block">
-      <h3>
-        <mat-icon>lightbulb</mat-icon>
-        L'Engagement Thérapeutique Conscient
-      </h3>
-      <p>
-        Au cœur de la pratique se trouve l'Engagement Thérapeutique Conscient, une manière
-        d'être en relation qui me permet d'ajuster ma présence et mon rythme afin de vous
-        rejoindre là où le lien avec les autres et vous-même s'est rompu.
-      </p>
-    </div>
-    <div class="detail-block">
-      <h3>
-        <mat-icon>healing</mat-icon>
-        Pour qui ?
-      </h3>
-      <p>
-        Cette approche s'adresse aux personnes souffrants d'anxiété chronique, de dépression,
-        de troubles relationnels, de trauma complexe ou de dissociation. Elle est particulièrement
-        efficace pour ceux qui n'ont pas trouvé d'amélioration dans des approches plus traditionnelles.
-      </p>
-    </div>
-  </div>
-
-  <div class="focus-areas">
-    <h3>
-      <mat-icon>psychology</mat-icon>
-      Thématiques traitées
-    </h3>
-    <div class="focus-chips">
-      @for (area of focusAreas; track area) {
-        <mat-chip>{{ area }}</mat-chip>
-      }
-      </div>
-  </div>
-
-  <button mat-flat-button color="accent" (click)="scrollTo('rdv')" class="rdv-btn">
-    <mat-icon>calendar_today</mat-icon>
-    Prendre rendez-vous
-  </button>
-</section>
 
 <!-- Accompaniments Section -->
 <section id="accompagnements" class="section accompagnements-section">
   <div class="section-divider"></div>
   <h2 class="section-title">Mes accompagnements</h2>
   <p class="intro-section">
-    Description de la section accompagnements.
+    Je propose un accompagnement personnalisé pour vous aider à traverser les épreuves
+    et retrouver un équilibre de vie, en m'adaptant à vos besoins spécifiques.
   </p>
+
+  <div class="focus-areas">
+    <div class="focus-chips">
+      @for (area of focusAreas; track area) {
+        <mat-chip>{{ area }}</mat-chip>
+      }
+    </div>
+  </div>
+
   <div class="accompagnements-grid">
     <mat-card class="accompagnement-card">
+      <mat-icon class="accompagnement-icon">person</mat-icon>
       <mat-card-content>
-        <h3>Premier accompagnement</h3>
-        <p>Description du premier type d'accompagnement proposé.</p>
+        <h3>En présentiel</h3>
+        <p>Séances au cabinet à Paris 10e, dans un cadre chaleureux et bienveillant.</p>
       </mat-card-content>
     </mat-card>
     <mat-card class="accompagnement-card">
+      <mat-icon class="accompagnement-icon">videocam</mat-icon>
       <mat-card-content>
-        <h3>Deuxième accompagnement</h3>
-        <p>Description du deuxième type d'accompagnement proposé.</p>
+        <h3>À distance</h3>
+        <p>Consultations par visioconférence pour les personnes résidant hors Paris.</p>
       </mat-card-content>
     </mat-card>
   </div>
 </section>
+
+
 
 <!-- Appointment Booking Section -->
 <section id="rdv" class="section rdv-section">
@@ -308,10 +274,10 @@
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Message (optionnel)</mat-label>
             <textarea matInput
-              [value]="message()"
-              (input)="message.set($any($event.target).value)"
-              rows="3"
-              placeholder="Décrivez brièvement votre situation ou vos attentes..."></textarea>
+                      [value]="message()"
+                      (input)="message.set($any($event.target).value)"
+                      rows="3"
+                      placeholder="Décrivez brièvement votre situation ou vos attentes..."></textarea>
           </mat-form-field>
 
           <mat-checkbox [(ngModel)]="acceptTerms" name="terms" class="terms-checkbox">
@@ -363,6 +329,123 @@
     </div>
   </div>
 </section>
+
+
+<!-- Method Section -->
+<section id="methode" class="section methode-section">
+  <div class="section-divider"></div>
+  <h2 class="section-title">Mon approche : Intelligence Relationnelle®</h2>
+  <p class="intro-section">
+    L'Intelligence Relationnelle® est un modèle de psychothérapie dédié à la guérison
+    des blessures psychiques profondes et de la dissociation, s'appuyant sur les neurosciences
+    du trauma et la théorie de l'attachement.
+  </p>
+
+  <div class="principles-grid">
+    @for (principle of methodPrinciples; track principle.title) {
+      <mat-card class="principle-card">
+        <mat-icon class="principle-icon">{{ principle.icon }}</mat-icon>
+        <mat-card-title>{{ principle.title }}</mat-card-title>
+        <mat-card-content>
+          <p>{{ principle.description }}</p>
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
+
+  <div class="methode-details">
+    <div class="detail-block">
+      <h3>
+        <mat-icon>lightbulb</mat-icon>
+        L'Engagement Thérapeutique Conscient
+      </h3>
+      <p>
+        Au cœur de la pratique se trouve l'Engagement Thérapeutique Conscient, une manière
+        d'être en relation qui me permet d'ajuster ma présence et mon rythme afin de vous
+        rejoindre là où le lien avec les autres et vous-même s'est rompu.
+      </p>
+    </div>
+    <div class="detail-block">
+      <h3>
+        <mat-icon>healing</mat-icon>
+        Pour qui ?
+      </h3>
+      <p>
+        Cette approche s'adresse aux personnes souffrants d'anxiété chronique, de dépression,
+        de troubles relationnels, de trauma complexe ou de dissociation. Elle est particulièrement
+        efficace pour ceux qui n'ont pas trouvé d'amélioration dans des approches plus traditionnelles.
+      </p>
+    </div>
+  </div>
+
+  <button mat-flat-button color="accent" (click)="scrollTo('rdv')" class="rdv-btn">
+    <mat-icon>calendar_today</mat-icon>
+    Prendre rendez-vous
+  </button>
+</section>
+
+
+<!-- Consultations & Tarifs Section -->
+<section id="consultations" class="section consultations-section">
+  <div class="section-divider"></div>
+  <h2 class="section-title">Consultations & tarifs</h2>
+
+  <p class="intro-section">
+    Chaque séance est un espace de présence et d'accueil dédié à votre cheminement personnel.
+    Je propose des consultations en présentiel à Paris et par visioconférence pour les personnes
+    résidant hors Paris.
+  </p>
+
+  <div class="consultations-grid">
+    <mat-card class="consultation-card">
+      <mat-icon class="consultation-icon">person</mat-icon>
+      <mat-card-title>Séance en présentiel</mat-card-title>
+      <mat-card-content>
+        <p class="tarif">80€</p>
+        <p>Durée : 1h</p>
+        <p>À Paris, dans un cadre chaleureux et confidentiel</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="consultation-card">
+      <mat-icon class="consultation-icon">videocam</mat-icon>
+      <mat-card-title>Séance en visio</mat-card-title>
+      <mat-card-content>
+        <p class="tarif">80€</p>
+        <p>Durée : 1h</p>
+        <p>Pour les résidents hors Paris ou préfère cette modalité</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="consultation-card">
+      <mat-icon class="consultation-icon">HEALING</mat-icon>
+      <mat-card-title>Première consultation</mat-card-title>
+      <mat-card-content>
+        <p class="tarif">80€</p>
+        <p>Durée : 1h15</p>
+        <p>Pour faire connaissance et évaluer vos besoins</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="remboursement-info">
+    <h3>
+      <mat-icon>info</mat-icon>
+      Remboursement possible
+    </h3>
+    <p>
+      En tant que psychologue clinicien, mes consultations peuvent donner lieu à un remboursement
+      partiel par la Sécurité sociale (sur prescription médicale) ou par votre mutuelle.
+      Je vous fournirai les factures nécessaires pour vos démarches.
+    </p>
+  </div>
+
+  <button mat-flat-button color="accent" (click)="scrollTo('rdv')" class="rdv-btn">
+    <mat-icon>calendar_today</mat-icon>
+    Prendre rendez-vous
+  </button>
+</section>
+
 
 <!-- Ressources & FAQ Section -->
 <section id="ressources" class="section ressources-section">
@@ -505,11 +588,13 @@
       <p>Psychothérapie par l'engagement thérapeutique conscient</p>
     </div>
     <div class="footer-links">
-      <a href="#accueil">Accueil</a>
-      <a href="#apropos">À propos</a>
-      <a href="#methode">Méthode</a>
+      <a href="#accueil">Bienvenue</a>
+      <a href="#apropos">Me connaître</a>
+      <a href="#accompagnements">Mes accompagnements</a>
+      <a href="#methode">Mon approche</a>
+      <a href="#consultations">Consultations & tarifs</a>
       <a href="#ressources">Ressources & FAQ</a>
-      <a href="#rdv">Rendez-vous</a>
+      <a href="#rdv">Prendre rendez-vous</a>
     </div>
     <div class="footer-legal">
       <p>© 2026 - Mention légales - Politique de confidentialité</p>
