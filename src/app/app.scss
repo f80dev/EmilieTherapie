@@ -190,9 +190,9 @@ $warm-light: #9a8b7a;
   }
 
   .hero-logo {
-    max-width: 160px;
-    margin: 0 auto 24px;
-    display: block;
+    width: 50px;
+    overflow: clip;
+    height: 50px;
   }
 
   .hero-title {
@@ -210,6 +210,10 @@ $warm-light: #9a8b7a;
     @media (max-width: 768px) {
       font-size: 2.5rem;
     }
+  }
+
+  .symptom {
+    font-size: small;
   }
 
   .hero-subtitle {
@@ -552,6 +556,84 @@ $warm-light: #9a8b7a;
         border-radius: 20px;
         border: none;
         outline: none;
+      }
+    }
+  }
+}
+
+.content-columns {
+  display: flex;
+  gap: 2rem;
+  align-items: stretch;
+
+  .text-column {
+    flex: 2;
+  }
+
+  .focus-column {
+    flex: 1;
+    min-width: 180px;
+    max-width: 280px;
+    display: flex;
+    flex-direction: column;
+
+    .word-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 16px;
+      justify-content: center;
+      align-content: flex-start;
+      padding: 16px 8px;
+
+      .cloud-word {
+        display: inline-block;
+        padding: 8px 14px;
+        border-radius: 20px;
+        background: rgba($vert-100, 0.5);
+        color: $primary-700;
+        font-weight: 500;
+        line-height: 1.4;
+        transition: all 0.3s ease;
+        cursor: default;
+
+        &:hover {
+          background: $vert-100;
+          transform: scale(1.05);
+        }
+
+        &.size-xl {
+          font-size: 1.25rem;
+          padding: 10px 18px;
+        }
+
+        &.size-lg {
+          font-size: 1.05rem;
+          padding: 8px 16px;
+        }
+
+        &.size-md {
+          font-size: 0.9rem;
+          padding: 6px 14px;
+        }
+
+        &.size-sm {
+          font-size: 0.8rem;
+          padding: 5px 12px;
+        }
+
+        &.size-xs {
+          font-size: 0.7rem;
+          padding: 4px 10px;
+        }
+
+        &.rotation-5 { transform: rotate(2deg); }
+        &.rotation--5 { transform: rotate(-2deg); }
+        &.rotation-10 { transform: rotate(3deg); }
+        &.rotation--10 { transform: rotate(-3deg); }
+        &.rotation-3 { transform: rotate(1deg); }
+        &.rotation--3 { transform: rotate(-1deg); }
+        &.rotation-8 { transform: rotate(2.5deg); }
+        &.rotation--8 { transform: rotate(-2.5deg); }
       }
     }
   }

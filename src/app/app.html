@@ -1,17 +1,23 @@
 <!-- Header / Navigation -->
 <mat-toolbar color="primary" class="header-toolbar">
   <div class="header-content">
+    <div class="hero-logo">
+      <img src="assets/logo_small.png" alt="Émilie Pommier">
+    </div>
+
     <span class="logo" (click)="scrollTo('accueil')">Emilie Pommier</span>
     <div class="nav-links" [class.mobile-open]="isMobileMenuOpen()">
-      <button mat-button (click)="scrollTo('accueil'); isMobileMenuOpen.set(false)">
-        Bienvenue
-      </button>
-
       <button mat-button (click)="scrollTo('apropos'); isMobileMenuOpen.set(false)">Me connaître</button>
       <button mat-button (click)="scrollTo('accompagnements'); isMobileMenuOpen.set(false)">Mes accompagnements</button>
       <button mat-button (click)="scrollTo('methode'); isMobileMenuOpen.set(false)">Mon approche</button>
-      <button mat-button (click)="scrollTo('consultations'); isMobileMenuOpen.set(false)">Consultations & tarifs</button>
-      <button mat-button (click)="scrollTo('ressources'); isMobileMenuOpen.set(false)">Ressources <br>& FAQ</button>
+      <button mat-button (click)="scrollTo('consultations'); isMobileMenuOpen.set(false)">
+        <div style="line-height: 95%">Consultations <br>& tarifs</div>
+      </button>
+      <button mat-button (click)="scrollTo('ressources'); isMobileMenuOpen.set(false)">
+        <div style="line-height: 95%">Ressources <br>& questions</div>
+
+
+      </button>
       <button mat-flat-button color="accent" (click)="scrollTo('rdv'); isMobileMenuOpen.set(false)" class="rdv-btn">
         <mat-icon>calendar_today</mat-icon>
         Prendre rendez-vous
@@ -23,11 +29,15 @@
   </div>
 </mat-toolbar>
 
+
+
+
+
+
 <!-- Hero Section -->
 <section id="accueil" class="hero-section">
   <div class="hero-background"></div>
   <div class="hero-content">
-    <img src="assets/logo.png" alt="Émilie Pommier" class="hero-logo">
     <h1 class="hero-title">Bienvenue<br>dans cet espace sécure</h1>
     <p class="hero-subtitle">
       où déposer ce qui a été heurté, blessé ou figé dans votre histoire ;<br>
@@ -123,18 +133,45 @@
 <section id="accompagnements" class="section accompagnements-section">
   <div class="section-divider"></div>
   <h2 class="section-title">Mes accompagnements</h2>
+
   <p class="intro-section">
-    Je propose un accompagnement personnalisé pour vous aider à traverser les épreuves
-    et retrouver un équilibre de vie, en m'adaptant à vos besoins spécifiques.
+    <strong>J'accompagne chacun.e là où il/elle en est, à son rythme.</strong><br>
   </p>
 
-  <div class="focus-areas">
-    <div class="focus-chips">
-      @for (area of focusAreas; track area) {
-        <mat-chip>{{ area }}</mat-chip>
-      }
+  <div class="content-columns">
+    <div class="text-column">
+      <p class="intro-section">
+        Bien souvent, vous connaissez votre histoire, vous avez identifié vos blocages... et pourtant,
+        c'est comme si cela ne suffisait pas.<br>
+        Peut-être observez-vous certains schémas qui se répètent chez vous, inlassablement ? <br>
+        Peut-être ressentez-vous un épuisement face au décalage entre ce que votre tête a compris et ce que
+        votre corps ou vos émotions continuent d'exprimer ?<br>
+        <br>
+        Anxiété, fatigue chronique, difficultés relationnelles, se sentir à fleur de peau ou - au contraire -
+        coupé.e de ses émotions, etc : n'y voyez pas une fatalité ou des traits de votre personnalité.<br>
+        Ce sont souvent des mécanismes d'adaptation, mis en place très tôt dans votre vie pour vous
+        protéger d'une situation perçue comme dangereuse.<br>
+        Bien qu'ils soient devenus obsolètes ou pesants, aujourd'hui, ils restent actifs. Comme bloqués en vous.<br>
+        <br>
+        "On ne peut pas effacer le passé, mais on peut créer suffisamment de sécurité intérieure pour l'accueillir
+        et se libérer de ce qui pèse, empêche, immobilise."<br>
+        <br>
+        Mon travail de thérapeute consiste à vous aider à :
+      </p>
+      <ul class="intro-section">
+        <li style="margin-top:-15px;">apaiser vos conflits intérieurs</li>
+        <li>renforcer vos ressources personnelles pour mieux repérer et poser vos limites</li>
+        <li>comprendre le "dialogue sans mots" de votre système nerveux</li>
+        <li>retrouver, durablement, un état de sérénité et de sécurité intérieure</li>
+      </ul>
+    </div>
+
+    <div class="focus-column">
+      <img src="nuage.svg" style="width: 100%;">
     </div>
   </div>
+
+
 
   <div class="accompagnements-grid">
     <mat-card class="accompagnement-card">
@@ -450,10 +487,9 @@
 <!-- Ressources & FAQ Section -->
 <section id="ressources" class="section ressources-section">
   <div class="section-divider"></div>
-  <h2 class="section-title">Ressources & FAQ</h2>
+  <h2 class="section-title">Ressources & questions</h2>
 
   <div class="ressources-intro">
-    <h3 class="intertitre">Ressources</h3>
     <div class="ressources-grid">
       <div class="ressource-block">
         <h4>
@@ -511,72 +547,20 @@
   </div>
 
   <div class="faq-section">
-    <h3 class="intertitre">FAQ</h3>
-    <mat-expansion-panel class="faq-panel">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Qu'est-ce que l'Intelligence Relationnelle® ?
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <mat-panel-description>
-        <p>L'Intelligence Relationnelle® est un modèle de psychothérapie développé par François Le Doze, dédié à la guérison des blessures psychiques profondes et de la dissociation. Cette approche s'appuie sur les neurosciences du trauma et la théorie de l'attachement pour aider les personnes à transformer leur organisation protectrice en lien retrouvé.</p>
-      </mat-panel-description>
-    </mat-expansion-panel>
+    <h3 class="title-subtitle">Questions fréquentes</h3>
+    @for (faq of faqs; track faq.question) {
+      <mat-expansion-panel class="faq-panel">
 
-    <mat-expansion-panel class="faq-panel">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Comment se déroule une première consultation ?
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <mat-panel-description>
-        <p>La première consultation permet de faire connaissance et d'évaluer vos besoins. Nous discuterons de votre histoire, de vos difficultés actuelles et de vos objectifs thérapeutiques. Cette séance dure environ 1h15 et vous permet de ressentir si le courant passe et si cette approche vous correspond.</p>
-      </mat-panel-description>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel class="faq-panel">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Combien de séances sont nécessaires ?
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <mat-panel-description>
-        <p>La durée du suivi varie selon la nature et la profondeur des difficultés rencontrées. Certaines personnes ressentent des améliorations significatives après quelques séances, tandis que d'autres bénéficient d'un accompagnement plus long. Nous évaluerons ensemble vos progrès lors de nos rencontres.</p>
-      </mat-panel-description>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel class="faq-panel">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Les consultations sont-elles remboursées ?
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <mat-panel-description>
-        <p>En tant que psychologue clinicien, mes consultations peuvent donner lieu à un remboursement partiel par la Sécurité sociale (sur prescription médicale) ou par votre mutuelle. Je vous fournirai les factures nécessaires pour vos démarches.</p>
-      </mat-panel-description>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel class="faq-panel">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Proposez-vous des consultations à distance ?
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <mat-panel-description>
-        <p>Oui, je propose des consultations par visioconférence pour les personnes résidant hors Paris ou préférant cette modalité. Un lien de connexion vous sera envoyé après confirmation de votre rendez-vous.</p>
-      </mat-panel-description>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel class="faq-panel">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Comment prendre rendez-vous ?
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <mat-panel-description>
-        <p>Vous pouvez prendre rendez-vous directement en ligne via le formulaire de réservation ci-dessus. Sélectionnez simplement la date et l'horaire de votre choix, remplissez vos coordonnées et envoyez votre demande. Je vous recontacterai sous 24h pour confirmer votre rendez-vous.</p>
-      </mat-panel-description>
-    </mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ faq.question }}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          <p>{{ faq.reponse }}</p>
+        </mat-panel-description>
+      </mat-expansion-panel>
+    }
   </div>
 </section>
 
@@ -593,7 +577,7 @@
       <a href="#accompagnements">Mes accompagnements</a>
       <a href="#methode">Mon approche</a>
       <a href="#consultations">Consultations & tarifs</a>
-      <a href="#ressources">Ressources & FAQ</a>
+      <a href="#ressources">Ressources & Questions</a>
       <a href="#rdv">Prendre rendez-vous</a>
     </div>
     <div class="footer-legal">
