@@ -13,6 +13,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { FormsModule } from '@angular/forms';
 import * as packageJson from '../../package.json';
 
@@ -49,6 +50,7 @@ const SITE_VERSION = packageJson.version;
     MatSnackBarModule,
     MatChipsModule,
     MatButtonToggleModule,
+    MatExpansionModule,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss'

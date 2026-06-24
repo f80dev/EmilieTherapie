@@ -29,4 +29,18 @@ export class Tests {
       },
     });
   }
+
+  protected getDispos() {
+    const url = '/api/calendar/events/';
+    this.http.get(url).subscribe({
+      next: (data) => {
+        console.log('Disponibilités récupérées:', data);
+        this.snackBar.open('Disponibilités récupérées avec succès', 'Fermer', { duration: 3000 });
+      },
+      error: (err) => {
+        console.error('Erreur lors de la récupération des dispos:', err);
+        this.snackBar.open('Erreur lors de la récupération des dispos: ' + err.message, 'Fermer', { duration: 5000 });
+      },
+    });
+  }
 }

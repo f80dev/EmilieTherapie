@@ -4,8 +4,10 @@
     <span class="logo" (click)="scrollTo('accueil')">Intelligence Relationnelle</span>
     <div class="nav-links" [class.mobile-open]="isMobileMenuOpen()">
       <button mat-button (click)="scrollTo('accueil'); isMobileMenuOpen.set(false)">Accueil</button>
+      <button mat-button (click)="scrollTo('accompagnements'); isMobileMenuOpen.set(false)">Mes accompagnements</button>
       <button mat-button (click)="scrollTo('apropos'); isMobileMenuOpen.set(false)">À propos</button>
       <button mat-button (click)="scrollTo('methode'); isMobileMenuOpen.set(false)">Ma méthode</button>
+      <button mat-button (click)="scrollTo('ressources'); isMobileMenuOpen.set(false)">Ressources & FAQ</button>
       <button mat-flat-button color="accent" (click)="scrollTo('rdv'); isMobileMenuOpen.set(false)" class="rdv-btn">
         <mat-icon>calendar_today</mat-icon>
         Prendre rendez-vous
@@ -127,7 +129,7 @@
         L'Engagement Thérapeutique Conscient
       </h3>
       <p>
-        Au cœur de ma pratique se trouve l'Engagement Thérapeutique Conscient, une manière
+        Au cœur de la pratique se trouve l'Engagement Thérapeutique Conscient, une manière
         d'être en relation qui me permet d'ajuster ma présence et mon rythme afin de vous
         rejoindre là où le lien avec les autres et vous-même s'est rompu.
       </p>
@@ -154,7 +156,34 @@
       @for (area of focusAreas; track area) {
         <mat-chip>{{ area }}</mat-chip>
       }
-    </div>
+      </div>
+  </div>
+
+  <button mat-flat-button color="accent" (click)="scrollTo('rdv')" class="rdv-btn">
+    <mat-icon>calendar_today</mat-icon>
+    Prendre rendez-vous
+  </button>
+</section>
+
+<!-- Accompaniments Section -->
+<section id="accompagnements" class="section accompagnements-section">
+  <h2 class="section-title">Mes accompagnements</h2>
+  <p class="accompagnements-intro">
+    Description de la section accompagnements.
+  </p>
+  <div class="accompagnements-grid">
+    <mat-card class="accompagnement-card">
+      <mat-card-content>
+        <h3>Premier accompagnement</h3>
+        <p>Description du premier type d'accompagnement proposé.</p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="accompagnement-card">
+      <mat-card-content>
+        <h3>Deuxième accompagnement</h3>
+        <p>Description du deuxième type d'accompagnement proposé.</p>
+      </mat-card-content>
+    </mat-card>
   </div>
 </section>
 
@@ -331,6 +360,138 @@
   </div>
 </section>
 
+<!-- Ressources & FAQ Section -->
+<section id="ressources" class="section ressources-section">
+  <h2 class="section-title">Ressources & FAQ</h2>
+
+  <div class="ressources-intro">
+    <h3 class="intertitre">Ressources</h3>
+    <div class="ressources-grid">
+      <div class="ressource-block">
+        <h4>
+          <mat-icon>play_circle</mat-icon>
+          À visionner
+        </h4>
+        <ul class="ressource-list">
+          <li>
+            <a href="#" target="_blank" rel="noopener">
+              <mat-icon>movie</mat-icon>
+              Vidéo de présentation de l'Intelligence Relationnelle®
+            </a>
+          </li>
+          <li>
+            <a href="#" target="_blank" rel="noopener">
+              <mat-icon>movie</mat-icon>
+              Témoignages de patients
+            </a>
+          </li>
+          <li>
+            <a href="#" target="_blank" rel="noopener">
+              <mat-icon>movie</mat-icon>
+              Comprendre le trauma et la guérison
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="ressource-block">
+        <h4>
+          <mat-icon>menu_book</mat-icon>
+          À lire
+        </h4>
+        <ul class="ressource-list">
+          <li>
+            <a href="#" target="_blank" rel="noopener">
+              <mat-icon>article</mat-icon>
+              Article sur les blessures relationnelles
+            </a>
+          </li>
+          <li>
+            <a href="#" target="_blank" rel="noopener">
+              <mat-icon>article</mat-icon>
+              Guide de l'Engagement Thérapeutique Conscient
+            </a>
+          </li>
+          <li>
+            <a href="#" target="_blank" rel="noopener">
+              <mat-icon>article</mat-icon>
+              Ressources sur la dissociation
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-section">
+    <h3 class="intertitre">FAQ</h3>
+    <mat-expansion-panel class="faq-panel">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Qu'est-ce que l'Intelligence Relationnelle® ?
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-panel-description>
+        <p>L'Intelligence Relationnelle® est un modèle de psychothérapie développé par François Le Doze, dédié à la guérison des blessures psychiques profondes et de la dissociation. Cette approche s'appuie sur les neurosciences du trauma et la théorie de l'attachement pour aider les personnes à transformer leur organisation protectrice en lien retrouvé.</p>
+      </mat-panel-description>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel class="faq-panel">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Comment se déroule une première consultation ?
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-panel-description>
+        <p>La première consultation permet de faire connaissance et d'évaluer vos besoins. Nous discuterons de votre histoire, de vos difficultés actuelles et de vos objectifs thérapeutiques. Cette séance dure environ 1h15 et vous permet de ressentir si le courant passe et si cette approche vous correspond.</p>
+      </mat-panel-description>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel class="faq-panel">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Combien de séances sont nécessaires ?
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-panel-description>
+        <p>La durée du suivi varie selon la nature et la profondeur des difficultés rencontrées. Certaines personnes ressentent des améliorations significatives après quelques séances, tandis que d'autres bénéficient d'un accompagnement plus long. Nous évaluerons ensemble vos progrès lors de nos rencontres.</p>
+      </mat-panel-description>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel class="faq-panel">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Les consultations sont-elles remboursées ?
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-panel-description>
+        <p>En tant que psychologue clinicien, mes consultations peuvent donner lieu à un remboursement partiel par la Sécurité sociale (sur prescription médicale) ou par votre mutuelle. Je vous fournirai les factures nécessaires pour vos démarches.</p>
+      </mat-panel-description>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel class="faq-panel">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Proposez-vous des consultations à distance ?
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-panel-description>
+        <p>Oui, je propose des consultations par visioconférence pour les personnes résidant hors Paris ou préférant cette modalité. Un lien de connexion vous sera envoyé après confirmation de votre rendez-vous.</p>
+      </mat-panel-description>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel class="faq-panel">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Comment prendre rendez-vous ?
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-panel-description>
+        <p>Vous pouvez prendre rendez-vous directement en ligne via le formulaire de réservation ci-dessus. Sélectionnez simplement la date et l'horaire de votre choix, remplissez vos coordonnées et envoyez votre demande. Je vous recontacterai sous 24h pour confirmer votre rendez-vous.</p>
+      </mat-panel-description>
+    </mat-expansion-panel>
+  </div>
+</section>
+
 <!-- Footer -->
 <footer class="footer">
   <div class="footer-content">
@@ -342,6 +503,7 @@
       <a href="#accueil">Accueil</a>
       <a href="#apropos">À propos</a>
       <a href="#methode">Méthode</a>
+      <a href="#ressources">Ressources & FAQ</a>
       <a href="#rdv">Rendez-vous</a>
     </div>
     <div class="footer-legal">
