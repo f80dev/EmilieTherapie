@@ -100,96 +100,94 @@ export class App implements OnInit {
   loadingSlots = signal(false);
 
   // FAQs loaded from JSON
-  faqs =
-   [
-      {
-        id: 1,
-        question: 'Est-ce que votre approche est vraiment faite pour moi ?',
-        reponse:
-          "Il n'y a pas de « bon profil » pour consulter. Si mon approche résonne en vous, je vous invite à faire l'expérience d'une première séance. Elle ne vous engage en rien pour la suite.",
-        icon: 'psychology',
-      },
-      {
-        id: 2,
-        question: 'Et si je ne sais pas quoi dire ni par quoi commencer ?',
-        reponse:
-          "C'est une situation fréquente et parfaitement normale. Vous n'avez rien à préparer. Ma pratique intègre le coeur, le corps et l'esprit. Aussi, si les mots vous manquent ou si la confusion s'installe, nous partirons simplement de vos sensations au moment présent. Je m'ajuste à vous.",
-        icon: 'chat',
-      },
-      {
-        id: 3,
-        question: 'Quel est le rythme idéal entre deux séances ?',
-        reponse:
-          'Pour offrir des repères stables à votre système nerveux, un rythme hebdomadaire ou bimensuel est souvent le plus adapté au départ. Nous définissons ce tempo ensemble et le réajustons au fil de votre accompagnement, pour être au plus près de vos besoins.',
-        icon: 'calendar_month',
-      },
-      {
-        id: 4,
-        question: "Un suivi en intelligence relationnelle, ça représente combien de séances ?",
-        reponse:
-          "Cela varie selon votre histoire et vos objectifs. En IR, nous travaillons sur des schémas de protection profondément ancrés : vos « modèles internes opérants ». Les faire évoluer demande du temps et un lien de confiance robuste. J'applique le principe suivant : « Slow is fast ». Car ralentir est parfois le moyen le plus sécurisant pour transformer durablement votre quotidien et apaiser votre système nerveux.",
-        icon: 'timelapse',
-      },
-      {
-        id: 5,
-        question: "Vous pouvez me résumer l'intelligence relationnelle en 2 phrases ?",
-        reponse:
-          "C'est une thérapie psycho-corporelle d'orientation neurobiologique (Bon, là, vous êtes bien avancé.e). J'utilise la sécurité du lien thérapeutique pour aider votre « cerveau du haut » (la logique, la pensée) à se réassocier harmonieusement avec votre « cerveau du bas » (les sensations, les émotions, les mémoires inconscientes), là où le trauma et les carences passées ont créé de la rigidité et des coupures.",
-        icon: 'summarize',
-      },
-      {
-        id: 6,
-        question: "Quelle différence avec l'intelligence émotionnelle ?",
-        reponse:
-          "Ce sont, en effet, deux approches bien distinctes. L'intelligence émotionnelle est un outil comportemental axé sur la gestion et la compréhension de ses émotions, au quotidien. L'intelligence relationnelle est un modèle thérapeutique à la fois profond et doux. Il utilise la relation thérapeutique pour reprogrammer le système nerveux autonome et restaurer un sentiment durable de sécurité intérieure.",
-        icon: 'compare_arrows',
-      },
-      {
-        id: 7,
-        question: 'Est-il question de revivre mes traumas en séance ?',
-        reponse:
-          "Certainement pas. Replonger dans le récit du passé peut réactiver votre dérégulation nerveuse, sans la résoudre. Aussi, je travaille depuis l'empreinte que le trauma laisse — au présent — dans votre corps (des tensions, certains réflexes de protection, des élans de fuite ou de défense inhibés...) et, ensemble, nous libérons votre système nerveux sans jamais forcer, via la co-régulation.",
-        icon: 'healing',
-      },
-      {
-        id: 8,
-        question: "Présentiel ou visio : qu'est-ce qui est le mieux ?",
-        reponse:
-          'La réussite de la thérapie repose fondamentalement sur la sécurité dans le lien, peu importe le canal privilégié. Le présentiel vous offre un espace « cocon » et un cadre physique dédié (un repère clair). La visio préserve votre confort intérieur et vous offre plus de souplesse logistique. Les deux modalités sont interchangeables, selon vos préférences et vos besoins de co-régulation.',
-        icon: 'devices',
-      },
-      {
-        id: 9,
-        question: 'Vos séances sont-elles remboursées ?',
-        reponse:
-          "En tant que psycho-praticienne, mes séances ne sont pas prises en charge par la Sécurité sociale. Cependant, de nombreuses mutuelles complémentaires proposent aujourd'hui un remboursement partiel ou forfaitaire de certains accompagnements thérapeutiques. Je vous invite à vous renseigner auprès de votre organisme complémentaire.",
-        icon: 'payments',
-      },
-    ]
-
+  faqs = [
+    {
+      id: 1,
+      question: 'Est-ce que votre approche est vraiment faite pour moi ?',
+      reponse:
+        "Il n'y a pas de « bon profil » pour consulter. Si mon approche résonne en vous, je vous invite à faire l'expérience d'une première séance. Elle ne vous engage en rien pour la suite.",
+      icon: 'psychology',
+    },
+    {
+      id: 2,
+      question: 'Et si je ne sais pas quoi dire ni par quoi commencer ?',
+      reponse:
+        "C'est une situation fréquente et parfaitement normale. Vous n'avez rien à préparer. Ma pratique intègre le coeur, le corps et l'esprit. Aussi, si les mots vous manquent ou si la confusion s'installe, nous partirons simplement de vos sensations au moment présent. Je m'ajuste à vous.",
+      icon: 'chat',
+    },
+    {
+      id: 3,
+      question: 'Quel est le rythme idéal entre deux séances ?',
+      reponse:
+        'Pour offrir des repères stables à votre système nerveux, un rythme hebdomadaire ou bimensuel est souvent le plus adapté au départ. Nous définissons ce tempo ensemble et le réajustons au fil de votre accompagnement, pour être au plus près de vos besoins.',
+      icon: 'calendar_month',
+    },
+    {
+      id: 4,
+      question: 'Un suivi en intelligence relationnelle, ça représente combien de séances ?',
+      reponse:
+        "Cela varie selon votre histoire et vos objectifs. En IR, nous travaillons sur des schémas de protection profondément ancrés : vos « modèles internes opérants ». Les faire évoluer demande du temps et un lien de confiance robuste. J'applique le principe suivant : « Slow is fast ». Car ralentir est parfois le moyen le plus sécurisant pour transformer durablement votre quotidien et apaiser votre système nerveux.",
+      icon: 'timelapse',
+    },
+    {
+      id: 5,
+      question: "Vous pouvez me résumer l'intelligence relationnelle en 2 phrases ?",
+      reponse:
+        "C'est une thérapie psycho-corporelle d'orientation neurobiologique (Bon, là, vous êtes bien avancé.e). J'utilise la sécurité du lien thérapeutique pour aider votre « cerveau du haut » (la logique, la pensée) à se réassocier harmonieusement avec votre « cerveau du bas » (les sensations, les émotions, les mémoires inconscientes), là où le trauma et les carences passées ont créé de la rigidité et des coupures.",
+      icon: 'summarize',
+    },
+    {
+      id: 6,
+      question: "Quelle différence avec l'intelligence émotionnelle ?",
+      reponse:
+        "Ce sont, en effet, deux approches bien distinctes. L'intelligence émotionnelle est un outil comportemental axé sur la gestion et la compréhension de ses émotions, au quotidien. L'intelligence relationnelle est un modèle thérapeutique à la fois profond et doux. Il utilise la relation thérapeutique pour reprogrammer le système nerveux autonome et restaurer un sentiment durable de sécurité intérieure.",
+      icon: 'compare_arrows',
+    },
+    {
+      id: 7,
+      question: 'Est-il question de revivre mes traumas en séance ?',
+      reponse:
+        "Certainement pas. Replonger dans le récit du passé peut réactiver votre dérégulation nerveuse, sans la résoudre. Aussi, je travaille depuis l'empreinte que le trauma laisse — au présent — dans votre corps (des tensions, certains réflexes de protection, des élans de fuite ou de défense inhibés...) et, ensemble, nous libérons votre système nerveux sans jamais forcer, via la co-régulation.",
+      icon: 'healing',
+    },
+    {
+      id: 8,
+      question: "Présentiel ou visio : qu'est-ce qui est le mieux ?",
+      reponse:
+        'La réussite de la thérapie repose fondamentalement sur la sécurité dans le lien, peu importe le canal privilégié. Le présentiel vous offre un espace « cocon » et un cadre physique dédié (un repère clair). La visio préserve votre confort intérieur et vous offre plus de souplesse logistique. Les deux modalités sont interchangeables, selon vos préférences et vos besoins de co-régulation.',
+      icon: 'devices',
+    },
+    {
+      id: 9,
+      question: 'Vos séances sont-elles remboursées ?',
+      reponse:
+        "En tant que psycho-praticienne, mes séances ne sont pas prises en charge par la Sécurité sociale. Cependant, de nombreuses mutuelles complémentaires proposent aujourd'hui un remboursement partiel ou forfaitaire de certains accompagnements thérapeutiques. Je vous invite à vous renseigner auprès de votre organisme complémentaire.",
+      icon: 'payments',
+    },
+  ];
 
   methodPrinciples = [
     {
       icon: 'favorite',
-      title: 'Guérison relationnelle',
+      title: "L'Intelligence Relationnelle® (IR)",
       description:
         'La relation thérapeutique comme levier biologique pour accéder aux parties de soi figées dans la protection.',
     },
     {
       icon: 'psychology',
-      title: 'Engagement Thérapeutique Conscient',
+      title: 'L\'EMDR et les ressources de STABILISATION',
       description:
         "Une présence ajustée qui rejoint le patient là où le lien avec soi-même et les autres s'est rompu.",
     },
     {
       icon: 'self_improvement',
-      title: 'Réorganisation protectrice',
+      title: 'La THERAPIE SENSORI-MOTRICE',
       description:
         'Comprendre le trauma comme une organisation défensive du système nerveux, pas un dysfonctionnement.',
     },
     {
       icon: 'link',
-      title: 'Rétablir le lien',
+      title: 'Les THERAPIES COGNITIVO-COMPORTEMENTALES',
       description:
         "Relier la pensée et le corps pour transformer l'insécurité chronique en sentiment de sécurité retrouvée.",
     },
@@ -225,7 +223,6 @@ export class App implements OnInit {
   ngOnInit() {
     this.loadUserDataFromLocalStorage();
   }
-
 
   private loadUserDataFromLocalStorage(): void {
     console.log('[LocalStorage] Attempting to load user data...');
