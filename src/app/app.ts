@@ -119,7 +119,7 @@ export class App implements OnInit {
       id: 3,
       question: 'Quel est le rythme idéal entre deux séances ?',
       reponse:
-        'Pour offrir des repères stables à votre système nerveux, un rythme hebdomadaire ou bimensuel est souvent le plus adapté au départ. Nous définissons ce tempo ensemble et le réajustons au fil de votre accompagnement, pour être au plus près de vos besoins.',
+        'Pour offrir des repères stables à votre système nerveux, un rythme hebdomadaire ou bimensuel est souvent le plus adapté au départ. Nous définissons ce tempo ensemble et le réajustons - si nécessaire - au fil de votre accompagnement, pour être au plus près de vos besoins.',
       icon: 'calendar_month',
     },
     {
@@ -133,7 +133,7 @@ export class App implements OnInit {
       id: 5,
       question: "Vous pouvez me résumer l'intelligence relationnelle en 2 phrases ?",
       reponse:
-        "C'est une thérapie psycho-corporelle d'orientation neurobiologique (Bon, là, vous êtes bien avancé.e). J'utilise la sécurité du lien thérapeutique pour aider votre « cerveau du haut » (la logique, la pensée) à se réassocier harmonieusement avec votre « cerveau du bas » (les sensations, les émotions, les mémoires inconscientes), là où le trauma et les carences passées ont créé de la rigidité et des coupures.",
+        "C'est une thérapie psycho-corporelle d'orientation neurobiologique (Là, vous êtes bien avancé.e ^^). J'utilise la sécurité du lien thérapeutique pour aider votre « cerveau du haut » (la logique, la pensée) à se réassocier harmonieusement avec votre « cerveau du bas » (les sensations, les émotions, les mémoires inconscientes), là où le trauma et les carences passées ont créé de la rigidité et des coupures.",
       icon: 'summarize',
     },
     {
@@ -145,23 +145,23 @@ export class App implements OnInit {
     },
     {
       id: 7,
-      question: 'Est-il question de revivre mes traumas en séance ?',
+      question: 'Est-il question de revivre mon trauma en séance ?',
       reponse:
-        "Certainement pas. Replonger dans le récit du passé peut réactiver votre dérégulation nerveuse, sans la résoudre. Aussi, je travaille depuis l'empreinte que le trauma laisse — au présent — dans votre corps (des tensions, certains réflexes de protection, des élans de fuite ou de défense inhibés...) et, ensemble, nous libérons votre système nerveux sans jamais forcer, via la co-régulation.",
+        "Certainement pas ! Replonger dans le récit du passé peut réactiver votre dérégulation nerveuse, sans la résoudre. Aussi, je travaille depuis l'empreinte que le trauma laisse - au présent - dans votre corps (des tensions, certains réflexes de protection, des élans de fuite ou de défense inhibés...) et, ensemble, nous libérons votre système nerveux sans jamais forcer, via la co-régulation.",
       icon: 'healing',
     },
     {
       id: 8,
       question: "Présentiel ou visio : qu'est-ce qui est le mieux ?",
       reponse:
-        'La réussite de la thérapie repose fondamentalement sur la sécurité dans le lien, peu importe le canal privilégié. Le présentiel vous offre un espace « cocon » et un cadre physique dédié (un repère clair). La visio préserve votre confort intérieur et vous offre plus de souplesse logistique. Les deux modalités sont interchangeables, selon vos préférences et vos besoins de co-régulation.',
+        'La réussite de la thérapie repose fondamentalement sur la sécurité dans le lien, peu importe le canal privilégié. Le présentiel vous offre un espace « cocon » et un cadre physique dédié (autrement dit, un repère clair). La visio préserve votre confort intérieur et vous offre plus de souplesse logistique. Les deux modalités sont interchangeables, selon vos préférences et vos besoins.',
       icon: 'devices',
     },
     {
       id: 9,
       question: 'Vos séances sont-elles remboursées ?',
       reponse:
-        "En tant que psycho-praticienne, mes séances ne sont pas prises en charge par la Sécurité sociale. Cependant, de nombreuses mutuelles complémentaires proposent aujourd'hui un remboursement partiel ou forfaitaire de certains accompagnements thérapeutiques. Je vous invite à vous renseigner auprès de votre organisme complémentaire.",
+        "En tant que psycho-praticienne, mes séances ne sont pas prises en charge par la Sécurité sociale (elles ne rentrent pas dans le dispositif \"Mon soutien psy\"). Cependant, de nombreuses mutuelles complémentaires proposent aujourd'hui un remboursement partiel ou forfaitaire de certains accompagnements thérapeutiques. Je vous invite à vous renseigner auprès de votre organisme complémentaire.",
       icon: 'payments',
     },
   ];
@@ -171,25 +171,25 @@ export class App implements OnInit {
       icon: 'favorite',
       title: "L'Intelligence Relationnelle® (IR)",
       description:
-        'La relation thérapeutique comme levier biologique pour accéder aux parties de soi figées dans la protection.',
+        'Approche neurobiologique à la fois profonde (par son action sur le système nerveux) et douce (par la sécurité que la co-régulation instaure)',
     },
     {
       icon: 'psychology',
-      title: 'L\'EMDR et les ressources de STABILISATION',
+      title: "L'EMDR et les ressources de STABILISATION",
       description:
-        "Une présence ajustée qui rejoint le patient là où le lien avec soi-même et les autres s'est rompu.",
+        "Le traumatisme, ça n'est pas tant l'évènement que l'intensité de votre \"vécu insécurisant\" au moment où cela s'est produit",
     },
     {
       icon: 'self_improvement',
       title: 'La THERAPIE SENSORI-MOTRICE',
       description:
-        'Comprendre le trauma comme une organisation défensive du système nerveux, pas un dysfonctionnement.',
+        'Approche somatique qui utilise le corps comme ressource principale d\'informations et de changements',
     },
     {
       icon: 'link',
       title: 'Les THERAPIES COGNITIVO-COMPORTEMENTALES',
       description:
-        "Relier la pensée et le corps pour transformer l'insécurité chronique en sentiment de sécurité retrouvée.",
+        "Approche pragmatique centrée sur le ici & maintenant (ancrage)",
     },
   ];
 
