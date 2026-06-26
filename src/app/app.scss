@@ -223,6 +223,10 @@ $warm-light: #9a8b7a;
     margin-bottom: 40px;
   }
 
+  .hero-description {
+    font-size: 1.4rem;
+  }
+
   .hero-actions {
     display: flex;
     gap: 16px;
@@ -483,6 +487,30 @@ $warm-light: #9a8b7a;
         color: $warm-medium;
         font-size: 0.95rem;
         line-height: 1.6;
+      }
+    }
+  }
+
+  .method-approaches {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin: 5px;
+
+    .approach-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 24px;
+      min-width: 140px;
+
+      span {
+        font-size: 1rem;
+        font-weight: bold;
+        color: $primary-500;
+        text-align: center;
       }
     }
   }

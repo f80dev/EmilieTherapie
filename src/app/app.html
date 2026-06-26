@@ -35,12 +35,12 @@
   <div class="hero-background"></div>
   <div class="hero-content">
     <h1 class="hero-title">Bienvenue<br></h1>
-    <p class="hero-subtitle">
+    <p class="hero-subtitle hero-description">
       dans cet espace sécure<br>
       où déposer ce qui a été heurté, blessé ou figé dans votre histoire ;<br>
       où retrouver l'apaisement dans le lien et une connexion authentique à vous-même
     </p>
-    <p class="hero-subtitle">
+    <p class="hero-subtitle hero-description">
       "Ce qui a été blessé dans la relation se guérit dans la relation"
     </p>
     <div class="hero-actions">
@@ -52,6 +52,7 @@
         Découvrir mon approche
       </button>
     </div>
+
     <div class="hero-info">
       <div class="info-item">
        <span><strong>Mes engagements</strong> :</span>
@@ -158,7 +159,7 @@
         Mon travail de thérapeute consiste à vous aider à :
       </p>
       <ul class="intro-section">
-        <li> style="margin-top:-15px;"apaiser vos conflits intérieurs</li>
+        <li style="margin-top:-15px;">apaiser vos conflits intérieurs</li>
         <li>renforcer vos ressources personnelles pour mieux repérer et poser vos limites</li>
         <li>comprendre le "dialogue sans mots" de votre système nerveux</li>
         <li>retrouver, durablement, un état de sérénité et de sécurité intérieure</li>
@@ -225,14 +226,14 @@
       </mat-button-toggle>
       <mat-button-toggle value="distant">
         <mat-icon>videocam</mat-icon>
-        À distance
+        En visio-consultation
       </mat-button-toggle>
     </mat-button-toggle-group>
     <p class="seance-type-hint">
       @if (seanceType() === 'distant') {
-        Séance par visioconférence — lien envoyé après confirmation
+        Séance par visioconférence - Lien envoyé après confirmation du rdv
       } @else {
-        Séance au cabinet — 12 rue Martel, Paris 10e
+        Séance au cabinet - Au choix : Paris 10e ou 11e
       }
     </p>
   </div>
@@ -405,17 +406,16 @@
     stabilité intérieure à laquelle vous aspirez.<br>
   </p>
 
-  <div class="hero-info">
-    <div class="info-item">
-      <mat-icon>location_on</mat-icon>
+  <div class="method-approaches">
+    <div class="approach-card">
+
       <span>Approche intégrative</span>
     </div>
-    <div class="info-item">
-      <mat-icon>access_time</mat-icon>
+    <div class="approach-card">
+
       <span>Approche trauma-informée</span>
     </div>
-    <div class="info-item">
-      <mat-icon>video_call</mat-icon>
+    <div class="approach-card">
       <span>Approche psycho-corporelle</span>
     </div>
   </div>
