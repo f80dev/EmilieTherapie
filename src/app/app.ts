@@ -161,7 +161,7 @@ export class App implements OnInit {
       id: 9,
       question: 'Vos séances sont-elles remboursées ?',
       reponse:
-        "En tant que psycho-praticienne, mes séances ne sont pas prises en charge par la Sécurité sociale (elles ne rentrent pas dans le dispositif \"Mon soutien psy\"). Cependant, de nombreuses mutuelles complémentaires proposent aujourd'hui un remboursement partiel ou forfaitaire de certains accompagnements thérapeutiques. Je vous invite à vous renseigner auprès de votre organisme complémentaire.",
+        'En tant que psycho-praticienne, mes séances ne sont pas prises en charge par la Sécurité sociale (elles ne rentrent pas dans le dispositif "Mon soutien psy"). Cependant, de nombreuses mutuelles complémentaires proposent aujourd\'hui un remboursement partiel ou forfaitaire de certains accompagnements thérapeutiques. Je vous invite à vous renseigner auprès de votre organisme complémentaire.',
       icon: 'payments',
     },
   ];
@@ -172,26 +172,39 @@ export class App implements OnInit {
       title: "L'Intelligence Relationnelle® (IR)",
       description:
         'Approche neurobiologique à la fois profonde (par son action sur le système nerveux) et douce (par la sécurité que la co-régulation instaure)',
+      description_back:
+        "L'IR® s\'appuie sur 3 fondements scientifiques pour reconfigurer le système nerveux autonome, c'est-à-dire ramener de l'apaisement et de la souplesse, là où le trauma a créé de la rigidité : - la théorie de l'attachement ou comment, à travers une proximité thérapeutique sécure, le praticien vous propose de vivre une expérience correctrice et de réparer - en vous - les zones d'insécurité affective et relationnelle ; - la théorie polyvagale pour vous apprendre à repérer, apprivoiser et recalibrer ensemble les réactions automatiques de votre système nerveux, face au danger ; - le modèle IFS (système familial intérieur) ou \"travail avec les Parts\", pour dialoguer avec bienveillance et douceur avec vos différentes \"voix intérieures\" (celles qui portent les blessures et celles qui s'épuisent à les protéger) et retrouver un sentiment de paix intérieure",
     },
     {
       icon: 'psychology',
-      title: "L'EMDR et les ressources de STABILISATION",
+      title: "L'EMDR et les ressources de stabilisation",
       description:
-        "Le traumatisme, ça n'est pas tant l'évènement que l'intensité de votre \"vécu insécurisant\" au moment où cela s'est produit",
+        'Approche de désensibilisation et de retraitement des souvenirs traumatiques, par les mouvements oculaires',
+      description_back:
+        "Le traumatisme, ça n'est pas tant l'évènement en lui-même que votre vécu d'une insécurité extrême, au moment où il s'est produit. En situation de grand danger, le cerveau humain peut aller jusqu'à \"dysjoncter\" et empêcher ce vécu traumatique d'être \"digéré\". L'EMDR a pour objectif de relancer le processus naturel de guérison du psychisme, en permettant à votre vécu - bloqué dans la mémoire traumatique - de rejoindre la mémoire autobiographique... et d'être ainsi classé dans vos \"archives personnelles\". Les outils d'ancrage et les techniques de stabilisation émotionnelle sont autant de ressources (ou \"filets de sécurité\") pour accompagner ce processus",
     },
     {
       icon: 'self_improvement',
       title: 'La THERAPIE SENSORI-MOTRICE',
       description:
-        'Approche somatique qui utilise le corps comme ressource principale d\'informations et de changements',
+        "Approche somatique qui utilise le corps comme ressource principale d'informations et de changements",
+      description_back:
+        "Car là où la parole s\'arrête, le corps - lui -  se souvient. Ainsi, vos blessures profondes et vos carences s'inscrivent dans la mémoire implicite, sous la forme de tensions, micro-expressions, postures ou gestes chroniques. Via une approche \"Bottom-Up\" (du corps vers l'esprit), je vous aide à décoder votre récit somatique, j'accompagne votre corps à achever les actions de défense qui ont possiblement été inhibées, et je soutiens votre régulation émotionnelle par les mouvements du corps",
     },
     {
       icon: 'link',
       title: 'Les THERAPIES COGNITIVO-COMPORTEMENTALES',
-      description:
-        "Approche pragmatique centrée sur le ici & maintenant (ancrage)",
+      description: "Approche pragmatique centrée sur le ici & maintenant (ancrage)",
+      description_back:
+        "Les TCC permettent de modifier les pensées et comportements inadaptés en restant concentré.e sur le présent. Cette approche est idéale pour identifier la manière dont vos pensées influencent directement vos émotions, vos comportements, voire vos boucles anxieuses ou de rumination",
     },
   ];
+
+  flippedCards: { [key: string]: boolean } = {};
+
+  flipCard(title: string): void {
+    this.flippedCards[title] = !this.flippedCards[title];
+  }
 
   private cloudSizes = ['xl', 'lg', 'md', 'sm', 'xs'];
   private cloudRotations = [0, 5, -5, 10, -10, 3, -3, 8, -8];

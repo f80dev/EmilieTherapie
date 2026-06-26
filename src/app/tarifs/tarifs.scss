@@ -1,0 +1,224 @@
+.tarifs-section {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f0e8 0%, #fff 100%);
+  padding: 40px 20px;
+}
+
+.tarifs-container {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.back-btn {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  color: #8b7355;
+
+  &:hover {
+    background: rgba(139, 115, 85, 0.1);
+  }
+}
+
+.tarifs-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: #5d4e37;
+  text-align: center;
+  margin-bottom: 48px;
+  padding-top: 40px;
+}
+
+.tarifs-content {
+  background: white;
+  border-radius: 16px;
+  padding: 48px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+
+  .section-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #5d4e37;
+    margin-top: 40px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e8e0d5;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+
+  p {
+    color: #8b7355;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    margin-bottom: 24px;
+  }
+}
+
+// Pricing Grid Styles
+.pricing-grid {
+  margin-bottom: 32px;
+}
+
+.pricing-item {
+  padding: 20px 0;
+  border-bottom: 1px solid #e8e0d5;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.pricing-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pricing-label {
+  color: #5d4e37;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.pricing-arrow {
+  color: #8b7355;
+  margin: 0 8px;
+  font-size: 1.2rem;
+}
+
+.pricing-price {
+  color: #5d4e37;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.pricing-free {
+  color: #6b8e6b;
+}
+
+.pricing-note {
+  color: #8b7355;
+  font-size: 0.95rem;
+  font-style: italic;
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+.intro-text {
+  color: #8b7355;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+}
+
+// Info Box
+.info-box {
+  background: #faf8f5;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 24px 0;
+
+  p {
+    margin-bottom: 16px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  strong {
+    color: #5d4e37;
+  }
+}
+
+// Warning Text
+.warning-text {
+  color: #a67c52;
+  font-weight: 500;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #fdf6ed 0%, #fef9f4 100%);
+  border-left: 4px solid #d4a574;
+  border-radius: 0 8px 8px 0;
+  margin-top: 24px;
+}
+
+// Cancellation Rules
+.cancellation-rules {
+  margin: 24px 0;
+}
+
+.cancellation-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  background: #faf8f5;
+  border-radius: 12px;
+  margin-bottom: 16px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  p {
+    margin-bottom: 0;
+    color: #5d4e37;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+}
+
+.check-icon {
+  color: #6b8e6b;
+  flex-shrink: 0;
+}
+
+.warning-icon {
+  color: #c47d4e;
+  flex-shrink: 0;
+}
+
+// Consultation Tips
+.consultation-tips {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+    background: #faf8f5;
+    border-radius: 12px;
+    margin-bottom: 16px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.tip-icon {
+  color: #8b7355;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.checklist-note {
+  color: #8b7355;
+  line-height: 1.8;
+  font-size: 1.05rem;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e8e0d5;
+}

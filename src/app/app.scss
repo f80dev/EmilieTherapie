@@ -450,43 +450,112 @@ $warm-light: #9a8b7a;
 
   .principles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
+    margin-top: 32px;
     margin-bottom: 48px;
 
     .principle-card {
-      background: white;
-      border-radius: 16px;
-      padding: 32px 24px;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      perspective: 1000px;
+      height: 320px;
+      cursor: pointer;
 
-      &:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      .card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+
+        .card-front,
+        .card-back {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          backface-visibility: hidden;
+          background: white;
+          border-radius: 16px;
+          padding: 32px 24px;
+          text-align: center;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+        }
+
+        .card-front {
+          .principle-icon {
+            font-size: 48px;
+            width: 48px;
+            height: 48px;
+            color: $primary-500;
+            margin-bottom: 16px;
+          }
+
+          mat-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: $warm-dark;
+            margin-bottom: 12px;
+          }
+
+          mat-card-content p {
+            color: $warm-medium;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            flex: 1;
+            display: flex;
+            align-items: center;
+          }
+
+          .flip-link {
+            color: $primary-500;
+            font-size: 0.9rem;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-top: auto;
+          }
+        }
+
+        .card-back {
+          transform: rotateY(180deg);
+          background: linear-gradient(135deg, $primary-500 0%, lighten($primary-500, 10%) 100%);
+
+          mat-card-content p {
+            color: white;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            flex: 1;
+            display: flex;
+            align-items: center;
+          }
+
+          .flip-link {
+            color: white;
+            font-size: 0.9rem;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-top: auto;
+          }
+        }
       }
 
-      .principle-icon {
-        font-size: 48px;
-        width: 48px;
-        height: 48px;
-        color: $primary-500;
-        margin-bottom: 16px;
+      &.flipped .card-inner {
+        transform: rotateY(180deg);
       }
 
-      mat-card-title {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.25rem;
-        font-weight: 500;
-        color: $warm-dark;
-        margin-bottom: 12px;
-      }
-
-      mat-card-content p {
-        color: $warm-medium;
-        font-size: 0.95rem;
-        line-height: 1.6;
+      &:hover:not(.flipped) {
+        .card-front {
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
       }
     }
   }
@@ -686,10 +755,21 @@ $warm-light: #9a8b7a;
       text-align: center;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
 
       &:hover {
         transform: translateY(-4px);
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      .tarif {
+        position: absolute;
+        top: 16px;
+        right: 20px;
+        font-family: 'Playfair Display', serif;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: $primary-700;
       }
 
       .consultation-icon {
@@ -700,23 +780,15 @@ $warm-light: #9a8b7a;
         margin-bottom: 16px;
       }
 
-      mat-card-title {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.25rem;
-        font-weight: 500;
-        color: $warm-dark;
+      .consultation-title {
+        font-family: 'Playfair Display', serif !important;
+        font-size: 1.25rem !important;
+        font-weight: 500 !important;
+        color: $warm-dark !important;
         margin-bottom: 16px;
       }
 
       mat-card-content {
-        .tarif {
-          font-family: 'Playfair Display', serif;
-          font-size: 2rem;
-          font-weight: 600;
-          color: $primary-700;
-          margin-bottom: 8px;
-        }
-
         p {
           color: $warm-medium;
           font-size: 0.95rem;

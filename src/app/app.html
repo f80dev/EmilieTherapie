@@ -41,7 +41,7 @@
       où retrouver l'apaisement dans le lien et une connexion authentique à vous-même
     </p>
     <p class="hero-subtitle hero-description">
-      "Ce qui a été blessé dans la relation se guérit dans la relation"
+      <em style="color: green; font-family: 'Playfair Display', serif;">"Ce qui a été blessé dans la relation se guérit dans la relation"</em>
     </p>
     <div class="hero-actions">
       <button mat-flat-button color="primary" (click)="scrollTo('rdv')" class="hero-btn-primary">
@@ -152,9 +152,9 @@
         protéger d'une situation perçue comme dangereuse.<br>
         Bien qu'ils soient aujourd'hui devenus obsolètes ou pesants, ils restent actifs. Comme bloqués en vous.<br>
         <br>
-        "On ne peut pas effacer le passé, mais on peut restaurer une sécurité intérieure suffisante pour accueillir
-        l'histoire engrammée en soi ; se libérer des fardeaux qui figent encore le présent ; et décider soi-même sur
-        quelle étagère on souhaite ranger ce livre."<br>
+        <em style="color: green; font-family: 'Playfair Display', serif;">"On ne peut pas effacer le passé, mais on peut restaurer une sécurité intérieure suffisante pour accueillir
+        l'histoire engrammée en soi ; se libérer des fardeaux qui figent encore au présent ; et décider soi-même sur
+        quelle étagère on souhaite ranger ce livre."</em><br>
         <br>
         Mon travail de thérapeute consiste à vous aider à :
       </p>
@@ -187,6 +187,8 @@
         </p>
       </mat-card-content>
     </mat-card>
+
+
     <mat-card class="accompagnement-card">
       <mat-icon class="accompagnement-icon">videocam</mat-icon>
       <mat-card-content>
@@ -397,7 +399,7 @@
     s'épuise à "chercher" le danger, voire il vous immobilise.<br>
     Nos blocages ne sont pas de simples
     concepts ou idées : ils sont engrammés dans notre système nerveux et notre mémoire corporelle.<br><br>
-    " Le corps est bavard. Sachez l'écouter lorsqu'il chuchote pour qu'il n'ait pas besoin de crier."<br><br>
+    <em style="color: green; font-family: 'Playfair Display', serif;">"Le corps est bavard. Sachez l'écouter lorsqu'il chuchote pour qu'il n'ait pas besoin de crier."</em><br><br>
     <strong>C'est précisément à cet endroit que s'inscrit mon approche.</strong><br>
     J'ai la conviction qu'une fois la sécurité dans le lien retrouvée, cela permet de (r)éveiller et
     de remettre de la fluidité entre vos émotions, vos sensations corporelles et votre esprit.<br>
@@ -431,38 +433,50 @@
     <strong>Ma pratique s'articule autour de modèles thérapeutiques reconnus et complémentaires</strong><br>
   </p>
 
+
   <div class="principles-grid">
     @for (principle of methodPrinciples; track principle.title) {
-      <mat-card class="principle-card">
-        <mat-icon class="principle-icon">{{ principle.icon }}</mat-icon>
-        <mat-card-title>{{ principle.title }}</mat-card-title>
-        <mat-card-content>
-          <p>{{ principle.description }}</p>
-        </mat-card-content>
-      </mat-card>
+      <div class="principle-card" [class.flipped]="flippedCards[principle.title]">
+        <div class="card-inner">
+          <div class="card-front">
+            <mat-icon class="principle-icon">{{ principle.icon }}</mat-icon>
+            <mat-card-title>{{ principle.title }}</mat-card-title>
+            <mat-card-content>
+              <p>{{ principle.description }}</p>
+            </mat-card-content>
+            <a class="flip-link" (click)="flipCard(principle.title)">En savoir plus</a>
+          </div>
+          <div class="card-back">
+            <mat-card-content>
+              <p>{{ principle.description_back }}</p>
+            </mat-card-content>
+            <a class="flip-link" (click)="flipCard(principle.title)">Retourner</a>
+          </div>
+        </div>
+      </div>
     }
   </div>
 
-  <div class="methode-details">
-    <div class="detail-block">
-      <h3>
-        <mat-icon>lightbulb</mat-icon>
-        L'Engagement Thérapeutique Conscient
-      </h3>
-      <p>
-        A SUPPRIMER A PRIORI
-      </p>
-    </div>
-    <div class="detail-block">
-      <h3>
-        <mat-icon>healing</mat-icon>
-        Pour qui ?
-      </h3>
-      <p>
-        A SUPPRIMER A PRIORI
-      </p>
-    </div>
-  </div>
+<!--  <div class="methode-details">-->
+<!--    <div class="detail-block">-->
+<!--      <h3>-->
+<!--        <mat-icon>lightbulb</mat-icon>-->
+<!--        L'Engagement Thérapeutique Conscient-->
+<!--      </h3>-->
+<!--      <p>-->
+<!--        A SUPPRIMER A PRIORI-->
+<!--      </p>-->
+<!--    </div>-->
+<!--    <div class="detail-block">-->
+<!--      <h3>-->
+<!--        <mat-icon>healing</mat-icon>-->
+<!--        Pour qui ?-->
+<!--      </h3>-->
+<!--      <p>-->
+<!--        A SUPPRIMER A PRIORI-->
+<!--      </p>-->
+<!--    </div>-->
+<!--  </div>-->
 
   <p class="intro-section">
     Vous voulez savoir si mon approche est faite pour vous ?<br>
@@ -482,42 +496,43 @@
   <h2 class="section-title">Consultations & tarifs</h2>
 
   <p class="intro-section">
-    Un format flexible. L'assurance d'une écoute bienveillante<br>
+    Un format flexible<br>
+    L'assurance d'une écoute bienveillante<br>
   </p>
 
   <div class="consultations-grid">
     <mat-card class="consultation-card">
+      <p class="tarif">80 €</p>
       <mat-icon class="consultation-icon">person</mat-icon>
-      <mat-card-title>Séance en présentiel</mat-card-title>
+      <mat-card-title class="consultation-title">Séance en présentiel</mat-card-title>
       <mat-card-content>
         <p>Un cadre discret et apaisant, dans un espace dédié au soin et au bien-être<br>
-        <li>dans le 10ème arr. (ici, la localisation Google Maps)</li>
-          <li>dans le 11ème arr. (ici, la localisation Google Maps)</li>
+        <li>dans le 10e arr. (ici, la localisation Google Maps)</li>
+          <li>dans le 11e arr. (ici, la localisation Google Maps)</li>
           ... à votre convenance
         </p><br>
-        <p>Durée de la séance : 1h ou 1h30 (à indiquer au moment de la prise de rdv)</p>
-        <p class="tarif">80€</p>
+        <p>Durée de la séance : <strong>1h ou 1h30</strong> (à indiquer au moment de la prise de rdv)</p>
       </mat-card-content>
     </mat-card>
 
     <mat-card class="consultation-card">
+      <p class="tarif">80 €</p>
       <mat-icon class="consultation-icon">videocam</mat-icon>
-      <mat-card-title>Séance en visio</mat-card-title>
+      <mat-card-title class="consultation-title">Séance en visio</mat-card-title>
       <mat-card-content>
-        <p>Pour celles et ceux qui vivent loin, qui voyagent souvent ou qui préfèrent le
+        <p>Pour celles et ceux qui vivent loin, qui voyagent souvent ou qui préfère le
         confort et la sécurité de leur chez soi</p><br>
-        <p>Durée de la séance : 1h ou 1h30 (à indiquer au moment de la prise de rdv)</p><br>
+        <p>Durée de la séance : <strong>1h ou 1h30</strong> (à indiquer au moment de la prise de rdv)</p><br>
         <p>Le lien pour rejoindre la visio-consultation vous sera envoyé par mail, quelques jours
           avant notre séance</p>
         <p>Merci de bien vouloir vous connecter quelques minutes avant l'heure, afin de vous
-        assurer que tout fonctionne (réseau wifi ou internet, caméra, micro...)</p>
-        <p class="tarif">80€</p>
+          assurer que tout fonctionne (réseau wifi ou internet, caméra, micro...)</p>
       </mat-card-content>
     </mat-card>
   </div>
 
   <div class="apropos-actions">
-    <a href="/parcours" mat-stroked-button class="hero-btn-secondary hero-btn-wrap">
+    <a href="/tarifs" mat-stroked-button class="hero-btn-secondary hero-btn-wrap">
       Voir mes tarifs
     </a>
   </div>
@@ -534,10 +549,6 @@
   <div class="section-divider"></div>
   <h2 class="section-title">Ressources & questions</h2>
 
-  <p class="intro-section">
-    Que vous ayez 2 min ou 1h, j'espère que ces ressources vous inspireront à votre tour...<br>
-  </p>
-
   <div class="ressources-intro">
     <div class="ressources-grid">
       <div class="ressource-block">
@@ -545,45 +556,48 @@
           <mat-icon>play_circle</mat-icon>
           À visionner
         </h4>
+        <p class="intro-section">
+          <span style="font-style: italic">Que vous ayez 2 min ou 1h, <br>j'espère que ces ressources vous inspireront à votre tour<br></span>
+        </p>
         <ul class="ressource-list">
           <li>
-            <a href="#" target="_blank" rel="noopener">
+            <a href="https://www.arte.tv/fr/videos/127467-001-A/avons-nous-tous-un-trauma-cache/" target="_blank" rel="noopener">
               <mat-icon>movie</mat-icon>
               Avons-nous tous un trauma caché ? (ARTE, 2026 | <br>27 min)
             </a>
           </li>
           <li>
-            <a href="#" target="_blank" rel="noopener">
+            <a href="https://www.youtube.com/watch?v=HVVpa_-pLkE" target="_blank" rel="noopener">
               <mat-icon>movie</mat-icon>
               Traumatismes, système nerveux et santé mentale (Quantum Way | 9 min)
             </a>
           </li>
           <li>
-            <a href="#" target="_blank" rel="noopener">
+            <a href="https://www.youtube.com/watch?v=py8deTlxNco" target="_blank" rel="noopener">
               <mat-icon>movie</mat-icon>
               La neurobiologie du trauma (Viméo | 4 min)
             </a>
           </li>
           <li>
-            <a href="#" target="_blank" rel="noopener">
+            <a href="https://www.youtube.com/watch?v=qM56FRfZrl8" target="_blank" rel="noopener">
               <mat-icon>movie</mat-icon>
-              Le neuroplasticité expliquée simplement (Infloressens, 2016 | 2 min)
+              La neuroplasticité expliquée simplement (Infloressens, 2016 | 2 min)
             </a>
           </li>
           <li>
-            <a href="#" target="_blank" rel="noopener">
+            <a href="https://www.youtube.com/watch?v=n9IJttHPYno" target="_blank" rel="noopener">
               <mat-icon>movie</mat-icon>
               L'IFS - 1ère partie (J. Renault, 2020 | 5 min)
             </a>
           </li>
           <li>
-            <a href="#" target="_blank" rel="noopener">
+            <a href="https://www.youtube.com/watch?v=b20pWSOiXts" target="_blank" rel="noopener">
               <mat-icon>movie</mat-icon>
               L'IFS - 2ème partie (J. Renault, 2020 | 6 min)
             </a>
           </li>
           <li>
-            <a href="#" target="_blank" rel="noopener">
+            <a href="https://www.youtube.com/watch?v=MVkvosRMRPA" target="_blank" rel="noopener">
               <mat-icon>movie</mat-icon>
               La théorie de l'attachement (Sprouts, 2023 | 8 min)
             </a>
@@ -595,6 +609,9 @@
           <mat-icon>menu_book</mat-icon>
           À lire
         </h4>
+        <p class="intro-section">
+          <span style="font-style: italic">Une sélection d'ouvrages variée, <br>pour répondre aux attentes et au temps disponible de chacun.e<br></span>
+        </p>
         <ul class="ressource-list">
           <li>
             <a href="#" target="_blank" rel="noopener">
