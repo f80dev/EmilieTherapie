@@ -457,7 +457,7 @@ $warm-light: #9a8b7a;
 
     .principle-card {
       perspective: 1000px;
-      height: 320px;
+      height: 400px;
       cursor: pointer;
 
       .card-inner {
@@ -477,7 +477,7 @@ $warm-light: #9a8b7a;
           backface-visibility: hidden;
           background: white;
           border-radius: 16px;
-          padding: 32px 24px;
+          padding: 24px;
           text-align: center;
           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
           box-sizing: border-box;

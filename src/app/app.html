@@ -214,6 +214,9 @@
 <!-- Appointment Booking Section -->
 <section id="rdv" class="section rdv-section">
   <div class="section-divider"></div>
+
+
+
   <h2 class="section-title">Prendre rendez-vous</h2>
   <p class="rdv-intro">
     Réservez votre séance en ligne en quelques clics. La première consultation
@@ -390,6 +393,21 @@
 <section id="methode" class="section methode-section">
   <div class="section-divider"></div>
   <h2 class="section-title">Mon approche</h2>
+
+  <div class="method-approaches">
+    <div class="approach-card">
+
+      <span>Approche intégrative</span>
+    </div>
+    <div class="approach-card">
+
+      <span>Approche trauma-informée</span>
+    </div>
+    <div class="approach-card">
+      <span>Approche psycho-corporelle</span>
+    </div>
+  </div>
+
   <p class="intro-section">
     <strong>Je sais combien</strong> la volonté et l'analyse intellectuelle, seules, ne suffisent pas à
       apaiser les blessures profondément ancrées en nous.<br>
@@ -407,20 +425,6 @@
     la capacité naturelle de votre système à s'apaiser, à sortir de schémas obsolètes et à retrouver la
     stabilité intérieure à laquelle vous aspirez.<br>
   </p>
-
-  <div class="method-approaches">
-    <div class="approach-card">
-
-      <span>Approche intégrative</span>
-    </div>
-    <div class="approach-card">
-
-      <span>Approche trauma-informée</span>
-    </div>
-    <div class="approach-card">
-      <span>Approche psycho-corporelle</span>
-    </div>
-  </div>
 
   <p class="intro-section">
     <strong>L'alliance de l'esprit, du coeur et du corps, pour une efficacité maximale</strong><br>
@@ -482,6 +486,11 @@
     Vous voulez savoir si mon approche est faite pour vous ?<br>
     Je me fais un plaisir d'échanger avec vous.
   </p>
+
+  <button mat-flat-button color="accent" (click)="scrollTo('rdv'); isMobileMenuOpen.set(false)" class="rdv-btn">
+    <mat-icon>calendar_today</mat-icon>
+    Prendre rendez-vous
+  </button>
 
   <button mat-flat-button color="accent" (click)="scrollTo('rdv')" class="rdv-btn">
     <mat-icon>calendar_today</mat-icon>
