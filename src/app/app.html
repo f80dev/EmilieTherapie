@@ -1,11 +1,12 @@
 <!-- Header / Navigation -->
 <mat-toolbar color="primary" class="header-toolbar">
   <div class="header-content">
-    <div class="hero-logo">
-      <img src="assets/logo_small.png" alt="Émilie Pommier">
+    <div class="header-brand">
+      <div class="hero-logo">
+        <img src="assets/logo_small.png" alt="Émilie Pommier">
+      </div>
+      <span class="logo" (click)="scrollTo('accueil')">Emilie Pommier</span>
     </div>
-
-    <span class="logo" (click)="scrollTo('accueil')">Emilie Pommier</span>
     <div class="nav-links" [class.mobile-open]="isMobileMenuOpen()">
       <button mat-button (click)="scrollTo('apropos'); isMobileMenuOpen.set(false)">Me connaître</button>
       <button mat-button (click)="scrollTo('accompagnements'); isMobileMenuOpen.set(false)">Mes accompagnements</button>
@@ -13,11 +14,11 @@
       <button mat-button (click)="scrollTo('consultations'); isMobileMenuOpen.set(false)">
         <div style="line-height: 95%">Consultations <br>& tarifs</div>
       </button>
+
       <button mat-button (click)="scrollTo('ressources'); isMobileMenuOpen.set(false)">
         <div style="line-height: 95%">Ressources <br>& questions</div>
-
-
       </button>
+
       <button mat-flat-button color="accent" (click)="scrollTo('rdv'); isMobileMenuOpen.set(false)" class="rdv-btn">
         <mat-icon>calendar_today</mat-icon>
         Prendre rendez-vous
@@ -34,13 +35,13 @@
 <section id="accueil" class="hero-section">
   <div class="hero-background"></div>
   <div class="hero-content">
-    <h1 class="hero-title">Bienvenue<br></h1>
+    <h1 class="hero-title">Bienvenue</h1>
     <p class="hero-subtitle hero-description">
       dans cet espace sécure<br>
       où déposer ce qui a été heurté, blessé ou figé dans votre histoire ;<br>
       où retrouver l'apaisement dans le lien et une connexion authentique à vous-même
     </p>
-    <p class="hero-subtitle hero-description">
+    <p class="hero-subtitle hero-description" style="margin-bottom: 100px;">
       <em style="color: green; font-family: 'Playfair Display', serif;">"Ce qui a été blessé dans la relation se guérit dans la relation"</em>
     </p>
     <div class="hero-actions">
@@ -139,14 +140,18 @@
     <strong>J'accompagne chacun.e là où il/elle en est, à son rythme.</strong><br>
   </p>
 
-  <div class="content-columns">
-    <div class="text-column">
+  <div style="width: 100%;text-align: center;">
+    <img src="nuage.svg" style="width: 100%;max-width: 500px;display:inline-block;">
+  </div>
+
+
       <p class="intro-section">
         Bien souvent, vous connaissez votre histoire, vous avez identifié vos blocages... et pourtant,
         c'est comme si cela ne suffisait pas.<br>
         Peut-être observez-vous certains schémas qui se répètent chez vous, inlassablement ? <br>
         Peut-être ressentez-vous un épuisement face au décalage entre ce que votre tête a compris et ce que
         votre corps ou vos émotions continuent d'exprimer ?<br>
+
         <br>
         Anxiété, fatigue chronique, difficultés relationnelles, se sentir à fleur de peau ou - au contraire -
         coupé.e de ses émotions, etc : n'y voyez pas une fatalité ou des traits de votre personnalité.<br>
@@ -160,18 +165,17 @@
         <br>
         Mon travail de thérapeute consiste à vous aider à :
       </p>
-      <ul class="intro-section">
+
+    <ul class="intro-section">
         <li style="margin-top:-15px;">apaiser vos conflits intérieurs</li>
         <li>renforcer vos ressources personnelles pour mieux repérer et poser vos limites</li>
         <li>comprendre le "dialogue sans mots" de votre système nerveux</li>
         <li>retrouver, durablement, un état de sérénité et de sécurité intérieure</li>
       </ul>
-    </div>
+  <br>
 
-    <div class="focus-column">
-      <img src="nuage.svg" style="width: 100%;">
-    </div>
-  </div>
+
+
 
 
 
@@ -216,8 +220,6 @@
 <!-- Appointment Booking Section -->
 <section id="rdv" class="section rdv-section">
   <div class="section-divider"></div>
-
-
 
   <h2 class="section-title">Prendre rendez-vous</h2>
   <p class="rdv-intro">
@@ -494,10 +496,6 @@
     Prendre rendez-vous
   </button>
 
-  <button mat-flat-button color="accent" (click)="scrollTo('rdv')" class="rdv-btn">
-    <mat-icon>calendar_today</mat-icon>
-    Prendre rendez-vous
-  </button>
 </section>
 
 

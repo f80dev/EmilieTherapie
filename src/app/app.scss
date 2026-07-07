@@ -44,9 +44,13 @@ $warm-light: #9a8b7a;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 24px;
+  }
+
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
   .logo {
@@ -165,10 +169,10 @@ $warm-light: #9a8b7a;
   justify-content: center;
   position: relative;
   background: linear-gradient(
-    135deg,
-    $secondary-50 0%,
-    $vert-100 50%,
-    $secondary-100 100%
+      135deg,
+      $secondary-50 0%,
+      $vert-100 50%,
+      $secondary-100 100%
   );
   overflow: hidden;
 
@@ -185,14 +189,12 @@ $warm-light: #9a8b7a;
     position: relative;
     z-index: 1;
     text-align: center;
-    max-width: 800px;
-    padding: 120px 24px 80px;
+    max-width: 1000px;
   }
 
   .hero-logo {
-    width: 50px;
+    width: 30px !important;
     overflow: clip;
-    height: 50px;
   }
 
   .hero-title {
@@ -200,8 +202,7 @@ $warm-light: #9a8b7a;
     font-size: 3.5rem;
     font-weight: 500;
     color: $warm-dark;
-    line-height: 1.2;
-    margin-bottom: 24px;
+    margin-top:-50px;
 
     .highlight {
       color: $primary-700;
@@ -219,7 +220,7 @@ $warm-light: #9a8b7a;
   .hero-subtitle {
     font-size: 1.25rem;
     color: $warm-medium;
-    line-height: 1.6;
+    line-height: 1.2;
     margin-bottom: 40px;
   }
 
@@ -232,7 +233,7 @@ $warm-light: #9a8b7a;
     gap: 16px;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 48px;
+    margin-bottom: 20px;
 
     .hero-btn-primary {
       background: $primary-500;
@@ -362,13 +363,6 @@ $warm-light: #9a8b7a;
   }
 
   .apropos-text {
-    h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.75rem;
-      font-weight: 500;
-      color: $warm-dark;
-      margin-bottom: 16px;
-    }
 
     .apropos-intro {
       font-size: 1.1rem;
@@ -457,8 +451,6 @@ $warm-light: #9a8b7a;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
-    margin-top: 32px;
-    margin-bottom: 48px;
 
     .principle-card {
       perspective: 1000px;
@@ -840,10 +832,10 @@ $warm-light: #9a8b7a;
 // ============================================
 // Appointment Section
 // ============================================
-  .accompagnements-section {
+.accompagnements-section {
+
   .accompagnements-intro {
     max-width: 700px;
-    margin: 0 auto 48px;
     color: $warm-medium;
     font-size: 1.1rem;
     line-height: 1.7;
@@ -857,20 +849,7 @@ $warm-light: #9a8b7a;
     border: none;
     box-shadow: none;
 
-    h3 {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      font-weight: 500;
-      color: $warm-dark;
-      margin-bottom: 24px;
 
-      mat-icon {
-        color: $primary-500;
-      }
-    }
 
     .focus-chips {
       display: flex;
