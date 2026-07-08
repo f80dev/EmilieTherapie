@@ -110,7 +110,7 @@ html {
 
 .section {
   padding: var(--space-2xl) var(--space-lg);
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
 
   @media (max-width: 768px) {
@@ -139,8 +139,6 @@ html {
 }
 
 .intro-section {
-  font-size: 0.9rem;
-  font-weight: 400;
   text-align: center;
   color: var(--text-secondary);
 }
