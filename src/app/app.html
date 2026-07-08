@@ -19,10 +19,12 @@
         <div style="line-height: 95%">Ressources <br>& questions</div>
       </button>
 
-      <button mat-flat-button color="accent" (click)="scrollTo('rdv'); isMobileMenuOpen.set(false)" class="rdv-btn">
+      <button mat-flat-button color="accent"
+              (click)="scrollTo('rdv'); isMobileMenuOpen.set(false)" class="rdv-btn">
         <mat-icon>calendar_today</mat-icon>
         Prendre rendez-vous
       </button>
+
     </div>
     <button mat-icon-button class="hamburger" (click)="isMobileMenuOpen.set(!isMobileMenuOpen())">
       <mat-icon>{{ isMobileMenuOpen() ? 'close' : 'menu' }}</mat-icon>
@@ -45,7 +47,7 @@
       <em style="color: green; font-family: 'Playfair Display', serif;">"Ce qui a été blessé dans la relation se guérit dans la relation"</em>
     </p>
     <div class="hero-actions">
-      <button mat-flat-button color="primary" (click)="scrollTo('rdv')" class="hero-btn-primary">
+      <button mat-flat-button color="primary" (click)="scrollTo('rdv')" class="rdv-btn">
         <mat-icon>calendar_today</mat-icon>
         Prendre rendez-vous
       </button>
@@ -86,10 +88,10 @@
   </h2>
   <div class="apropos-content">
     <div class="apropos-image">
-      <img src="assets/emilie-pommier.jpg" alt="Émilie Pommier" class="photo">
+      <img src="emilie.jpg" alt="Émilie Pommier" class="photo">
     </div>
     <div class="apropos-text">
-      <p class="apropos-intro">
+      <p class="content-text">
         Je suis Emilie, thérapeute et praticienne en psychologie.<br>
         <br>
         Avant de me consacrer pleinement à la relation d'aide, j'ai passé plus de
@@ -144,8 +146,7 @@
     <img src="nuage.svg" style="width: 100%;max-width: 500px;display:inline-block;">
   </div>
 
-
-      <p class="intro-section">
+      <p class="content-text" >
         Bien souvent, vous connaissez votre histoire, vous avez identifié vos blocages... et pourtant,
         c'est comme si cela ne suffisait pas.<br>
         Peut-être observez-vous certains schémas qui se répètent chez vous, inlassablement ? <br>
@@ -169,14 +170,13 @@
         Mon travail de thérapeute consiste à vous aider à :
 
 
-  <div style="width: 100%;text-align: center;">
+
     <ul style="max-width: 700px;display:inline-block;text-align: left;">
       <li style="margin-top:-15px;">apaiser vos conflits intérieurs</li>
       <li>renforcer vos ressources personnelles pour mieux repérer et poser vos limites</li>
       <li>comprendre le "dialogue sans mots" de votre système nerveux</li>
       <li>retrouver, durablement, un état de sérénité et de sécurité intérieure</li>
     </ul>
-  </div>
   <br>
 
   <div class="accompagnements-grid">
@@ -184,7 +184,7 @@
       <mat-icon class="accompagnement-icon">person</mat-icon>
       <mat-card-content>
         <h3>Un premier échange gratuit (30 min)</h3>
-        <p>Parce que le choix d'un.e thérapeute est important et très personnel,<br>
+        <p class="content-text">Parce que le choix d'un.e thérapeute est important et très personnel,<br>
           je vous propose un premier contact en visio, sans aucun engagement.<br><br>
           <li><strong>Pour vous :</strong> c'est l'occasion de m'exposer votre besoin, de formuler vos attentes et de
             me poser toutes vos questions</li>
@@ -199,7 +199,7 @@
       <mat-icon class="accompagnement-icon">videocam</mat-icon>
       <mat-card-content>
         <h3>Je vous reçois ensuite pour des séances individuelles de 1h ou 1h30 (ajusté à vos besoins),</h3>
-        <p> en présentiel ou en visio-consultation.<br><br>
+        <p class="content-text"> en présentiel ou en visio-consultation.<br><br>
           Durant ce temps qui est le vôtre, je m'engage à vous offrir  un espace sécure, bienveillant,
           sans jugement, où vous pourrez déposer tout ce qui vous traverse.<br><br>
           Une séance type s'articule généralement autour de trois temps forts :
@@ -412,7 +412,7 @@
     </div>
   </div>
 
-  <p class="intro-section">
+  <p class="content-text">
     <strong>Je sais combien</strong> la volonté et l'analyse intellectuelle, seules, ne suffisent pas à
       apaiser les blessures profondément ancrées en nous.<br>
     Beaucoup pensent qu'il suffit de "comprendre" l'origine de ses problèmes pour les résoudre.<br>
@@ -421,7 +421,13 @@
     s'épuise à "chercher" le danger, voire il vous immobilise.<br>
     Nos blocages ne sont pas de simples
     concepts ou idées : ils sont engrammés dans notre système nerveux et notre mémoire corporelle.<br><br>
-    <em style="color: green; font-family: 'Playfair Display', serif;">"Le corps est bavard. Sachez l'écouter lorsqu'il chuchote pour qu'il n'ait pas besoin de crier."</em><br><br>
+  </p>
+
+  <p style="text-align: center">
+    <em style="color: green; font-family: 'Playfair Display', serif;">"Le corps est bavard. Sachez l'écouter lorsqu'il chuchote pour qu'il n'ait pas besoin de crier."</em>
+  </p><br>
+
+<p class="content-text">
     <strong>C'est précisément à cet endroit que s'inscrit mon approche.</strong><br>
     J'ai la conviction qu'une fois la sécurité dans le lien retrouvée, cela permet de (r)éveiller et
     de remettre de la fluidité entre vos émotions, vos sensations corporelles et votre esprit.<br>
@@ -430,7 +436,7 @@
     stabilité intérieure à laquelle vous aspirez.<br>
   </p>
 
-  <p class="intro-section">
+  <p class="content-text">
     <strong>L'alliance de l'esprit, du coeur et du corps, pour une efficacité maximale</strong><br>
     Pour vous accompagner au mieux, je propose de faire intéragir vos schémas de pensée (approche
     cognitive) et vos états corporels (approche somatique).<br>Je combine ainsi un travail verbal doux
@@ -491,7 +497,8 @@
     Je me fais un plaisir d'échanger avec vous.
   </p>
 
-  <button mat-flat-button color="accent" (click)="scrollTo('rdv'); isMobileMenuOpen.set(false)" class="rdv-btn">
+  <button mat-flat-button color="accent" (click)="scrollTo('rdv'); isMobileMenuOpen.set(false)"
+          class="rdv-btn">
     <mat-icon>calendar_today</mat-icon>
     Prendre rendez-vous
   </button>
@@ -511,29 +518,27 @@
 
   <div class="consultations-grid">
     <mat-card class="consultation-card">
-      <p class="tarif">80 €</p>
       <mat-icon class="consultation-icon">person</mat-icon>
       <mat-card-title class="consultation-title">Séance en présentiel</mat-card-title>
       <mat-card-content>
-        <p>Un cadre discret et apaisant, dans un espace dédié au soin et au bien-être<br>
+        <p><span style="color: green;">Un cadre discret et apaisant, dans un espace dédié<br>au soin et au bien-être :</span><br><br>
         <li>dans le 10e arr. (ici, la localisation Google Maps)</li>
           accès par la ligne 8 du métro ou le bus n°??
           <li>dans le 11e arr. (ici, la localisation Google Maps)</li>
-          accès par la ligne X du métro ou le bus n°??
+          accès par la ligne X du métro ou le bus n°??<br>
           ... à votre convenance
         </p><br>
-        <p>Durée de la séance : <strong>1h ou 1h30</strong> (à indiquer au moment de la prise de rdv)</p>
+        <p>Durée de la séance : <strong>1h ou 1h30</strong><br>(à indiquer au moment de la prise de rdv)</p>
       </mat-card-content>
     </mat-card>
 
     <mat-card class="consultation-card">
-      <p class="tarif">80 €</p>
       <mat-icon class="consultation-icon">videocam</mat-icon>
       <mat-card-title class="consultation-title">Séance en visio</mat-card-title>
       <mat-card-content>
-        <p>Pour celles et ceux qui vivent loin, qui voyagent souvent ou qui préfèrent le
-        confort et la sécurité de leur chez soi</p><br>
-        <p>Durée de la séance : <strong>1h ou 1h30</strong> (à indiquer au moment de la prise de rdv)</p><br>
+        <p><span style="color: green;">Pour celles et ceux qui vivent loin, qui voyagent souvent<br>ou qui préférent le
+        confort et la sécurité de leur chez soi</span></p><br>
+        <p>Durée de la séance : <strong>1h ou 1h30</strong><br>(à indiquer au moment de la prise de rdv)</p><br>
         <p>Le lien pour rejoindre la visio-consultation vous sera envoyé par mail, quelques jours
           avant notre séance</p>
         <p>Merci de bien vouloir vous connecter quelques minutes avant l'heure, afin de vous
