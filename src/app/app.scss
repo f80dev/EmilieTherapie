@@ -1190,6 +1190,10 @@ $warm-light: #9a8b7a;
   .ressources-intro {
     margin-bottom: 48px;
 
+    &.ressources-spacing {
+      padding-top: 24px;
+    }
+
     .intertitre {
       font-family: 'Playfair Display', serif;
       font-size: 1.75rem;
