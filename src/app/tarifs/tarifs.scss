@@ -85,7 +85,7 @@
   }
 
   .pricing-banner-1 {
-    background: linear-gradient(90deg, #c5d9c5 0%, #a8c5a8 100%);
+    background: linear-gradient(90deg, #7fb07f 0%, #5a9a5a 100%);
   }
 
   .pricing-banner-2 {
@@ -93,7 +93,7 @@
   }
 
   .pricing-banner-3 {
-    background: linear-gradient(90deg, #7fb07f 0%, #5a9a5a 100%);
+    background: linear-gradient(90deg, #c5d9c5 0%, #a8c5a8 100%);
   }
 }
 
@@ -114,20 +114,24 @@
 }
 
 .pricing-price {
-  color: #5d4e37;
+  color: #7fb07f;
   font-size: 1.3rem;
   font-weight: 600;
   white-space: nowrap;
 }
 
 .pricing-price {
-  color: #5d4e37;
+  color: #7fb07f;
   font-size: 1.3rem;
   font-weight: 600;
 }
 
+.pricing-price-final {
+  color: #a8c5a8;
+}
+
 .pricing-free {
-  color: #6b8e6b;
+  color: #5a9a5a;
 }
 
 .pricing-note {
@@ -145,23 +149,31 @@
   margin-bottom: 24px;
 }
 
-// Info Box
-.info-box {
-  background: #faf8f5;
-  border-radius: 12px;
-  padding: 24px;
-  margin: 24px 0;
+// Payment List
+.payment-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 16px 0;
 
-  p {
-    margin-bottom: 16px;
+  li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 12px;
+
+    &::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #5d4e37;
+    }
 
     &:last-child {
       margin-bottom: 0;
     }
-  }
 
-  strong {
-    color: #5d4e37;
+    strong {
+      color: #5d4e37;
+    }
   }
 }
 
@@ -248,4 +260,74 @@
   margin-top: 24px;
   padding-top: 20px;
   border-top: 1px solid #e8e0d5;
+}
+
+// Collapsible Panels
+.info-panel {
+  background: #faf8f5;
+  border-radius: 12px !important;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e8e0d5;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  ::ng-deep {
+    .mat-expansion-panel-header {
+      background: transparent;
+      border-radius: 12px !important;
+      padding: 16px 20px;
+
+      &:hover {
+        background: rgba(#8b7355, 0.08);
+      }
+    }
+
+    .mat-expansion-panel-header.mat-expanded {
+      background: rgba(#8b7355, 0.12);
+    }
+
+    .mat-expansion-indicator {
+      color: #8b7355;
+    }
+  }
+
+  mat-panel-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #5d4e37;
+
+    .section-subtitle {
+      margin: 0;
+      padding: 0;
+      border: none;
+      font-size: inherit;
+      font-weight: inherit;
+      color: inherit;
+    }
+  }
+
+  mat-panel-description {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 16px;
+
+    p {
+      color: #8b7355;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin: 0 0 16px 0;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    ul {
+      width: 100%;
+    }
+  }
 }

@@ -11,7 +11,7 @@
         <div class="pricing-item">
           <div class="pricing-banner pricing-banner-1"></div>
           <div class="pricing-header">
-            <span class="pricing-label">Premier échange, en visio (30 min)</span>
+            <span class="pricing-label">Premier échange, en visio<br>30 min</span>
             <span class="pricing-price pricing-free">gratuit</span>
           </div>
         </div>
@@ -19,7 +19,7 @@
         <div class="pricing-item">
           <div class="pricing-banner pricing-banner-2"></div>
           <div class="pricing-header">
-            <span class="pricing-label">Séance individuelle de 1h, en présentiel ou en visio</span>
+            <span class="pricing-label">Séance individuelle de 1h<br>en présentiel ou en visio</span>
             <span class="pricing-price">80 €</span>
           </div>
         </div>
@@ -27,58 +27,77 @@
         <div class="pricing-item">
           <div class="pricing-banner pricing-banner-3"></div>
           <div class="pricing-header">
-            <span class="pricing-label">Séance individuelle de 1h30*, en présentiel ou en visio</span>
-            <span class="pricing-price">120 €</span>
+            <p class="pricing-note">* recommandé pour les explorations plus profondes et les séances d'EMDR</p>
+            <span class="pricing-label">Séance individuelle de 1h30*<br>en présentiel ou en visio</span>
+            <span class="pricing-price pricing-price-final">120 €</span>
           </div>
-          <p class="pricing-note">*recommandé pour les explorations plus profondes et les séances d'EMDR</p>
         </div>
       </div>
 
-      <h2 class="section-subtitle">Modalités de règlement</h2>
-      <p class="intro-text">Afin que le temps de notre séance soit entièrement réservé au soin et à la relation d'aide, merci de bien vouloir prendre connaissance des modalités ci-après :</p>
+      <mat-expansion-panel class="info-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h2 class="section-subtitle">Modalités de règlement</h2>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          <p class="intro-text">Afin que le temps de notre séance soit entièrement réservé au soin et à la relation d'aide, merci de bien vouloir prendre connaissance des modalités ci-après :</p>
+          <ul class="payment-list">
+            <li><strong>Séance en visio :</strong> règlement avant ou à date de séance, par virement bancaire.</li>
+            <li><strong>Séance en présentiel :</strong> règlement avant ou à date de séance, par virement bancaire, ou en espèces à la fin de notre séance.</li>
+          </ul>
+          <p class="warning-text">Règlement par carte bancaire impossible, je ne dispose pas de terminal de paiement.</p>
+        </mat-panel-description>
+      </mat-expansion-panel>
 
-      <div class="info-box">
-        <p><strong>Séance en visio :</strong> règlement avant la séance (à la date de séance), par virement bancaire.</p>
-        <p><strong>Séance en présentiel :</strong> règlement en espèces, chèque ou par virement bancaire en fin de séance.</p>
-      </div>
+      <mat-expansion-panel class="info-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h2 class="section-subtitle">Politique d'annulation et engagement mutuel</h2>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          <p>La thérapie est avant tout un engagement envers vous-même, mais c'est aussi un espace partenarial basé sur la réciprocité. Lorsqu'un créneau vous est attribué, il vous est entièrement réservé.</p>
+          <p>Si vous avez besoin de reporter ou d'annuler une séance, je vous remercie de bien vouloir m'en informer le plus tôt possible : une autre personne en demande pourrait bénéficier de ce temps d'accompagnement.</p>
+          <div class="cancellation-rules">
+            <div class="cancellation-item">
+              <mat-icon class="check-icon">check_circle</mat-icon>
+              <p><strong>Annulation plus de 48 h à l'avance</strong> (week-ends et jours fériés compris) : la séance ne vous sera pas facturée.</p>
+            </div>
+            <div class="cancellation-item">
+              <mat-icon class="warning-icon">warning</mat-icon>
+              <p><strong>Annulation 48 h ou moins</strong> (week-ends et jours fériés compris) : la séance est due en totalité.</p>
+            </div>
+          </div>
+        </mat-panel-description>
+      </mat-expansion-panel>
 
-      <p class="warning-text">Je ne dispose pas de terminal de paiement ; le règlement par carte bancaire est impossible.</p>
-
-      <h2 class="section-subtitle">Politique d'annulation et engagement mutuel</h2>
-      <p>La thérapie est avant tout un engagement envers vous-même, mais c'est aussi un espace partenarial basé sur la réciprocité. Lorsqu'un créneau vous est attribué, il vous est entièrement réservé.</p>
-      <p>Si vous avez besoin de reporter ou d'annuler une séance, je vous remercie de bien vouloir m'en informer le plus tôt possible : une autre personne en demande pourrait bénéficier de ce temps d'accompagnement.</p>
-
-      <div class="cancellation-rules">
-        <div class="cancellation-item">
-          <mat-icon class="check-icon">check_circle</mat-icon>
-          <p><strong>Annulation plus de 48 h à l'avance</strong> (week-ends et jours fériés compris) : la séance ne vous sera pas facturée.</p>
-        </div>
-        <div class="cancellation-item">
-          <mat-icon class="warning-icon">warning</mat-icon>
-          <p><strong>Annulation 48 h ou moins</strong> (week-ends et jours fériés compris) : la séance est due en totalité.</p>
-        </div>
-      </div>
-
-      <h2 class="section-subtitle">Préparer votre visio-consultation</h2>
-      <p class="intro-text">Consulter depuis chez soi demande une vigilance particulière, pour recréer la "bulle", le "cocon de sécurité" de l'espace thérapeutique en présentiel.</p>
-      <p>Afin de préserver votre intimité et pour maximiser l'efficacité de notre séance, je vous invite à considérer avec attention les aspects suivants :</p>
-
-      <ul class="consultation-tips">
-        <li>
-          <mat-icon class="tip-icon">location_on</mat-icon>
-          <span>Veillez à vous installer dans une pièce isolée, au calme, où vous avez la certitude de ne pas être dérangé·e et où vous pourrez vous exprimer en totale liberté.</span>
-        </li>
-        <li>
-          <mat-icon class="tip-icon">weekend</mat-icon>
-          <span>Veillez à être confortablement installé·e (une assise stable, une vue idéalement dégagée, aucun bruit de fond perturbateur).</span>
-        </li>
-        <li>
-          <mat-icon class="tip-icon">lightbulb</mat-icon>
-          <span>Mettez à portée de main tout ce qui pourra soutenir votre régulation et votre confort, durant notre travail émotionnel : écouteurs (pour une meilleure immersion et plus de confidentialité), eau, mouchoirs, chargeur (branché ou à proximité), tout objet de régulation sensorielle que vous aimez (textures réconfortantes, fidget toys...)</span>
-        </li>
-      </ul>
-
-      <p class="checklist-note">N'oubliez pas de vérifier, avant notre séance, le niveau de charge et le bon fonctionnement de vos appareils électroniques ainsi que votre connexion. Nous pourrons ainsi démarrer la séance sans précipitation.</p>
+      <mat-expansion-panel class="info-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h2 class="section-subtitle">Préparer votre visio-consultation</h2>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          <p class="intro-text">Consulter depuis chez soi demande une vigilance particulière, pour recréer la "bulle", le "cocon de sécurité" de l'espace thérapeutique en présentiel.</p>
+          <p>Afin de préserver votre intimité et pour maximiser l'efficacité de notre séance, je vous invite à considérer avec attention les aspects suivants :</p>
+          <ul class="consultation-tips">
+            <li>
+              <mat-icon class="tip-icon">location_on</mat-icon>
+              <span>Veillez à vous installer dans une pièce isolée, au calme, où vous avez la certitude de ne pas être dérangé·e et où vous pourrez vous exprimer en totale liberté.</span>
+            </li>
+            <li>
+              <mat-icon class="tip-icon">weekend</mat-icon>
+              <span>Veillez à être confortablement installé·e (une assise stable, une vue idéalement dégagée, aucun bruit de fond perturbateur).</span>
+            </li>
+            <li>
+              <mat-icon class="tip-icon">lightbulb</mat-icon>
+              <span>Mettez à portée de main tout ce qui pourra soutenir votre régulation et votre confort, durant notre travail émotionnel : écouteurs (pour une meilleure immersion et plus de confidentialité), eau, mouchoirs, chargeur (branché ou à proximité), tout objet de régulation sensorielle que vous aimez (textures réconfortantes, fidget toys...)</span>
+            </li>
+          </ul>
+          <p class="checklist-note">N'oubliez pas de vérifier, avant notre séance, le niveau de charge et le bon fonctionnement de vos appareils électroniques ainsi que votre connexion. Nous pourrons ainsi démarrer la séance sans précipitation.</p>
+        </mat-panel-description>
+      </mat-expansion-panel>
     </div>
   </div>
 </section>
