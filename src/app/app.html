@@ -20,7 +20,7 @@
       </button>
 
       <button mat-flat-button color="accent"
-              (click)="scrollTo('rdv'); isMobileMenuOpen.set(false)" class="rdv-btn">
+              (click)="scrollTo('rdv'); isMobileMenuOpen.set(false)" class="main-btn">
         <mat-icon>calendar_today</mat-icon>
         Prendre rendez-vous
       </button>
@@ -47,11 +47,11 @@
       <em style="color: green; font-family: 'Playfair Display', serif;">"Ce qui a été blessé dans la relation se guérit dans la relation"</em>
     </p>
     <div class="hero-actions">
-      <button mat-flat-button color="primary" (click)="scrollTo('rdv')" class="rdv-btn">
+      <button mat-flat-button color="primary" (click)="scrollTo('rdv')" class="main-btn">
         <mat-icon>calendar_today</mat-icon>
         Prendre rendez-vous
       </button>
-      <button mat-stroked-button (click)="scrollTo('methode')" class="hero-btn-secondary">
+      <button mat-stroked-button (click)="scrollTo('methode')" class="main-btn">
         Découvrir mon approche
       </button>
     </div>
@@ -125,7 +125,7 @@
     <a href="/parcours" mat-stroked-button class="hero-btn-secondary hero-btn-wrap">
       En savoir plus sur<br>mon parcours et mon éthique
     </a>
-    <button mat-stroked-button (click)="scrollTo('methode')" class="hero-btn-secondary">
+    <button mat-stroked-button (click)="scrollTo('methode')" class="main-btn">
       Découvrir mon approche
     </button>
   </div>
@@ -230,7 +230,7 @@
   <div class="seance-type-toggle">
     <mat-button-toggle-group [value]="seanceType()" (change)="seanceType.set($event.value)">
       <mat-button-toggle value="presentiel">
-        <mat-icon>apartment</mat-icon>
+        <mat-icon>person</mat-icon>
         En présentiel
       </mat-button-toggle>
       <mat-button-toggle value="distant">
@@ -498,7 +498,7 @@
   </p>
 
   <button mat-flat-button color="accent" (click)="scrollTo('rdv'); isMobileMenuOpen.set(false)"
-          class="rdv-btn">
+          class="main-btn">
     <mat-icon>calendar_today</mat-icon>
     Prendre rendez-vous
   </button>
@@ -516,44 +516,90 @@
     L'assurance d'une écoute bienveillante<br>
   </p>
 
+  <div class="seance-type-toggle">
+    <mat-button-toggle-group [value]="seanceType()" (change)="seanceType.set($event.value)">
+      <mat-button-toggle value="presentiel">
+        <mat-icon>person</mat-icon>
+        En présentiel
+      </mat-button-toggle>
+      <mat-button-toggle value="distant">
+        <mat-icon>videocam</mat-icon>
+        En visio-consultation
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <br>
+
+
+
   <div class="consultations-grid">
-    <mat-card class="consultation-card">
-      <mat-icon class="consultation-icon">person</mat-icon>
-      <mat-card-title class="consultation-title">Séance en présentiel</mat-card-title>
-      <mat-card-content>
-        <p><span style="color: green;">Un cadre discret et apaisant, dans un espace dédié<br>au soin et au bien-être :</span><br><br>
-        <li>dans le 10e arr. (ici, la localisation Google Maps)</li>
-          accès par la ligne 8 du métro ou le bus n°??
-          <li>dans le 11e arr. (ici, la localisation Google Maps)</li>
-          accès par la ligne X du métro ou le bus n°??<br>
-          ... à votre convenance
-        </p><br>
-        <p>Durée de la séance : <strong>1h ou 1h30</strong><br>(à indiquer au moment de la prise de rdv)</p>
-      </mat-card-content>
-    </mat-card>
 
-    <mat-card class="consultation-card">
-      <mat-icon class="consultation-icon">videocam</mat-icon>
-      <mat-card-title class="consultation-title">Séance en visio</mat-card-title>
-      <mat-card-content>
-        <p><span style="color: green;">Pour celles et ceux qui vivent loin, qui voyagent souvent<br>ou qui préférent le
+    @if (seanceType() != 'distant') {
+
+      <mat-card class="consultation-card">
+
+        <mat-card-title class="consultation-title">Séance en présentiel</mat-card-title>
+        <mat-card-content>
+          <p><span style="color: green;">Un cadre discret et apaisant, dans un espace dédié<br>au soin et au bien-être :</span><br><br>
+            <li>dans le 10e arr. (ici, la localisation Google Maps)</li>
+            accès par la ligne 8 du métro ou le bus n°??
+            <li>dans le 11e arr. (ici, la localisation Google Maps)</li>
+            accès par la ligne X du métro ou le bus n°??<br>
+            ... à votre convenance
+          </p><br>
+          <p>Durée de la séance : <strong>1h ou 1h30</strong><br>(à indiquer au moment de la prise de rdv)</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="consultation-card">
+        <mat-card-content>
+          <img src="presentiel.jpg" style="height:100%;">
+        </mat-card-content>
+      </mat-card>
+
+
+    } @else {
+
+      <mat-card class="consultation-card">
+        <mat-card-content>
+          <img src="./envideo.png">
+        </mat-card-content>
+      </mat-card>
+
+
+      <mat-card class="consultation-card">
+
+        <mat-card-title class="consultation-title">Séance en visio</mat-card-title>
+        <mat-card-content>
+          <p><span style="color: green;">Pour celles et ceux qui vivent loin, qui voyagent souvent<br>ou qui préférent le
         confort et la sécurité de leur chez soi</span></p><br>
-        <p>Durée de la séance : <strong>1h ou 1h30</strong><br>(à indiquer au moment de la prise de rdv)</p><br>
-        <p>Le lien pour rejoindre la visio-consultation vous sera envoyé par mail, quelques jours
-          avant notre séance</p>
-        <p>Merci de bien vouloir vous connecter quelques minutes avant l'heure, afin de vous
-          assurer que tout fonctionne (réseau wifi ou internet, caméra, micro...)</p>
-      </mat-card-content>
-    </mat-card>
+          <p>Durée de la séance : <strong>1h ou 1h30</strong><br>(à indiquer au moment de la prise de rdv)</p><br>
+          <p>Le lien pour rejoindre la visio-consultation vous sera envoyé par mail, quelques jours
+            avant notre séance</p>
+          <p>Merci de bien vouloir vous connecter quelques minutes avant l'heure, afin de vous
+            assurer que tout fonctionne (réseau wifi ou internet, caméra, micro...)</p>
+        </mat-card-content>
+      </mat-card>
+
+
+
+
+    }
+
+
+
+
+
   </div>
 
-  <div class="apropos-actions">
-    <a href="/tarifs" mat-stroked-button class="hero-btn-secondary hero-btn-wrap">
-      Voir mes tarifs
-    </a>
-  </div>
 
-  <button mat-flat-button color="accent" (click)="scrollTo('rdv')" class="rdv-btn">
+  <button mat-flat-button routerLink="tarifs" class="main-btn">
+    <mat-icon>money</mat-icon>
+    Voir mes tarifs
+  </button>
+
+  <button mat-flat-button color="accent" (click)="scrollTo('rdv')" class="main-btn">
     <mat-icon>calendar_today</mat-icon>
     Prendre rendez-vous
   </button>

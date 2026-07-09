@@ -16,6 +16,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FormsModule } from '@angular/forms';
 import * as packageJson from '../../package.json';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 interface BusySlot {
   time: string;
@@ -56,6 +57,8 @@ const SITE_VERSION = packageJson.version;
     MatChipsModule,
     MatButtonToggleModule,
     MatExpansionModule,
+    RouterLinkActive,
+    RouterLink,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
@@ -194,9 +197,9 @@ export class App implements OnInit {
     {
       icon: 'link',
       title: 'Les THERAPIES COGNITIVO-COMPORTEMENTALES',
-      description: "Approche pragmatique centrée sur le ici & maintenant (ancrage)",
+      description: 'Approche pragmatique centrée sur le ici & maintenant (ancrage)',
       description_back:
-        "Les TCC permettent de modifier les pensées et comportements inadaptés en restant concentré.e sur le présent. Cette approche est idéale pour identifier la manière dont vos pensées influencent directement vos émotions, vos comportements, voire vos boucles anxieuses ou de rumination",
+        'Les TCC permettent de modifier les pensées et comportements inadaptés en restant concentré.e sur le présent. Cette approche est idéale pour identifier la manière dont vos pensées influencent directement vos émotions, vos comportements, voire vos boucles anxieuses ou de rumination',
     },
   ];
 
