@@ -748,12 +748,23 @@ $warm-light: #9a8b7a;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 24px;
-    margin-bottom: 48px;
+    margin-bottom: 20px;
+
+    .visuel-seance {
+      width: 100%;
+    }
+
+    .consultation-visuel {
+        padding: 0;
+      display: block;
+      overflow: hidden;
+        object-fit: cover;
+        background-color: white;
+    }
 
     .consultation-card {
       background: white;
       border-radius: 16px;
-      object-fit: cover;
       padding: 32px 24px;
       text-align: center;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
@@ -761,19 +772,11 @@ $warm-light: #9a8b7a;
       position: relative;
       overflow: clip;
 
+
+
       &:hover {
         transform: translateY(-4px);
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-      }
-
-      .tarif {
-        position: absolute;
-        top: 16px;
-        right: 20px;
-        font-family: 'Playfair Display', serif;
-        font-size: 1.25rem;
-        font-weight: 600;
-        color: $primary-700;
       }
 
       .consultation-icon {
@@ -791,6 +794,8 @@ $warm-light: #9a8b7a;
         color: $warm-dark !important;
         margin-bottom: 16px;
       }
+
+
 
       mat-card-content {
         p {
