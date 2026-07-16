@@ -13,7 +13,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 from fastapi import FastAPI, HTTPException
-
+from fastapi.middleware.cors import CORSMiddleware
 
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
@@ -47,6 +47,15 @@ ALLOWED_REFERERS = [".github.io", "netlify.app", "vercel.app", "cloudflarepages.
 EMAIL="pommier.therapeute@gmail.com"
 BASE_URL = os.environ.get("BASE_URL", "http://localhost:8080")
 app = FastAPI()
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=ALLOWED_ORIGINS,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 SERVICE_ACCOUNT_PATH = r"google_service_account.json"

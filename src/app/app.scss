@@ -1,9 +1,9 @@
 // ============================================
 // CSS Variables
 // ============================================
-$primary-400: #5eaf79;
-$primary-500: #5eaf79;
-$primary-700: #3d8b59;
+$primary-400: #a3b898;
+$primary-500: #849779;
+$primary-700: #5d6e53;
 $primary-900: #1a4a2d;
 $secondary-50: #faf8f5;
 $secondary-100: #f5f0e8;
@@ -14,7 +14,7 @@ $vert-200: #b8dcc6;
 $vert-300: #8bc69f;
 $warm-dark: #3d3630;
 $warm-medium: #6b5f52;
-$warm-light: #9a8b7a;
+$warm-light: #dac9b4;
 
 // ============================================
 // Global Styles
@@ -25,13 +25,24 @@ $warm-light: #9a8b7a;
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+.citation {
+  color: $primary-500;
+  font-style: italic;
+  font-size: large;
+  text-align: center;
+  max-width: 900px;
+  display: inline-block;
+  margin: 50px;
+}
 
 .main-btn {
-  color: white !important;
+  color: $secondary-50 !important;
   font-size: medium;
   padding: 10px 30px;
   height: 50px;
   margin-left: 16px;
+  border: none;
+  background: $primary-500 !important;
 
   mat-icon {
     font-size: 18px;
@@ -240,44 +251,6 @@ $warm-light: #9a8b7a;
     justify-content: center;
     flex-wrap: wrap;
     margin-bottom: 20px;
-
-    .hero-btn-primary {
-      background: $primary-500;
-      color: white;
-      border-radius: 28px;
-      padding: 0 32px;
-      height: 56px;
-      font-size: 1rem;
-      font-weight: 500;
-
-      mat-icon {
-        margin-right: 8px;
-      }
-
-      &:hover {
-        background: $primary-700;
-      }
-    }
-
-    .hero-btn-secondary {
-      border-radius: 28px;
-      padding: 0 32px;
-      height: 56px;
-      font-size: 1rem;
-      color: $warm-medium;
-      border-color: $warm-light;
-
-      &:hover {
-        background: rgba(255, 255, 255, 0.5);
-      }
-    }
-
-    .hero-btn-wrap {
-      height: auto;
-      white-space: normal;
-      padding: 12px 32px;
-      text-align: center;
-    }
   }
 
   .hero-info {
@@ -923,6 +896,27 @@ $warm-light: #9a8b7a;
   }
 }
 
+.standard-btn {
+  height: 52px;
+  text-align: center;
+  color: white !important;
+  background: $warm-light !important;
+  border: none;
+
+  mat-icon {
+    margin-right: 8px;
+  }
+
+  &:hover:not(:disabled) {
+    background: $primary-700;
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    color: $warm-light;
+  }
+}
+
 // ============================================
 .rdv-section {
   background: white;
@@ -1125,28 +1119,6 @@ $warm-light: #9a8b7a;
         }
       }
 
-      .submit-btn {
-        width: 100%;
-        height: 52px;
-        border-radius: 26px;
-        background: $primary-500;
-        color: white;
-        font-size: 1rem;
-        font-weight: 500;
-
-        mat-icon {
-          margin-right: 8px;
-        }
-
-        &:hover:not(:disabled) {
-          background: $primary-700;
-        }
-
-        &:disabled {
-          background: $secondary-200;
-          color: $warm-light;
-        }
-      }
     }
   }
 
@@ -1349,6 +1321,17 @@ $warm-light: #9a8b7a;
   color: white;
   padding: 64px 24px 32px;
 
+  a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $vert-300;
+    }
+  }
+
   .footer-content {
     max-width: 1200px;
     margin: 0 auto;
@@ -1379,17 +1362,6 @@ $warm-light: #9a8b7a;
     display: flex;
     flex-direction: column;
     gap: 12px;
-
-    a {
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.2s ease;
-
-      &:hover {
-        color: $vert-300;
-      }
-    }
   }
 
   .footer-legal {

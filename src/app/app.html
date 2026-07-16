@@ -43,15 +43,16 @@
       où déposer ce qui a été heurté, blessé ou figé dans votre histoire ;<br>
       où retrouver l'apaisement dans le lien et une connexion authentique à vous-même
     </p>
-    <p class="hero-subtitle hero-description" style="margin-bottom: 100px;">
-      <em style="color: green; font-family: 'Playfair Display', serif;">"Ce qui a été blessé dans la relation se guérit dans la relation"</em>
-    </p>
+
+      <div class="citation">"Ce qui a été blessé dans la relation se guérit dans la relation"</div>
+    <br>
+
     <div class="hero-actions">
       <button mat-flat-button color="primary" (click)="scrollTo('rdv')" class="main-btn">
         <mat-icon>calendar_today</mat-icon>
         Prendre rendez-vous
       </button>
-      <button mat-stroked-button (click)="scrollTo('methode')" class="main-btn">
+      <button mat-stroked-button (click)="scrollTo('methode')" class="standard-btn">
         Découvrir mon approche
       </button>
     </div>
@@ -122,10 +123,10 @@
   </div>
 
   <div class="apropos-actions">
-    <a href="/parcours" mat-stroked-button class="hero-btn-secondary hero-btn-wrap">
-      En savoir plus sur<br>mon parcours et mon éthique
+    <a href="/parcours" mat-stroked-button class="standard-btn">
+      Mon parcours et mon éthique
     </a>
-    <button mat-stroked-button (click)="scrollTo('methode')" class="main-btn">
+    <button mat-stroked-button (click)="scrollTo('methode')" class="standard-btn">
       Découvrir mon approche
     </button>
   </div>
@@ -159,15 +160,14 @@
         Ce sont souvent des mécanismes d'adaptation, mis en place très tôt dans votre vie pour vous
         protéger d'une situation perçue comme dangereuse.<br>
         Bien qu'ils soient aujourd'hui devenus obsolètes ou pesants, ils restent actifs. Comme bloqués en vous.<br>
-        <br><br>
 
-          <em style="color: green;">"On ne peut pas effacer le passé, mais on peut restaurer une sécurité intérieure suffisante pour accueillir
+
+          <div class="citation">"On ne peut pas effacer le passé, mais on peut restaurer une sécurité intérieure suffisante pour accueillir
             l'histoire engrammée en soi ; se libérer des fardeaux qui figent encore au présent ; et décider soi-même sur
-            quelle étagère on souhaite ranger ce livre."</em>
-
-       <br>
+            quelle étagère on souhaite ranger ce livre."
+  </div>
         <br>
-        Mon travail de thérapeute consiste à vous aider à :
+        Mon travail de thérapeute consiste à vous aider à :<br>
 
 
 
@@ -349,7 +349,8 @@
           <button
             mat-flat-button
             color="primary"
-            class="submit-btn"
+            class="standard-btn"
+            style="width: 100%;"
             (click)="submitAppointment()"
             [disabled]="!isFormValid()">
             <mat-icon>send</mat-icon>
@@ -360,36 +361,7 @@
     </mat-card>
   </div>
 
-  <div class="practical-info">
-    <div class="info-card">
-      <mat-icon>location_on</mat-icon>
-      <div>
-        <strong>Adresse du cabinet</strong>
-        <p>12, rue Martel<br>75010 Paris</p>
-      </div>
-    </div>
-    <div class="info-card">
-      <mat-icon>subway</mat-icon>
-      <div>
-        <strong>Accès</strong>
-        <p>Métro Château d'Eau (ligne 4)<br>Métro Jacques Bonsergent (ligne 5)</p>
-      </div>
-    </div>
-    <div class="info-card">
-      <mat-icon>payments</mat-icon>
-      <div>
-        <strong>Tarif</strong>
-        <p>80€ la séance<br>Remboursement possible</p>
-      </div>
-    </div>
-    <div class="info-card">
-      <mat-icon>videocam</mat-icon>
-      <div>
-        <strong>Visio</strong>
-        <p>Consultations vidéo possibles<br>pour les résidents hors Paris</p>
-      </div>
-    </div>
-  </div>
+
 </section>
 
 
@@ -594,8 +566,8 @@
   </div>
 
 
-  <button mat-flat-button routerLink="tarifs" class="main-btn">
-    <mat-icon>money</mat-icon>
+  <button mat-flat-button routerLink="tarifs" class="standard-btn">
+    <mat-icon>euro</mat-icon>
     Voir mes tarifs
   </button>
 
@@ -764,8 +736,13 @@
       <a href="#ressources">Ressources & questions</a>
       <a href="#rdv">Prendre rendez-vous</a>
     </div>
+
     <div class="footer-legal">
-      <p>© 2026 - Mention légales - Politique de confidentialité</p>
+      <p>© 2026 -
+        <a href="/mentionslegales" target="_blank">Mention légales</a>
+         -
+        <a href="/politiquedeconfidentialite" target="_blank">Politique de confidentialité</a>
+      </p>
       <p class="disclaimer">
         <mat-icon>info</mat-icon>
         Les soins psychologiques ne substituent pas à un suivi médical. En cas d'urgence, contactez le 15.
