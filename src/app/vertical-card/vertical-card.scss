@@ -1,0 +1,34 @@
+.vertical-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  width: 100%;
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.column {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  min-height: 0;
+}
+
+.text-column {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.image-column {
+  overflow: hidden;
+
+  .image-content {
+    width: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}

@@ -1,20 +1,23 @@
 // ============================================
 // CSS Variables
 // ============================================
-$primary-400: #a3b898;
-$primary-500: #849779;
-$primary-700: #5d6e53;
-$primary-900: #1a4a2d;
-$secondary-50: #faf8f5;
-$secondary-100: #f5f0e8;
-$secondary-200: #ebe3d5;
-$secondary-300: #dfd3bf;
-$vert-100: #dceee3;
-$vert-200: #b8dcc6;
-$vert-300: #8bc69f;
-$warm-dark: #3d3630;
-$warm-medium: #6b5f52;
-$warm-light: #dac9b4;
+$primary-400: var(--primary-400);
+$primary-500: var(--primary-500);
+$primary-700: var(--primary-700);
+$primary-900: var(--primary-900);
+$secondary-50: var(--secondary-50);
+$secondary-100: var(--secondary-100);
+$secondary-200: var(--secondary-200);
+$secondary-300: var(--secondary-300);
+
+$warm-dark: #2e2928;
+$warm-medium: #3e3931;
+$warm-light: #685d52;
+
+$vert-100: var(--primary-100);
+$vert-200: var(--primary-200);
+$vert-300: var(--primary-300);
+
 
 // ============================================
 // Global Styles
@@ -32,29 +35,9 @@ $warm-light: #dac9b4;
   text-align: center;
   max-width: 900px;
   display: inline-block;
-  margin: 50px;
+  margin: 30px;
 }
 
-.main-btn {
-  color: $secondary-50 !important;
-  font-size: medium;
-  padding: 10px 30px;
-  height: 50px;
-  margin-left: 16px;
-  border: none;
-  background: $primary-500 !important;
-
-  mat-icon {
-    font-size: 18px;
-    width: 18px;
-    height: 18px;
-    margin-right: 6px;
-  }
-
-  &:hover {
-    background: $primary-700;
-  }
-}
 
 
 // ============================================
@@ -173,21 +156,32 @@ $warm-light: #dac9b4;
   margin: 0 auto 32px;
 }
 
+.scroll-indicator {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+
+  mat-icon {
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+    color: $primary-400;
+  }
+}
+
 // ============================================
 // Hero Section
 // ============================================
 .hero-section {
   min-height: 100vh;
+  font-family: 'Playfair Display', serif;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  background: linear-gradient(
-      135deg,
-      $secondary-50 0%,
-      $vert-100 50%,
-      $secondary-100 100%
-  );
+  background: var(--primary-50);
   overflow: hidden;
 
   .hero-background {
@@ -211,15 +205,13 @@ $warm-light: #dac9b4;
   }
 
   .hero-logo {
+    font-family: 'Playfair Display', serif;
     width: 30px !important;
     overflow: hidden;
   }
 
   .hero-title {
-    font-family: 'Playfair Display', serif;
     font-size: 3.5rem;
-    font-weight: 500;
-    color: $warm-dark;
 
     .highlight {
       color: $primary-700;
@@ -275,20 +267,7 @@ $warm-light: #dac9b4;
     }
   }
 
-  .hero-scroll-indicator {
-    position: absolute;
-    bottom: 32px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: bounce 2s infinite;
 
-    mat-icon {
-      font-size: 32px;
-      width: 32px;
-      height: 32px;
-      color: $primary-400;
-    }
-  }
 
   .hero-version {
     position: absolute;
@@ -316,7 +295,6 @@ $warm-light: #dac9b4;
 // About Section
 // ============================================
 .apropos-section {
-  background: white;
 
   .apropos-content {
     display: grid;
@@ -409,11 +387,31 @@ $warm-light: #dac9b4;
   }
 }
 
+.expansion-panel-text {
+  background: none;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  border: none !important;
+  text-align: left;
+  padding: 0 !important;
+  box-shadow: none !important;
+
+  ::ng-deep .mat-expansion-panel-header {
+    box-shadow: none !important;
+  }
+
+  ::ng-deep .mat-expansion-panel-body {
+    box-shadow: none !important;
+  }
+
+}
+
+
+
 // ============================================
 // Method Section
 // ============================================
 .methode-section {
-  background: $secondary-50;
+  background: var(--primary-50);
 
   .methode-intro {
     text-align: center;
@@ -423,6 +421,7 @@ $warm-light: #dac9b4;
     font-size: 1.1rem;
     line-height: 1.7;
   }
+
 
   .principles-grid {
     display: grid;
@@ -500,7 +499,7 @@ $warm-light: #dac9b4;
 
         .card-back {
           transform: rotateY(180deg);
-          background: linear-gradient(135deg, $primary-500 0%, lighten($primary-500, 10%) 100%);
+          background: linear-gradient(135deg, $primary-500 0%, $primary-500 100%);
 
           mat-card-content p {
             color: white;
@@ -568,27 +567,6 @@ $warm-light: #dac9b4;
       background: white;
       border-radius: 16px;
       padding: 32px;
-
-      h3 {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-family: 'Playfair Display', serif;
-        font-size: 1.25rem;
-        font-weight: 500;
-        color: $warm-dark;
-        margin-bottom: 16px;
-
-        mat-icon {
-          color: $primary-500;
-        }
-      }
-
-      p {
-        color: $warm-medium;
-        font-size: 0.95rem;
-        line-height: 1.7;
-      }
     }
   }
 
@@ -599,20 +577,6 @@ $warm-light: #dac9b4;
     border: none;
     box-shadow: none;
 
-    h3 {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      font-weight: 500;
-      color: $warm-dark;
-      margin-bottom: 24px;
-
-      mat-icon {
-        color: $primary-500;
-      }
-    }
 
     .focus-chips {
       display: flex;
@@ -718,29 +682,32 @@ $warm-light: #dac9b4;
   text-align: center;
 
   .consultations-grid {
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
+    gap: 12px;
     margin-bottom: 20px;
 
     .visuel-seance {
       width: 100%;
     }
 
+    .intro-seance {
+      color: $primary-500;
+    }
+
     .consultation-visuel {
-        padding: 0;
-      display: block;
-      overflow: hidden;
+      max-width: 300px;
+        border-radius: 2%;
+        overflow: hidden;
         object-fit: cover;
-        background-color: white;
     }
 
     .consultation-card {
-      background: white;
+      background: None;
       border-radius: 16px;
       padding: 32px 24px;
       text-align: center;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       position: relative;
       overflow: clip;
@@ -788,30 +755,16 @@ $warm-light: #dac9b4;
     margin-bottom: 48px;
     text-align: center;
 
-    h3 {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      font-weight: 500;
-      color: $warm-dark;
-      margin-bottom: 16px;
-
-      mat-icon {
-        color: $primary-500;
-      }
-    }
-
-    p {
-      color: $warm-medium;
-      font-size: 0.95rem;
-      line-height: 1.7;
-      max-width: 600px;
-      margin: 0 auto;
-    }
   }
+}
+
+
+h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: $warm-dark;
+  margin-bottom: 12px;
 }
 
 // ============================================
@@ -819,8 +772,9 @@ $warm-light: #dac9b4;
 // ============================================
 .accompagnements-section {
 
+  background: var(--primary-50);
+
   .accompagnements-intro {
-    max-width: 700px;
     color: $warm-medium;
     font-size: 1.1rem;
     line-height: 1.7;
@@ -833,8 +787,6 @@ $warm-light: #dac9b4;
     padding: 24px 0;
     border: none;
     box-shadow: none;
-
-
 
     .focus-chips {
       display: flex;
@@ -872,13 +824,6 @@ $warm-light: #dac9b4;
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
       }
 
-      h3 {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.25rem;
-        font-weight: 500;
-        color: $warm-dark;
-        margin-bottom: 12px;
-      }
 
       .accompagnement-icon {
         font-size: 48px;
@@ -896,19 +841,42 @@ $warm-light: #dac9b4;
   }
 }
 
+.main-btn {
+  color: $secondary-50 !important;
+  padding: 10px 30px;
+  height: 52px;
+  border: none;
+  background: $primary-500 !important;
+
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    margin-right: 6px;
+  }
+
+  &:hover {
+    background: $primary-700;
+  }
+}
+
+
 .standard-btn {
   height: 52px;
   text-align: center;
-  color: white !important;
-  background: $warm-light !important;
-  border: none;
+  font-weight: lighter;
+  color: var(--warm-dark) !important;
+  background: none !important;
+  border: solid 1px black;
+  margin-left: 10px;
+  margin-right: 10px;
 
   mat-icon {
     margin-right: 8px;
   }
 
   &:hover:not(:disabled) {
-    background: $primary-700;
+    background: $primary-500;
   }
 
   &:disabled {
@@ -919,7 +887,6 @@ $warm-light: #dac9b4;
 
 // ============================================
 .rdv-section {
-  background: white;
 
   .rdv-intro {
     text-align: center;
@@ -1163,7 +1130,7 @@ $warm-light: #dac9b4;
 // Ressources & FAQ Section
 // ============================================
 .ressources-section {
-  background: white;
+  background: var(--primary-50);
 
   .ressources-intro {
     margin-bottom: 48px;
@@ -1255,8 +1222,8 @@ $warm-light: #dac9b4;
   .faq-section {
     margin-top: 48px;
 
+
     .intertitre {
-      font-family: 'Playfair Display', serif;
       font-size: 1.75rem;
       font-weight: 500;
       color: $warm-dark;
@@ -1264,8 +1231,13 @@ $warm-light: #dac9b4;
       text-align: center;
     }
 
+    .faq-respons {
+      text-align: left;
+      font-size: small;
+    }
+
     .faq-panel {
-      background: $secondary-50;
+      text-align: left;
       border-radius: 12px !important;
       margin-bottom: 12px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
@@ -1276,16 +1248,16 @@ $warm-light: #dac9b4;
 
       ::ng-deep {
         .mat-expansion-panel-header {
-          background: transparent;
+          background: none;
           border-radius: 12px !important;
 
           &:hover {
-            background: rgba($primary-500, 0.08);
+            background: none;
           }
         }
 
         .mat-expansion-panel-header.mat-expanded {
-          background: rgba($primary-500, 0.12);
+          background: none;
         }
 
         .mat-expansion-indicator {
@@ -1294,21 +1266,12 @@ $warm-light: #dac9b4;
       }
 
       mat-panel-title {
-        font-family: 'Source Sans Pro', sans-serif;
         font-size: 1rem;
         font-weight: 600;
         color: $warm-dark;
       }
 
-      mat-panel-description {
-        p {
-          color: $warm-medium;
-          font-size: 0.95rem;
-          line-height: 1.7;
-          margin: 0;
-          padding: 8px 0;
-        }
-      }
+
     }
   }
 }
@@ -1317,7 +1280,7 @@ $warm-light: #dac9b4;
 // Footer
 // ============================================
 .footer {
-  background: $warm-dark;
+  background: $warm-light;
   color: white;
   padding: 64px 24px 32px;
 

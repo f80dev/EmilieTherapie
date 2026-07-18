@@ -44,7 +44,7 @@
       où retrouver l'apaisement dans le lien et une connexion authentique à vous-même
     </p>
 
-      <div class="citation">"Ce qui a été blessé dans la relation se guérit dans la relation"</div>
+    <div class="citation">"Ce qui a été blessé dans la relation se guérit dans la relation"</div>
     <br>
 
     <div class="hero-actions">
@@ -57,25 +57,11 @@
       </button>
     </div>
 
-    <div class="hero-info">
-      <div class="info-item">
-       <span><strong>Mes engagements</strong> :</span>
-      </div>
-      <div class="info-item">
-        <mat-icon>handshake</mat-icon>
-        <span>Premier échange gratuit</span>
-      </div>
-      <div class="info-item">
-        <mat-icon>tune</mat-icon>
-        <span>Rythme adapté à vos besoins</span>
-      </div>
-      <div class="info-item">
-        <mat-icon>autorenew</mat-icon>
-        <span>Flexibilité du format</span>
-      </div>
-    </div>
+
   </div>
-  <div class="hero-scroll-indicator">
+
+
+  <div class="scroll-indicator">
     <mat-icon>keyboard_arrow_down</mat-icon>
   </div>
   <div class="hero-version">v{{ siteVersion }}</div>
@@ -84,90 +70,98 @@
 <!-- About / Profile Section -->
 <section id="apropos" class="section apropos-section">
   <div class="section-divider"></div>
-  <h2 class="section-title">
-    Me connaître
-  </h2>
-  <div class="apropos-content">
-    <div class="apropos-image">
-      <img src="emilie.jpg" alt="Émilie Pommier" class="photo">
-    </div>
-    <div class="apropos-text">
-      <p class="content-text">
-        Je suis Emilie, thérapeute et praticienne en psychologie.<br>
-        <br>
-        Avant de me consacrer pleinement à la relation d'aide, j'ai passé plus de
-        20 ans dans des métiers où écoute active, dialogue, sensibilité à l'impact
-        et quête du juste équilibre étaient au coeur de chaque projet.<br>
-        Ces expériences guident toujours mes accompagnements, que j'orientent désormais
-        vers une "écologie plus intérieure".<br>
-        <br>
-        Centrée sur la personne et la sécurité dans le lien, mon approche vise à recréer des ponts
-        entre votre tête, votre coeur et votre corps : pour accompagner ce ré-alignement essentiel
-        où ce qui se joue en vous, ce que vous ressentez et ce que vous comprenez de tout cela ne font plus qu'un...
-        vous redonnant ainsi l'élan et la capacité d'agir.
-      </p>
-      <div class="credentials">
-        <div class="credential">
-          <div>
-            <strong>Ma posture</strong>
-            <ul>
-              <li>Authenticité</li>
-              <li>Connexion</li>
-              <li>Bienveillance et sécurité</li>
-            </ul>
-          </div>
+
+  <div class="content-section">
+    <h2 class="section-title">
+      Me connaître
+    </h2>
+    <div class="apropos-content">
+      <div class="apropos-image">
+        <img src="emilie.jpg" alt="Émilie Pommier" class="photo">
+      </div>
+      <div class="apropos-text">
+
+        <p class="content-text">
+          Je suis Emilie, thérapeute et praticienne en psychologie.<br>
+          <br>
+          Avant de me consacrer pleinement à la relation d'aide, j'ai passé plus de
+          20 ans dans des métiers où écoute active, dialogue, sensibilité à l'impact
+          et quête du juste équilibre étaient au coeur de chaque projet.<br>
+          Ces expériences guident toujours mes accompagnements, que j'orientent désormais
+          vers une "écologie plus intérieure".<br>
+          <br>
+          Centrée sur la personne et la sécurité dans le lien, mon approche vise à recréer des ponts
+          entre votre tête, votre coeur et votre corps : pour accompagner ce ré-alignement essentiel
+          où ce qui se joue en vous, ce que vous ressentez et ce que vous comprenez de tout cela ne font plus qu'un...
+          vous redonnant ainsi l'élan et la capacité d'agir.
+        </p>
+
+
+        <div style="text-align: left;">
+          Mes engagements
+          <ul>
+            <li>Premier échange gratuit</li>
+            <li>Flexibilité du format</li>
+            <li>Rythme adapté à vos besoins</li>
+          </ul>
         </div>
 
+
       </div>
+
     </div>
+
+    <div class="apropos-actions">
+      <a href="/parcours" mat-stroked-button class="standard-btn">
+        Mon parcours et mon éthique
+      </a>
+      <button mat-stroked-button (click)="scrollTo('methode')" class="standard-btn">
+        Découvrir mon approche
+      </button>
+    </div>
+
   </div>
 
-  <div class="apropos-actions">
-    <a href="/parcours" mat-stroked-button class="standard-btn">
-      Mon parcours et mon éthique
-    </a>
-    <button mat-stroked-button (click)="scrollTo('methode')" class="standard-btn">
-      Découvrir mon approche
-    </button>
-  </div>
+
 </section>
 
 
 
 <!-- Accompaniments Section -->
 <section id="accompagnements" class="section accompagnements-section">
-  <div class="section-divider"></div>
-  <h2 class="section-title">Mes accompagnements</h2>
+  <div class="content-section">
+    <div class="section-divider"></div>
+    <h2 class="section-title">Mes accompagnements</h2>
 
-  <p class="intro-section">
-    <strong>J'accompagne chacun.e là où il/elle en est, à son rythme.</strong><br>
-  </p>
+    <p class="intro-section">
+      <strong>J'accompagne chacun.e là où il/elle en est, à son rythme.</strong><br>
+    </p>
 
-  <div style="width: 100%;text-align: center;">
-    <img src="nuage.svg" style="width: 100%;max-width: 500px;display:inline-block;">
-  </div>
+    <div style="width: 100%;text-align: center;">
+      <img src="nuage.svg" style="width: 100%;max-width: 500px;display:inline-block;">
+    </div>
 
-      <p class="content-text" >
-        Bien souvent, vous connaissez votre histoire, vous avez identifié vos blocages... et pourtant,
-        c'est comme si cela ne suffisait pas.<br>
-        Peut-être observez-vous certains schémas qui se répètent chez vous, inlassablement ? <br>
-        Peut-être ressentez-vous un épuisement face au décalage entre ce que votre tête a compris et ce que
-        votre corps ou vos émotions continuent d'exprimer ?<br>
+    <p class="content-text" >
+      Bien souvent, vous connaissez votre histoire, vous avez identifié vos blocages... et pourtant,
+      c'est comme si cela ne suffisait pas.<br>
+      Peut-être observez-vous certains schémas qui se répètent chez vous, inlassablement ? <br>
+      Peut-être ressentez-vous un épuisement face au décalage entre ce que votre tête a compris et ce que
+      votre corps ou vos émotions continuent d'exprimer ?<br>
 
-        <br>
-        Anxiété, fatigue chronique, difficultés relationnelles, se sentir à fleur de peau ou - au contraire -
-        coupé.e de ses émotions, etc : n'y voyez pas une fatalité ou des traits de votre personnalité.<br>
-        Ce sont souvent des mécanismes d'adaptation, mis en place très tôt dans votre vie pour vous
-        protéger d'une situation perçue comme dangereuse.<br>
-        Bien qu'ils soient aujourd'hui devenus obsolètes ou pesants, ils restent actifs. Comme bloqués en vous.<br>
+      <br>
+      Anxiété, fatigue chronique, difficultés relationnelles, se sentir à fleur de peau ou - au contraire -
+      coupé.e de ses émotions, etc : n'y voyez pas une fatalité ou des traits de votre personnalité.<br>
+      Ce sont souvent des mécanismes d'adaptation, mis en place très tôt dans votre vie pour vous
+      protéger d'une situation perçue comme dangereuse.<br>
+      Bien qu'ils soient aujourd'hui devenus obsolètes ou pesants, ils restent actifs. Comme bloqués en vous.<br>
 
 
-          <div class="citation">"On ne peut pas effacer le passé, mais on peut restaurer une sécurité intérieure suffisante pour accueillir
-            l'histoire engrammée en soi ; se libérer des fardeaux qui figent encore au présent ; et décider soi-même sur
-            quelle étagère on souhaite ranger ce livre."
-  </div>
-        <br>
-        Mon travail de thérapeute consiste à vous aider à :<br>
+    <div class="citation">"On ne peut pas effacer le passé, mais on peut restaurer une sécurité intérieure suffisante pour accueillir
+      l'histoire engrammée en soi ; se libérer des fardeaux qui figent encore au présent ; et décider soi-même sur
+      quelle étagère on souhaite ranger ce livre."
+    </div>
+    <br>
+    Mon travail de thérapeute consiste à vous aider à :<br>
 
 
 
@@ -177,42 +171,44 @@
       <li>comprendre le "dialogue sans mots" de votre système nerveux</li>
       <li>retrouver, durablement, un état de sérénité et de sécurité intérieure</li>
     </ul>
-  <br>
+    <br>
 
-  <div class="accompagnements-grid">
-    <mat-card class="accompagnement-card">
-      <mat-icon class="accompagnement-icon">person</mat-icon>
-      <mat-card-content>
-        <h3>Un premier échange gratuit (30 min)</h3>
-        <p class="content-text">Parce que le choix d'un.e thérapeute est important et très personnel,<br>
-          je vous propose un premier contact en visio, sans aucun engagement.<br><br>
-          <li><strong>Pour vous :</strong> c'est l'occasion de m'exposer votre besoin, de formuler vos attentes et de
-            me poser toutes vos questions</li>
-          <li><strong>Pour moi :</strong> c'est le moment de vous expliquer mon cadre thérapeutique et de m'assurer que
-          mon approche correspond bien à ce qui vous anime, là maintenant</li>
-        </p>
-      </mat-card-content>
-    </mat-card>
+    <div class="accompagnements-grid">
+      <mat-card class="accompagnement-card">
+        <mat-icon class="accompagnement-icon">person</mat-icon>
+        <mat-card-content>
+          <h3>Un premier échange gratuit (30 min)</h3>
+          <p class="content-text">Parce que le choix d'un.e thérapeute est important et très personnel,<br>
+            je vous propose un premier contact en visio, sans aucun engagement.<br><br>
+            <li><strong>Pour vous :</strong> c'est l'occasion de m'exposer votre besoin, de formuler vos attentes et de
+              me poser toutes vos questions</li>
+            <li><strong>Pour moi :</strong> c'est le moment de vous expliquer mon cadre thérapeutique et de m'assurer que
+              mon approche correspond bien à ce qui vous anime, là maintenant</li>
+          </p>
+        </mat-card-content>
+      </mat-card>
 
 
-    <mat-card class="accompagnement-card">
-      <mat-icon class="accompagnement-icon">videocam</mat-icon>
-      <mat-card-content>
-        <h3>Je vous reçois ensuite pour des séances individuelles de 1h ou 1h30 (ajusté à vos besoins),</h3>
-        <p class="content-text"> en présentiel ou en visio-consultation.<br><br>
-          Durant ce temps qui est le vôtre, je m'engage à vous offrir  un espace sécure, bienveillant,
-          sans jugement, où vous pourrez déposer tout ce qui vous traverse.<br><br>
-          Une séance type s'articule généralement autour de trois temps forts :
-          <li><strong>Stabilisation :</strong> un temps d'ancrage et d'expression libre,  pour vous poser et
-          faire le point sur votre état</li>
-          <li><strong>Exploration :</strong> à partir d'une situation que vous amenez ou qui émerge dans le
-          <span style="font-style: italic">ici & maintenant</span>, nous travaillons ensemble à dénouer vos blocages</li>
-          <li><strong>Intégration :</strong> nous prenons toujours le temps de clôturer la séance par un retour au calme,
-          afin que vous puissiez repartir à votre journée le plus sereinement possible</li>
-        </p>
-      </mat-card-content>
-    </mat-card>
+      <mat-card class="accompagnement-card">
+        <mat-icon class="accompagnement-icon">videocam</mat-icon>
+        <mat-card-content>
+          <h3>Je vous reçois ensuite pour des séances individuelles de 1h ou 1h30 (ajusté à vos besoins),</h3>
+          <p class="content-text"> en présentiel ou en visio-consultation.<br><br>
+            Durant ce temps qui est le vôtre, je m'engage à vous offrir  un espace sécure, bienveillant,
+            sans jugement, où vous pourrez déposer tout ce qui vous traverse.<br><br>
+            Une séance type s'articule généralement autour de trois temps forts :
+            <li><strong>Stabilisation :</strong> un temps d'ancrage et d'expression libre,  pour vous poser et
+              faire le point sur votre état</li>
+            <li><strong>Exploration :</strong> à partir d'une situation que vous amenez ou qui émerge dans le
+              <span style="font-style: italic">ici & maintenant</span>, nous travaillons ensemble à dénouer vos blocages</li>
+            <li><strong>Intégration :</strong> nous prenons toujours le temps de clôturer la séance par un retour au calme,
+              afin que vous puissiez repartir à votre journée le plus sereinement possible</li>
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
+
 </section>
 
 
@@ -220,146 +216,150 @@
 <!-- Appointment Booking Section -->
 <section id="rdv" class="section rdv-section">
   <div class="section-divider"></div>
+  <div class="content-section">
 
-  <h2 class="section-title">Prendre rendez-vous</h2>
-  <p class="rdv-intro">
-    Réservez votre séance en ligne en quelques clics. La première consultation
-    permet de faire connaissance et d'évaluer vos besoins.
-  </p>
-
-  <div class="seance-type-toggle">
-    <mat-button-toggle-group [value]="seanceType()" (change)="seanceType.set($event.value)">
-      <mat-button-toggle value="presentiel">
-        <mat-icon>person</mat-icon>
-        En présentiel
-      </mat-button-toggle>
-      <mat-button-toggle value="distant">
-        <mat-icon>videocam</mat-icon>
-        En visio-consultation
-      </mat-button-toggle>
-    </mat-button-toggle-group>
-    <p class="seance-type-hint">
-      @if (seanceType() === 'distant') {
-        Séance par visioconférence - Lien envoyé après confirmation du rdv
-      } @else {
-        Séance au cabinet - Au choix : Paris 10e ou 11e
-      }
+    <h2 class="section-title">Prendre rendez-vous</h2>
+    <p class="rdv-intro">
+      Réservez votre séance en ligne en quelques clics. La première consultation
+      permet de faire connaissance et d'évaluer vos besoins.
     </p>
-  </div>
 
-  <div class="rdv-content">
-    <!-- Calendar & Time Slots -->
-    <mat-card class="calendar-card">
-      <mat-card-header>
-        <mat-card-title>
-          <mat-icon>calendar_month</mat-icon>
-          Choisir une date
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <mat-calendar
-          [minDate]="getMinDate()"
-          [maxDate]="getMaxDate()"
-          [(selected)]="selectedDate"
-          (selectedChange)="onDateSelected($event)">
-        </mat-calendar>
-
-        @if (selectedDate()) {
-          <div class="time-slots">
-            @if (loadingSlots()) {
-              <p class="loading-slots">Chargement des créneaux...</p>
-            } @else if (selectedDate()!.getDay() === 0) {
-              <p class="no-slots">Fermé le dimanche</p>
-            } @else {
-              @if (availableSlots().length > 0) {
-                <h4>Horaires disponibles <span class="slot-duration">(durée : 1h15)</span></h4>
-                <div class="slots-grid">
-                  @for (slot of availableSlots(); track slot) {
-                    <button
-                      mat-flat-button
-                      [class.slot-available]="true"
-                      [class.slot-selected]="selectedTime() === slot"
-                      (click)="selectTimeSlot(slot)">
-                      {{ slot }}
-                    </button>
-                  }
-                </div>
-              } @else {
-                <p class="no-slots">Aucun horaire disponible à cette date</p>
-              }
-            }
-          </div>
-        }
-      </mat-card-content>
-    </mat-card>
-
-    <!-- Contact Form -->
-    <mat-card class="form-card">
-      <mat-card-header>
-        <mat-card-title>
+    <div class="seance-type-toggle">
+      <mat-button-toggle-group [value]="seanceType()" (change)="seanceType.set($event.value)">
+        <mat-button-toggle value="presentiel">
           <mat-icon>person</mat-icon>
-          Vos coordonnées
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <form class="appointment-form">
-          <div class="form-row">
-            <mat-form-field appearance="outline">
-              <mat-label>Nom</mat-label>
-              <input matInput [value]="nom()" (input)="nom.set($any($event.target).value); onContactFieldChange()" required>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>Prénom</mat-label>
-              <input matInput [value]="prenom()" (input)="prenom.set($any($event.target).value); onContactFieldChange()" required>
-            </mat-form-field>
-          </div>
+          En présentiel
+        </mat-button-toggle>
+        <mat-button-toggle value="distant">
+          <mat-icon>videocam</mat-icon>
+          En visio-consultation
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+      <p class="seance-type-hint">
+        @if (seanceType() === 'distant') {
+          Séance par visioconférence - Lien envoyé après confirmation du rdv
+        } @else {
+          Séance au cabinet - Au choix : Paris 10e ou 11e
+        }
+      </p>
+    </div>
 
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Email</mat-label>
-            <mat-icon matPrefix>email</mat-icon>
-            <input matInput type="email" [value]="email()" (input)="email.set($any($event.target).value); onContactFieldChange()" required>
-          </mat-form-field>
+    <div class="rdv-content">
+      <!-- Calendar & Time Slots -->
+      <mat-card class="calendar-card">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon>calendar_month</mat-icon>
+            Choisir une date
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-calendar
+            [minDate]="getMinDate()"
+            [maxDate]="getMaxDate()"
+            [(selected)]="selectedDate"
+            (selectedChange)="onDateSelected($event)">
+          </mat-calendar>
 
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Téléphone</mat-label>
-            <mat-icon matPrefix>phone</mat-icon>
-            <input matInput type="tel" [value]="telephone()" (input)="telephone.set($any($event.target).value); onContactFieldChange()" required>
-          </mat-form-field>
-
-          @if (selectedDate() && selectedTime()) {
-            <div class="selected-datetime">
-              <mat-icon>event</mat-icon>
-              <span>{{ selectedDate()!.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' }) }} à {{ selectedTime() }}</span>
+          @if (selectedDate()) {
+            <div class="time-slots">
+              @if (loadingSlots()) {
+                <p class="loading-slots">Chargement des créneaux...</p>
+              } @else if (selectedDate()!.getDay() === 0) {
+                <p class="no-slots">Fermé le dimanche</p>
+              } @else {
+                @if (availableSlots().length > 0) {
+                  <h4>Horaires disponibles <span class="slot-duration">(durée : 1h15)</span></h4>
+                  <div class="slots-grid">
+                    @for (slot of availableSlots(); track slot) {
+                      <button
+                        mat-flat-button
+                        [class.slot-available]="true"
+                        [class.slot-selected]="selectedTime() === slot"
+                        (click)="selectTimeSlot(slot)">
+                        {{ slot }}
+                      </button>
+                    }
+                  </div>
+                } @else {
+                  <p class="no-slots">Aucun horaire disponible à cette date</p>
+                }
+              }
             </div>
           }
+        </mat-card-content>
+      </mat-card>
 
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Message (optionnel)</mat-label>
-            <textarea matInput
-                      [value]="message()"
-                      (input)="message.set($any($event.target).value)"
-                      rows="3"
-                      placeholder="Décrivez brièvement votre situation ou vos attentes..."></textarea>
-          </mat-form-field>
+      <!-- Contact Form -->
+      <mat-card class="form-card">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon>person</mat-icon>
+            Vos coordonnées
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form class="appointment-form">
+            <div class="form-row">
+              <mat-form-field appearance="outline">
+                <mat-label>Nom</mat-label>
+                <input matInput [value]="nom()" (input)="nom.set($any($event.target).value); onContactFieldChange()" required>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Prénom</mat-label>
+                <input matInput [value]="prenom()" (input)="prenom.set($any($event.target).value); onContactFieldChange()" required>
+              </mat-form-field>
+            </div>
 
-          <mat-checkbox [(ngModel)]="acceptTerms" name="terms" class="terms-checkbox">
-            J'accepte d'être recontacté(e) pour confirmer mon rendez-vous
-          </mat-checkbox>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Email</mat-label>
+              <mat-icon matPrefix>email</mat-icon>
+              <input matInput type="email" [value]="email()" (input)="email.set($any($event.target).value); onContactFieldChange()" required>
+            </mat-form-field>
 
-          <button
-            mat-flat-button
-            color="primary"
-            class="standard-btn"
-            style="width: 100%;"
-            (click)="submitAppointment()"
-            [disabled]="!isFormValid()">
-            <mat-icon>send</mat-icon>
-            Envoyer ma demande
-          </button>
-        </form>
-      </mat-card-content>
-    </mat-card>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Téléphone</mat-label>
+              <mat-icon matPrefix>phone</mat-icon>
+              <input matInput type="tel" [value]="telephone()" (input)="telephone.set($any($event.target).value); onContactFieldChange()" required>
+            </mat-form-field>
+
+            @if (selectedDate() && selectedTime()) {
+              <div class="selected-datetime">
+                <mat-icon>event</mat-icon>
+                <span>{{ selectedDate()!.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' }) }} à {{ selectedTime() }}</span>
+              </div>
+            }
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Message (optionnel)</mat-label>
+              <textarea matInput
+                        [value]="message()"
+                        (input)="message.set($any($event.target).value)"
+                        rows="3"
+                        placeholder="Décrivez brièvement votre situation ou vos attentes..."></textarea>
+            </mat-form-field>
+
+            <mat-checkbox [(ngModel)]="acceptTerms" name="terms" class="terms-checkbox">
+              J'accepte d'être recontacté(e) pour confirmer mon rendez-vous
+            </mat-checkbox>
+
+            <button
+              mat-flat-button
+              color="primary"
+              class="standard-btn"
+              style="width: 100%;"
+              (click)="submitAppointment()"
+              [disabled]="!isFormValid()">
+              <mat-icon>send</mat-icon>
+              Envoyer ma demande
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
+
+
 
 
 </section>
@@ -368,112 +368,128 @@
 <!-- Method Section -->
 <section id="methode" class="section methode-section">
   <div class="section-divider"></div>
-  <h2 class="section-title">Mon approche</h2>
 
-  <div class="method-approaches">
-    <div class="approach-card">
+  <div class="content-section">
+    <h2 class="section-title">Mon approche</h2>
 
-      <span>Approche intégrative</span>
+    <div class="method-approaches">
+      <div class="approach-card">
+
+        <span>Intégrative</span>
+      </div>
+      <div class="approach-card">
+
+        <span>Trauma-informée</span>
+      </div>
+      <div class="approach-card">
+        <span>Psycho-corporelle</span>
+      </div>
     </div>
-    <div class="approach-card">
 
-      <span>Approche trauma-informée</span>
-    </div>
-    <div class="approach-card">
-      <span>Approche psycho-corporelle</span>
-    </div>
-  </div>
-
-  <p class="content-text">
-    <strong>Je sais combien</strong> la volonté et l'analyse intellectuelle, seules, ne suffisent pas à
+    <p class="content-text">
+      <strong>Je sais combien</strong> la volonté et l'analyse intellectuelle, seules, ne suffisent pas à
       apaiser les blessures profondément ancrées en nous.<br>
-    Beaucoup pensent qu'il suffit de "comprendre" l'origine de ses problèmes pour les résoudre.<br>
-    Pourtant, je suis certaine que vous avez déjà fait l'expérience de ce décalage épuisant : votre
-    esprit sait (rationnellement) que vous êtes en sécurité, mais votre corps - lui - panique,
-    s'épuise à "chercher" le danger, voire il vous immobilise.<br>
-    Nos blocages ne sont pas de simples
-    concepts ou idées : ils sont engrammés dans notre système nerveux et notre mémoire corporelle.<br><br>
-  </p>
+      Beaucoup pensent qu'il suffit de "comprendre" l'origine de ses problèmes pour les résoudre.<br>
+      Pourtant, je suis certaine que vous avez déjà fait l'expérience de ce décalage épuisant : votre
+      esprit sait (rationnellement) que vous êtes en sécurité, mais votre corps - lui - panique,
+      s'épuise à "chercher" le danger, voire il vous immobilise.<br>
+      Nos blocages ne sont pas de simples
+      concepts ou idées : ils sont engrammés dans notre système nerveux et notre mémoire corporelle.<br><br>
+    </p>
 
-  <p style="text-align: center">
-    <em style="color: green; font-family: 'Playfair Display', serif;">"Le corps est bavard. Sachez l'écouter lorsqu'il chuchote pour qu'il n'ait pas besoin de crier."</em>
-  </p><br>
+    <div class="citation">
+      "Le corps est bavard. Sachez l'écouter lorsqu'il chuchote pour qu'il n'ait pas besoin de crier."
+    </div><br>
 
-<p class="content-text">
-    <strong>C'est précisément à cet endroit que s'inscrit mon approche.</strong><br>
-    J'ai la conviction qu'une fois la sécurité dans le lien retrouvée, cela permet de (r)éveiller et
-    de remettre de la fluidité entre vos émotions, vos sensations corporelles et votre esprit.<br>
-    En travaillant ensemble, sur la base d'une relation authentique et ajustée, nous restaurons - en séance -
-    la capacité naturelle de votre système à s'apaiser, à sortir de schémas obsolètes et à retrouver la
-    stabilité intérieure à laquelle vous aspirez.<br>
-  </p>
+    <mat-expansion-panel class="expansion-panel-text">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          C'est précisément à cet endroit que s'inscrit mon approche.
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-panel-description>
+        <p>
+          J'ai la conviction qu'une fois la sécurité dans le lien retrouvée, cela permet de (r)éveiller et
+          de remettre de la fluidité entre vos émotions, vos sensations corporelles et votre esprit.<br>
+          En travaillant ensemble, sur la base d'une relation authentique et ajustée, nous restaurons - en séance -
+          la capacité naturelle de votre système à s'apaiser, à sortir de schémas obsolètes et à retrouver la
+          stabilité intérieure à laquelle vous aspirez.<br><br>
 
-  <p class="content-text">
-    <strong>L'alliance de l'esprit, du coeur et du corps, pour une efficacité maximale</strong><br>
-    Pour vous accompagner au mieux, je propose de faire intéragir vos schémas de pensée (approche
-    cognitive) et vos états corporels (approche somatique).<br>Je combine ainsi un travail verbal doux
-    avec des expériences émotionnelles et sensorielles, pour restaurer votre équilibre.<br><br>
-  </p>
+          <strong>L'alliance de l'esprit, du coeur et du corps, pour une efficacité maximale</strong>
 
-  <p class="intro-section">
-    <strong>Ma pratique s'articule autour de modèles thérapeutiques reconnus et complémentaires</strong><br>
-  </p>
+          <br>
+          Pour vous accompagner au mieux, je propose de faire intéragir vos schémas de pensée (approche
+          cognitive) et vos états corporels (approche somatique).<br>Je combine ainsi un travail verbal doux
+          avec des expériences émotionnelles et sensorielles, pour restaurer votre équilibre.<br><br>
+        </p>
+      </mat-panel-description>
+    </mat-expansion-panel>
 
 
-  <div class="principles-grid">
-    @for (principle of methodPrinciples; track principle.title) {
-      <div class="principle-card" [class.flipped]="flippedCards[principle.title]">
-        <div class="card-inner">
-          <div class="card-front">
-            <mat-icon class="principle-icon">{{ principle.icon }}</mat-icon>
-            <mat-card-title>{{ principle.title }}</mat-card-title>
-            <mat-card-content>
-              <p>{{ principle.description }}</p>
-            </mat-card-content>
-            <a class="flip-link" (click)="flipCard(principle.title)">En savoir plus</a>
-          </div>
-          <div class="card-back">
-            <mat-card-content>
-              <p>{{ principle.description_back }}</p>
-            </mat-card-content>
-            <a class="flip-link" (click)="flipCard(principle.title)">Retourner</a>
+
+    <p class="intro-section">
+      <strong>Ma pratique s'articule autour de modèles thérapeutiques reconnus et complémentaires</strong><br>
+    </p>
+
+
+    <div class="principles-grid">
+      @for (principle of methodPrinciples; track principle.title) {
+        <div class="principle-card" [class.flipped]="flippedCards[principle.title]">
+          <div class="card-inner">
+            <div class="card-front">
+              <mat-icon class="principle-icon">{{ principle.icon }}</mat-icon>
+              <mat-card-title>{{ principle.title }}</mat-card-title>
+              <mat-card-content>
+                <p>{{ principle.description }}</p>
+              </mat-card-content>
+              <a class="flip-link" (click)="flipCard(principle.title)">En savoir plus</a>
+            </div>
+            <div class="card-back">
+              <mat-card-content>
+                <p>{{ principle.description_back }}</p>
+              </mat-card-content>
+              <a class="flip-link" (click)="flipCard(principle.title)">Retourner</a>
+            </div>
           </div>
         </div>
-      </div>
-    }
+      }
+    </div>
+
+    <!--  <div class="methode-details">-->
+    <!--    <div class="detail-block">-->
+    <!--      <h3>-->
+    <!--        <mat-icon>lightbulb</mat-icon>-->
+    <!--        L'Engagement Thérapeutique Conscient-->
+    <!--      </h3>-->
+    <!--      <p>-->
+    <!--        A SUPPRIMER A PRIORI-->
+    <!--      </p>-->
+    <!--    </div>-->
+    <!--    <div class="detail-block">-->
+    <!--      <h3>-->
+    <!--        <mat-icon>healing</mat-icon>-->
+    <!--        Pour qui ?-->
+    <!--      </h3>-->
+    <!--      <p>-->
+    <!--        A SUPPRIMER A PRIORI-->
+    <!--      </p>-->
+    <!--    </div>-->
+    <!--  </div>-->
+
+    <p class="intro-section">
+      Vous voulez savoir si mon approche est faite pour vous ?<br>
+      Je me fais un plaisir d'échanger avec vous.
+    </p>
+
+    <button mat-flat-button color="accent" (click)="scrollTo('rdv');
+  isMobileMenuOpen.set(false)"  class="main-btn">
+      <mat-icon>calendar_today</mat-icon>
+      Prendre rendez-vous
+    </button>
+
   </div>
 
-<!--  <div class="methode-details">-->
-<!--    <div class="detail-block">-->
-<!--      <h3>-->
-<!--        <mat-icon>lightbulb</mat-icon>-->
-<!--        L'Engagement Thérapeutique Conscient-->
-<!--      </h3>-->
-<!--      <p>-->
-<!--        A SUPPRIMER A PRIORI-->
-<!--      </p>-->
-<!--    </div>-->
-<!--    <div class="detail-block">-->
-<!--      <h3>-->
-<!--        <mat-icon>healing</mat-icon>-->
-<!--        Pour qui ?-->
-<!--      </h3>-->
-<!--      <p>-->
-<!--        A SUPPRIMER A PRIORI-->
-<!--      </p>-->
-<!--    </div>-->
-<!--  </div>-->
 
-  <p class="intro-section">
-    Vous voulez savoir si mon approche est faite pour vous ?<br>
-    Je me fais un plaisir d'échanger avec vous.
-  </p>
-
-  <button mat-flat-button color="accent" (click)="scrollTo('rdv'); isMobileMenuOpen.set(false)"
-          class="main-btn">
-    <mat-icon>calendar_today</mat-icon>
-    Prendre rendez-vous
-  </button>
 
 </section>
 
@@ -481,242 +497,243 @@
 <!-- Consultations & Tarifs Section -->
 <section id="consultations" class="section consultations-section">
   <div class="section-divider"></div>
-  <h2 class="section-title">Consultations & tarifs</h2>
 
-  <p class="intro-section">
-    Un format flexible<br>
-    L'assurance d'une écoute bienveillante<br>
-  </p>
+  <div class="content-section">
+    <h2 class="section-title">Consultations & tarifs</h2>
 
-  <div class="seance-type-toggle">
-    <mat-button-toggle-group [value]="seanceType()" (change)="seanceType.set($event.value)">
-      <mat-button-toggle value="presentiel">
-        <mat-icon>person</mat-icon>
-        En présentiel
-      </mat-button-toggle>
-      <mat-button-toggle value="distant">
-        <mat-icon>videocam</mat-icon>
-        En visio-consultation
-      </mat-button-toggle>
-    </mat-button-toggle-group>
-  </div>
+    <p class="intro-section">
+      Un format flexible<br>
+      L'assurance d'une écoute bienveillante<br>
+    </p>
 
-  <br>
+    <div class="seance-type-toggle">
+      <mat-button-toggle-group [value]="seanceType()" (change)="seanceType.set($event.value)">
+        <mat-button-toggle value="presentiel">
+          <mat-icon>person</mat-icon>
+          En présentiel
+        </mat-button-toggle>
+        <mat-button-toggle value="distant">
+          <mat-icon>videocam</mat-icon>
+          En visio-consultation
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
 
 
+    <br>
 
-  <div class="consultations-grid">
+    <div style="display: inline-block;width:1000px;">
+      @if (seanceType() != 'distant') {
+        <app-vertical-card image="presentiel.jpg'" imagePosition="right">
 
-    @if (seanceType() != 'distant') {
+          <div class="intro-seance">
+            Un cadre discret et apaisant, dans un espace dédié<br>au soin et au bien-être :
+          </div>
 
-      <mat-card class="consultation-card">
 
-        <mat-card-title class="consultation-title">Séance en présentiel</mat-card-title>
-        <mat-card-content>
-          <p><span style="color: green;">Un cadre discret et apaisant, dans un espace dédié<br>au soin et au bien-être :</span><br><br>
-            <li>dans le 10e arr. (ici, la localisation Google Maps)</li>
+          <div>
+            <br>
+            dans le 10e arr. (ici, la localisation Google Maps)
             accès par la ligne 8 du métro ou le bus n°??
-            <li>dans le 11e arr. (ici, la localisation Google Maps)</li>
+
+            <br>
+
+            dans le 11e arr. (ici, la localisation Google Maps)
             accès par la ligne X du métro ou le bus n°??<br>
             ... à votre convenance
-          </p><br>
-          <p>Durée de la séance : <strong>1h ou 1h30</strong><br>(à indiquer au moment de la prise de rdv)</p>
-        </mat-card-content>
-      </mat-card>
 
-      <mat-card class="consultation-visuel">
-        <mat-card-content>
-          <img src="presentiel.jpg" class="visuel-seance">
-        </mat-card-content>
-      </mat-card>
+          </div>
 
+          <br>
+          <p>
+            Durée de la séance : <strong>1h ou 1h30</strong><br>(à indiquer au moment de la prise de rdv)
+          </p>
 
-    } @else {
+        </app-vertical-card>
 
-      <mat-card class="consultation-visuel">
-        <mat-card-content>
-          <img src="visio.jpg" class="visuel-seance">
-        </mat-card-content>
-      </mat-card>
+      } @else {
 
+        <app-vertical-card image="visio.jpg" imagePosition="left">
 
-      <mat-card class="consultation-card">
+          <div class="intro-seance">
+            Pour celles et ceux qui vivent loin, qui voyagent souvent<br>ou qui préférent le
+            confort et la sécurité de leur chez soi
+          </div>
 
-        <mat-card-title class="consultation-title">Séance en visio</mat-card-title>
-        <mat-card-content>
-          <p><span style="color: green;">Pour celles et ceux qui vivent loin, qui voyagent souvent<br>ou qui préférent le
-        confort et la sécurité de leur chez soi</span></p><br>
+          <br>
+
           <p>Durée de la séance : <strong>1h ou 1h30</strong><br>(à indiquer au moment de la prise de rdv)</p><br>
           <p>Le lien pour rejoindre la visio-consultation vous sera envoyé par mail, quelques jours
             avant notre séance</p>
           <p>Merci de bien vouloir vous connecter quelques minutes avant l'heure, afin de vous
             assurer que tout fonctionne (réseau wifi ou internet, caméra, micro...)</p>
-        </mat-card-content>
-      </mat-card>
+
+        </app-vertical-card>
+      }
+    </div>
+
+    <br><br>
 
 
 
 
-    }
+    <a herf="/tarifs" mat-stroked-button class="standard-btn">
+      Voir mes tarifs
+    </a>
 
-
-
-
-
+    <button mat-flat-button color="accent" (click)="scrollTo('rdv')" class="main-btn">
+      <mat-icon>calendar_today</mat-icon>
+      Prendre rendez-vous
+    </button>
   </div>
 
-
-  <button mat-flat-button routerLink="tarifs" class="standard-btn">
-    <mat-icon>euro</mat-icon>
-    Voir mes tarifs
-  </button>
-
-  <button mat-flat-button color="accent" (click)="scrollTo('rdv')" class="main-btn">
-    <mat-icon>calendar_today</mat-icon>
-    Prendre rendez-vous
-  </button>
 </section>
 
 
 <!-- Ressources & FAQ Section -->
 <section id="ressources" class="section ressources-section">
   <div class="section-divider"></div>
-  <h2 class="section-title">Ressources & questions</h2>
 
-  <div class="ressources-intro ressources-spacing">
-    <div class="ressources-grid">
-      <div class="ressource-block">
-        <h4>
-          <mat-icon>play_circle</mat-icon>
-          À visionner
-        </h4>
-        <p class="intro-section">
-          <span style="font-style: italic">Que vous ayez 2 min ou 1h, <br>j'espère que ces ressources vous inspireront à votre tour<br></span>
-        </p>
-        <ul class="ressource-list">
-          <li>
-            <a href="https://www.arte.tv/fr/videos/127467-001-A/avons-nous-tous-un-trauma-cache/" target="_blank" rel="noopener">
-              <mat-icon>movie</mat-icon>
-              Avons-nous tous un trauma caché ? (ARTE, 2026 | <br>27 min)
-            </a>
-          </li>
-          <li>
-            <a href="https://www.youtube.com/watch?v=HVVpa_-pLkE" target="_blank" rel="noopener">
-              <mat-icon>movie</mat-icon>
-              Traumatismes, système nerveux et santé mentale (Quantum Way | 9 min)
-            </a>
-          </li>
-          <li>
-            <a href="https://www.youtube.com/watch?v=py8deTlxNco" target="_blank" rel="noopener">
-              <mat-icon>movie</mat-icon>
-              La neurobiologie du trauma (Viméo | 4 min)
-            </a>
-          </li>
-          <li>
-            <a href="https://www.youtube.com/watch?v=qM56FRfZrl8" target="_blank" rel="noopener">
-              <mat-icon>movie</mat-icon>
-              La neuroplasticité expliquée simplement (Infloressens, 2016 | 2 min)
-            </a>
-          </li>
-          <li>
-            <a href="https://www.youtube.com/watch?v=n9IJttHPYno" target="_blank" rel="noopener">
-              <mat-icon>movie</mat-icon>
-              L'IFS - 1ère partie (J. Renault, 2020 | 5 min)
-            </a>
-          </li>
-          <li>
-            <a href="https://www.youtube.com/watch?v=b20pWSOiXts" target="_blank" rel="noopener">
-              <mat-icon>movie</mat-icon>
-              L'IFS - 2ème partie (J. Renault, 2020 | 6 min)
-            </a>
-          </li>
-          <li>
-            <a href="https://www.youtube.com/watch?v=MVkvosRMRPA" target="_blank" rel="noopener">
-              <mat-icon>movie</mat-icon>
-              La théorie de l'attachement (Sprouts, 2023 | 8 min)
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div class="ressource-block">
-        <h4>
-          <mat-icon>menu_book</mat-icon>
-          À lire
-        </h4>
-        <p class="intro-section">
+  <div class="content-section">
+    <h2 class="section-title">Ressources & questions</h2>
+
+    <div class="ressources-intro ressources-spacing">
+      <div class="ressources-grid">
+        <div class="ressource-block">
+          <h4>
+            <mat-icon>play_circle</mat-icon>
+            À visionner
+          </h4>
+          <p class="intro-section">
+            <span style="font-style: italic">Que vous ayez 2 min ou 1h, <br>j'espère que ces ressources vous inspireront à votre tour<br></span>
+          </p>
+          <ul class="ressource-list">
+            <li>
+              <a href="https://www.arte.tv/fr/videos/127467-001-A/avons-nous-tous-un-trauma-cache/" target="_blank" rel="noopener">
+                <mat-icon>movie</mat-icon>
+                Avons-nous tous un trauma caché ? (ARTE, 2026 | <br>27 min)
+              </a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/watch?v=HVVpa_-pLkE" target="_blank" rel="noopener">
+                <mat-icon>movie</mat-icon>
+                Traumatismes, système nerveux et santé mentale (Quantum Way | 9 min)
+              </a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/watch?v=py8deTlxNco" target="_blank" rel="noopener">
+                <mat-icon>movie</mat-icon>
+                La neurobiologie du trauma (Viméo | 4 min)
+              </a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/watch?v=qM56FRfZrl8" target="_blank" rel="noopener">
+                <mat-icon>movie</mat-icon>
+                La neuroplasticité expliquée simplement (Infloressens, 2016 | 2 min)
+              </a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/watch?v=n9IJttHPYno" target="_blank" rel="noopener">
+                <mat-icon>movie</mat-icon>
+                L'IFS - 1ère partie (J. Renault, 2020 | 5 min)
+              </a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/watch?v=b20pWSOiXts" target="_blank" rel="noopener">
+                <mat-icon>movie</mat-icon>
+                L'IFS - 2ème partie (J. Renault, 2020 | 6 min)
+              </a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/watch?v=MVkvosRMRPA" target="_blank" rel="noopener">
+                <mat-icon>movie</mat-icon>
+                La théorie de l'attachement (Sprouts, 2023 | 8 min)
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="ressource-block">
+          <h4>
+            <mat-icon>menu_book</mat-icon>
+            À lire
+          </h4>
+          <p class="intro-section">
           <span style="font-style: italic">Une sélection d'ouvrages variée, <br>pour répondre aux goûts, aux
             attentes et au temps disponible de chacun.e<br></span>
-        </p>
-        <ul class="ressource-list">
-          <li>
-            <a href="#" target="_blank" rel="noopener">
-              <mat-icon>article</mat-icon>
-              Le corps n'oublie rien (de B. Van der Kolk)
-            </a>
-          </li>
-          <li>
-            <a href="#" target="_blank" rel="noopener">
-              <mat-icon>article</mat-icon>
-              Ancré (de D. Dana)
-            </a>
-          </li>
-          <li>
-            <a href="#" target="_blank" rel="noopener">
-              <mat-icon>article</mat-icon>
-              Les liens d'attachement 100 % illustrés<br> (de G. Persiaux et Y. Micoud)
-            </a>
-          </li>
-          <li>
-            <a href="#" target="_blank" rel="noopener">
-              <mat-icon>article</mat-icon>
-              Les psycho-traumatismes 100 % illustrés<br> (de G. Persiaux et Y. Micoud)
-            </a>
-          </li>
-          <li>
-            <a href="#" target="_blank" rel="noopener">
-              <mat-icon>article</mat-icon>
-              L'anxiété et la dépression 100 % illustrés<br> (de G. Persiaux et Y. Micoud)
-            </a>
-          </li>
-          <li>
-            <a href="#" target="_blank" rel="noopener">
-              <mat-icon>article</mat-icon>
-              Emotions : enquête et mode d'emploi (de Art-Mella)
-            </a>
-          </li>
-          <li>
-            <a href="#" target="_blank" rel="noopener">
-              <mat-icon>article</mat-icon>
-              Ce que Cécile sait (de Cécile Cée )
-            </a>
-          </li>
-          <li>
-            <a href="#" target="_blank" rel="noopener">
-              <mat-icon>article</mat-icon>
-              Les ouvrages de Irvin Yalom,<br> sur la relation comme outil thérapeutique
-            </a>
-          </li>
-        </ul>
+          </p>
+          <ul class="ressource-list">
+            <li>
+              <a href="#" target="_blank" rel="noopener">
+                <mat-icon>article</mat-icon>
+                Le corps n'oublie rien (de B. Van der Kolk)
+              </a>
+            </li>
+            <li>
+              <a href="#" target="_blank" rel="noopener">
+                <mat-icon>article</mat-icon>
+                Ancré (de D. Dana)
+              </a>
+            </li>
+            <li>
+              <a href="#" target="_blank" rel="noopener">
+                <mat-icon>article</mat-icon>
+                Les liens d'attachement 100 % illustrés<br> (de G. Persiaux et Y. Micoud)
+              </a>
+            </li>
+            <li>
+              <a href="#" target="_blank" rel="noopener">
+                <mat-icon>article</mat-icon>
+                Les psycho-traumatismes 100 % illustrés<br> (de G. Persiaux et Y. Micoud)
+              </a>
+            </li>
+            <li>
+              <a href="#" target="_blank" rel="noopener">
+                <mat-icon>article</mat-icon>
+                L'anxiété et la dépression 100 % illustrés<br> (de G. Persiaux et Y. Micoud)
+              </a>
+            </li>
+            <li>
+              <a href="#" target="_blank" rel="noopener">
+                <mat-icon>article</mat-icon>
+                Emotions : enquête et mode d'emploi (de Art-Mella)
+              </a>
+            </li>
+            <li>
+              <a href="#" target="_blank" rel="noopener">
+                <mat-icon>article</mat-icon>
+                Ce que Cécile sait (de Cécile Cée )
+              </a>
+            </li>
+            <li>
+              <a href="#" target="_blank" rel="noopener">
+                <mat-icon>article</mat-icon>
+                Les ouvrages de Irvin Yalom,<br> sur la relation comme outil thérapeutique
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
+    </div>
+
+    <div class="faq-section">
+      <h3 class="section-subtitle">Questions fréquentes</h3>
+      @for (faq of faqs; track faq.question) {
+        <mat-expansion-panel class="faq-panel">
+
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ faq.question }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-panel-description>
+            <div [innerHTML]="faq.reponse" class="faq-respons"></div>
+          </mat-panel-description>
+        </mat-expansion-panel>
+      }
     </div>
   </div>
 
-  <div class="faq-section">
-    <h3 class="title-subtitle">Questions fréquentes</h3>
-    @for (faq of faqs; track faq.question) {
-      <mat-expansion-panel class="faq-panel">
 
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{ faq.question }}
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-panel-description>
-          <p>{{ faq.reponse }}</p>
-        </mat-panel-description>
-      </mat-expansion-panel>
-    }
-  </div>
 </section>
 
 <!-- Footer -->
@@ -725,7 +742,7 @@
     <div class="footer-brand">
       <h4>Emilie Pommier</h4>
       <p>Restaurer un sentiment durable de sécurité intérieure<br>
-      et apaiser vos blessures</p>
+        et apaiser vos blessures</p>
     </div>
     <div class="footer-links">
       <a href="#accueil">Bienvenue</a>
@@ -740,7 +757,7 @@
     <div class="footer-legal">
       <p>© 2026 -
         <a href="/mentionslegales" target="_blank">Mention légales</a>
-         -
+        -
         <a href="/politiquedeconfidentialite" target="_blank">Politique de confidentialité</a>
       </p>
       <p class="disclaimer">

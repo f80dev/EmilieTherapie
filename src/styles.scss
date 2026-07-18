@@ -17,25 +17,25 @@ $vert-300: #8bc69f;
 $vert-400: #5eaf79;
 
 // Warm neutral for text
-$warm-dark: #3d3630;
-$warm-medium: #6b5f52;
-$warm-light: #9a8b7a;
+$warm-dark: #1b1817;
+$warm-medium: #3e3931;
+$warm-light: #685d52;
 
 :root {
-  --primary-50: #{$vert-50};
-  --primary-100: #{$vert-100};
-  --primary-200: #{$vert-200};
-  --primary-300: #{$vert-300};
-  --primary-400: #{$vert-400};
-  --primary-500: #5eaf79;
-  --primary-700: #3d8b59;
-  --primary-800: #2a6b42;
-  --primary-900: #1a4a2d;
+  --primary-50: #ecffe8;
+  --primary-100: #c7dfb9;
+  --primary-200: #b8cfac;
+  --primary-300: #aec5a2;
+  --primary-400: #a3b898;
+  --primary-500: #849779;;
+  --primary-700: #5d6e53;
+  --primary-800: #4f5e47;
+  --primary-900: #2f372a;
 
-  --secondary-50: #{$beige-50};
-  --secondary-100: #{$beige-100};
-  --secondary-200: #{$beige-200};
-  --secondary-300: #{$beige-300};
+  --secondary-50: #faf8f5;
+  --secondary-100: #f5f0e8;
+  --secondary-200: #ebe3d5;
+  --secondary-300: #dfd3bf;
 
   --neutral-50: #{$beige-50};
   --neutral-100: #{$beige-100};
@@ -70,6 +70,7 @@ html {
   @include mat.theme((
     color: (
       primary: mat.$green-palette,
+      secondary: mat.$m2-brown-palette,
       tertiary: mat.$orange-palette,
     ),
     typography: Roboto,
@@ -77,14 +78,14 @@ html {
   ));
 }
 
+
 body {
   color-scheme: light;
   background-color: var(--background);
   color: var(--text-primary);
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: lighter;
   margin: 0;
   height: 100%;
-  line-height: 1.6;
 }
 
 html {
@@ -110,28 +111,34 @@ html {
 
 .section {
   padding: var(--space-2xl) var(--space-lg);
-  max-width: 1000px;
   margin: 0 auto;
+  text-align: center;
 
   @media (max-width: 768px) {
     padding: var(--space-xl) var(--space-md);
   }
 }
 
-.section-title {
-  font-size: 2rem;
-  font-weight: 500;
-  color: var(--text-primary);
-  text-align: center;
-  margin-bottom: -10px;
+.content-section {
+  max-width: 1000px;
+  display: inline-block;
+}
 
-  .title-subtitle {
-    font-size: 1.1rem;
-    font-weight: 400;
-    color: var(--text-secondary);
-    margin-top: 8px;
-    font-style: italic;
-  }
+
+.section-subtitle {
+  font-size: 1.1rem;
+  font-family: Roboto, "Helvetica Neue", sans-serif !important;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-top: 8px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 20px;
+
 
   @media (max-width: 768px) {
     font-size: 1.5rem;
@@ -142,6 +149,8 @@ html {
   text-align: center;
   color: var(--text-secondary);
 }
+
+
 
 .content-text {
   text-align: left;

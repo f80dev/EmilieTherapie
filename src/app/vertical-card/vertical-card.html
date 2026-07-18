@@ -1,0 +1,30 @@
+<div class="vertical-card">
+  @if (imagePosition === 'left') {
+
+    <div class="column image-column" [style.height]="imageHeight">
+
+        <img [src]="image" alt="" class="image-content">
+
+    </div>
+
+    <div class="column text-column">
+      <ng-container>
+        <ng-content></ng-content>
+      </ng-container>
+    </div>
+
+  } @else {
+
+    <div class="column text-column">
+      <ng-container>
+        <ng-content></ng-content>
+      </ng-container>
+    </div>
+
+    <div class="column image-column" [style.height]="imageHeight">
+
+        <img [src]="image" alt="" class="image-content">
+
+    </div>
+  }
+</div>

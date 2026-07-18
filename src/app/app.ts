@@ -17,6 +17,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { FormsModule } from '@angular/forms';
 import * as packageJson from '../../package.json';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { VerticalCard } from './vertical-card/vertical-card';
 
 interface BusySlot {
   time: string;
@@ -59,6 +60,7 @@ const SITE_VERSION = packageJson.version;
     MatExpansionModule,
     RouterLinkActive,
     RouterLink,
+    VerticalCard,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
@@ -129,7 +131,9 @@ export class App implements OnInit {
       id: 4,
       question: 'Un suivi en intelligence relationnelle, ça représente combien de séances ?',
       reponse:
-        "Cela varie selon votre histoire et vos objectifs. En IR, nous travaillons sur des schémas de protection profondément ancrés : vos « modèles internes opérants ». Les faire évoluer demande du temps et un lien de confiance robuste. J'applique le principe suivant : « Slow is fast ». Car ralentir est parfois le moyen le plus sécurisant pour transformer durablement votre quotidien et apaiser votre système nerveux.",
+        'Cela varie selon votre histoire et vos objectifs. ' +
+        'En IR, nous travaillons sur des schémas de protection profondément ancrés :' +
+        " vos « modèles internes opérants ». Les faire évoluer demande du temps et un lien de confiance robuste. J'applique le principe suivant : « Slow is fast ». Car ralentir est parfois le moyen le plus sécurisant pour transformer durablement votre quotidien et apaiser votre système nerveux.",
       icon: 'timelapse',
     },
     {
