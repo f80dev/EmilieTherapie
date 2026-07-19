@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class VerticalCard {
   @Input() image: string = '';
-  @Input() imagePosition: 'left' | 'right' = 'right';
+  @Input() imagePosition: 'left' | 'right' | 'top' = 'right';
   @Input() imageHeight: string = '400px';
 }

@@ -38,6 +38,10 @@ $vert-300: var(--primary-300);
   margin: 30px;
 }
 
+.intro-seance {
+  color: $primary-500;
+}
+
 
 
 // ============================================
@@ -428,6 +432,10 @@ $vert-300: var(--primary-300);
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
 
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+
     .principle-card {
       perspective: 1000px;
       height: 400px;
@@ -691,10 +699,6 @@ $vert-300: var(--primary-300);
       width: 100%;
     }
 
-    .intro-seance {
-      color: $primary-500;
-    }
-
     .consultation-visuel {
       max-width: 300px;
         border-radius: 2%;
@@ -837,6 +841,10 @@ h3 {
         color: $warm-medium;
         line-height: 1.7;
       }
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
     }
   }
 }
@@ -1241,6 +1249,7 @@ h3 {
       border-radius: 12px !important;
       margin-bottom: 12px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: transparent;
 
       &:last-child {
         margin-bottom: 0;

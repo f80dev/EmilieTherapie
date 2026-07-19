@@ -3,9 +3,38 @@
   grid-template-columns: 1fr 1fr;
   gap: 0;
   width: 100%;
-  background-color: white;
   border-radius: 12px;
   overflow: hidden;
+}
+
+.vertical-card.image-left {
+  grid-template-areas: "image text";
+}
+
+.vertical-card.image-left .image-column {
+  grid-area: image;
+}
+
+.vertical-card.image-left .text-column {
+  grid-area: text;
+}
+
+.vertical-card.image-top {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+
+  .image-column {
+    order: 1;
+  }
+
+  .text-column {
+    order: 2;
+  }
+
+  .image-content {
+    width: 100%;
+    max-height: 400px;
+  }
 }
 
 .column {

@@ -522,9 +522,9 @@
 
     <br>
 
-    <div style="display: inline-block;width:1000px;">
+    <div style="max-width:1000px;background: white;">
       @if (seanceType() != 'distant') {
-        <app-vertical-card image="presentiel.jpg'" imagePosition="right">
+        <app-vertical-card image="presentiel.jpg" [imagePosition]="screenService.isSmallScreen() ? 'top' : 'right'">
 
           <div class="intro-seance">
             Un cadre discret et apaisant, dans un espace dédié<br>au soin et au bien-être :
@@ -553,7 +553,7 @@
 
       } @else {
 
-        <app-vertical-card image="visio.jpg" imagePosition="left">
+        <app-vertical-card image="visio.jpg" [imagePosition]="screenService.isSmallScreen() ? 'top' : 'left'">
 
           <div class="intro-seance">
             Pour celles et ceux qui vivent loin, qui voyagent souvent<br>ou qui préférent le
@@ -573,9 +573,6 @@
     </div>
 
     <br><br>
-
-
-
 
     <a herf="/tarifs" mat-stroked-button class="standard-btn">
       Voir mes tarifs
@@ -719,7 +716,6 @@
       <h3 class="section-subtitle">Questions fréquentes</h3>
       @for (faq of faqs; track faq.question) {
         <mat-expansion-panel class="faq-panel">
-
           <mat-expansion-panel-header>
             <mat-panel-title>
               {{ faq.question }}

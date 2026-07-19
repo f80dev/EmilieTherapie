@@ -1,30 +1,9 @@
-<div class="vertical-card">
-  @if (imagePosition === 'left') {
+<div class="vertical-card" [class.image-left]="imagePosition === 'left'" [class.image-top]="imagePosition === 'top'">
+  <div class="column text-column">
+    <ng-content></ng-content>
+  </div>
 
-    <div class="column image-column" [style.height]="imageHeight">
-
-        <img [src]="image" alt="" class="image-content">
-
-    </div>
-
-    <div class="column text-column">
-      <ng-container>
-        <ng-content></ng-content>
-      </ng-container>
-    </div>
-
-  } @else {
-
-    <div class="column text-column">
-      <ng-container>
-        <ng-content></ng-content>
-      </ng-container>
-    </div>
-
-    <div class="column image-column" [style.height]="imageHeight">
-
-        <img [src]="image" alt="" class="image-content">
-
-    </div>
-  }
+  <div class="column image-column" [style.height]="imagePosition === 'top' ? 'auto' : imageHeight">
+    <img [src]="image" class="image-content">
+  </div>
 </div>
