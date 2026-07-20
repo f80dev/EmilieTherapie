@@ -1,3 +1,6 @@
+// Admin page — local styles only. Layout and surface tokens
+// come from src/styles.scss (.section, spacing, etc.).
+
 .admin-container {
   padding: 20px;
   max-width: 1200px;
@@ -12,7 +15,7 @@
   display: flex;
   justify-content: center;
   padding: 40px;
-  color: #666;
+  color: var(--warm-light);
 }
 
 .empty-state {
@@ -20,7 +23,7 @@
   flex-direction: column;
   align-items: center;
   padding: 60px 20px;
-  color: #888;
+  color: var(--warm-light);
 
   mat-icon {
     font-size: 64px;
@@ -46,7 +49,7 @@
   .description {
     margin: 16px 0;
     white-space: pre-line;
-    color: #555;
+    color: var(--warm-medium);
     font-size: 14px;
   }
 
@@ -61,8 +64,8 @@
       font-weight: 500;
 
       &.tentative {
-        background-color: #fff3e0;
-        color: #e65100;
+        background-color: var(--secondary-100);
+        color: var(--primary-700);
       }
     }
   }

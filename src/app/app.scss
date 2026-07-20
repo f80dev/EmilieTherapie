@@ -1,47 +1,17 @@
 // ============================================
-// CSS Variables
+// App root stylesheet
+// All design tokens (colors, spacing, radius) are
+// inherited from src/styles.scss. Local styles here
+// only describe the app-shell + sections unique to
+// the home page.
 // ============================================
-$primary-400: var(--primary-400);
-$primary-500: var(--primary-500);
-$primary-700: var(--primary-700);
-$primary-900: var(--primary-900);
-$secondary-50: var(--secondary-50);
-$secondary-100: var(--secondary-100);
-$secondary-200: var(--secondary-200);
-$secondary-300: var(--secondary-300);
+@use './shared' as shared;
 
-$warm-dark: #2e2928;
-$warm-medium: #3e3931;
-$warm-light: #685d52;
-
-$vert-100: var(--primary-100);
-$vert-200: var(--primary-200);
-$vert-300: var(--primary-300);
-
-
-// ============================================
-// Global Styles
-// ============================================
-:host {
-  display: block;
-  min-height: 100vh;
-  font-family: 'Source Sans Pro', sans-serif;
-}
-
-.citation {
-  color: $primary-500;
-  font-style: italic;
-  font-size: large;
-  text-align: center;
-  max-width: 900px;
-  display: inline-block;
-  margin: 30px;
-}
-
-.intro-seance {
-  color: $primary-500;
-}
-
+.citation      { @extend %citation; }
+.intro-seance  { @extend %intro-seance; }
+.section-divider { @extend %section-divider; }
+.main-btn      { @extend %main-btn; }
+.standard-btn  { @extend %standard-btn; }
 
 
 // ============================================
@@ -76,20 +46,20 @@ $vert-300: var(--primary-300);
     font-family: 'Playfair Display', serif;
     font-size: 1.4rem;
     font-weight: 500;
-    color: $primary-700;
+    color: var(--primary-700);
     cursor: pointer;
     transition: color 0.3s ease;
     z-index: 1001;
     position: relative;
 
     &:hover {
-      color: $primary-900;
+      color: var(--primary-900);
     }
   }
 
   .hamburger {
     display: none;
-    color: $warm-medium;
+    color: var(--warm-medium);
     z-index: 1001;
     align-items: center;
     justify-content: center;
@@ -103,14 +73,12 @@ $vert-300: var(--primary-300);
     button {
       font-size: 0.95rem;
       font-weight: 400;
-      color: $warm-medium;
+      color: var(--warm-medium);
 
       &:hover {
-        color: $primary-700;
+        color: var(--primary-700);
       }
     }
-
-
   }
 
   // Mobile: hamburger visible, links hidden by default
@@ -149,31 +117,6 @@ $vert-300: var(--primary-300);
   }
 }
 
-// ============================================
-// Section Divider
-// ============================================
-.section-divider {
-  width: 10%;
-  height: 1px;
-  background-color: $warm-light;
-  opacity: 0.5;
-  margin: 0 auto 32px;
-}
-
-.scroll-indicator {
-  position: absolute;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: bounce 2s infinite;
-
-  mat-icon {
-    font-size: 32px;
-    width: 32px;
-    height: 32px;
-    color: $primary-400;
-  }
-}
 
 // ============================================
 // Hero Section
@@ -218,7 +161,7 @@ $vert-300: var(--primary-300);
     font-size: 3.5rem;
 
     .highlight {
-      color: $primary-700;
+      color: var(--primary-700);
     }
 
     @media (max-width: 768px) {
@@ -232,7 +175,7 @@ $vert-300: var(--primary-300);
 
   .hero-subtitle {
     font-size: 1.25rem;
-    color: $warm-medium;
+    color: var(--warm-medium);
     line-height: 1.2;
     margin-bottom: 40px;
   }
@@ -259,11 +202,11 @@ $vert-300: var(--primary-300);
       display: flex;
       align-items: center;
       gap: 8px;
-      color: $warm-medium;
+      color: var(--warm-medium);
       font-size: 0.95rem;
 
       mat-icon {
-        color: $primary-500;
+        color: var(--primary-500);
         font-size: 20px;
         width: 20px;
         height: 20px;
@@ -271,15 +214,28 @@ $vert-300: var(--primary-300);
     }
   }
 
-
-
   .hero-version {
     position: absolute;
     bottom: 12px;
     right: 20px;
     font-size: 0.75rem;
-    color: $primary-400;
+    color: var(--primary-400);
     opacity: 0.6;
+  }
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+
+  mat-icon {
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+    color: var(--primary-400);
   }
 }
 
@@ -295,11 +251,11 @@ $vert-300: var(--primary-300);
   }
 }
 
+
 // ============================================
 // About Section
 // ============================================
 .apropos-section {
-
   .apropos-content {
     display: grid;
     grid-template-columns: 320px 1fr;
@@ -318,15 +274,14 @@ $vert-300: var(--primary-300);
       max-width: 320px;
       aspect-ratio: 3/4;
       object-fit: cover;
-      border-radius: 16px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
     }
   }
 
   .apropos-text {
-
     .apropos-intro {
-      color: $warm-medium;
+      color: var(--warm-medium);
       line-height: 1.7;
     }
 
@@ -341,15 +296,15 @@ $vert-300: var(--primary-300);
         align-items: flex-start;
         gap: 12px;
         padding: 16px;
-        background: $secondary-50;
-        border-radius: 12px;
+        background: var(--secondary-50);
+        border-radius: var(--radius-md);
 
         div {
           display: flex;
           flex-direction: column;
 
           strong {
-            color: $warm-dark;
+            color: var(--warm-dark);
             font-size: 0.9rem;
             margin-bottom: 8px;
           }
@@ -363,7 +318,7 @@ $vert-300: var(--primary-300);
             margin: 0;
 
             li {
-              color: $warm-medium;
+              color: var(--warm-medium);
               font-size: 0.85rem;
             }
           }
@@ -373,10 +328,10 @@ $vert-300: var(--primary-300);
 
     .apropos-philosophy {
       padding: 20px;
-      background: linear-gradient(135deg, $vert-100, $secondary-100);
-      border-radius: 12px;
-      border-left: 4px solid $primary-400;
-      color: $warm-medium;
+      background: linear-gradient(135deg, var(--primary-100), var(--secondary-100));
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--primary-400);
+      color: var(--warm-medium);
       font-size: 1rem;
       line-height: 1.7;
     }
@@ -392,23 +347,8 @@ $vert-300: var(--primary-300);
 }
 
 .expansion-panel-text {
-  background: none;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  border: none !important;
-  text-align: left;
-  padding: 0 !important;
-  box-shadow: none !important;
-
-  ::ng-deep .mat-expansion-panel-header {
-    box-shadow: none !important;
-  }
-
-  ::ng-deep .mat-expansion-panel-body {
-    box-shadow: none !important;
-  }
-
+  @include shared.expansion-panel-base;
 }
-
 
 
 // ============================================
@@ -421,11 +361,10 @@ $vert-300: var(--primary-300);
     text-align: center;
     max-width: 700px;
     margin: 0 auto 48px;
-    color: $warm-medium;
+    color: var(--warm-medium);
     font-size: 1.1rem;
     line-height: 1.7;
   }
-
 
   .principles-grid {
     display: grid;
@@ -457,7 +396,7 @@ $vert-300: var(--primary-300);
           height: 100%;
           backface-visibility: hidden;
           background: white;
-          border-radius: 16px;
+          border-radius: var(--radius-lg);
           padding: 24px;
           text-align: center;
           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
@@ -471,23 +410,19 @@ $vert-300: var(--primary-300);
 
         .card-front {
           .principle-icon {
-            font-size: 48px;
-            width: 48px;
-            height: 48px;
-            color: $primary-500;
-            margin-bottom: 16px;
+            @extend %section-icon;
           }
 
           mat-card-title {
             font-family: 'Playfair Display', serif;
             font-size: 1.25rem;
             font-weight: 500;
-            color: $warm-dark;
+            color: var(--warm-dark);
             margin-bottom: 12px;
           }
 
           mat-card-content p {
-            color: $warm-medium;
+            color: var(--warm-medium);
             font-size: 0.95rem;
             line-height: 1.6;
             margin-bottom: 16px;
@@ -497,7 +432,7 @@ $vert-300: var(--primary-300);
           }
 
           .flip-link {
-            color: $primary-500;
+            color: var(--primary-500);
             font-size: 0.9rem;
             text-decoration: underline;
             cursor: pointer;
@@ -507,7 +442,7 @@ $vert-300: var(--primary-300);
 
         .card-back {
           transform: rotateY(180deg);
-          background: linear-gradient(135deg, $primary-500 0%, $primary-500 100%);
+          background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-500) 100%);
 
           mat-card-content p {
             color: white;
@@ -559,7 +494,7 @@ $vert-300: var(--primary-300);
       span {
         font-size: 1rem;
         font-weight: bold;
-        color: $primary-500;
+        color: var(--primary-500);
         text-align: center;
       }
     }
@@ -573,34 +508,13 @@ $vert-300: var(--primary-300);
 
     .detail-block {
       background: white;
-      border-radius: 16px;
+      border-radius: var(--radius-lg);
       padding: 32px;
     }
   }
 
   .focus-areas {
-    background: transparent;
-    border-radius: 16px;
-    padding: 24px 0;
-    border: none;
-    box-shadow: none;
-
-
-    .focus-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-
-      mat-chip {
-        background: $vert-100;
-        color: $primary-900;
-        font-size: 0.9rem;
-        padding: 8px 16px;
-        border-radius: 20px;
-        border: none;
-        outline: none;
-      }
-    }
+    @extend %focus-areas;
   }
 }
 
@@ -632,61 +546,43 @@ $vert-300: var(--primary-300);
         display: inline-block;
         padding: 8px 14px;
         border-radius: 20px;
-        background: rgba($vert-100, 0.5);
-        color: $primary-700;
+        background: color-mix(in srgb, var(--primary-100) 50%, transparent);
+        color: var(--primary-700);
         font-weight: 500;
         line-height: 1.4;
         transition: all 0.3s ease;
         cursor: default;
 
         &:hover {
-          background: $vert-100;
+          background: var(--primary-100);
           transform: scale(1.05);
         }
 
-        &.size-xl {
-          font-size: 1.25rem;
-          padding: 10px 18px;
-        }
+        &.size-xl { font-size: 1.25rem; padding: 10px 18px; }
+        &.size-lg { font-size: 1.05rem; padding: 8px 16px; }
+        &.size-md { font-size: 0.9rem; padding: 6px 14px; }
+        &.size-sm { font-size: 0.8rem; padding: 5px 12px; }
+        &.size-xs { font-size: 0.7rem; padding: 4px 10px; }
 
-        &.size-lg {
-          font-size: 1.05rem;
-          padding: 8px 16px;
-        }
-
-        &.size-md {
-          font-size: 0.9rem;
-          padding: 6px 14px;
-        }
-
-        &.size-sm {
-          font-size: 0.8rem;
-          padding: 5px 12px;
-        }
-
-        &.size-xs {
-          font-size: 0.7rem;
-          padding: 4px 10px;
-        }
-
-        &.rotation-5 { transform: rotate(2deg); }
-        &.rotation--5 { transform: rotate(-2deg); }
-        &.rotation-10 { transform: rotate(3deg); }
+        &.rotation-5   { transform: rotate(2deg); }
+        &.rotation--5  { transform: rotate(-2deg); }
+        &.rotation-10  { transform: rotate(3deg); }
         &.rotation--10 { transform: rotate(-3deg); }
-        &.rotation-3 { transform: rotate(1deg); }
-        &.rotation--3 { transform: rotate(-1deg); }
-        &.rotation-8 { transform: rotate(2.5deg); }
-        &.rotation--8 { transform: rotate(-2.5deg); }
+        &.rotation-3   { transform: rotate(1deg); }
+        &.rotation--3  { transform: rotate(-1deg); }
+        &.rotation-8   { transform: rotate(2.5deg); }
+        &.rotation--8  { transform: rotate(-2.5deg); }
       }
     }
   }
 }
 
+
 // ============================================
 // Consultations Section
 // ============================================
 .consultations-section {
-  background: $secondary-50;
+  background: var(--secondary-50);
   text-align: center;
 
   .consultations-grid {
@@ -701,49 +597,30 @@ $vert-300: var(--primary-300);
 
     .consultation-visuel {
       max-width: 300px;
-        border-radius: 2%;
-        overflow: hidden;
-        object-fit: cover;
+      border-radius: 2%;
+      overflow: hidden;
+      object-fit: cover;
     }
 
     .consultation-card {
-      background: None;
-      border-radius: 16px;
-      padding: 32px 24px;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-      overflow: clip;
-
-
-
-      &:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-      }
+      @extend %section-card;
+      background: none;
 
       .consultation-icon {
-        font-size: 48px;
-        width: 48px;
-        height: 48px;
-        color: $primary-500;
-        margin-bottom: 16px;
+        @extend %section-icon;
       }
 
       .consultation-title {
         font-family: 'Playfair Display', serif !important;
         font-size: 1.25rem !important;
         font-weight: 500 !important;
-        color: $warm-dark !important;
+        color: var(--warm-dark) !important;
         margin-bottom: 16px;
       }
 
-
-
       mat-card-content {
         p {
-          color: $warm-medium;
+          color: var(--warm-medium);
           font-size: 0.95rem;
           line-height: 1.6;
           margin: 4px 0;
@@ -754,59 +631,37 @@ $vert-300: var(--primary-300);
 
   .remboursement-info {
     background: white;
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
     padding: 24px 32px;
     margin-bottom: 48px;
     text-align: center;
-
   }
 }
-
 
 h3 {
   font-family: 'Playfair Display', serif;
   font-size: 1.25rem;
   font-weight: 500;
-  color: $warm-dark;
+  color: var(--warm-dark);
   margin-bottom: 12px;
 }
 
+
 // ============================================
-// Appointment Section
+// Appointment / Accompaniments Sections
 // ============================================
 .accompagnements-section {
-
   background: var(--primary-50);
 
   .accompagnements-intro {
-    color: $warm-medium;
+    color: var(--warm-medium);
     font-size: 1.1rem;
     line-height: 1.7;
     text-align: center;
   }
 
   .focus-areas {
-    background: transparent;
-    border-radius: 16px;
-    padding: 24px 0;
-    border: none;
-    box-shadow: none;
-
-    .focus-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-
-      mat-chip {
-        background: $vert-100;
-        color: $primary-900;
-        font-size: 0.9rem;
-        padding: 8px 16px;
-        border-radius: 20px;
-        border: none;
-        outline: none;
-      }
-    }
+    @extend %focus-areas;
   }
 
   .accompagnements-grid {
@@ -816,29 +671,14 @@ h3 {
     margin-top: 48px;
 
     .accompagnement-card {
-      background: white;
-      border-radius: 16px;
-      padding: 32px 24px;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-      &:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-      }
-
+      @extend %section-card;
 
       .accompagnement-icon {
-        font-size: 48px;
-        width: 48px;
-        height: 48px;
-        color: $primary-500;
-        margin-bottom: 16px;
+        @extend %section-icon;
       }
 
       p {
-        color: $warm-medium;
+        color: var(--warm-medium);
         line-height: 1.7;
       }
     }
@@ -849,57 +689,11 @@ h3 {
   }
 }
 
-.main-btn {
-  color: $secondary-50 !important;
-  padding: 10px 30px;
-  height: 52px;
-  border: none;
-  background: $primary-500 !important;
-
-  mat-icon {
-    font-size: 18px;
-    width: 18px;
-    height: 18px;
-    margin-right: 6px;
-  }
-
-  &:hover {
-    background: $primary-700;
-  }
-}
-
-
-.standard-btn {
-  height: 52px;
-  text-align: center;
-  font-weight: lighter;
-  color: var(--warm-dark) !important;
-  background: none !important;
-  border: solid 1px black;
-  margin-left: 10px;
-  margin-right: 10px;
-
-  mat-icon {
-    margin-right: 8px;
-  }
-
-  &:hover:not(:disabled) {
-    background: $primary-500;
-  }
-
-  &:disabled {
-    opacity: 0.7;
-    color: $warm-light;
-  }
-}
-
-// ============================================
 .rdv-section {
-
   .rdv-intro {
     text-align: center;
     max-width: 600px;
-    color: $warm-medium;
+    color: var(--warm-medium);
     font-size: 1.1rem;
   }
 
@@ -916,7 +710,7 @@ h3 {
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 
       &.mat-button-toggle-checked {
-        background: $primary-500;
+        background: var(--primary-500);
 
         .mat-button-toggle-label-content {
           color: white;
@@ -926,7 +720,7 @@ h3 {
 
     mat-button-toggle {
       font-size: 0.95rem;
-      background: $secondary-100;
+      background: var(--secondary-100);
 
       mat-icon {
         font-size: 18px;
@@ -939,7 +733,7 @@ h3 {
 
   .seance-type-hint {
     text-align: center;
-    color: $warm-medium;
+    color: var(--warm-medium);
     font-size: 0.9rem;
     font-style: italic;
     margin: 0;
@@ -958,8 +752,8 @@ h3 {
 
   .calendar-card,
   .form-card {
-    background: $secondary-50;
-    border-radius: 16px;
+    background: var(--secondary-50);
+    border-radius: var(--radius-lg);
     padding: 24px;
 
     mat-card-header {
@@ -972,10 +766,10 @@ h3 {
         font-family: 'Playfair Display', serif;
         font-size: 1.25rem;
         font-weight: 500;
-        color: $warm-dark;
+        color: var(--warm-dark);
 
         mat-icon {
-          color: $primary-500;
+          color: var(--primary-500);
         }
       }
     }
@@ -983,17 +777,17 @@ h3 {
     mat-calendar {
       width: 100%;
       background: white;
-      border-radius: 12px;
+      border-radius: var(--radius-md);
     }
 
     .time-slots {
       margin-top: 24px;
       padding-top: 24px;
-      border-top: 1px solid $secondary-200;
+      border-top: 1px solid var(--secondary-200);
 
       h4 {
         font-size: 1rem;
-        color: $warm-dark;
+        color: var(--warm-dark);
         margin-bottom: 16px;
       }
 
@@ -1003,33 +797,33 @@ h3 {
         gap: 8px;
 
         button {
-          border-radius: 8px;
+          border-radius: var(--radius-sm);
           height: 40px;
           font-size: 0.9rem;
           transition: all 0.2s ease;
 
           &.slot-available {
             background: white;
-            color: $warm-dark;
-            border: 1px solid $secondary-200;
+            color: var(--warm-dark);
+            border: 1px solid var(--secondary-200);
 
             &:hover {
-              background: $primary-500;
+              background: var(--primary-500);
               color: white;
-              border-color: $primary-500;
+              border-color: var(--primary-500);
             }
           }
 
           &.slot-unavailable {
-            background: $secondary-200;
-            color: $warm-light;
+            background: var(--secondary-200);
+            color: var(--warm-light);
             cursor: not-allowed;
           }
 
           &.slot-selected {
-            background: $primary-700 !important;
+            background: var(--primary-700) !important;
             color: white !important;
-            border-color: $primary-700 !important;
+            border-color: var(--primary-700) !important;
           }
         }
       }
@@ -1037,7 +831,7 @@ h3 {
       .loading-slots,
       .no-slots {
         text-align: center;
-        color: $warm-light;
+        color: var(--warm-light);
         font-style: italic;
         padding: 16px 0;
       }
@@ -1045,7 +839,7 @@ h3 {
       .slot-duration {
         font-weight: normal;
         font-size: 0.85rem;
-        color: $warm-light;
+        color: var(--warm-light);
       }
     }
 
@@ -1074,14 +868,14 @@ h3 {
         align-items: center;
         gap: 8px;
         padding: 16px;
-        background: $vert-100;
-        border-radius: 8px;
-        color: $primary-900;
+        background: var(--primary-100);
+        border-radius: var(--radius-sm);
+        color: var(--primary-900);
         font-weight: 500;
         margin-bottom: 16px;
 
         mat-icon {
-          color: $primary-700;
+          color: var(--primary-700);
         }
       }
 
@@ -1089,11 +883,10 @@ h3 {
         margin-bottom: 24px;
 
         .mdc-label {
-          color: $warm-medium;
+          color: var(--warm-medium);
           font-size: 0.9rem;
         }
       }
-
     }
   }
 
@@ -1106,11 +899,11 @@ h3 {
       display: flex;
       gap: 16px;
       padding: 24px;
-      background: $secondary-50;
-      border-radius: 12px;
+      background: var(--secondary-50);
+      border-radius: var(--radius-md);
 
       mat-icon {
-        color: $primary-500;
+        color: var(--primary-500);
         font-size: 28px;
         width: 28px;
         height: 28px;
@@ -1118,14 +911,14 @@ h3 {
       }
 
       strong {
-        color: $warm-dark;
+        color: var(--warm-dark);
         font-size: 0.95rem;
         display: block;
         margin-bottom: 4px;
       }
 
       p {
-        color: $warm-medium;
+        color: var(--warm-medium);
         font-size: 0.85rem;
         line-height: 1.5;
         margin: 0;
@@ -1134,8 +927,9 @@ h3 {
   }
 }
 
+
 // ============================================
-// Ressources & FAQ Section
+// Resources & FAQ Section
 // ============================================
 .ressources-section {
   background: var(--primary-50);
@@ -1151,7 +945,7 @@ h3 {
       font-family: 'Playfair Display', serif;
       font-size: 1.75rem;
       font-weight: 500;
-      color: $warm-dark;
+      color: var(--warm-dark);
       margin-bottom: 24px;
       text-align: center;
     }
@@ -1170,8 +964,8 @@ h3 {
     }
 
     .ressource-block {
-      background: $secondary-50;
-      border-radius: 16px;
+      background: var(--secondary-50);
+      border-radius: var(--radius-lg);
       padding: 24px;
 
       h4 {
@@ -1181,13 +975,13 @@ h3 {
         font-family: 'Playfair Display', serif;
         font-size: 1.25rem;
         font-weight: 500;
-        color: $primary-700;
+        color: var(--primary-700);
         margin-bottom: 20px;
         padding-bottom: 12px;
-        border-bottom: 2px solid $vert-200;
+        border-bottom: 2px solid var(--primary-200);
 
         mat-icon {
-          color: $primary-500;
+          color: var(--primary-500);
         }
       }
     }
@@ -1204,23 +998,23 @@ h3 {
           display: flex;
           align-items: center;
           gap: 10px;
-          color: $warm-medium;
+          color: var(--warm-medium);
           text-decoration: none;
           font-size: 0.95rem;
           padding: 8px 12px;
-          border-radius: 8px;
+          border-radius: var(--radius-sm);
           transition: all 0.2s ease;
 
           mat-icon {
             font-size: 20px;
             width: 20px;
             height: 20px;
-            color: $primary-400;
+            color: var(--primary-400);
           }
 
           &:hover {
-            background: rgba($primary-500, 0.1);
-            color: $primary-700;
+            background: color-mix(in srgb, var(--primary-500) 10%, transparent);
+            color: var(--primary-700);
           }
         }
       }
@@ -1230,11 +1024,10 @@ h3 {
   .faq-section {
     margin-top: 48px;
 
-
     .intertitre {
       font-size: 1.75rem;
       font-weight: 500;
-      color: $warm-dark;
+      color: var(--warm-dark);
       margin-bottom: 24px;
       text-align: center;
     }
@@ -1245,51 +1038,17 @@ h3 {
     }
 
     .faq-panel {
-      text-align: left;
-      border-radius: 12px !important;
-      margin-bottom: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-      background: transparent;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-
-      ::ng-deep {
-        .mat-expansion-panel-header {
-          background: none;
-          border-radius: 12px !important;
-
-          &:hover {
-            background: none;
-          }
-        }
-
-        .mat-expansion-panel-header.mat-expanded {
-          background: none;
-        }
-
-        .mat-expansion-indicator {
-          color: $primary-500;
-        }
-      }
-
-      mat-panel-title {
-        font-size: 1rem;
-        font-weight: 600;
-        color: $warm-dark;
-      }
-
-
+      @include shared.expansion-panel-base;
     }
   }
 }
+
 
 // ============================================
 // Footer
 // ============================================
 .footer {
-  background: $warm-light;
+  background: var(--warm-light);
   color: white;
   padding: 64px 24px 32px;
 
@@ -1300,7 +1059,7 @@ h3 {
     transition: color 0.2s ease;
 
     &:hover {
-      color: $vert-300;
+      color: var(--primary-300);
     }
   }
 
@@ -1351,7 +1110,7 @@ h3 {
       color: rgba(255, 255, 255, 0.5);
       padding: 12px;
       background: rgba(255, 255, 255, 0.05);
-      border-radius: 8px;
+      border-radius: var(--radius-sm);
 
       mat-icon {
         font-size: 16px;
@@ -1363,32 +1122,32 @@ h3 {
   }
 }
 
+
 // ============================================
-// Material Overrides
+// Material Overrides + Snackbar
 // ============================================
 .mat-mdc-form-field {
   .mdc-notched-outline__leading,
   .mdc-notched-outline__notch,
   .mdc-notched-outline__trailing {
-    border-color: $secondary-200 !important;
+    border-color: var(--secondary-200) !important;
   }
 }
 
 .mat-mdc-checkbox {
   --mdc-checkbox-selected-checkmark-color: white;
-  --mdc-checkbox-selected-focus-icon-color: $primary-500;
-  --mdc-checkbox-selected-hover-icon-color: $primary-700;
-  --mdc-checkbox-selected-icon-color: $primary-500;
-  --mdc-checkbox-selected-pressed-icon-color: $primary-700;
+  --mdc-checkbox-selected-focus-icon-color: var(--primary-500);
+  --mdc-checkbox-selected-hover-icon-color: var(--primary-700);
+  --mdc-checkbox-selected-icon-color: var(--primary-500);
+  --mdc-checkbox-selected-pressed-icon-color: var(--primary-700);
 }
 
-// Snackbar styles
 .error-snackbar {
   --mdc-snackbar-container-color: #d32f2f;
   --mdc-snackbar-supporting-text-color: white;
 }
 
 .success-snackbar {
-  --mdc-snackbar-container-color: $primary-700;
+  --mdc-snackbar-container-color: var(--primary-700);
   --mdc-snackbar-supporting-text-color: white;
 }
