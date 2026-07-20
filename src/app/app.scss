@@ -18,7 +18,7 @@
 // Header Toolbar
 // ============================================
 .header-toolbar {
-  background: rgba(253, 252, 250, 0.95) !important;
+  background: rgba(253, 252, 250, 0.95);
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
   position: fixed;
@@ -33,13 +33,17 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    height: 100%;
     margin: 0 auto;
+    padding: 0 16px;
+    box-sizing: border-box;
   }
 
   .header-brand {
     display: flex;
     align-items: center;
     gap: 10px;
+    z-index: 1002;
   }
 
   .logo {
@@ -49,7 +53,7 @@
     color: var(--primary-700);
     cursor: pointer;
     transition: color 0.3s ease;
-    z-index: 1001;
+    z-index: 1002;
     position: relative;
 
     &:hover {
@@ -60,9 +64,10 @@
   .hamburger {
     display: none;
     color: var(--warm-medium);
-    z-index: 1001;
+    z-index: 1002;
     align-items: center;
     justify-content: center;
+    position: relative;
   }
 
   .nav-links {
@@ -81,38 +86,50 @@
     }
   }
 
-  // Mobile: hamburger visible, links hidden by default
+  // Mobile: hide desktop links (drawer renders the same links below),
+  // show hamburger pinned top-right.
   @media (max-width: 768px) {
+    .nav-links { display: none; }
     .hamburger {
-      display: flex;
+      display: inline-flex;
+      margin-left: auto;
+    }
+  }
+}
+
+// Fullscreen mobile drawer (sibling of mat-toolbar in the DOM).
+.nav-links-drawer {
+  display: none;
+
+  @media (max-width: 768px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease, visibility 0.3s;
+    z-index: 999;
+    visibility: hidden;
+
+    &.mobile-open {
+      transform: translateX(0);
+      visibility: visible;
     }
 
-    .nav-links {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: white;
-      flex-direction: column;
-      justify-content: center;
-      gap: 24px;
-      transform: translateX(100%);
-      transition: transform 0.3s ease;
-      z-index: 1000;
+    button {
+      font-size: 1.2rem;
+      color: var(--warm-medium);
+    }
 
-      &.mobile-open {
-        transform: translateX(0);
-      }
-
-      button {
-        font-size: 1.2rem;
-      }
-
-      .main-btn {
-        margin-left: 0;
-        height: 48px;
-      }
+    .main-btn {
+      margin-left: 0;
+      height: 48px;
     }
   }
 }
