@@ -24,7 +24,9 @@ export const routes: Routes = [
   {
     path: 'politiquedeconfidentialite',
     loadComponent: () =>
-      import('./politiquedeconfidentialite/politiquedeconfidentialite').then((m) => m.Politiquedeconfidentialite),
+      import('./politiqueconfidentialite/politiqueconfidentialite').then(
+        (m) => m.Politiqueconfidentialite,
+      ),
   },
 
   {
