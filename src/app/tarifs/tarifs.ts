@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { MatExpansionPanel, MatExpansionPanelDescription, MatExpansionPanelHeader, MatExpansionPanelTitle } from '@angular/material/expansion';
+import { back } from '../../main';
 
 @Component({
   selector: 'app-tarifs',
@@ -18,4 +19,6 @@ import { MatExpansionPanel, MatExpansionPanelDescription, MatExpansionPanelHeade
   templateUrl: './tarifs.html',
   styleUrl: './tarifs.scss',
 })
-export class Tarifs {}
+export class Tarifs {
+  protected readonly back = back;
+}

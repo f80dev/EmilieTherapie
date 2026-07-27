@@ -1,17 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   <meta charset="utf-8" />
   <title>Emilie Thérapie</title>
 
   <script>
-    // Store the URL the user was trying to access when receiving the 404.
-    sessionStorage.redirect = location.href;
-  </script>
+    // Store the original path for Angular router to handle after page load
+    var originalPath = window.location.pathname;
 
-  <!-- Immediately redirect to the base URL so we can use the SPA routing. -->
-  <meta http-equiv="refresh" content="0;URL='/'"></meta>
+    // Remove trailing slash except for root
+    if (originalPath !== '/' && originalPath.endsWith('/')) {
+      originalPath = originalPath.slice(0, -1);
+    }
+
+    // Store the path that Angular should navigate to
+    sessionStorage.setItem('redirectTo', originalPath);
+
+    // Redirect to index.html for Angular to load
+    window.location.replace('/index.html');
+  </script>
 </head>
 
 <body>

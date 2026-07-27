@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { back } from '../../main';
 
 @Component({
   selector: 'app-parcours',
@@ -9,4 +10,7 @@ import { RouterModule } from '@angular/router';
   templateUrl: './parcours.html',
   styleUrl: './parcours.scss',
 })
-export class Parcours {}
+export class Parcours {
+  protected readonly location = location;
+  protected readonly back = back;
+}

@@ -4,3 +4,8 @@ import { AppRoot } from './app/app.root';
 
 bootstrapApplication(AppRoot, appConfig)
   .catch((err) => console.error(err));
+
+
+export function back() {
+  window.history.back();
+}
