@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 /**
@@ -18,10 +18,6 @@ export class SeoService {
   private readonly router = inject(Router);
 
   private readonly siteUrl = 'https://emiliepommier.fr';
-  private readonly siteName = 'Emilie Pommier — Psychothérapie';
-  private readonly defaultTitle = 'Emilie Pommier — Psychothérapeute Intelligence Relationnelle Paris 10e | RDV en ligne';
-  private readonly defaultDescription =
-    "Emilie Pommier, psychothérapeute à Paris 10e. Intelligence Relationnelle de François Le Doze : guérison des blessures psychiques par l'engagement thérapeutique conscient. RDV en ligne.";
   private readonly defaultImage = `${this.siteUrl}/og-image.jpg`;
 
   private currentCanonical?: HTMLLinkElement;
@@ -31,7 +27,7 @@ export class SeoService {
     '/': {
       title: 'Emilie Pommier — Psychothérapeute Intelligence Relationnelle Paris 10e | RDV en ligne',
       description:
-        'Emilie Pommier, psychothérapeute à Paris 10e. Intelligence Relationnelle de François Le Doze : guérison des blessures psychiques par l\'engagement thérapeutique conscient. RDV en ligne.',
+        "Emilie Pommier, psychothérapeute à Paris 10e. Intelligence Relationnelle de François Le Doze : guérison des blessures psychiques par l'engagement thérapeutique conscient. RDV en ligne.",
     },
     '/parcours': {
       title: 'Mon parcours de psychothérapeute | Emilie Pommier — Paris 10e',
@@ -42,6 +38,11 @@ export class SeoService {
       title: 'Tarifs et modalités | Emilie Pommier — Psychothérapeute Paris 10e',
       description:
         "Tarifs des séances de psychothérapie en cabinet (Paris 10e) et en visio : durées, fréquence recommandée, moyens de paiement et conditions d'annulation.",
+    },
+    '/via-carte': {
+      title: 'Réservez votre 1er échange gratuit 30 min | Emilie Pommier — Paris 10e',
+      description:
+        "Page dédiée aux scans QR depuis les cartes de visite : choisissez un créneau en cabinet (Paris 10e) ou en visio pour votre premier échange offert de 30 minutes.",
     },
     '/mentionslegales': {
       title: 'Mentions légales | Emilie Pommier — Psychothérapeute Paris',
@@ -127,6 +128,7 @@ export class SeoService {
     const extra: Record<string, string> = {
       '/parcours': 'parcours psychothérapeute, formation, supervision, déontologie',
       '/tarifs': 'tarifs psychothérapie, prix séance psy, séance visio, séance cabinet',
+      '/via-carte': 'QR code, carte de visite, réservation, premier échange gratuit, prise de rendez-vous',
       '/mentionslegales': 'mentions légales',
       '/politiquedeconfidentialite': 'RGPD, données personnelles, confidentialité',
       '/versionslegales/cgv': 'CGV, conditions générales de vente, annulation séance',

@@ -20,7 +20,7 @@
       </button>
 
       <button mat-flat-button color="accent"
-              (click)="scrollTo('rdv'); isMobileMenuOpen.set(false)" class="main-btn">
+              (click)="scrollTo('rdv'); isMobileMenuOpen.set(false); analytics.clickRdv('header-mobile-burger')" class="main-btn">
         <mat-icon>calendar_today</mat-icon>
         Prendre rendez-vous
       </button>
@@ -45,7 +45,7 @@
     <div style="line-height: 95%">Ressources <br>& questions</div>
   </button>
   <button mat-flat-button color="accent"
-          (click)="scrollTo('rdv'); isMobileMenuOpen.set(false)" class="main-btn">
+          (click)="scrollTo('rdv'); isMobileMenuOpen.set(false); analytics.clickRdv('header-mobile-burger')" class="main-btn">
     <mat-icon>calendar_today</mat-icon>
     Prendre rendez-vous
   </button>
@@ -67,7 +67,9 @@
     <br>
 
     <div class="hero-actions">
-      <button mat-flat-button color="primary" (click)="scrollTo('rdv')" class="main-btn">
+      <button mat-flat-button color="primary"
+                    (click)="scrollTo('rdv'); isMobileMenuOpen.set(false); analytics.clickRdv('header-desktop')"
+                    class="main-btn">
         <mat-icon>calendar_today</mat-icon>
         Prendre rendez-vous
       </button>
@@ -513,8 +515,9 @@
       Je me fais un plaisir d'échanger avec vous.
     </p>
 
-    <button mat-flat-button color="accent" (click)="scrollTo('rdv');
-  isMobileMenuOpen.set(false)"  class="main-btn">
+    <button mat-flat-button color="accent"
+            (click)="scrollTo('rdv'); isMobileMenuOpen.set(false); analytics.clickRdv('card-accompagnement')"
+            class="main-btn">
       <mat-icon>calendar_today</mat-icon>
       Prendre rendez-vous
     </button>

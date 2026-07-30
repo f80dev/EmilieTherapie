@@ -7,6 +7,11 @@ export const routes: Routes = [
   },
 
   {
+    path: 'via-carte',
+    loadComponent: () => import('./via-carte/via-carte').then((m) => m.ViaCarte),
+  },
+
+  {
     path: 'parcours',
     loadComponent: () => import('./parcours/parcours').then((m) => m.Parcours),
   },

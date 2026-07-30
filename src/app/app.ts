@@ -19,6 +19,7 @@ import * as packageJson from '../../package.json';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { VerticalCard } from './vertical-card/vertical-card';
 import { ScreenService } from './screen.service';
+import { AnalyticsService } from './analytics.service';
 
 interface BusySlot {
   time: string;
@@ -70,6 +71,7 @@ export class App implements OnInit {
   private http = inject(HttpClient);
   private snackBar = inject(MatSnackBar);
   protected screenService = inject(ScreenService);
+  protected analytics = inject(AnalyticsService);
 
   protected readonly title = signal('Psychothérapie');
   protected readonly siteVersion = SITE_VERSION;
@@ -247,6 +249,8 @@ export class App implements OnInit {
     const element = document.getElementById(section);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Analytics — tracking des sections visitées via le menu
+      if (section === 'rdv') this.analytics.viewRdvSection();
     }
   }
 
@@ -362,6 +366,9 @@ export class App implements OnInit {
       panelClass: ['success-snackbar'],
     });
 
+    // Analytics — lead capturé (home form)
+    this.analytics.leadCaptured('direct');
+
     // Keep user contact info in localStorage, only reset appointment-specific fields
     this.message.set('');
     this.selectedDate.set(null);
@@ -386,6 +393,9 @@ export class App implements OnInit {
     this.selectedTime.set('');
 
     if (!date) return;
+
+    // Analytics — vue du calendrier
+    this.analytics.viewCalendar();
 
     const day = date.getDay();
     if (day === 0) {
