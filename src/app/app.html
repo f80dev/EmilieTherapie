@@ -56,7 +56,7 @@
 <section id="accueil" class="hero-section">
   <div class="hero-background"></div>
   <div class="hero-content">
-    <h1 class="hero-title">Bienvenue</h1>
+    <div class="hero-title">Bienvenue</div>
     <p class="hero-subtitle hero-description">
       dans cet espace sécure<br>
       où déposer ce qui a été heurté, blessé ou figé dans votre histoire ;<br>
@@ -106,7 +106,7 @@
           Avant de me consacrer pleinement à la relation d'aide, j'ai passé plus de
           20 ans dans des métiers où écoute active, dialogue, sensibilité à l'impact
           et quête du juste équilibre étaient au coeur de chaque projet.<br>
-          Ces expériences guident toujours mes accompagnements, que j'orientent désormais
+          Ces expériences guident toujours mes accompagnements, que j'oriente désormais
           vers une "écologie plus intérieure".<br>
           <br>
           Centrée sur la personne et la sécurité dans le lien, mon approche vise à recréer des ponts
@@ -153,12 +153,17 @@
     <h2 class="section-title">Mes accompagnements</h2>
 
     <p class="intro-section">
-      <strong>J'accompagne chacun.e là où il/elle en est, à son rythme.</strong><br>
+     J'accompagne chacun.e là où il/elle en est, à son rythme.
     </p>
 
-    <div style="width: 100%;text-align: center;">
-      <img src="nuage.svg" style="width: 100%;max-width: 500px;display:inline-block;">
-    </div>
+    <mat-chip-set aria-label="symptomes" style="display: inline-block;margin: 20px;">
+      <mat-chip>Anxiété</mat-chip>
+      <mat-chip> hyper reactivité</mat-chip>
+    </mat-chip-set>
+
+<!--    <div style="width: 100%;text-align: center;">-->
+<!--      <img src="nuage.svg" style="width: 100%;max-width: 500px;display:inline-block;">-->
+<!--    </div>-->
 
     <p class="content-text" >
       Bien souvent, vous connaissez votre histoire, vous avez identifié vos blocages... et pourtant,
@@ -172,7 +177,8 @@
       coupé.e de ses émotions, etc : n'y voyez pas une fatalité ou des traits de votre personnalité.<br>
       Ce sont souvent des mécanismes d'adaptation, mis en place très tôt dans votre vie pour vous
       protéger d'une situation perçue comme dangereuse.<br>
-      Bien qu'ils soient aujourd'hui devenus obsolètes ou pesants, ils restent actifs. Comme bloqués en vous.<br>
+      Bien qu'ils soient aujourd'hui devenus obsolètes ou pesants, ils restent actifs. Comme bloqués en vous.
+    </p>
 
 
     <div class="citation">"On ne peut pas effacer le passé, mais on peut restaurer une sécurité intérieure suffisante pour accueillir
@@ -180,9 +186,9 @@
       quelle étagère on souhaite ranger ce livre."
     </div>
     <br>
+
+    <div class="content-text">
     Mon travail de thérapeute consiste à vous aider à :<br>
-
-
 
     <ul style="max-width: 700px;display:inline-block;text-align: left;">
       <li style="margin-top:-15px;">apaiser vos conflits intérieurs</li>
@@ -190,7 +196,9 @@
       <li>comprendre le "dialogue sans mots" de votre système nerveux</li>
       <li>retrouver, durablement, un état de sérénité et de sécurité intérieure</li>
     </ul>
-    <br>
+
+
+  </div>
 
     <div class="accompagnements-grid">
       <mat-card class="accompagnement-card">
@@ -238,7 +246,7 @@
   <div class="content-section">
 
     <h2 class="section-title">Prendre rendez-vous</h2>
-    <p class="rdv-intro">
+    <p class="intro-section">
       Réservez votre séance en ligne en quelques clics. La première consultation
       permet de faire connaissance et d'évaluer vos besoins.
     </p>
@@ -413,7 +421,7 @@
       esprit sait (rationnellement) que vous êtes en sécurité, mais votre corps - lui - panique,
       s'épuise à "chercher" le danger, voire il vous immobilise.<br>
       Nos blocages ne sont pas de simples
-      concepts ou idées : ils sont engrammés dans notre système nerveux et notre mémoire corporelle.<br><br>
+      concepts ou idées : ils sont engrammés dans notre système nerveux et notre mémoire corporelle.
     </p>
 
     <div class="citation">
@@ -445,9 +453,9 @@
     </mat-expansion-panel>
 
 
-
+<br><br><br>
     <p class="intro-section">
-      <strong>Ma pratique s'articule autour de modèles thérapeutiques reconnus et complémentaires</strong><br>
+      Ma pratique s'articule autour de modèles thérapeutiques reconnus et complémentaires
     </p>
 
 
@@ -455,19 +463,23 @@
       @for (principle of methodPrinciples; track principle.title) {
         <div class="principle-card" [class.flipped]="flippedCards[principle.title]">
           <div class="card-inner">
-            <div class="card-front">
+            <div class="card-front"  (click)="flipCard(principle.title)">
               <mat-icon class="principle-icon">{{ principle.icon }}</mat-icon>
               <mat-card-title>{{ principle.title }}</mat-card-title>
               <mat-card-content>
                 <p>{{ principle.description }}</p>
               </mat-card-content>
-              <a class="flip-link" (click)="flipCard(principle.title)">En savoir plus</a>
+              <a class="flip-link">En savoir plus</a>
             </div>
-            <div class="card-back">
-              <mat-card-content>
-                <p>{{ principle.description_back }}</p>
-              </mat-card-content>
-              <a class="flip-link" (click)="flipCard(principle.title)">Retourner</a>
+            <div class="card-back" (click)="flipCard(principle.title)">
+
+
+
+                <mat-card-content>
+                  <p>{{ principle.description_back }}</p>
+                </mat-card-content>
+
+
             </div>
           </div>
         </div>
@@ -495,6 +507,7 @@
     <!--    </div>-->
     <!--  </div>-->
 
+    <br><br>
     <p class="intro-section">
       Vous voulez savoir si mon approche est faite pour vous ?<br>
       Je me fais un plaisir d'échanger avec vous.
@@ -593,7 +606,7 @@
 
     <br><br>
 
-    <a herf="/tarifs" mat-stroked-button class="standard-btn">
+    <a href="/tarifs" mat-stroked-button class="standard-btn">
       Voir mes tarifs
     </a>
 

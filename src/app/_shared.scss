@@ -29,9 +29,8 @@
 }
 
 %back-btn {
-  position: absolute;
-  top: -20px;
-  left: -20px;
+  top: -10px;
+  left: -10px;
   color: var(--primary-700);
 
   &:hover {
@@ -54,26 +53,12 @@
   border-radius: var(--radius-lg);
   padding: 48px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
 
-  .section-subtitle {
-    font-family: 'Playfair Display', serif;
-    font-weight: 500;
-    color: var(--primary-700);
-    margin-top: 40px;
-    margin-bottom: 24px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid var(--secondary-200);
-
-    &:first-of-type {
-      margin-top: 0;
-    }
-  }
-
-  p {
-    color: var(--warm-light);
-    line-height: 1.8;
-    margin-bottom: 24px;
-  }
+%page-content p {
+  color: var(--warm-light);
+  line-height: 1.8;
+  margin-bottom: 24px;
 }
 
 
@@ -99,7 +84,7 @@
   text-align: center;
   max-width: 900px;
   display: inline-block;
-  margin: 30px;
+  margin: 20px;
 }
 
 %intro-seance {

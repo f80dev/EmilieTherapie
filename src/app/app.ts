@@ -16,7 +16,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FormsModule } from '@angular/forms';
 import * as packageJson from '../../package.json';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { VerticalCard } from './vertical-card/vertical-card';
 import { ScreenService } from './screen.service';
 
@@ -61,8 +61,6 @@ const SITE_VERSION = packageJson.version;
     MatChipsModule,
     MatButtonToggleModule,
     MatExpansionModule,
-    RouterLinkActive,
-    RouterLink,
     VerticalCard,
   ],
   templateUrl: './app.html',
@@ -178,7 +176,18 @@ export class App implements OnInit {
     return this.cloudColors[index % this.cloudColors.length];
   }
 
+  private router = inject(Router);
+
   ngOnInit() {
+    // Handle redirect from 404.html for GitHub Pages SPA routing
+    const redirectTo = sessionStorage.getItem('redirectTo');
+    if (redirectTo && redirectTo !== '/') {
+      sessionStorage.removeItem('redirectTo');
+      console.log('[Router] Handling redirect to:', redirectTo);
+      // Navigate using Angular Router after initialization
+      this.router.navigateByUrl(redirectTo);
+    }
+
     this.loadUserDataFromLocalStorage();
     this.loadFaqs();
   }

@@ -1,11 +1,4 @@
-@use '../shared';
-
-// Page shell shared with /parcours.
-.page-section  { @extend %page-section; }
-.page-container { @extend %page-container; }
-.back-btn      { @extend %back-btn; }
-.page-title    { @extend %page-title; }
-.page-content  { @extend %page-content; }
+@use '../legal';
 
 // Pricing items
 .pricing-grid {
@@ -131,11 +124,6 @@
 
   &:last-child { margin-bottom: 0; }
 
-  p {
-    margin-bottom: 0;
-    color: var(--primary-700);
-  }
-
   strong { font-weight: 600; }
 }
 
@@ -166,39 +154,8 @@
 
 // Expansion panels used inside page-content
 .info-panel {
-  @include shared.expansion-panel-base;
   background: var(--secondary-50);
   border: 1px solid var(--secondary-200);
-
-  mat-panel-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: var(--primary-700);
-
-    .section-subtitle {
-      margin: 0;
-      padding: 0;
-      border: none;
-      font-size: inherit;
-      font-weight: inherit;
-      color: inherit;
-    }
-  }
-
-  mat-panel-description {
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 16px;
-
-    p {
-      color: var(--warm-light);
-      font-size: 1.05rem;
-      line-height: 1.7;
-      margin: 0 0 16px 0;
-    }
-
-    p:last-child { margin-bottom: 0; }
-    ul { width: 100%; }
-  }
+  border-radius: var(--radius-sm);
+  margin-bottom: 16px;
 }

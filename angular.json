@@ -7,7 +7,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "psy-site": {
+    "emilietherapie": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -49,6 +49,8 @@
             "assets": [
               "src/CNAME",
               "src/404.html",
+              "src/_redirects",
+              "src/.htaccess",
               {
                 "glob": "**/*",
                 "input": "public"
@@ -64,7 +66,7 @@
           },
           "configurations": {
             "production": {
-              "baseHref": "/emiliepommier-dev/",
+              "baseHref": "/",
               "budgets": [
                 {
                   "type": "initial",
@@ -91,11 +93,11 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "psy-site:build:production",
+              "buildTarget": "emilietherapie:build:production",
               "proxyConfig": "proxy.conf.json"
             },
             "development": {
-              "buildTarget": "psy-site:build:development",
+              "buildTarget": "emilietherapie:build:development",
               "proxyConfig": "proxy_dev.conf.json"
             }
           },

@@ -1,15 +1,14 @@
-<section class="tarifs-section">
-  <div class="tarifs-container">
-    <button mat-icon-button class="back-btn" routerLink="/">
+<div class="legal-container">
+  <div class="legal-content">
+    <button mat-icon-button class="back-btn" (click)="back()">
       <mat-icon>arrow_back</mat-icon>
     </button>
 
-    <h1 class="tarifs-title">Mes tarifs</h1>
+    <h1>Mes tarifs</h1>
 
-    <div class="tarifs-content">
-      <div class="pricing-grid">
+    <div class="pricing-grid">
         <div class="pricing-item">
-          <div class="pricing-banner pricing-banner-1"></div>
+
           <div class="pricing-header">
             <span class="pricing-label">Premier échange, en visio<br>30 min</span>
             <span class="pricing-price pricing-free">gratuit</span>
@@ -17,7 +16,7 @@
         </div>
 
         <div class="pricing-item">
-          <div class="pricing-banner pricing-banner-2"></div>
+
           <div class="pricing-header">
             <span class="pricing-label">Séance individuelle de 1h<br>en présentiel ou en visio</span>
             <span class="pricing-price">80 €</span>
@@ -25,14 +24,15 @@
         </div>
 
         <div class="pricing-item">
-          <div class="pricing-banner pricing-banner-3"></div>
+
           <div class="pricing-header">
-            <p class="pricing-note">* recommandé pour les explorations plus profondes et les séances d'EMDR</p>
+
             <span class="pricing-label">Séance individuelle de 1h30*<br>en présentiel ou en visio</span>
             <span class="pricing-price pricing-price-final">120 €</span>
           </div>
         </div>
       </div>
+    <p class="pricing-note">* recommandé pour les explorations plus profondes et les séances d'EMDR</p>
 
       <mat-expansion-panel class="info-panel">
         <mat-expansion-panel-header>
@@ -108,5 +108,5 @@
         </mat-panel-description>
       </mat-expansion-panel>
     </div>
-  </div>
-</section>
+</div>
+

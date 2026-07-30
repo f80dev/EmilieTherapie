@@ -4,11 +4,11 @@ import { back } from '../../main';
 import { MatIconButton } from '@angular/material/button';
 
 @Component({
-  selector: 'app-mentionslegales',
+  selector: 'app-politiqueconfidentialite',
   imports: [MatIcon, MatIconButton],
-  templateUrl: './mentionslegales.html',
-  styleUrl: './mentionslegales.scss',
+  templateUrl: './politiqueconfidentialite.html',
+  styleUrl: './politiqueconfidentialite.scss',
 })
-export class Mentionslegales {
+export class Politiqueconfidentialite {
   protected readonly back = back;
 }

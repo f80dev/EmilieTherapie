@@ -145,7 +145,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  background: var(--primary-50);
+  background: var(--secondary-100);
   overflow: hidden;
 
   .hero-background {
@@ -365,6 +365,7 @@
 
 .expansion-panel-text {
   @include shared.expansion-panel-base;
+  box-shadow: none !important;
 }
 
 
@@ -372,7 +373,7 @@
 // Method Section
 // ============================================
 .methode-section {
-  background: var(--primary-50);
+  background: var(--secondary-100);
 
   .methode-intro {
     text-align: center;
@@ -462,9 +463,9 @@
           background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-500) 100%);
 
           mat-card-content p {
+            line-height: 1.3;
             color: white;
             font-size: 0.95rem;
-            line-height: 1.6;
             margin-bottom: 16px;
             flex: 1;
             display: flex;
@@ -668,7 +669,7 @@ h3 {
 // Appointment / Accompaniments Sections
 // ============================================
 .accompagnements-section {
-  background: var(--primary-50);
+  background: var(--secondary-100);
 
   .accompagnements-intro {
     color: var(--warm-medium);
@@ -949,7 +950,7 @@ h3 {
 // Resources & FAQ Section
 // ============================================
 .ressources-section {
-  background: var(--primary-50);
+  background: var(--secondary-100);
 
   .ressources-intro {
     margin-bottom: 48px;
@@ -1007,6 +1008,7 @@ h3 {
       list-style: none;
       padding: 0;
       margin: 0;
+      text-align: left;
 
       li {
         margin-bottom: 12px;
@@ -1065,8 +1067,8 @@ h3 {
 // Footer
 // ============================================
 .footer {
-  background: var(--warm-light);
-  color: white;
+  background: var(--neutral-dark);
+  color: var(--neutral-light);
   padding: 64px 24px 32px;
 
   a {
