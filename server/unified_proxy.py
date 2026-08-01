@@ -1,5 +1,7 @@
 # Standalone proxy: Calendar busy slots + Tasks creation
 # Uses google-api-python-client for Google Calendar and Tasks APIs
+import datetime
+import json
 import os
 import re
 import smtplib
@@ -31,8 +33,8 @@ _tasks_service = None
 
 # Ionos SMTP configuration
 SMTP_HOST = os.environ.get("SMTP_HOST", "smtp.ionos.fr")
-SMTP_PORT = int(os.environ.get("SMTP_PORT", "465"))
-SMTP_USER = os.environ.get("SMTP_USER", "contact@emiliepommier.fr")
+SMTP_PORT = int(os.environ.get("SMTP_PORT", "587")) #voir https://www.ionos.fr/assistance/email/sujets-generaux/messagerie-ionos-donnees-de-serveur-pour-imap-pop3-et-smtp/
+SMTP_USER = os.environ.get("SMTP_USER", "")
 SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD", "")
 
 ALLOWED_ORIGINS = [
@@ -58,11 +60,15 @@ app.add_middleware(
 )
 
 
-SERVICE_ACCOUNT_PATH = r"google_service_account.json"
+SERVICE_ACCOUNT_PATH = "google_account.json"
 
 
 def get_credentials():
     """Get Google credentials from Service Account (no OAuth/browser needed)."""
+    secret=os.getenv("google_account")
+    return service_account.Credentials.from_service_account_info(info=json.loads(secret))
+
+
     return service_account.Credentials.from_service_account_file(
         SERVICE_ACCOUNT_PATH, scopes=SCOPES
     )
@@ -114,15 +120,17 @@ def send_email_smtp(to_email: str, subject: str, body: str, is_html: bool = Fals
     msg.attach(part)
 
     try:
-        with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT,timeout=30) as server:
-            server.login(SMTP_USER, SMTP_PASSWORD)
-            server.sendmail(EMAIL, [to_email], msg.as_string())
+        with smtplib.SMTP(SMTP_HOST, SMTP_PORT,timeout=30) as server:
+          server.ehlo()
+          server.starttls()
+          server.login(SMTP_USER, SMTP_PASSWORD)
+          server.sendmail(msg["from"], [to_email], msg.as_string())
 
         logger.info(f"Email sent successfully to {to_email}")
         return {"status": "sent", "to": to_email, "subject": subject}
     except Exception as e:
         logger.error(f"Failed to send email to {to_email}: {e}")
-        raise
+        raise RuntimeError(f"Failed to send email to {to_email}: {e}")
 
 @app.get("/api/userinfo")
 def get_user_profile_info() -> Dict[str, Any]:
@@ -213,10 +221,10 @@ def list_pending_events() -> list[dict[str, Any]]:
     service = get_calendar_service()
 
     # Récupérer les événements des 60 prochains jours
-    from datetime import datetime, timedelta
-    now = datetime.utcnow()
-    time_min = now.isoformat() + 'Z'
-    time_max = (now + timedelta(days=60)).isoformat() + 'Z'
+    from datetime import datetime, timedelta, timezone
+    now = datetime.now(timezone.utc)
+    time_min = now.isoformat()
+    time_max = (now + timedelta(days=60)).isoformat()
 
     events_result = service.events().list(
         calendarId=EMAIL,
@@ -323,6 +331,7 @@ def add_to_calendar(body: dict[str, str]) -> dict[str, Any]:
     description = body.get("description", "")
     email = body.get("email", "")
     phone = body.get("phone", "")
+    firstname=body.get("firstname", "")
     seance_type = body.get("seance_type", "")
 
     service = get_calendar_service()
@@ -355,7 +364,8 @@ def add_to_calendar(body: dict[str, str]) -> dict[str, Any]:
     confirm_link = f"{BASE_URL}/api/calendar/confirm/{event_id}"
     cancel_link = f"{BASE_URL}/api/calendar/events/{event_id}"
 
-    result['description'] = f"{description}\n\nEmail: {email}\nTéléphone: {phone}\nType: {seance_type}\n\nStatut: En attente de confirmation\n\n---\nLiens :\n✅ Confirmer le rendez-vous : POST {confirm_link}\n❌ Annuler le rendez-vous : DELETE {cancel_link}"
+    #result['description'] = f"{description}\n\nEmail: {email}\nTéléphone: {phone}\nType: {seance_type}\n\nStatut: En attente de confirmation\n\n---\nLiens :\n✅ Confirmer le rendez-vous : POST {confirm_link}\n❌ Annuler le rendez-vous : DELETE {cancel_link}"
+    result['description'] = f"{description}\n\nEmail: {email}\nTéléphone: {phone}\nType: {seance_type}\n\nStatut: En attente de confirmation"
 
     # Mettre à jour l'événement avec les liens
     updated_event = service.events().update(
@@ -364,8 +374,58 @@ def add_to_calendar(body: dict[str, str]) -> dict[str, Any]:
         body=result
     ).execute()
 
+    # DEBUG: Log the actual start_time value to diagnose the format issue
+    print(f"[DEBUG] start_time value before parsing: '{start_time}'")
+    print(f"[DEBUG] start_time repr: {repr(start_time)}")
+
+    # Handle both Z suffix (UTC) and timezone offset (+02:00) formats
+    try:
+        # Try Z suffix format first (UTC)
+        parsed_time = datetime.datetime.strptime(start_time, "%Y-%m-%dT%H:%M:%SZ")
+    except ValueError:
+        # Fall back to timezone offset format (+02:00 or -05:00 etc.)
+        try:
+            parsed_time = datetime.datetime.strptime(start_time, "%Y-%m-%dT%H:%M:%S%z")
+        except ValueError:
+            # Fall back to format with milliseconds but no timezone
+            import logging
+            logging.warning(f"add_to_calendar: date '{start_time}' doesn't match Z or %z formats, trying .SSS format")
+            parsed_time = datetime.datetime.strptime(start_time, "%Y-%m-%dT%H:%M:%S.%f")
+
+    start_time = datetime.datetime.strftime(parsed_time, "%d/%m/%Y à %H:%M")
+
+    email_subject = f"Demande de rendez-vous - {title}"
+    email_body = f"""
+    Bonjour {firstname},
+
+    J'ai bien reçu Votre demande de rendez-vous pour le {start_time}.
+    Merci d'attendre la confirmation de ma disponibilité pour l'inscrire dans votre agenda.
+
+    À bientôt,
+    Emilie
+
+    ---
+    Emilie Pommier - Thérapeute
+    """
+
+    send_email_smtp(email, email_subject, email_body, is_html=False)
+
     logger.info(f"Calendar event created: {event_id} on calendar {EMAIL}")
     return updated_event
+
+
+@app.post("/api/sendemail")
+def send_email(body: dict[str, str]) -> str:
+  service = get_calendar_service()
+  event = service.events().get(calendarId=EMAIL, eventId=body.get("event_id")).execute()
+  description = event.get("description", "")
+  email_match = re.search(r'Email:\s*([^\n]+)', description)
+  client_email = email_match.group(1).strip() if email_match else None
+  if client_email:
+    send_email_smtp(to_email=client_email,subject="Message",body=body.get("body"),is_html=False)
+    return "Email sent"
+  else:
+    return "No email sent"
 
 
 @app.post("/api/calendar/confirm/{event_id}")
@@ -496,7 +556,7 @@ def delete_event(event_id: str) -> dict[str, Any]:
                 email_body = f"""
 Bonjour,
 
-Votre demande de rendez-vous a été annulée :
+Problème de disponibilité, votre demande de rendez-vous a été annulée :
 
 📅 Date proposée : {start_str}
 📝 Séance : {summary}

@@ -6,6 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { EmailDialog } from './email-dialog/email-dialog';
 
 interface CalendarEvent {
   id: string;
@@ -27,6 +29,7 @@ interface CalendarEvent {
     MatIconModule,
     MatCardModule,
     MatSnackBarModule,
+    MatDialogModule,
   ],
   templateUrl: './admin.html',
   styleUrl: './admin.scss',
@@ -34,6 +37,7 @@ interface CalendarEvent {
 export class Admin implements OnInit {
   private http = inject(HttpClient);
   private snackBar = inject(MatSnackBar);
+  private dialog = inject(MatDialog);
 
   pendingEvents = signal<CalendarEvent[]>([]);
   loading = signal(false);
@@ -105,6 +109,26 @@ export class Admin implements OnInit {
       error: (err) => {
         console.error('Failed to cancel event:', err);
         this.snackBar.open('Erreur lors de l\'annulation', 'Fermer', { duration: 3000 });
+      }
+    });
+  }
+
+  sendEmail(event: CalendarEvent) {
+    const dialogRef = this.dialog.open(EmailDialog, {
+      width: '500px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.http.post('/api/sendemail', { event_id: event.id, body: result }).subscribe({
+          next: () => {
+            this.snackBar.open('Email envoyé', 'Fermer', { duration: 3000 });
+          },
+          error: (err) => {
+            console.error('Failed to send email:', err);
+            this.snackBar.open('Erreur lors de l\'envoi de l\'email', 'Fermer', { duration: 3000 });
+          }
+        });
       }
     });
   }

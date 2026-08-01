@@ -170,8 +170,11 @@
 
   .hero-logo {
     font-family: 'Playfair Display', serif;
-    width: 30px !important;
     overflow: hidden;
+  }
+
+  .image-logo {
+    max-width: 40px !important;
   }
 
   .hero-title {
@@ -946,6 +949,16 @@ h3 {
 }
 
 
+.submit-button {
+  &:not([disabled]) {
+    background: var(--primary-700);
+    color: white;
+    border-color: var(--primary-700);
+  }
+  height: 50px;
+  width: 100%;
+}
+
 // ============================================
 // Resources & FAQ Section
 // ============================================
@@ -1199,4 +1212,15 @@ h3 {
 .success-snackbar {
   --mdc-snackbar-container-color: var(--primary-700);
   --mdc-snackbar-supporting-text-color: white;
+}
+
+.select-lieu {
+  width: 100%;
+  max-width: 500px;
+}
+
+.select-type-seance {
+  width: 100%;
+  max-width: 500px;
+  margin-top: 1rem;
 }

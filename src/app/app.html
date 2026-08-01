@@ -2,9 +2,7 @@
 <mat-toolbar color="primary" class="header-toolbar">
   <div class="header-content">
     <div class="header-brand">
-      <div class="hero-logo">
-        <img src="assets/logo_small.png" alt="Émilie Pommier">
-      </div>
+        <img src="assets/logo.png" width="70" class="image-logo" alt="Émilie Pommier">
       <span class="logo" (click)="scrollTo('accueil')">Emilie Pommier</span>
     </div>
     <div class="nav-links" [class.mobile-open]="isMobileMenuOpen()">
@@ -264,13 +262,36 @@
           En visio-consultation
         </mat-button-toggle>
       </mat-button-toggle-group>
-      <p class="seance-type-hint">
-        @if (seanceType() === 'distant') {
+
+      <mat-form-field appearance="outline" class="select-type-seance">
+        <mat-label>Type de séance</mat-label>
+        <mat-select [value]="selectedTypeSeance()" (selectionChange)="selectTypeSeance($event.value)">
+          @for (typeSeance of typesSeances; track typeSeance.id) {
+            <mat-option [value]="typeSeance">
+              {{ typeSeance.nom }} ({{ typeSeance.duree }} min)
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      @if (seanceType() === 'distant') {
+        <p class="seance-type-hint">
           Séance par visioconférence - Lien envoyé après confirmation du rdv
-        } @else {
-          Séance au cabinet - Au choix : Paris 10e ou 11e
-        }
-      </p>
+        </p>
+      } @else {
+
+          <mat-form-field appearance="outline" class="select-lieu">
+            <mat-label>Sélectionnez un lieu</mat-label>
+            <mat-select [value]="selectedLieu()" (selectionChange)="selectLieu($event.value)">
+              @for (lieu of lieux; track lieu.id) {
+                <mat-option [value]="lieu">
+                  {{ lieu.nom }} - {{ lieu.adresse }}
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+      }
     </div>
 
     <div class="rdv-content">
@@ -298,7 +319,7 @@
                 <p class="no-slots">Fermé le dimanche</p>
               } @else {
                 @if (availableSlots().length > 0) {
-                  <h4>Horaires disponibles <span class="slot-duration">(durée : 1h15)</span></h4>
+                  <h4>Horaires disponibles <span class="slot-duration">(durée 1h)</span></h4>
                   <div class="slots-grid">
                     @for (slot of availableSlots(); track slot) {
                       <button
@@ -375,8 +396,7 @@
             <button
               mat-flat-button
               color="primary"
-              class="standard-btn"
-              style="width: 100%;"
+              class="submit-button"
               (click)="submitAppointment()"
               [disabled]="!isFormValid()">
               <mat-icon>send</mat-icon>
@@ -552,6 +572,7 @@
           En visio-consultation
         </mat-button-toggle>
       </mat-button-toggle-group>
+
     </div>
 
 
@@ -774,6 +795,19 @@
       <h4>Emilie Pommier</h4>
       <p>Restaurer un sentiment durable de sécurité intérieure<br>
         et apaiser vos blessures</p>
+      <br>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/emilie.pommier.therapie" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <mat-icon>facebook</mat-icon>
+        </a>
+        <a href="https://www.instagram.com/emilie.pommier.therapie" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <mat-icon>instagram</mat-icon>
+        </a>
+        <a href="mailto:contact@emiliepommier.fr" aria-label="Email">
+          <mat-icon>email</mat-icon>
+        </a>
+      </div>
+
     </div>
     <div class="footer-links">
       <a href="#accueil">Bienvenue</a>
@@ -783,18 +817,6 @@
       <a href="#consultations">Consultations & tarifs</a>
       <a href="#ressources">Ressources & questions</a>
       <a href="#rdv">Prendre rendez-vous</a>
-    </div>
-
-    <div class="footer-social">
-      <a href="https://www.facebook.com/emilie.pommier.therapie" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-        <mat-icon>facebook</mat-icon>
-      </a>
-      <a href="https://www.instagram.com/emilie.pommier.therapie" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-        <mat-icon>instagram</mat-icon>
-      </a>
-      <a href="mailto:contact@emiliepommier.fr" aria-label="Email">
-        <mat-icon>email</mat-icon>
-      </a>
     </div>
 
     <div class="footer-legal">

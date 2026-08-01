@@ -154,13 +154,23 @@ export class ViaCarte implements OnInit {
     const endDt = new Date(startDt);
     endDt.setMinutes(endDt.getMinutes() + 60);
 
-    const iso = (d: Date) => d.toISOString().slice(0, 19) + '+02:00';
+    // Format datetime in local timezone to avoid UTC conversion issues
+    // (toISOString() + hardcoded offset was causing 2-hour shifts)
+    const isoLocal = (d: Date) => {
+      const year = d.getFullYear();
+      const month = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      const hours = String(d.getHours()).padStart(2, '0');
+      const minutes = String(d.getMinutes()).padStart(2, '0');
+      const seconds = String(d.getSeconds()).padStart(2, '0');
+      return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+    };
 
     this.http
       .post('/api/calendar/add-to-calendar', {
         title: `RDV: ${this.prenom()} ${this.nom()} — ${dateStr} à ${this.selectedTime()}`,
-        start_time: iso(startDt),
-        end_time: iso(endDt),
+        start_time: isoLocal(startDt),
+        end_time: isoLocal(endDt),
         description: `Type: ${seanceLabel}\nEmail: ${this.email()}\nTéléphone: ${this.telephone()}\nMessage: ${this.message()}`,
         email: this.email(),
         phone: this.telephone(),

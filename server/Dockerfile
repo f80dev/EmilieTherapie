@@ -4,8 +4,6 @@ WORKDIR /app
 
 COPY requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
-
-COPY google_service_account.json /app/google_service_account.json
 COPY unified_proxy.py /app/unified_proxy.py
 
 EXPOSE 8080

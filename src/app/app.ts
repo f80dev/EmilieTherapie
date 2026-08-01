@@ -14,6 +14,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import * as packageJson from '../../package.json';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
@@ -26,6 +27,19 @@ interface BusySlot {
   duration: number;
 }
 
+interface GpsCoordinates {
+  latitude: number;
+  longitude: number;
+}
+
+export interface Lieu {
+  id: string;
+  nom: string;
+  adresse: string;
+  gps: GpsCoordinates;
+  indisponibilites: { date: string; time: string; duration: number }[];
+}
+
 export interface Faq {
   id: number;
   question: string;
@@ -33,11 +47,21 @@ export interface Faq {
   icon: string;
 }
 
+export interface TypeSeance {
+  id: string;
+  nom: string;
+  duree: number;
+  contenu: string;
+  objectif: string;
+  description: string;
+}
+
 interface UserContactData {
   nom: string;
   prenom: string;
   email: string;
   telephone: string;
+  selectedLieuId?: string;
 }
 
 const LOCALSTORAGE_KEY = 'emilie_therapie_user_data';
@@ -62,6 +86,7 @@ const SITE_VERSION = packageJson.version;
     MatChipsModule,
     MatButtonToggleModule,
     MatExpansionModule,
+    MatSelectModule,
     VerticalCard,
   ],
   templateUrl: './app.html',
@@ -85,6 +110,8 @@ export class App implements OnInit {
   selectedDate = signal<Date | null>(null);
   selectedTime = signal<string>('');
   seanceType = signal<'distant' | 'presentiel'>('presentiel');
+  selectedTypeSeance = signal<TypeSeance | null>(null);
+  selectedLieu = signal<Lieu | null>(null);
   isMobileMenuOpen = signal(false);
   acceptTerms = signal(false);
 
@@ -110,6 +137,12 @@ export class App implements OnInit {
 
   // FAQs loaded from JSON
   faqs: Faq[] = [];
+
+  // Lieux (locations) loaded from JSON
+  lieux: Lieu[] = [];
+
+  // Types de séances loaded from JSON
+  typesSeances: TypeSeance[] = [];
 
   methodPrinciples = [
     {
@@ -192,6 +225,8 @@ export class App implements OnInit {
 
     this.loadUserDataFromLocalStorage();
     this.loadFaqs();
+    this.loadLieux();
+    this.loadTypesSeances();
   }
 
   private loadFaqs(): void {
@@ -203,6 +238,51 @@ export class App implements OnInit {
         console.error('Failed to load FAQs:', err);
       },
     });
+  }
+
+  private loadLieux(): void {
+    this.http.get<Lieu[]>('data/lieux.json').subscribe({
+      next: (data) => {
+        this.lieux = data;
+        // Restore selected lieu from localStorage if available
+        const stored = localStorage.getItem(LOCALSTORAGE_KEY);
+        if (stored) {
+          try {
+            const data: UserContactData = JSON.parse(stored);
+            if (data.selectedLieuId) {
+              const lieu = this.lieux.find((l) => l.id === data.selectedLieuId);
+              if (lieu) {
+                this.selectedLieu.set(lieu);
+              }
+            }
+          } catch (err) {
+            console.error('Failed to parse stored user data:', err);
+          }
+        }
+      },
+      error: (err) => {
+        console.error('Failed to load lieux:', err);
+      },
+    });
+  }
+
+  private loadTypesSeances(): void {
+    this.http.get<TypeSeance[]>('data/types-seances.json').subscribe({
+      next: (data) => {
+        this.typesSeances = data;
+        // Set default selection to first type
+        if (data.length > 0) {
+          this.selectedTypeSeance.set(data[0]);
+        }
+      },
+      error: (err) => {
+        console.error('Failed to load types seances:', err);
+      },
+    });
+  }
+
+  selectTypeSeance(typeSeance: TypeSeance): void {
+    this.selectedTypeSeance.set(typeSeance);
   }
 
   private loadUserDataFromLocalStorage(): void {
@@ -233,6 +313,7 @@ export class App implements OnInit {
         prenom: this.prenom(),
         email: this.email(),
         telephone: this.telephone(),
+        selectedLieuId: this.selectedLieu()?.id,
       };
       localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(data));
       console.log('[LocalStorage] User data saved:', data);
@@ -274,6 +355,22 @@ export class App implements OnInit {
         return false;
       }
     }
+
+    // Check lieu-specific busy slots if a lieu is selected
+    const lieu = this.selectedLieu();
+    if (lieu) {
+      const lieuBusySlots = lieu.indisponibilites.filter((i) => i.date === dateStr);
+      for (const b of lieuBusySlots) {
+        const [bH, bM] = b.time.split(':').map(Number);
+        const bStartMin = bH * 60 + bM;
+        const bEndMin = bStartMin + b.duration;
+
+        if (slotStartMin < bEndMin && slotEndMin > bStartMin) {
+          return false;
+        }
+      }
+    }
+
     return true;
   }
 
@@ -287,16 +384,25 @@ export class App implements OnInit {
     }
   }
 
+  selectLieu(lieu: Lieu) {
+    this.selectedLieu.set(lieu);
+    this.selectedTime.set(''); // Reset time when lieu changes
+  }
+
   isFormValid(): boolean {
+    const lieuValid = this.seanceType() === 'distant' || this.selectedLieu() !== null;
     return (
       this.nom().trim().length > 0 &&
       this.prenom().trim().length > 0 &&
       this.email().trim().length > 0 &&
       this.email().includes('@') &&
       this.telephone().trim().length > 0 &&
+      this.selectedLieu!=null &&
+      this.selectedTypeSeance!=null &&
       this.selectedDate() !== null &&
       this.selectedTime() !== '' &&
-      this.acceptTerms()
+      this.acceptTerms() &&
+      lieuValid
     );
   }
 
@@ -325,41 +431,63 @@ export class App implements OnInit {
     const seanceTypeLabel =
       this.seanceType() === 'distant'
         ? 'À distance (visioconférence)'
-        : 'En présentiel (cabinet, 12 rue Martel)';
+        : 'En présentiel';
+
+    const lieuInfo = this.seanceType() === 'presentiel' && this.selectedLieu()
+      ? `Lieu: ${this.selectedLieu()!.nom} - ${this.selectedLieu()!.adresse}`
+      : '';
+
+    const typeSeanceInfo = this.selectedTypeSeance()
+      ? `\nType de séance: ${this.selectedTypeSeance()!.description}`
+      : '';
 
     const taskTitle = `RDV: ${this.prenom()} ${this.nom()} — ${dateStr} à ${this.selectedTime()}`;
-    const taskNotes = `Type: ${seanceTypeLabel}\nEmail: ${this.email()}\nTéléphone: ${this.telephone()}\nMessage: ${this.message()}`;
+    const taskNotes = `Type: ${seanceTypeLabel}${typeSeanceInfo}${lieuInfo ? '\n' + lieuInfo : ''}\nEmail: ${this.email()}\nTéléphone: ${this.telephone()}\nMessage: ${this.message()}`;
 
     // Calculate start and end times for calendar event
     const selectedDate = this.selectedDate();
     const selectedTime = this.selectedTime();
+    const typeSeanceDuration = this.selectedTypeSeance()?.duree || 60;
     if (selectedDate && selectedTime) {
       const [hours, minutes] = selectedTime.split(':').map(Number);
       const startDateTime = new Date(selectedDate);
       startDateTime.setHours(hours, minutes, 0, 0);
 
       const endDateTime = new Date(startDateTime);
-      endDateTime.setMinutes(endDateTime.getMinutes() + 60); // 1 hour session
+      endDateTime.setMinutes(endDateTime.getMinutes() + typeSeanceDuration);
 
-      const formatDateTime = (d: Date) => d.toISOString().slice(0, 19) + '+02:00';
+      const formatDateTime = (d: Date) => d.toISOString();
+
+      // Format datetime in local timezone to avoid UTC conversion issues
+      // (toISOString() converts local time to UTC, causing timezone offset problems)
+      const formatDateTimeLocal = (d: Date) => {
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        const hours = String(d.getHours()).padStart(2, '0');
+        const minutes = String(d.getMinutes()).padStart(2, '0');
+        const seconds = String(d.getSeconds()).padStart(2, '0');
+        const ms = String(d.getMilliseconds()).padStart(3, '0');
+        return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${ms}`;
+      };
 
       // Add to Google Calendar as "à confirmer"
       this.http
         .post('/api/calendar/add-to-calendar', {
           title: taskTitle,
-          start_time: formatDateTime(startDateTime),
-          end_time: formatDateTime(endDateTime),
+          start_time: formatDateTimeLocal(startDateTime),
+          end_time: formatDateTimeLocal(endDateTime),
           description: taskNotes,
           email: this.email(),
           phone: this.telephone(),
-          seance_type: seanceTypeLabel,
+          seance_type: this.selectedTypeSeance()?.nom || seanceTypeLabel,
         })
         .subscribe({
           error: (err) => console.error('Failed to add calendar event:', err),
         });
     }
 
-    const message = `Merci ${this.prenom()} ! Votre demande de rendez-vous a été envoyée.\n\nDétails :\n- Date : ${dateStr}\n- Heure : ${this.selectedTime()}\n- Type : ${seanceTypeLabel}\n\nJe vous contacterai sous 24h pour confirmer votre rendez-vous.`;
+    const message = `Merci ${this.prenom()} ! Votre demande de rendez-vous a été envoyée. Je vous contacterai sous 24h pour confirmer ce rendez-vous.`;
 
     this.snackBar.open(message, 'Fermer', {
       duration: 5000,
@@ -374,6 +502,8 @@ export class App implements OnInit {
     this.selectedDate.set(null);
     this.selectedTime.set('');
     this.seanceType.set('presentiel');
+    this.selectedTypeSeance.set(this.typesSeances.length > 0 ? this.typesSeances[0] : null);
+    this.selectedLieu.set(null);
     this.acceptTerms.set(false);
   }
 

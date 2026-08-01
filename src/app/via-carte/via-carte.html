@@ -115,7 +115,7 @@
             @if (selectedDate()) {
               <div class="vc-slots">
                 @if (loadingSlots()) {
-                  <p class="vc-loading">Chargement des créneaux…</p>
+                  <p class="vc-loading">Chargement des disponibilités …</p>
                 } @else if (selectedDate()!.getDay() === 0) {
                   <p class="vc-no-slots">Fermé le dimanche</p>
                 } @else if (availableSlots().length > 0) {
