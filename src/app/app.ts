@@ -147,14 +147,14 @@ export class App implements OnInit {
   methodPrinciples = [
     {
       icon: 'favorite',
-      title: "L'Intelligence Relationnelle® (IR)",
+      title: "L'Intelligence Relationnelle (IR®)",
       description:
         'Approche neurobiologique à la fois profonde (par son action sur le système nerveux) et douce (par la sécurité que la co-régulation instaure)',
       description_back:
         "L'IR® s\'appuie sur 3 fondements scientifiques pour reconfigurer le système nerveux autonome, c'est-à-dire ramener de l'apaisement et de la souplesse, là où le trauma a créé de la rigidité : - la théorie de l'attachement ou comment, à travers une proximité thérapeutique sécure, le praticien vous propose de vivre une expérience correctrice et de réparer - en vous - les zones d'insécurité affective et relationnelle ; - la théorie polyvagale pour vous apprendre à repérer, apprivoiser et recalibrer ensemble les réactions automatiques de votre système nerveux, face au danger ; - le modèle IFS (système familial intérieur) ou \"travail avec les Parts\", pour dialoguer avec bienveillance et douceur avec vos différentes \"voix intérieures\" (celles qui portent les blessures et celles qui s'épuisent à les protéger) et retrouver un sentiment de paix intérieure",
     },
     {
-      icon: 'psychology',
+      icon: 'link',
       title: "L'EMDR et les ressources de stabilisation",
       description:
         'Approche de désensibilisation et de retraitement des souvenirs traumatiques, par les mouvements oculaires',
@@ -162,16 +162,16 @@ export class App implements OnInit {
         "Le traumatisme, ça n'est pas tant l'évènement en lui-même que votre vécu d'une insécurité extrême, au moment où il s'est produit. En situation de grand danger, le cerveau humain peut aller jusqu'à \"dysjoncter\" et empêcher ce vécu traumatique d'être \"digéré\". L'EMDR a pour objectif de relancer le processus naturel de guérison du psychisme, en permettant à votre vécu - bloqué dans la mémoire traumatique - de rejoindre la mémoire autobiographique... et d'être ainsi classé dans vos \"archives personnelles\". Les outils d'ancrage et les techniques de stabilisation émotionnelle sont autant de ressources (ou \"filets de sécurité\") pour accompagner ce processus",
     },
     {
-      icon: 'self_improvement',
-      title: 'La THERAPIE SENSORI-MOTRICE',
+      icon: 'groups',
+      title: 'La thérapie sensori-motrice',
       description:
         "Approche somatique qui utilise le corps comme ressource principale d'informations et de changements",
       description_back:
         "Car là où la parole s\'arrête, le corps - lui -  se souvient. Ainsi, vos blessures profondes et vos carences s'inscrivent dans la mémoire implicite, sous la forme de tensions, micro-expressions, postures ou gestes chroniques. Via une approche \"Bottom-Up\" (du corps vers l'esprit), je vous aide à décoder votre récit somatique, j'accompagne votre corps à achever les actions de défense qui ont possiblement été inhibées, et je soutiens votre régulation émotionnelle par les mouvements du corps",
     },
     {
-      icon: 'link',
-      title: 'Les THERAPIES COGNITIVO-COMPORTEMENTALES',
+      icon: 'psychology',
+      title: 'Les thérapies cognitivo-comportementales (TCC)',
       description: 'Approche pragmatique centrée sur le ici & maintenant (ancrage)',
       description_back:
         'Les TCC permettent de modifier les pensées et comportements inadaptés en restant concentré.e sur le présent. Cette approche est idéale pour identifier la manière dont vos pensées influencent directement vos émotions, vos comportements, voire vos boucles anxieuses ou de rumination',
@@ -397,8 +397,8 @@ export class App implements OnInit {
       this.email().trim().length > 0 &&
       this.email().includes('@') &&
       this.telephone().trim().length > 0 &&
-      this.selectedLieu!=null &&
-      this.selectedTypeSeance!=null &&
+      this.selectedLieu != null &&
+      this.selectedTypeSeance != null &&
       this.selectedDate() !== null &&
       this.selectedTime() !== '' &&
       this.acceptTerms() &&
@@ -429,13 +429,12 @@ export class App implements OnInit {
       : '';
 
     const seanceTypeLabel =
-      this.seanceType() === 'distant'
-        ? 'À distance (visioconférence)'
-        : 'En présentiel';
+      this.seanceType() === 'distant' ? 'À distance (visioconférence)' : 'En présentiel';
 
-    const lieuInfo = this.seanceType() === 'presentiel' && this.selectedLieu()
-      ? `Lieu: ${this.selectedLieu()!.nom} - ${this.selectedLieu()!.adresse}`
-      : '';
+    const lieuInfo =
+      this.seanceType() === 'presentiel' && this.selectedLieu()
+        ? `Lieu: ${this.selectedLieu()!.nom} - ${this.selectedLieu()!.adresse}`
+        : '';
 
     const typeSeanceInfo = this.selectedTypeSeance()
       ? `\nType de séance: ${this.selectedTypeSeance()!.description}`
@@ -487,7 +486,7 @@ export class App implements OnInit {
         });
     }
 
-    const message = `Merci ${this.prenom()} ! Votre demande de rendez-vous a été envoyée. Je vous contacterai sous 24h pour confirmer ce rendez-vous.`;
+    const message = `Merci ${this.prenom()} ! Votre demande de rendez-vous a bien été envoyée. Je vous contacterai sous 24h pour confirmer ce rendez-vous.`;
 
     this.snackBar.open(message, 'Fermer', {
       duration: 5000,

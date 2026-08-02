@@ -6,9 +6,10 @@
       <span class="logo" (click)="scrollTo('accueil')">Emilie Pommier</span>
     </div>
     <div class="nav-links" [class.mobile-open]="isMobileMenuOpen()">
-      <button mat-button (click)="scrollTo('apropos'); isMobileMenuOpen.set(false)">Me connaître</button>
       <button mat-button (click)="scrollTo('accompagnements'); isMobileMenuOpen.set(false)">Mes accompagnements</button>
       <button mat-button (click)="scrollTo('methode'); isMobileMenuOpen.set(false)">Mon approche</button>
+      <button mat-button (click)="scrollTo('apropos'); isMobileMenuOpen.set(false)">Me connaître</button>
+
       <button mat-button (click)="scrollTo('consultations'); isMobileMenuOpen.set(false)">
         <div style="line-height: 95%">Consultations <br>& tarifs</div>
       </button>
@@ -63,40 +64,6 @@
 
     <div class="citation">Ce qui a été blessé dans le lien se guérit dans le lien</div>
     <br>
-
-    <div style="text-align: left;">
-    J'accompagne chacun.e là où il/elle en est, à son rythme
-      <ul>
-        <li>Anxiété</li>
-        <li>Mal-être diffus</li>
-        <li>Isolement social</li>
-        <li>Fatigue chronique</li>
-        <li>Manifestations somatiques</li>
-        <li>Hyper-reactivité</li>
-        <li>Absence d'émotions</li>
-        <li>Relations difficiles</li>
-        <li>Schémas récurrents (...)</li>
-      </ul>
-    </div>
-
-    <div style="text-align: left;">
-    Mon rôle consiste à vous aider à :
-      <ul>
-        <li>Apaiser vos conflits intérieurs</li>
-        <li>Renforcer vos ressources personnelles pour mieux repérer et poser vos limites</li>
-        <li>Comprendre le "dialogue sans mots" de votre système nerveux/li>
-        <li>Retrouver, durablement, un état de sérénité et de sécurité intérieure</li>
-      </ul>
-    </div>
-
-    <div style="text-align: left;">
-      Mes engagements
-      <ul>
-        <li>Premier échange gratuit</li>
-        <li>Flexibilité du format</li>
-        <li>Rythme adapté à vos besoins</li>
-      </ul>
-    </div>
     <br>
 
     <div class="hero-actions">
@@ -120,6 +87,104 @@
   </div>
   <div class="hero-version">v{{ siteVersion }}</div>
 </section>
+
+<!-- Accompaniments Section -->
+<section id="accompagnements" class="section accompagnements-section">
+  <div class="content-section">
+
+    <h2 class="section-title">Mes accompagnements</h2>
+
+    J'accompagne chacun.e là où il/elle en est, à son rythme :
+    <div class="method-approaches">
+      <mat-chip-set aria-label="symptomes" style="display: inline-block;margin: 20px;width: 100%;text-align: center;">
+        <mat-chip>Anxiété</mat-chip>
+        <mat-chip>Mal-être diffus</mat-chip>
+        <mat-chip>Isolement social</mat-chip>
+        <mat-chip>Fatigue chronique</mat-chip>
+        <mat-chip>Manifestations somatiques</mat-chip>
+        <mat-chip>Hyper-reactivité</mat-chip>
+        <mat-chip>Absence d'émotions</mat-chip>
+        <mat-chip>Relations difficiles</mat-chip>
+        <mat-chip>Schémas récurrents (...)</mat-chip>
+      </mat-chip-set>
+    </div>
+
+    <!--    <div style="width: 100%;text-align: center;">-->
+    <!--      <img src="nuage.svg" style="width: 100%;max-width: 500px;display:inline-block;">-->
+    <!--    </div>-->
+
+    <p class="content-text" >
+      Bien souvent, vous connaissez votre histoire, vous avez identifié vos blocages... et pourtant,
+      c'est comme si cela ne suffisait pas.<br>
+      Peut-être observez-vous certains schémas qui se répètent, inlassablement ? <br>
+      Peut-être ressentez-vous une forme de lassitude ou d'épuisement, face au décalage entre ce que votre tête a
+      compris et ce que votre corps ou vos émotions continuent d'exprimer ?<br>
+
+      <br>
+      Difficultés relationnelles, symptômes chroniques, anxiété, sensation d'être à fleur de peau ou - au contraire -
+      coupé.e de ses émotions...<br>
+      N'y voyez plus une fatalité ou de simples traits de votre personnalité : bien souvent, ce sont des mécanismes d'adaptation mis en place très tôt dans votre vie pour vous
+      protéger d'une situation perçue, par votre système nerveux, comme extrêmement dangereuse.<br>
+      Bien qu'ils soient aujourd'hui devenus obsolètes, voire même contraignants, ces mécanismes restent actifs - comme bloqués en vous.
+    </p>
+
+
+    <div class="citation">Nul ne peut effacer le passé, ni réécrire son histoire. Toutefois, restaurer un niveau de sécurité intérieure suffisant permet d'accéder
+      au vécu engrammé en soi ; de re-traiter l'information pour se libérer des fardeaux ; et de décider par et pour soi-même sur
+      quelle étagère ranger - enfin - ce chapitre du livre.
+    </div>
+    <br><br>
+
+    <div class="hero-columns content-text">
+      <div style="text-align: left;">
+        Mon rôle consiste à vous aider à :
+        <ul>
+          <li>apaiser vos conflits intérieurs</li>
+          <li>renforcer vos ressources personnelles pour mieux repérer et poser vos limites</li>
+          <li>comprendre le "dialogue sans mots" de votre système nerveux</li>
+          <li>retrouver, durablement, un état de sérénité et de sécurité intérieure</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accompagnements-grid">
+      <mat-card class="accompagnement-card">
+        <mat-icon class="accompagnement-icon">person</mat-icon>
+        <mat-card-content>
+          <h3>Un premier échange gratuit <span style="color: var(--primary-500);">(30 min)</span></h3><br>
+          <p class="content-text">Parce que le choix d'un.e thérapeute est important et très personnel,
+            je vous propose un premier contact <i>en visio</i>, sans aucun engagement.<br><br>
+            <strong>Pour vous :</strong> c'est l'occasion de m'exposer votre besoin, de formuler vos attentes et de
+            me poser toutes vos questions<br><br>
+            <strong>Pour moi :</strong> c'est le moment de vous expliquer mon cadre thérapeutique et de m'assurer que
+            mon approche correspond bien à ce qui vous anime, là maintenant
+          </p>
+        </mat-card-content>
+      </mat-card>
+
+
+      <mat-card class="accompagnement-card">
+        <mat-icon class="accompagnement-icon">videocam</mat-icon>
+        <mat-card-content>
+          <h3>Je vous reçois ensuite pour des séances individuelles de <span style="color: var(--primary-500);">1h ou 1h30</span> (ajusté selon vos besoins)</h3>
+          <p class="content-text"> en présentiel <i>ou</i> en visio-consultation.<br><br>
+            Durant ce temps qui est le vôtre, je m'engage à vous offrir  un espace sécure, bienveillant,
+            sans jugement, où vous pourrez déposer tout ce qui vous traverse.<br><br>
+            Une séance type s'articule généralement autour de trois temps forts
+            <li><strong>Stabilisation :</strong> un temps d'expression libre et d'ancrage, pour vous poser et
+              vous recentrer</li>
+            <li><strong>Exploration :</strong> à partir d'une situation que vous amenez ou qui émerge dans le
+              <span style="font-style: italic">ici & maintenant</span>, nous travaillons ensemble à dénouer vos blocages</li>
+            <li><strong>Intégration :</strong> nous prenons toujours le temps de clôturer la séance par un retour au calme,
+              afin que vous puissiez repartir à votre journée le plus sereinement possible</li>
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+</section>
+
 
 <!-- About / Profile Section -->
 <section id="apropos" class="section apropos-section">
@@ -153,7 +218,15 @@
         </p>
 
       </div>
+    </div>
 
+    <div class="apropos-engagements content-text">
+      <strong>Mes engagements</strong>
+      <ul>
+        <li>Premier échange gratuit</li>
+        <li>Flexibilité du format</li>
+        <li>Rythme adapté à vos besoins</li>
+      </ul>
     </div>
 
     <div class="apropos-actions">
@@ -172,88 +245,6 @@
 
 
 
-<!-- Accompaniments Section -->
-<section id="accompagnements" class="section accompagnements-section">
-  <div class="content-section">
-    <div class="section-divider"></div>
-    <h2 class="section-title">Mes accompagnements</h2>
-
-<!--    <div style="width: 100%;text-align: center;">-->
-<!--      <img src="nuage.svg" style="width: 100%;max-width: 500px;display:inline-block;">-->
-<!--    </div>-->
-
-    <p class="content-text" >
-      Bien souvent, vous connaissez votre histoire, vous avez identifié vos blocages... et pourtant,
-      c'est comme si cela ne suffisait pas.<br>
-      Peut-être observez-vous certains schémas qui se répètent, inlassablement ? <br>
-      Peut-être ressentez-vous une forme de lassitude ou d'épuisement, face au décalage entre ce que votre tête a
-      compris et ce que votre corps ou vos émotions continuent d'exprimer ?<br>
-
-      <br>
-      Difficultés relationnelles, symptômes chroniques, anxiété, sensation d'être à fleur de peau ou - au contraire -
-      coupé.e de ses émotions...<br>
-      N'y voyez plus une fatalité ou de simples traits de votre personnalité : bien souvent, ce sont des mécanismes d'adaptation mis en place très tôt dans votre vie pour vous
-      protéger d'une situation perçue, par votre système nerveux, comme extrêmement dangereuse.<br>
-      Bien qu'ils soient aujourd'hui devenus obsolètes voire même contraignants, ils restent actifs - comme bloqués en vous.
-    </p>
-
-
-    <div class="citation">Nul ne peut effacer le passé, ni réécrire son histoire. Restaurer un niveau de sécurité intérieure suffisant permet toutefois d'accéder
-      au vécu engrammé en soi ; de re-traiter l'information pour se libérer des fardeaux ; et de décider pour et par soi-même sur
-      quelle étagère ranger enfin ce chapitre du livre.
-    </div>
-    <br>
-
-    <div class="content-text">
-    Mon travail de thérapeute consiste à vous aider à :<br>
-
-    <ul style="max-width: 700px;display:inline-block;text-align: left;">
-      <li style="margin-top:-15px;">apaiser vos conflits intérieurs</li>
-      <li>renforcer vos ressources personnelles pour mieux repérer et poser vos limites</li>
-      <li>comprendre le "dialogue sans mots" de votre système nerveux</li>
-      <li>retrouver, durablement, un état de sérénité et de sécurité intérieure</li>
-    </ul>
-
-
-  </div>
-
-    <div class="accompagnements-grid">
-      <mat-card class="accompagnement-card">
-        <mat-icon class="accompagnement-icon">person</mat-icon>
-        <mat-card-content>
-          <h3>Un premier échange gratuit (30 min)</h3>
-          <p class="content-text">Parce que le choix d'un.e thérapeute est important et très personnel,<br>
-            je vous propose un premier contact en visio, sans aucun engagement.<br><br>
-            <li><strong>Pour vous :</strong> c'est l'occasion de m'exposer votre besoin, de formuler vos attentes et de
-              me poser toutes vos questions</li>
-            <li><strong>Pour moi :</strong> c'est le moment de vous expliquer mon cadre thérapeutique et de m'assurer que
-              mon approche correspond bien à ce qui vous anime, là maintenant</li>
-          </p>
-        </mat-card-content>
-      </mat-card>
-
-
-      <mat-card class="accompagnement-card">
-        <mat-icon class="accompagnement-icon">videocam</mat-icon>
-        <mat-card-content>
-          <h3>Je vous reçois ensuite pour des séances individuelles de 1h ou 1h30 (ajusté à vos besoins),</h3>
-          <p class="content-text"> en présentiel ou en visio-consultation.<br><br>
-            Durant ce temps qui est le vôtre, je m'engage à vous offrir  un espace sécure, bienveillant,
-            sans jugement, où vous pourrez déposer tout ce qui vous traverse.<br><br>
-            Une séance type s'articule généralement autour de trois temps forts :
-            <li><strong>Stabilisation :</strong> un temps d'ancrage et d'expression libre,  pour vous poser et
-              faire le point sur votre état</li>
-            <li><strong>Exploration :</strong> à partir d'une situation que vous amenez ou qui émerge dans le
-              <span style="font-style: italic">ici & maintenant</span>, nous travaillons ensemble à dénouer vos blocages</li>
-            <li><strong>Intégration :</strong> nous prenons toujours le temps de clôturer la séance par un retour au calme,
-              afin que vous puissiez repartir à votre journée le plus sereinement possible</li>
-          </p>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  </div>
-
-</section>
 
 
 
@@ -262,10 +253,9 @@
   <div class="section-divider"></div>
   <div class="content-section">
 
-    <h2 class="section-title">Prendre rendez-vous</h2>
+    <h2 class="section-title">Réservez votre séance en quelques clics</h2>
     <p class="intro-section">
-      Réservez votre séance en ligne en quelques clics. La première consultation
-      permet de faire connaissance et d'évaluer vos besoins.
+      La première consultation permet de mieux faire connaissance et de préciser vos besoins.
     </p>
 
     <div class="seance-type-toggle">
@@ -447,40 +437,34 @@
     </div>
 
     <p class="content-text">
-      <strong>Je sais combien</strong> la volonté et l'analyse intellectuelle, seules, ne suffisent pas à
-      apaiser les blessures profondément ancrées en nous.<br>
-      Beaucoup pensent qu'il suffit de "comprendre" l'origine de ses problèmes pour les résoudre.<br>
-      Pourtant, je suis certaine que vous avez déjà fait l'expérience de ce décalage épuisant : votre
-      esprit sait (rationnellement) que vous êtes en sécurité, mais votre corps - lui - panique,
-      s'épuise à "chercher" le danger, voire il vous immobilise.<br>
+      Je sais combien volonté et analyse intellectuelle, seules, ne suffisent pas à
+      apaiser certaines blessures profondément ancrées en nous.<br>
+      <strong>Beaucoup pensent qu'il suffit de "comprendre" l'origine</strong> de ses problèmes pour les résoudre.<br>
+      Pourtant, je suis certaine que vous avez déjà fait l'expérience de ce décalage... épuisant : votre
+      esprit sait (rationnellement) que vous êtes en sécurité, mais votre corps - lui - "guette" toute source
+      de danger, réagit au moindre stimuli, il panique voire vous fige.<br>
       Nos blocages ne sont pas de simples
-      concepts ou idées : ils sont engrammés dans notre système nerveux et notre mémoire corporelle.
+      concepts ou idées : ils sont engrammés dans notre système nerveux et dans notre mémoire corporelle.
     </p>
 
     <div class="citation">
-      "Le corps est bavard. Sachez l'écouter lorsqu'il chuchote pour qu'il n'ait pas besoin de crier."
+      Le corps est bavard. Savoir l'écouter lorsqu'il chuchote, c'est lui éviter d'avoir à crier.
     </div><br>
 
     <mat-expansion-panel class="expansion-panel-text">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          C'est précisément à cet endroit que s'inscrit mon approche.
+          L'alliance de l'esprit, du coeur et du corps, pour une efficacité maximale
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <mat-panel-description>
+      <mat-panel-description class="content-text">
         <p>
-          J'ai la conviction qu'une fois la sécurité dans le lien retrouvée, cela permet de (r)éveiller et
-          de remettre de la fluidité entre vos émotions, vos sensations corporelles et votre esprit.<br>
-          En travaillant ensemble, sur la base d'une relation authentique et ajustée, nous restaurons - en séance -
-          la capacité naturelle de votre système à s'apaiser, à sortir de schémas obsolètes et à retrouver la
-          stabilité intérieure à laquelle vous aspirez.<br><br>
-
-          <strong>L'alliance de l'esprit, du coeur et du corps, pour une efficacité maximale</strong>
-
-          <br>
+          En travaillant ensemble, sur la base d'une relation authentique et ajustée, nous restaurons au fil des séances
+          la capacité naturelle de votre système nerveux à s'apaiser, à sortir de schémas obsolètes et à retrouver la
+          stabilité intérieure à laquelle vous aspirez bien souvent.<br><br>
           Pour vous accompagner au mieux, je propose de faire intéragir vos schémas de pensée (approche
           cognitive) et vos états corporels (approche somatique).<br>Je combine ainsi un travail verbal doux
-          avec des expériences émotionnelles et sensorielles, pour restaurer votre équilibre.<br><br>
+          avec des expériences émotionnelles et sensorielles, pour restaurer une forme d'équilibre intérieur.<br><br>
         </p>
       </mat-panel-description>
     </mat-expansion-panel>

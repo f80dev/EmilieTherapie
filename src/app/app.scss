@@ -204,6 +204,20 @@
     font-size: 1.4rem;
   }
 
+  .hero-columns {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    > div {
+      flex: 1;
+      min-width: 280px;
+      max-width: 400px;
+      font-size: 0.95rem;
+    }
+  }
+
   .hero-actions {
     display: flex;
     gap: 16px;
@@ -276,11 +290,15 @@
 // About Section
 // ============================================
 .apropos-section {
+
+  background: var(--secondary-100);
+
   .apropos-content {
     display: grid;
     grid-template-columns: 320px 1fr;
     gap: 48px;
     align-items: start;
+
 
     @media (max-width: 768px) {
       grid-template-columns: 1fr;
@@ -299,7 +317,23 @@
     }
   }
 
+  .apropos-engagements {
+    text-align: left;
+    margin-top: 24px;
+
+    strong {
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+  }
+
   .apropos-text {
+
     .apropos-intro {
       color: var(--warm-medium);
       line-height: 1.7;
@@ -316,7 +350,7 @@
         align-items: flex-start;
         gap: 12px;
         padding: 16px;
-        background: var(--secondary-50);
+        background: var(--secondary-100);
         border-radius: var(--radius-md);
 
         div {
@@ -369,6 +403,8 @@
 .expansion-panel-text {
   @include shared.expansion-panel-base;
   box-shadow: none !important;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin-left: -25px;
 }
 
 
@@ -672,7 +708,7 @@ h3 {
 // Appointment / Accompaniments Sections
 // ============================================
 .accompagnements-section {
-  background: var(--secondary-100);
+  background: var(--secondary-50);
 
   .accompagnements-intro {
     color: var(--warm-medium);
