@@ -461,6 +461,8 @@ def confirm_event(event_id: str) -> dict[str, Any]:
         description = event.get("description", "")
         email_match = re.search(r'Email:\s*([^\n]+)', description)
         client_email = email_match.group(1).strip() if email_match else None
+        lieu_rendezvous="https://meet.google.com/asj-rmvq-bwb" if "visio" in event["description"] else "lieu geographique"
+
 
         if client_email and "@" in client_email:
             # Extraire les infos pour l'email
@@ -472,11 +474,13 @@ def confirm_event(event_id: str) -> dict[str, Any]:
                 try:
                     from datetime import datetime
                     start_dt = datetime.fromisoformat(start.replace('Z', '+00:00'))
-                    start_str = start_dt.strftime("%d/%m/%Y à %H:%M")
-                except:
+                      start_str = start_dt.strftime("%d/%m/%Y à %H:%M")
+                  except:
                     start_str = start
             else:
                 start_str = "Non spécifiée"
+
+
 
             # Envoyer l'email de confirmation
             try:
@@ -488,6 +492,9 @@ Votre rendez-vous a été confirmé :
 
 📅 Date : {start_str}
 📝 Titre : {summary}
+
+  {lieu_rendezvous}
+
 
 Je me réjouis de vous rencontrer.
 
