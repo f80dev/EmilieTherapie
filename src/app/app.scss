@@ -179,6 +179,7 @@
 
   .hero-title {
     font-size: 3.5rem;
+    margin: 30px;
 
     .highlight {
       color: var(--primary-700);
@@ -196,7 +197,7 @@
   .hero-subtitle {
     font-size: 1.25rem;
     color: var(--warm-medium);
-    line-height: 1.2;
+    line-height: 1.4;
     margin-bottom: 40px;
   }
 
@@ -1008,14 +1009,7 @@ h3 {
       padding-top: 24px;
     }
 
-    .intertitre {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.75rem;
-      font-weight: 500;
-      color: var(--warm-dark);
-      margin-bottom: 24px;
-      text-align: center;
-    }
+
   }
 
   .ressources-grid {
@@ -1091,14 +1085,6 @@ h3 {
 
   .faq-section {
     margin-top: 48px;
-
-    .intertitre {
-      font-size: 1.75rem;
-      font-weight: 500;
-      color: var(--warm-dark);
-      margin-bottom: 24px;
-      text-align: center;
-    }
 
     .faq-respons {
       text-align: left;

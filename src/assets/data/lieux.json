@@ -1,0 +1,27 @@
+[
+  {
+    "id": "cabinet-martel",
+    "nom": "Cabinet Martel",
+    "adresse": "12 rue Martel, 75010 Paris",
+    "gps": {
+      "latitude": 48.8728,
+      "longitude": 2.3548
+    },
+    "indisponibilites": [
+      { "date": "2026-08-15", "time": "09:00", "duration": 75 },
+      { "date": "2026-08-20", "time": "14:00", "duration": 75 }
+    ]
+  },
+  {
+    "id": "cabinet-popincourt",
+    "nom": "Cabinet Popincourt",
+    "adresse": "25 rue Popincourt, 75011 Paris",
+    "gps": {
+      "latitude": 48.8572,
+      "longitude": 2.3796
+    },
+    "indisponibilites": [
+      { "date": "2026-08-18", "time": "10:30", "duration": 75 }
+    ]
+  }
+]

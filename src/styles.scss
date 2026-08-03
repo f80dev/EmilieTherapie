@@ -159,11 +159,20 @@ html {
   color: var(--text-secondary);
 }
 
+.titre-paragraphe {
+  font-weight: bold;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 1rem;
+}
+
+
 
 
 .content-text {
   text-align: left;
-  font-weight: lighter;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: normal;
+  font-size: 0.85rem;
   color: var(--text-secondary);
 }
 

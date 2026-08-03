@@ -151,7 +151,13 @@ export class App implements OnInit {
       description:
         'Approche neurobiologique à la fois profonde (par son action sur le système nerveux) et douce (par la sécurité que la co-régulation instaure durablement)',
       description_back:
-        "L'IR® s\'appuie sur 3 fondements scientifiques pour \"reconfigurer\" le système nerveux autonome, c'est-à-dire ramener de l'apaisement et de la souplesse, là où le trauma a instauré de la rigidité : - la théorie de l'attachement ou comment, à travers la proximité thérapeutique sécure, je vous propose de vivre une expérience réparatrice dans ces zones douloureuses d'insécurité affective et relationnelle ; - la théorie polyvagale pour vous apprendre à repérer, apprivoiser et recalibrer ensemble (puis de façon autonome) les réactions automatiques de votre système nerveux, face au danger ; - le modèle IFS (système familial intérieur) ou comment le dialogue doux et bienveillant avec vos différentes Parts (ces \"voix intérieures\" qui portent vos blessures ou qui s'épuisent à les protéger) permet de retrouver un profond sentiment de paix intérieure",
+        "L'IR® s\'appuie sur 3 fondements scientifiques pour \"reconfigurer\" le système nerveux autonome, c'est-à-dire ramener de l'apaisement et de la souplesse, " +
+        'là où le trauma a instauré de la rigidité : ' +
+        "- la théorie de l'attachement ou comment, à travers la proximité thérapeutique sécure, je vous propose de vivre une expérience réparatrice " +
+        "dans ces zones douloureuses d'insécurité affective et relationnelle ; la théorie polyvagale pour vous apprendre à repérer, " +
+        'apprivoiser et recalibrer ensemble (puis de façon autonome) les réactions automatiques de votre système nerveux, face au danger ; ' +
+        '- le modèle IFS (système familial intérieur) ou comment le dialogue doux et bienveillant avec vos différentes Parts (ces "voix intérieures" ' +
+        "qui portent vos blessures ou qui s'épuisent à les protéger) permet de retrouver un profond sentiment de paix intérieure",
     },
     {
       icon: 'link',

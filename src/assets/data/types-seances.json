@@ -1,0 +1,26 @@
+[
+  {
+    "id": "prise-contact",
+    "nom": "Prise de contact",
+    "duree": 30,
+    "contenu": "Premier échange pour mieux se connaître et identifier vos besoins",
+    "objectif": "Établir un premier contact et définir ensemble vos objectifs",
+    "description": "Séance de prise de contact - 30 minutes"
+  },
+  {
+    "id": "rdv-1h",
+    "nom": "Rendez-vous 1 heure",
+    "duree": 60,
+    "contenu": "Séance complète de suivi thérapeutique",
+    "objectif": "Travail approfondi sur vos problématiques",
+    "description": "Séance de suivi - 1 heure"
+  },
+  {
+    "id": "rdv-1h30",
+    "nom": "Rendez-vous 1h30",
+    "duree": 90,
+    "contenu": "Séance étendue pour un travail plus approfondi",
+    "objectif": "Travail approfondi et exploration en profondeur",
+    "description": "Séance approfondie - 1h30"
+  }
+]

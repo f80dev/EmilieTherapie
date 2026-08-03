@@ -58,18 +58,11 @@
 
 .pricing-note {
   color: var(--warm-light);
-  font-size: 0.95rem;
   font-style: italic;
   margin-top: 8px;
   margin-bottom: 0;
 }
 
-.intro-text {
-  color: var(--warm-light);
-  line-height: 1.8;
-  font-size: 1.1rem;
-  margin-bottom: 24px;
-}
 
 // Bulleted list with brand marker
 .payment-list,
@@ -77,24 +70,6 @@
   list-style: none;
   padding-left: 0;
   margin: 16px 0;
-
-  li {
-    position: relative;
-    padding-left: 20px;
-    margin-bottom: 12px;
-    color: var(--primary-700);
-
-    &::before {
-      content: '•';
-      position: absolute;
-      left: 0;
-      color: var(--primary-700);
-    }
-
-    &:last-child { margin-bottom: 0; }
-
-    strong { color: var(--primary-700); }
-  }
 }
 
 // Highlighted callout
