@@ -146,21 +146,22 @@ export class App implements OnInit {
 
   methodPrinciples = [
     {
-      icon: 'favorite',
+      icon: 'network_intelligence',
       title: "L'Intelligence Relationnelle (IR®)",
       description:
         'Approche neurobiologique à la fois profonde (par son action sur le système nerveux) et douce (par la sécurité que la co-régulation instaure durablement)',
       description_back:
-        "L'IR® s\'appuie sur 3 fondements scientifiques pour \"reconfigurer\" le système nerveux autonome, c'est-à-dire ramener de l'apaisement et de la souplesse, " +
-        'là où le trauma a instauré de la rigidité : ' +
-        "- la théorie de l'attachement ou comment, à travers la proximité thérapeutique sécure, je vous propose de vivre une expérience réparatrice " +
-        "dans ces zones douloureuses d'insécurité affective et relationnelle ; la théorie polyvagale pour vous apprendre à repérer, " +
-        'apprivoiser et recalibrer ensemble (puis de façon autonome) les réactions automatiques de votre système nerveux, face au danger ; ' +
-        '- le modèle IFS (système familial intérieur) ou comment le dialogue doux et bienveillant avec vos différentes Parts (ces "voix intérieures" ' +
-        "qui portent vos blessures ou qui s'épuisent à les protéger) permet de retrouver un profond sentiment de paix intérieure",
+        "L'IR® s\'appuie sur trois socles scientifiques pour \"reconfigurer\" le système nerveux autonome, c'est-à-dire ramener de l'apaisement et de la souplesse " +
+        'là où le trauma a instauré de la rigidité et de la coupure : ' +
+        "<br>1. la théorie de l'attachement ou comment, à travers le lien thérapeutique sécure, je vous propose de vivre une expérience réparatrice " +
+        "dans ces zones douloureuses d'insécurité affective et relationnelle ; " +
+        "<br>2. la théorie polyvagale pour vous apprendre à repérer, 'apprivoiser et recalibrer ensemble (puis de façon autonome) les réactions" +
+        'automatiques de votre système nerveux, puis revenir à la sécurité ; ' +
+        '<br>3. le modèle IFS (système familial intérieur) ou comment le dialogue doux et bienveillant avec vos différentes Parts* ' +
+        "permet de retrouver un profond sentiment de paix intérieure (* ces sous-personnalités qui trahissent et portent vos blessures ou qui s'épuisent, au contraire, à protéger vos zones de fragilité)",
     },
     {
-      icon: 'link',
+      icon: 'multimodal_hand_eye',
       title: "L'EMDR et les ressources de stabilisation",
       description:
         'Approche de désensibilisation et de retraitement des souvenirs traumatiques, par une stimulation bilatérale alternée',
@@ -168,7 +169,7 @@ export class App implements OnInit {
         "Le traumatisme, ça n'est pas tant l'évènement en lui-même que votre vécu d'une insécurité extrême, au moment où il s'est produit. En situation de grand danger, le cerveau humain peut aller jusqu'à \"dysjoncter\" et empêcher ce vécu traumatique d'être \"digéré\" normalement. L'EMDR a pour objectif de relancer le processus naturel de guérison du psychisme, en permettant à votre vécu - resté bloqué dans la mémoire traumatique - de rejoindre la mémoire autobiographique... et d'être ainsi classé dans vos \"archives personnelles\". Dans ce cadre, les techniques d'ancrage et de stabilisation émotionnelle sont autant de ressources précieuses, pour accompagner ce processus - à votre rythme et en toute sécurité",
     },
     {
-      icon: 'groups',
+      icon: 'physical_therapy',
       title: 'La thérapie sensori-motrice',
       description:
         "Approche somatique qui utilise le corps comme ressource principale d'informations et de changements",

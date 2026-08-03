@@ -20,31 +20,31 @@
   {
     "id": 4,
     "question": "Un suivi en intelligence relationnelle, ça représente combien de séances ?",
-    "reponse": "Cela varie selon votre histoire et vos objectifs. En IR, nous travaillons sur des schémas de protection profondément ancrés : vos « modèles internes opérants ». Les faire évoluer demande du temps et un lien de confiance robuste. J'applique le principe suivant : « Slow is fast ». Car ralentir est parfois le moyen le plus sécurisant pour transformer durablement votre quotidien et apaiser votre système nerveux.",
+    "reponse": "Cela varie selon votre histoire et vos objectifs. En IR, nous travaillons sur des schémas de protection profondément ancrés : vos « modèles internes opérants ». Les faire évoluer demande du temps et un lien de confiance robuste. J'applique le principe suivant : « Slow is fast ». Car ralentir est parfois le moyen le plus sécurisant pour transformer votre quotidien et apaiser durablement votre système nerveux.",
     "icon": "timelapse"
   },
   {
     "id": 5,
-    "question": "Vous pouvez me résumer l'intelligence relationnelle en 2 phrases ?",
-    "reponse": "C'est une thérapie psycho-corporelle d'orientation neurobiologique (Là, vous êtes bien avancé.e ^^). J'utilise la sécurité du lien thérapeutique pour aider votre « cerveau du haut » (la logique, la pensée) à se réassocier harmonieusement avec votre « cerveau du bas » (les sensations, les émotions, les mémoires inconscientes), là où le trauma et les carences passées ont créé de la rigidité et des coupures.",
+    "question": "Vous pouvez me résumer l'intelligence relationnelle en quelques mots ?",
+    "reponse": "C'est une thérapie psycho-corporelle d'orientation neurobiologique (Là, vous êtes bien avancé.e ^^). Pour le dire autrement, j'utilise la sécurité du lien thérapeutique pour aider vos « cerveau du haut » (la logique, la pensée) et « cerveau du bas » (les sensations, les émotions, les mémoires inconscientes) à se réassocier harmonieusement, là où le trauma et les carences passées ont créé de la rigidité et de la dissociation entre eux.",
     "icon": "summarize"
   },
   {
     "id": 6,
-    "question": "Quelle différence avec l'intelligence émotionnelle ?",
-    "reponse": "Ce sont, en effet, deux approches bien distinctes. L'intelligence émotionnelle est un outil comportemental axé sur la gestion et la compréhension de ses émotions, au quotidien. L'intelligence relationnelle est un modèle thérapeutique à la fois profond et doux. Il utilise la relation thérapeutique pour reprogrammer le système nerveux autonome et restaurer un sentiment durable de sécurité intérieure.",
+    "question": "Un suivi en EMDR (eye movement desensitization and reprocessing), ça représente combien de séances ?",
+    "reponse": "L'EMDR* est une approche thérapeutique ciblée, qui s'inscrit dans un espace temps relativement court. Pour traiter un vécu traumatique spécifique, le suivi en EMDR pur consiste en 6 à 8 séances en moyenne - chaque séance durant 1h30. Mais avant cela, il est un préalable indispencable : bâtir une relation de confiance solide et apaiser régulièrement votre système nerveux, afin de pouvoir ensuite expérimenter l'EMDR en toute sérénité (* désensibilisation et retraitement de l'information par les mouvements oculaires).",
     "icon": "compare_arrows"
   },
   {
     "id": 7,
     "question": "Est-il question de revivre mon trauma en séance ?",
-    "reponse": "Certainement pas ! Replonger dans le récit du passé peut réactiver votre dérégulation nerveuse, sans la résoudre. Aussi, je travaille depuis l'empreinte que le trauma laisse - au présent - dans votre corps (des tensions, certains réflexes de protection, des élans de fuite ou de défense inhibés...) et, ensemble, nous libérons votre système nerveux sans jamais forcer, via la co-régulation.",
+    "reponse": "Certainement pas ! Replonger dans le récit du passé peut réactiver votre dérégulation nerveuse, sans la résoudre. Aussi, en IR, je travaille depuis l'empreinte que le trauma laisse - au présent - dans votre corps (des tensions, certains réflexes de protection, des élans de fuite ou de défense inhibés...) et, ensemble, nous libérons votre système nerveux sans jamais forcer, via la co-régulation. Si à un moment donné de votre suivi thérapeutique, l'EMDR semble approprié et que vous souhaitez l'expérimenter, nous respecterons une phase préalable indispensable de stabilisation émotionnelle afin que - précisément - votre choix d'un vécu traumatique cible ne vous replonge pas dans votre expérience initiale, mais puisse s'opérer depuis un espace sécure.",
     "icon": "healing"
   },
   {
     "id": 8,
-    "question": "Présentiel ou visio : qu'est-ce qui est le mieux ?",
-    "reponse": "La réussite de la thérapie repose fondamentalement sur la sécurité dans le lien, peu importe le canal privilégié. Le présentiel vous offre un espace « cocon » et un cadre physique dédié (autrement dit, un repère clair). La visio préserve votre confort intérieur et vous offre plus de souplesse logistique. Les deux modalités sont interchangeables, selon vos préférences et vos besoins.",
+    "question": "Présentiel ou visio : quel est le mieux ?",
+    "reponse": "La réussite de la thérapie repose fondamentalement sur la sécurité dans le lien, peu importe le canal privilégié. Le présentiel vous offre un espace « cocon » et un cadre physique dédié (autrement dit, des repères clairs). La visio préserve vos habitudes et vous offre souvent plus de souplesse logistique. Les deux modalités sont interchangeables, selon vos préférences et besoins. Toutefois, pour les séances d'EMDR (1h30), je reçois exclusivement en présentiel.",
     "icon": "devices"
   },
   {
