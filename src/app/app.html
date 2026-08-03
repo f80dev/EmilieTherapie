@@ -52,7 +52,7 @@
 
 
 <!-- Hero Section -->
-<section id="accueil" class="hero-section">
+<section id="accueil" class="hero-section hero-background">
   <div class="hero-background"></div>
   <div class="hero-content">
     <div class="hero-title">Bienvenue</div>
@@ -158,40 +158,52 @@
 
     </mat-expansion-panel>
 
-    <div class="accompagnements-grid">
-      <mat-card class="accompagnement-card">
-        <mat-icon class="accompagnement-icon">video_camera_front</mat-icon>
-        <mat-card-content>
-          <h3>Un premier échange gratuit <span style="color: var(--primary-500);">(30 min)</span></h3><br><br>
-          <p class="content-text">Parce que le choix d'un.e thérapeute est important et très personnel,
-            je vous propose un premier contact <i>en visio</i>, sans aucun engagement.<br><br>
-            <strong>Pour vous :</strong> c'est l'occasion de m'exposer votre besoin, de formuler vos attentes et de
-            me poser toutes vos questions<br><br>
-            <strong>Pour moi :</strong> c'est le moment de vous expliquer mon cadre thérapeutique et de m'assurer que
-            mon approche correspond bien à ce qui vous anime, là maintenant
-          </p>
-        </mat-card-content>
-      </mat-card>
+
+    <app-vertical-card image="presentiel.jpg" imagePosition="right">
+      <h3>Un premier échange gratuit <span style="color: var(--primary-500);">(30 min)</span></h3><br>
+      <p class="content-text">Parce que le choix d'un.e thérapeute est important et très personnel,
+        je vous propose un premier contact <i>en visio</i>, sans aucun engagement.<br><br>
+        <strong>Pour vous :</strong> c'est l'occasion de m'exposer votre besoin, de formuler vos attentes et de
+        me poser toutes vos questions<br><br>
+        <strong>Pour moi :</strong> c'est le moment de vous expliquer mon cadre thérapeutique et de m'assurer que
+        mon approche correspond bien à ce qui vous anime, là maintenant
+      </p>
+    </app-vertical-card>
+
+    <br><br>
+
+    <app-vertical-card image="presentiel.jpg" imagePosition="left">
+      <h3>Des séances individuelles de <span style="color: var(--primary-500);">1h ou 1h30</span></h3>
+      <p class="content-text">
+        Durant ce temps qui est le vôtre, je m'engage à vous offrir  un espace sécure, bienveillant,
+        sans jugement, où vous pourrez déposer tout ce qui vous traverse.<br><br>
+        Une séance type s'articule généralement autour de trois temps forts
+        <li><strong>Stabilisation :</strong> un temps d'expression libre et d'ancrage, pour vous poser et
+          vous recentrer</li>
+        <li><strong>Exploration :</strong> à partir d'une situation que vous amenez ou qui émerge dans le
+          <span style="font-style: italic">ici & maintenant</span>, nous travaillons ensemble à dénouer vos blocages</li>
+        <li><strong>Intégration :</strong> nous prenons toujours le temps de clôturer la séance par un retour au calme,
+          afin que vous puissiez repartir à votre journée le plus sereinement possible</li>
+      </p>
+
+    </app-vertical-card>
 
 
-      <mat-card class="accompagnement-card">
-        <mat-icon class="accompagnement-icon">person</mat-icon>
-        <mat-card-content>
-          <h3>Des séances individuelles de <span style="color: var(--primary-500);">1h ou 1h30</span><br>(à ajuster, selon vos besoins)</h3>
-          <p class="content-text"> en présentiel <i>ou</i> en visio-consultation.<br><br>
-            Durant ce temps qui est le vôtre, je m'engage à vous offrir  un espace sécure, bienveillant,
-            sans jugement, où vous pourrez déposer tout ce qui vous traverse.<br><br>
-            Une séance type s'articule généralement autour de trois temps forts
-            <li><strong>Stabilisation :</strong> un temps d'expression libre et d'ancrage, pour vous poser et
-              vous recentrer</li>
-            <li><strong>Exploration :</strong> à partir d'une situation que vous amenez ou qui émerge dans le
-              <span style="font-style: italic">ici & maintenant</span>, nous travaillons ensemble à dénouer vos blocages</li>
-            <li><strong>Intégration :</strong> nous prenons toujours le temps de clôturer la séance par un retour au calme,
-              afin que vous puissiez repartir à votre journée le plus sereinement possible</li>
-          </p>
-        </mat-card-content>
-      </mat-card>
-    </div>
+<!--    <div class="accompagnements-grid">-->
+<!--      <mat-card class="accompagnement-card">-->
+<!--        <mat-icon class="accompagnement-icon">video_camera_front</mat-icon>-->
+<!--        <mat-card-content>-->
+<!--      -->
+<!--        </mat-card-content>-->
+<!--      </mat-card>-->
+
+
+<!--      <mat-card class="accompagnement-card">-->
+<!--        <mat-icon class="accompagnement-icon">person</mat-icon>-->
+<!--        <mat-card-content>-->
+<!--        </mat-card-content>-->
+<!--      </mat-card>-->
+<!--    </div>-->
   </div>
 
 </section>
