@@ -7,53 +7,29 @@
 }
 
 // ============================================
-// Hero
+// Intro (carte scannée)
 // ============================================
-.vc-hero {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 32px;
+.vc-intro {
+  display: flex;
   align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 64px 32px 48px;
-
-  @media (max-width: 880px) {
-    grid-template-columns: 1fr;
-    padding: 32px 20px 24px;
-  }
+  justify-content: center;
+  min-height: 100vh;
+  padding: 32px;
+  background: linear-gradient(135deg, var(--secondary-50) 0%, var(--background) 100%);
 }
 
-.vc-hero-content {
-  max-width: 620px;
+.vc-intro-content {
+  text-align: center;
+  max-width: 480px;
 }
 
-.vc-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--primary-700) 10%, transparent);
-  color: var(--primary-700);
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-
-  mat-icon {
-    font-size: 18px;
-    width: 18px;
-    height: 18px;
-  }
-}
-
-.vc-title {
+.vc-text {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
   font-weight: 500;
-  line-height: 1.15;
+  line-height: 1.3;
   color: var(--warm-dark);
-  margin: 18px 0 14px;
+  margin: 0 0 40px;
 
   em {
     font-style: italic;
@@ -61,351 +37,13 @@
   }
 }
 
-.vc-subtitle {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: var(--neutral-medium);
-  margin: 0 0 28px;
-}
-
-.vc-cta-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  align-items: center;
-  margin-bottom: 28px;
-}
-
-.vc-cta-primary {
-  font-size: 1rem;
-  padding: 8px 22px !important;
-  height: 48px !important;
-  border-radius: 999px !important;
-  box-shadow: 0 4px 12px color-mix(in srgb, var(--primary-700) 25%, transparent) !important;
-
-  mat-icon {
-    margin-right: 8px;
+.vc-photo {
+  img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    border: 4px solid white;
   }
-}
-
-.vc-cta-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 10px 16px;
-  color: var(--warm-dark);
-  text-decoration: none;
-  font-weight: 500;
-  border-radius: 999px;
-  border: 1px solid var(--secondary-300);
-  background: white;
-  transition: background 0.2s ease;
-
-  &:hover {
-    background: var(--secondary-100);
-  }
-
-  mat-icon {
-    font-size: 18px;
-    width: 18px;
-    height: 18px;
-  }
-}
-
-.vc-trust {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px 22px;
-  font-size: 0.9rem;
-  color: var(--neutral-medium);
-
-  li {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  mat-icon {
-    color: var(--primary-700);
-    font-size: 18px;
-    width: 18px;
-    height: 18px;
-  }
-}
-
-// Bulles décoratives (réutilise nuage.svg du site)
-.vc-hero-side {
-  position: relative;
-  min-height: 320px;
-
-  @media (max-width: 880px) {
-    display: none;
-  }
-}
-
-.vc-card-bubble {
-  position: absolute;
-  background: white;
-  border-radius: 24px;
-  padding: 18px 22px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-family: 'Playfair Display', serif;
-  font-size: 0.95rem;
-  color: var(--warm-dark);
-  line-height: 1.3;
-
-  mat-icon {
-    color: var(--primary-700);
-    font-size: 28px;
-    width: 28px;
-    height: 28px;
-  }
-
-  &:nth-child(1) { top: 0;  left: 0;  transform: rotate(-3deg); }
-  &.vc-bubble-2  { top: 90px; right: 0; transform: rotate(4deg);  background: var(--secondary-100); }
-  &.vc-bubble-3  { bottom: 0; left: 40px; transform: rotate(-2deg); }
-}
-
-// ============================================
-// RDV
-// ============================================
-.vc-rdv {
-  background: var(--secondary-50);
-  padding: 48px 0 64px;
-}
-
-.vc-rdv-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 32px;
-
-  @media (max-width: 720px) {
-    padding: 0 16px;
-  }
-}
-
-.vc-rdv-header {
-  text-align: center;
-  margin-bottom: 24px;
-
-  h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 500;
-    color: var(--warm-dark);
-    margin: 0 0 8px;
-  }
-}
-
-.vc-rdv-sub {
-  color: var(--neutral-medium);
-  margin: 0;
-  font-size: 1rem;
-}
-
-.vc-toggle {
-  display: flex;
-  justify-content: center;
-  margin: 0 auto 24px;
-  border-radius: 999px !important;
-
-  mat-button-toggle {
-    border-radius: 999px !important;
-  }
-
-  mat-icon {
-    margin-right: 6px;
-  }
-}
-
-.vc-rdv-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: 24px;
-
-  @media (max-width: 880px) {
-    grid-template-columns: 1fr;
-  }
-}
-
-.vc-cal-card,
-.vc-form-card {
-  border-radius: 16px !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
-  background: white;
-
-  mat-card-title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.15rem !important;
-    color: var(--warm-dark);
-
-    mat-icon {
-      color: var(--primary-700);
-    }
-  }
-}
-
-.vc-slots {
-  margin: 12px 0 20px;
-
-  h4 {
-    font-size: 0.95rem;
-    color: var(--warm-dark);
-    margin: 0 0 10px;
-    font-weight: 500;
-  }
-}
-
-.vc-dur {
-  font-size: 0.8rem;
-  color: var(--neutral-light);
-  font-weight: 400;
-}
-
-.vc-slots-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-  gap: 8px;
-
-  button {
-    border-radius: 10px;
-    height: 38px;
-    font-size: 0.9rem;
-    background: white;
-    color: var(--warm-dark);
-    border: 1px solid var(--secondary-300);
-    transition: all 0.15s ease;
-
-    &:hover:not([disabled]) {
-      background: var(--primary-700);
-      color: white;
-      border-color: var(--primary-700);
-    }
-
-    &.vc-slot-on {
-      background: var(--primary-700) !important;
-      color: white !important;
-      border-color: var(--primary-700) !important;
-    }
-  }
-}
-
-.vc-loading,
-.vc-no-slots {
-  font-size: 0.9rem;
-  color: var(--neutral-medium);
-  font-style: italic;
-  margin: 4px 0;
-}
-
-.vc-form {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.vc-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-  }
-}
-
-.vc-full {
-  width: 100%;
-}
-
-.vc-submit {
-  margin-top: 14px;
-  height: 50px !important;
-  border-radius: 999px !important;
-  font-size: 1rem !important;
-  align-self: stretch;
-
-  mat-icon {
-    margin-right: 8px;
-  }
-}
-
-// ============================================
-// Confirmation
-// ============================================
-.vc-confirm-card {
-  max-width: 520px;
-  margin: 24px auto;
-  padding: 32px;
-  text-align: center;
-  border-radius: 16px !important;
-  background: white;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05) !important;
-
-  .vc-confirm-icon {
-    font-size: 56px;
-    width: 56px;
-    height: 56px;
-    color: var(--primary-700);
-  }
-
-  h2 {
-    font-family: 'Playfair Display', serif;
-    color: var(--warm-dark);
-    margin: 12px 0 8px;
-  }
-
-  p {
-    color: var(--neutral-medium);
-    line-height: 1.6;
-  }
-}
-
-// ============================================
-// Footer
-// ============================================
-.vc-foot {
-  background: var(--warm-dark);
-  color: var(--secondary-100);
-  padding: 18px 32px;
-
-  a {
-    color: var(--secondary-100);
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-
-    &:hover { color: white; }
-  }
-
-  mat-icon {
-    font-size: 18px;
-    width: 18px;
-    height: 18px;
-  }
-}
-
-.vc-foot-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  font-size: 0.85rem;
-  flex-wrap: wrap;
-}
-
-.vc-foot-mid {
-  opacity: 0.8;
 }

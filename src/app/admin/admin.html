@@ -1,7 +1,19 @@
 <div class="admin-container">
   <mat-toolbar color="primary">
     <span>Administration - Événements à confirmer</span>
+    <span class="spacer"></span>
+    <button mat-button (click)="generateQrCode()">
+      <mat-icon>qr_code</mat-icon>
+      Générer QR Code
+    </button>
   </mat-toolbar>
+
+  @if (lastQrCodeUrl()) {
+    <div class="qr-url-display">
+      <p>URL du QR Code :</p>
+      <a [href]="lastQrCodeUrl()" target="_blank">{{ lastQrCodeUrl() }}</a>
+    </div>
+  }
 
   <div class="content">
     @if (loading()) {

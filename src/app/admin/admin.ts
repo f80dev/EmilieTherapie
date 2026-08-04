@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { EmailDialog } from './email-dialog/email-dialog';
+import * as QRCode from 'qrcode';
 
 interface CalendarEvent {
   id: string;
@@ -41,6 +42,7 @@ export class Admin implements OnInit {
 
   pendingEvents = signal<CalendarEvent[]>([]);
   loading = signal(false);
+  lastQrCodeUrl = signal<string>('');
 
   ngOnInit() {
     this.loadPendingEvents();
@@ -130,6 +132,26 @@ export class Admin implements OnInit {
           }
         });
       }
+    });
+  }
+
+  generateQrCode() {
+    const timestamp = Date.now().toString(16);
+    const baseUrl = window.location.origin;
+    const url = `${baseUrl}/via-carte?t=${timestamp}`;
+    this.lastQrCodeUrl.set(url);
+
+    QRCode.toDataURL(url, { width: 512, margin: 2 }).then((dataUrl:any) => {
+      const link = document.createElement('a');
+      link.href = dataUrl;
+      link.download = `qrcode-carte-${timestamp}.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      this.snackBar.open('QR Code généré et téléchargé', 'Fermer', { duration: 3000 });
+    }).catch((err:any) => {
+      console.error('Failed to generate QR code:', err);
+      this.snackBar.open('Erreur lors de la génération du QR code', 'Fermer', { duration: 3000 });
     });
   }
 }

@@ -7,6 +7,38 @@
   margin: 0 auto;
 }
 
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-toolbar {
+  button {
+    margin-left: 8px;
+  }
+}
+
+.qr-url-display {
+  margin-top: 16px;
+  padding: 16px;
+  background-color: var(--secondary-100);
+  border-radius: 8px;
+
+  p {
+    margin: 0 0 8px 0;
+    font-weight: 500;
+    color: var(--primary-700);
+  }
+
+  a {
+    color: var(--primary-500);
+    word-break: break-all;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
 .content {
   margin-top: 20px;
 }

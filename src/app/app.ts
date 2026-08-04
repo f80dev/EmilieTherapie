@@ -109,7 +109,7 @@ export class App implements OnInit {
   message = signal('');
   selectedDate = signal<Date | null>(null);
   selectedTime = signal<string>('');
-  seanceType = signal<'distant' | 'presentiel'>('presentiel');
+  seanceType = signal<'callback' | 'distant' | 'presentiel'>('presentiel');
   selectedTypeSeance = signal<TypeSeance | null>(null);
   selectedLieu = signal<Lieu | null>(null);
   isMobileMenuOpen = signal(false);
@@ -228,6 +228,19 @@ export class App implements OnInit {
       console.log('[Router] Handling redirect to:', redirectTo);
       // Navigate using Angular Router after initialization
       this.router.navigateByUrl(redirectTo);
+    }
+
+    // DEBUG: Log URL fragment for debugging navigation issues
+    console.log('[Debug] Current URL:', window.location.href);
+    console.log('[Debug] Hash fragment:', window.location.hash);
+    if (window.location.hash) {
+      const fragment = window.location.hash.substring(1);
+      console.log('[Debug] Fragment to scroll to:', fragment);
+      // Scroll to fragment after a brief delay to ensure DOM is ready
+      setTimeout(() => {
+        console.log('[Debug] Attempting scroll to:', fragment);
+        this.scrollTo(fragment);
+      }, 100);
     }
 
     this.loadUserDataFromLocalStorage();
