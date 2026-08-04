@@ -139,11 +139,7 @@
         protéger d'une situation perçue, par votre système nerveux, comme extrêmement dangereuse.<br>
         Bien qu'ils soient aujourd'hui devenus obsolètes, parfois même contraignants, ces mécanismes restent actifs - comme bloqués en vous.
       </p>
-
-
-
       <br>
-
       <div class="hero-columns content-text">
         <div style="text-align: left;">
           <strong>Mon rôle consiste à vous aider à :</strong>
@@ -155,11 +151,10 @@
           </ul>
         </div>
       </div>
-
     </mat-expansion-panel>
 
 
-    <app-vertical-card image="MES ACCOMPAGNEMENTS_Visio gratuite_2.png" [imagePosition]="screenService.isSmallScreen() ? 'top' : 'right'">
+    <app-vertical-card image="accompagnement_1.jpg" [imagePosition]="screenService.isSmallScreen() ? 'top' : 'right'">
       <h3>Un premier échange gratuit <span style="color: var(--primary-500);">(30 min)</span></h3><br>
       <p class="content-text">Parce que le choix d'un.e thérapeute est important et très personnel,
         je vous propose un premier contact <i>en visio</i>, sans aucun engagement.<br><br>
@@ -172,7 +167,7 @@
 
     <br><br>
 
-    <app-vertical-card image="MES ACCOMPAGNEMENTS_Session_1.jpg" [imagePosition]="screenService.isSmallScreen() ? 'top' : 'left'">
+    <app-vertical-card image="accompagnement_2.jpg" [imagePosition]="screenService.isSmallScreen() ? 'top' : 'left'">
       <h3>Des séances individuelles de <span style="color: var(--primary-500);">1h ou 1h30</span></h3>
       <p class="content-text">
         Durant ce temps qui est le vôtre, je m'engage à vous offrir  un espace sécure, bienveillant,
@@ -297,6 +292,7 @@
 
     <div class="seance-type-toggle">
 
+
       @if (selectedTypeSeance()!.id != 'prise-contact') {
         <mat-button-toggle-group [value]="seanceType()" (change)="seanceType.set($event.value)">
           <mat-button-toggle value="presentiel">
@@ -309,6 +305,7 @@
           </mat-button-toggle>
         </mat-button-toggle-group>
       }
+
 
 
       @if (seanceType() === 'distant' || selectedTypeSeance()!.id == 'prise-contact') {
@@ -509,7 +506,6 @@
       Ma pratique s'articule autour de modèles thérapeutiques reconnus et complémentaires
     </p>
 
-
     <div class="principles-grid">
       @for (principle of methodPrinciples; track principle.title) {
         <div class="principle-card" [class.flipped]="flippedCards[principle.title]">
@@ -523,8 +519,6 @@
               <a class="flip-link">En savoir plus</a>
             </div>
             <div class="card-back" (click)="flipCard(principle.title)">
-
-
 
                 <mat-card-content>
                   <div style="color:white;text-align: left;font-size:0.85rem;line-height: 1.3;" [innerHTML]="principle.description_back"></div>

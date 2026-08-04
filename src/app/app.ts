@@ -146,7 +146,7 @@ export class App implements OnInit {
 
   methodPrinciples = [
     {
-      icon: 'network_intelligence',
+      icon: 'handshake',
       title: "L'Intelligence Relationnelle (IR®)",
       description:
         'Approche neurobiologique à la fois profonde (par son action sur le système nerveux) et douce (par la sécurité que la co-régulation instaure durablement)',
@@ -161,7 +161,7 @@ export class App implements OnInit {
         "permet de retrouver un profond sentiment de paix intérieure (* ces sous-personnalités qui trahissent et portent vos blessures ou qui s'épuisent, au contraire, à protéger vos zones de fragilité)",
     },
     {
-      icon: 'multimodal_hand_eye',
+      icon: 'visibility',
       title: "L'EMDR et les ressources de stabilisation",
       description:
         'Approche de désensibilisation et de retraitement des souvenirs traumatiques, par une stimulation bilatérale alternée',
@@ -169,7 +169,7 @@ export class App implements OnInit {
         "Le traumatisme, ça n'est pas tant l'évènement en lui-même que votre vécu d'une insécurité extrême, au moment où il s'est produit. En situation de grand danger, le cerveau humain peut aller jusqu'à \"dysjoncter\" et empêcher ce vécu traumatique d'être \"digéré\" normalement. L'EMDR a pour objectif de relancer le processus naturel de guérison du psychisme, en permettant à votre vécu - resté bloqué dans la mémoire traumatique - de rejoindre la mémoire autobiographique... et d'être ainsi classé dans vos \"archives personnelles\". Dans ce cadre, les techniques d'ancrage et de stabilisation émotionnelle sont autant de ressources précieuses, pour accompagner ce processus - à votre rythme et en toute sécurité",
     },
     {
-      icon: 'physical_therapy',
+      icon: 'self_improvement',
       title: 'La thérapie sensori-motrice',
       description:
         "Approche somatique qui utilise le corps comme ressource principale d'informations et de changements",
