@@ -9,6 +9,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { EmailDialog } from './email-dialog/email-dialog';
 import * as QRCode from 'qrcode';
+import { read_email_template } from '../../main';
 
 interface CalendarEvent {
   id: string;
@@ -89,8 +90,18 @@ export class Admin implements OnInit {
     return details;
   }
 
-  confirmEvent(event: CalendarEvent) {
-    this.http.post(`/api/calendar/confirm/${event.id}`, {}).subscribe({
+
+
+
+
+  async confirmEvent(event: CalendarEvent) {
+    const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
+    const emailMatch = event.description.match(emailRegex);
+    const extractedEmail = emailMatch ? emailMatch[0] : '';
+
+    const email=await read_email_template('confirmation_rendezvous');
+
+    this.http.post(`/api/calendar/confirm/`, {event_id:event.id,body:email,dest_email:extractedEmail}).subscribe({
       next: () => {
         this.snackBar.open('Événement confirmé', 'Fermer', { duration: 3000 });
         this.loadPendingEvents();
@@ -102,15 +113,31 @@ export class Admin implements OnInit {
     });
   }
 
-  cancelEvent(event: CalendarEvent) {
-    this.http.delete(`/api/calendar/events/${event.id}`).subscribe({
-      next: () => {
-        this.snackBar.open('Événement annulé', 'Fermer', { duration: 3000 });
-        this.loadPendingEvents();
-      },
-      error: (err) => {
-        console.error('Failed to cancel event:', err);
-        this.snackBar.open('Erreur lors de l\'annulation', 'Fermer', { duration: 3000 });
+
+
+
+
+  async cancelEvent(event: CalendarEvent) {
+    const emailBody = await read_email_template("cancel_rendezvous");
+
+    const dialogRef = this.dialog.open(EmailDialog, {
+      width: '500px',
+      data: { emailBody },
+    });
+
+    dialogRef.afterClosed().subscribe((confirmedEmailBody) => {
+      if (confirmedEmailBody) {
+        const template = encodeURIComponent(confirmedEmailBody);
+        this.http.delete(`/api/calendar/events/${event.id}/${template}`).subscribe({
+          next: () => {
+            this.snackBar.open('Événement annulé', 'Fermer', { duration: 3000 });
+            this.loadPendingEvents();
+          },
+          error: (err) => {
+            console.error('Failed to cancel event:', err);
+            this.snackBar.open('Erreur lors de l\'annulation', 'Fermer', { duration: 3000 });
+          }
+        });
       }
     });
   }

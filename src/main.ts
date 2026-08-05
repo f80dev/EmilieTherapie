@@ -9,3 +9,11 @@ bootstrapApplication(AppRoot, appConfig)
 export function back() {
   window.history.back();
 }
+
+export async function read_email_template(templateName: string): Promise<string> {
+  const response = await fetch(`/assets/${templateName}.html`);
+  if (!response.ok) {
+    throw new Error(`Failed to load email template: ${templateName}`);
+  }
+  return response.text();
+}

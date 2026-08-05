@@ -260,6 +260,7 @@ def list_pending_events() -> list[dict[str, Any]]:
 
 
 
+
 def get_tasklist_id_by_name(service, target_name: str) -> str | None:
   """Récupère l'ID d'une tasklist à partir de son nom."""
   # Appel à l'API pour lister les tasklists
@@ -313,6 +314,10 @@ def add_task(body: dict[str, str]) -> dict[str, Any]:
 
     logger.info(f"Task created: {result.get('id')}")
     return result
+
+
+
+
 
 
 @app.post("/api/calendar/add-to-calendar")
@@ -395,23 +400,16 @@ def add_to_calendar(body: dict[str, str]) -> dict[str, Any]:
     start_time = datetime.datetime.strftime(parsed_time, "%d/%m/%Y à %H:%M")
 
     email_subject = f"Demande de rendez-vous - {title}"
-    email_body = f"""
-    Bonjour {firstname},
+    email_body = body.get("email_body")
 
-    J'ai bien reçu Votre demande de rendez-vous pour le {start_time}.
-    Merci d'attendre la confirmation de ma disponibilité pour l'inscrire dans votre agenda.
-
-    À bientôt,
-    Emilie
-
-    ---
-    Emilie Pommier - Thérapeute
-    """
-
-    send_email_smtp(email, email_subject, email_body, is_html=False)
+    send_email_smtp(email, email_subject, email_body, is_html=True)
 
     logger.info(f"Calendar event created: {event_id} on calendar {EMAIL}")
     return updated_event
+
+
+
+
 
 
 @app.post("/api/sendemail")
@@ -422,20 +420,22 @@ def send_email(body: dict[str, str]) -> str:
   email_match = re.search(r'Email:\s*([^\n]+)', description)
   client_email = email_match.group(1).strip() if email_match else None
   if client_email:
-    send_email_smtp(to_email=client_email,subject="Message",body=body.get("body"),is_html=False)
+    send_email_smtp(to_email=client_email,subject="Message",body=body.get("body"),is_html=True)
     return "Email sent"
   else:
     return "No email sent"
 
 
-@app.post("/api/calendar/confirm/{event_id}")
-def confirm_event(event_id: str) -> dict[str, Any]:
+
+
+@app.post("/api/calendar/confirm")
+def confirm_event(body: dict[str, str]) -> dict[str, Any]:
     """Confirme un événement en changeant son statut à confirmed et enlevant le préfixe 'À CONFIRMER'."""
     try:
         service = get_calendar_service()
 
         # Récupérer l'événement
-        event = service.events().get(calendarId=EMAIL, eventId=event_id).execute()
+        event = service.events().get(calendarId=EMAIL, eventId=body.get("event_id")).execute()
 
         # Modifier le titre enlevant le préfixe "À CONFIRMER - "
         summary = event.get("summary", "")
@@ -451,77 +451,60 @@ def confirm_event(event_id: str) -> dict[str, Any]:
 
         result = service.events().update(
             calendarId=EMAIL,
-            eventId=event_id,
+            eventId=body.get("event_id"),
             body=event
         ).execute()
 
-        logger.info(f"Événement confirmé: {event_id}")
+        logger.info(f"Événement confirmé: {body.get("event_id")}")
+
+
 
         # Envoyer un email de confirmation
-        description = event.get("description", "")
-        email_match = re.search(r'Email:\s*([^\n]+)', description)
-        client_email = email_match.group(1).strip() if email_match else None
+        # description = event.get("description", "")
+        # email_match = re.search(r'Email:\s*([^\n]+)', description)
+        # client_email = email_match.group(1).strip() if email_match else None
         lieu_rendezvous="https://meet.google.com/asj-rmvq-bwb" if "visio" in event["description"] else "lieu geographique"
 
 
-        if client_email and "@" in client_email:
-            # Extraire les infos pour l'email
-            start = event.get("start", {}).get("dateTime", "")
-            end = event.get("end", {}).get("dateTime", "")
 
-            # Formater la date et l'heure
-            if start:
-                try:
-                    from datetime import datetime
-                    start_dt = datetime.fromisoformat(start.replace('Z', '+00:00'))
-                      start_str = start_dt.strftime("%d/%m/%Y à %H:%M")
-                  except:
-                    start_str = start
-            else:
-                start_str = "Non spécifiée"
-
+        # if client_email and "@" in client_email:
+        #     # Extraire les infos pour l'email
+        #     start = event.get("start", {}).get("dateTime", "")
+        #     end = event.get("end", {}).get("dateTime", "")
+        #
+        #     # Formater la date et l'heure
+        #     if start:
+        #         try:
+        #             from datetime import datetime
+        #             start_dt = datetime.fromisoformat(start.replace('Z', '+00:00'))
+        #               start_str = start_dt.strftime("%d/%m/%Y à %H:%M")
+        #           except:
+        #             start_str = start
+        #     else:
+        #         start_str = "Non spécifiée"
+        #
 
 
             # Envoyer l'email de confirmation
-            try:
-                email_subject = f"Confirmation de votre rendez-vous - {summary}"
-                email_body = f"""
-Bonjour,
-
-Votre rendez-vous a été confirmé :
-
-📅 Date : {start_str}
-📝 Titre : {summary}
-
-  {lieu_rendezvous}
-
-
-Je me réjouis de vous rencontrer.
-
-À bientôt,
-Emilie
-
----
-Emilie Pommier - Thérapeute
-"""
-
-                send_email_smtp(client_email, email_subject, email_body, is_html=False)
-                logger.info(f"Email de confirmation envoyé à {client_email}")
-            except Exception as email_error:
-                logger.error(f"Erreur lors de l'envoi de l'email de confirmation: {email_error}")
-                # On ne bloque pas la confirmation si l'email échoue
-        else:
-            logger.warning(f"Impossible d'extraire l'email client pour l'événement {event_id}")
-
-        return result
+        try:
+            email_subject = f"Confirmation de votre rendez-vous - {summary}"
+            email_body = body.get("body")
+            send_email_smtp(body.get("dest_email"), email_subject, email_body, is_html=True)
+            logger.info(f"Email de confirmation envoyé à {body.get("dest_email")}")
+        except Exception as email_error:
+            logger.error(f"Erreur lors de l'envoi de l'email de confirmation: {email_error}")
+            # On ne bloque pas la confirmation si l'email échoue
 
     except Exception as e:
         logger.error(f"Erreur lors de la confirmation de l'événement: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.delete("/api/calendar/events/{event_id}")
-def delete_event(event_id: str) -> dict[str, Any]:
+
+
+
+@app.delete("/api/calendar/events/{event_id}/{email_body}")
+def delete_event(event_id: str,email_body:str) -> dict[str, Any]:
     """Supprime un événement du calendrier et envoie un email d'annulation au client."""
     try:
         service = get_calendar_service()
@@ -534,23 +517,23 @@ def delete_event(event_id: str) -> dict[str, Any]:
         email_match = re.search(r'Email:\s*([^\n]+)', description)
         client_email = email_match.group(1).strip() if email_match else None
 
-        summary = event.get("summary", "")
-        # Enlever le préfixe "À CONFIRMER - " si présent
-        if summary.startswith("À CONFIRMER - "):
-            summary = summary[15:]
-        elif summary.startswith("À CONFIRMER "):
-            summary = summary[13:]
+        # summary = event.get("summary", "")
+        # # Enlever le préfixe "À CONFIRMER - " si présent
+        # if summary.startswith("À CONFIRMER - "):
+        #     summary = summary[15:]
+        # elif summary.startswith("À CONFIRMER "):
+        #     summary = summary[13:]
 
-        start = event.get("start", {}).get("dateTime", "")
-        if start:
-            try:
-                from datetime import datetime
-                start_dt = datetime.fromisoformat(start.replace('Z', '+00:00'))
-                start_str = start_dt.strftime("%d/%m/%Y à %H:%M")
-            except:
-                start_str = start
-        else:
-            start_str = "Non spécifiée"
+        # start = event.get("start", {}).get("dateTime", "")
+        # if start:
+        #     try:
+        #         from datetime import datetime
+        #         start_dt = datetime.fromisoformat(start.replace('Z', '+00:00'))
+        #         start_str = start_dt.strftime("%d/%m/%Y à %H:%M")
+        #     except:
+        #         start_str = start
+        # else:
+        #     start_str = "Non spécifiée"
 
         # Supprimer l'événement
         service.events().delete(calendarId=EMAIL, eventId=event_id).execute()
@@ -560,25 +543,6 @@ def delete_event(event_id: str) -> dict[str, Any]:
         if client_email and "@" in client_email:
             try:
                 email_subject = f"Annulation de votre demande de rendez-vous"
-                email_body = f"""
-Bonjour,
-
-Problème de disponibilité, votre demande de rendez-vous a été annulée :
-
-📅 Date proposée : {start_str}
-📝 Séance : {summary}
-
-Si vous souhaitez prendre un nouveau rendez-vous, vous pouvez faire une nouvelle demande via le formulaire de réservation.
-
-Je reste à votre disposition pour toute question.
-
-À bientôt,
-Emilie
-
----
-Emilie Pommier - Thérapeute
-"""
-
                 send_email_smtp(client_email, email_subject, email_body, is_html=False)
                 logger.info(f"Email d'annulation envoyé à {client_email}")
             except Exception as email_error:
@@ -591,6 +555,8 @@ Emilie Pommier - Thérapeute
     except Exception as e:
         logger.error(f"Erreur lors de la suppression de l'événement: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
 
 
 @app.post("/api/email/send")
