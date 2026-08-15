@@ -280,6 +280,7 @@ mat-panel-description ul {
 
 @media (max-width: 768px) {
   .nav-links-drawer {
+    display: flex !important;
     position: fixed;
     top: 0;
     left: 0;
