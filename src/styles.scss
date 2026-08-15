@@ -250,8 +250,13 @@ mat-panel-description ul {
 // invisible-burger bug on mobile.
 // ============================================================
 
+// IMPORTANT: .hamburger must beat .mat-mdc-icon-button { display: inline-block }
+// from Angular Material. Same selector specificity (1 class) means order wins;
+// Material CSS is loaded after styles.scss so it would override our display: none.
+// Adding !important is the safest cross-version fix without raising specificity
+// for unrelated rules.
 .hamburger {
-  display: none;
+  display: none !important;
   color: var(--warm-medium);
   z-index: 1002;
   align-items: center;
@@ -264,7 +269,7 @@ mat-panel-description ul {
   // (scoped) so the [_ngcontent-xxx] specificity matches the desktop
   // rule and declaration order wins.
   .header-toolbar .hamburger {
-    display: inline-flex;
+    display: inline-flex !important;
     margin-left: auto;
   }
 }
