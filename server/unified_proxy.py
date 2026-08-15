@@ -132,6 +132,8 @@ def send_email_smtp(to_email: str, subject: str, body: str, is_html: bool = Fals
         logger.error(f"Failed to send email to {to_email}: {e}")
         raise RuntimeError(f"Failed to send email to {to_email}: {e}")
 
+
+
 @app.get("/api/userinfo")
 def get_user_profile_info() -> Dict[str, Any]:
   """Récupère les informations du compte utilisateur (Email, Nom, ID).

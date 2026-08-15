@@ -115,19 +115,8 @@ export class App implements OnInit {
   isMobileMenuOpen = signal(false);
   acceptTerms = signal(false);
 
-  // 75-minute slots from 8h to 20h (last start at 18h45 for a 75min session ending at 20h)
-  timeSlots: string[] = [
-    '08:00',
-    '09:15',
-    '10:30',
-    '11:45',
-    '13:00',
-    '14:15',
-    '15:30',
-    '16:45',
-    '18:00',
-    '19:15',
-  ];
+  // Time slots are now generated dynamically based on selected appointment type duration
+  timeSlots = signal<string[]>([]);
 
   // Busy slots fetched from Google Calendar: date string → busy slots for that day
   busySlots = signal<Map<string, BusySlot[]>>(new Map());
@@ -293,6 +282,7 @@ export class App implements OnInit {
         // Set default selection to first type
         if (data.length > 0) {
           this.selectedTypeSeance.set(data[0]);
+          this.generateTimeSlots();
         }
       },
       error: (err) => {
@@ -303,6 +293,23 @@ export class App implements OnInit {
 
   selectTypeSeance(typeSeance: TypeSeance): void {
     this.selectedTypeSeance.set(typeSeance);
+    this.selectedTime.set(''); // Reset time when type changes
+    this.generateTimeSlots();
+  }
+
+  private generateTimeSlots(): void {
+    const duration = (this.selectedTypeSeance()?.duree || 60) + 15; // Add 15 min buffer between sessions
+    const slots: string[] = [];
+    const startHour = 8 * 60; // 8h in minutes
+    const endHour = 20 * 60; // 20h in minutes
+
+    for (let time = startHour; time + duration <= endHour; time += duration) {
+      const hours = Math.floor(time / 60);
+      const minutes = time % 60;
+      slots.push(`${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`);
+    }
+
+    this.timeSlots.set(slots);
   }
 
   private loadUserDataFromLocalStorage(): void {
@@ -364,7 +371,8 @@ export class App implements OnInit {
 
     const [slotH, slotM] = time.split(':').map(Number);
     const slotStartMin = slotH * 60 + slotM;
-    const slotEndMin = slotStartMin + 75;
+    const duration = this.selectedTypeSeance()?.duree || 60;
+    const slotEndMin = slotStartMin + duration;
 
     for (const b of busy) {
       const [bH, bM] = b.time.split(':').map(Number);
@@ -395,7 +403,7 @@ export class App implements OnInit {
   }
 
   availableSlots(): string[] {
-    return this.timeSlots.filter((s) => this.isSlotAvailable(s));
+    return this.timeSlots().filter((s) => this.isSlotAvailable(s));
   }
 
   selectTimeSlot(time: string) {
