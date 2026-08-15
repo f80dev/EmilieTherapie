@@ -240,3 +240,62 @@ mat-panel-description {
 mat-panel-description ul {
   width: 100%;
 }
+
+// ============================================================
+// Mobile header — burger + drawer
+// IMPORTANT: defined GLOBALLY (not in app.scss) because the burger
+// lives inside <mat-toolbar> (Angular Material scope), so a
+// component-scoped selector .header-toolbar ... .hamburger with
+// _ngcontent never matches. Keeping these rules global fixes the
+// invisible-burger bug on mobile.
+// ============================================================
+
+.hamburger {
+  display: none;
+  color: var(--warm-medium);
+  z-index: 1002;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  // .header-toolbar .nav-links { display: none } is in app.scss
+  // (scoped) so the [_ngcontent-xxx] specificity matches the desktop
+  // rule and declaration order wins.
+  .header-toolbar .hamburger {
+    display: inline-flex;
+    margin-left: auto;
+  }
+}
+
+.nav-links-drawer {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav-links-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease, visibility 0.3s;
+    z-index: 999;
+    visibility: hidden;
+  }
+  .nav-links-drawer.mobile-open {
+    transform: translateX(0);
+    visibility: visible;
+  }
+  .nav-links-drawer button {
+    font-size: 1.2rem;
+    color: var(--warm-medium);
+  }
+}
