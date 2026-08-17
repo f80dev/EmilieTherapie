@@ -457,7 +457,7 @@ def confirm_event(body: dict[str, str]) -> dict[str, Any]:
             body=event
         ).execute()
 
-        logger.info(f"Événement confirmé: {body.get("event_id")}")
+        logger.info(f"Événement confirmé: {body.get('event_id')}")
 
 
 
@@ -492,7 +492,7 @@ def confirm_event(body: dict[str, str]) -> dict[str, Any]:
             email_subject = f"Confirmation de votre rendez-vous - {summary}"
             email_body = body.get("body")
             send_email_smtp(body.get("dest_email"), email_subject, email_body, is_html=True)
-            logger.info(f"Email de confirmation envoyé à {body.get("dest_email")}")
+            logger.info(f"Email de confirmation envoyé à {body.get('dest_email')}")
         except Exception as email_error:
             logger.error(f"Erreur lors de l'envoi de l'email de confirmation: {email_error}")
             # On ne bloque pas la confirmation si l'email échoue
@@ -602,6 +602,117 @@ def status_variable() -> dict:
             "SMTP_PORT":SMTP_PORT
             }
 
+
+# ---------------------------------------------------------------------------
+# MCP server mount — exposes /mcp endpoint for AI agents (Claude, GPT, etc.)
+# Tools and discovery metadata live in server/mcp_server.py.
+# ---------------------------------------------------------------------------
+try:
+    from mcp_server import mcp_http_app, issue_token, revoke_token, _load_tokens, mcp as _mcp_server
+    # The FastMCP sub-app exposes its routes at /mcp. We mount it at the root
+    # so requests to /mcp hit it directly (avoiding Starlette's trailing-slash
+    # redirect which MCP clients don't follow).
+    app.mount("", mcp_http_app)
+    logger.info("MCP server mounted at /mcp")
+except Exception as err:
+    logger.warning("MCP server NOT mounted: %s", err)
+    mcp_http_app = None
+    issue_token = None
+    revoke_token = None
+    _load_tokens = None
+    _mcp_server = None
+
+
+# FastMCP's StreamableHTTPSessionManager needs to run inside an anyio task group.
+# Starlette launches the sub-app's lifespan when a sub-app is mounted — but only
+# if the parent app is started via ASGI lifespan, not when uvicorn is given a
+# FastAPI instance directly. We attach a parent lifespan that delegates the
+# manager startup so MCP sessions are properly initialized.
+if _mcp_server is not None and _mcp_server._session_manager is not None:
+    from contextlib import asynccontextmanager
+    _manager = _mcp_server._session_manager
+
+    @asynccontextmanager
+    async def _combined_lifespan(_app):
+        async with _manager.run():
+            yield
+
+    # Replace the empty lifespan with one that boots the MCP manager.
+    app.router.lifespan_context = _combined_lifespan
+    logger.info("MCP session manager wired into FastAPI lifespan")
+
+
+# ---------------------------------------------------------------------------
+# Admin endpoints for MCP API tokens (UI in src/app/admin)
+# ---------------------------------------------------------------------------
+from pydantic import BaseModel
+
+
+class TokenRequest(BaseModel):
+    label: str
+    ttl_days: int = 365
+
+
+class TokenRevokeRequest(BaseModel):
+    token_prefix: str
+
+
+@app.get("/api/admin/tokens")
+def list_tokens() -> dict[str, list[dict[str, Any]]]:
+    """List all MCP API tokens (metadata only — no plaintext)."""
+    if _load_tokens is None:
+        raise HTTPException(status_code=503, detail="MCP not enabled")
+    return {"tokens": _load_tokens()}
+
+
+@app.post("/api/admin/tokens")
+def create_token(req: TokenRequest) -> dict[str, Any]:
+    """Create a new MCP API token. The full token is returned ONCE — store it safely."""
+    if issue_token is None:
+        raise HTTPException(status_code=503, detail="MCP not enabled")
+    if not req.label.strip():
+        raise HTTPException(status_code=400, detail="label required")
+    if not (1 <= req.ttl_days <= 3650):
+        raise HTTPException(status_code=400, detail="ttl_days must be in [1, 3650]")
+    return issue_token(req.label.strip(), req.ttl_days)
+
+
+@app.delete("/api/admin/tokens")
+def delete_token(req: TokenRevokeRequest) -> dict[str, Any]:
+    """Revoke a token by its prefix."""
+    if revoke_token is None:
+        raise HTTPException(status_code=503, detail="MCP not enabled")
+    ok = revoke_token(req.token_prefix)
+    if not ok:
+        raise HTTPException(status_code=404, detail=f"Token prefix not found: {req.token_prefix}")
+    return {"revoked": req.token_prefix}
+
+
+@app.get("/api/mcp/info")
+def mcp_info() -> dict[str, Any]:
+    """Discovery endpoint: lists the MCP tools and their descriptions so an
+    agent crawler can understand the server without speaking MCP. The full
+    list_tools call returns the same info via the proper MCP protocol."""
+    if mcp_http_app is None:
+        raise HTTPException(status_code=503, detail="MCP not enabled")
+    import asyncio
+    from mcp_server import mcp
+    tools = asyncio.run(mcp.list_tools())
+    return {
+        "name": "emiliepommier",
+        "version": "1.0.0",
+        "transport": "streamable-http",
+        "endpoint": "/mcp",
+        "auth": "Bearer token (issue via /api/admin/tokens)",
+        "tools": [
+            {
+                "name": t.name,
+                "description": t.description,
+                "inputSchema": t.inputSchema,
+            }
+            for t in tools
+        ],
+    }
 
 
 if __name__ == "__main__":

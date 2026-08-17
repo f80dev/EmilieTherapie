@@ -46,3 +46,4 @@ server/google_token.json
 google_token.json
 
 /server/sitewebprincipal-3d2b451b6b63.json
+server/__pycache__/
