@@ -1,12 +1,19 @@
 <section class="vc-intro">
   <div class="vc-intro-content">
-    <p class="vc-text">Vous venez de franchir une 1ère étape</p>
-    <p class="vc-text">Votre parcours commence ici</p>
+    <p class="vc-text">Vous venez de franchir une 1ère étape<br>Votre parcours commence ici</p>
     <div class="vc-photo">
-      <img src="assets/emilie2.jpg" alt="Emilie Pommier" />
+      <img src="emilie.jpg" alt="Emilie Pommier" />
     </div>
     <br>
     <p class="vc-text">Prenons le temps d'échanger, au moment le plus adapté pour vous</p>
     <p class="vc-text">Choisissez la date de votre choix pour aborder sereinement votre démarche</p>
+
+    <br>
+
+    <button mat-flat-button color="accent" (click)="goto_home()" class="main-btn">
+      <mat-icon>calendar_today</mat-icon>
+      Prendre rendez-vous
+    </button>
+
   </div>
 </section>

@@ -2,6 +2,8 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AnalyticsService } from '../analytics.service';
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 /**
  * Page /via-carte — landing dédiée aux scans QR depuis les cartes de visite.
@@ -12,9 +14,7 @@ import { AnalyticsService } from '../analytics.service';
 @Component({
   selector: 'app-via-carte',
   standalone: true,
-  imports: [
-    CommonModule,
-  ],
+  imports: [CommonModule, MatButton, MatIcon],
   templateUrl: './via-carte.html',
   styleUrl: './via-carte.scss',
 })
@@ -27,6 +27,10 @@ export class ViaCarte implements OnInit {
     // Redirection automatique vers la section rdv après 10 secondes
     setTimeout(() => {
       this.router.navigate(['/'], { fragment: 'rdv' });
-    }, 5000);
+    }, 7000);
+  }
+
+  goto_home() {
+    this.router.navigate(['/'], { fragment: 'rdv' });
   }
 }

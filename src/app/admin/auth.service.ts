@@ -4,7 +4,7 @@ import { Injectable, signal } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly ADMIN_PASSWORD = 'Emilie2024!';
+  private readonly ADMIN_PASSWORD = 'lapin123';
   isAuthenticated = signal<boolean>(false);
 
   login(password: string): boolean {
