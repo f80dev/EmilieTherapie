@@ -52,7 +52,7 @@ DATA_DIR_CANDIDATES = [
 DEFAULT_SERVICES = [
     {
         "id": "prise-contact",
-        "nom": "Premier échange gratuit",
+        "nom": "Premier échange offert",
         "duree_minutes": 30,
         "format": "visioconférence",
         "tarif_euros": 0,

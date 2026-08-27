@@ -153,9 +153,9 @@ export class App implements OnInit {
       icon: 'visibility',
       title: "L'EMDR et les ressources de stabilisation",
       description:
-        'Approche de désensibilisation et de retraitement des souvenirs traumatiques, par une stimulation bilatérale alternée',
+        'Approche de désensibilisation et de retraitement du vécu traumatique, par une stimulation bilatérale alternée',
       description_back:
-        "Le traumatisme, ça n'est pas tant l'évènement en lui-même que votre vécu d'une insécurité extrême, au moment où il s'est produit. En situation de grand danger, le cerveau humain peut aller jusqu'à \"dysjoncter\" et empêcher ce vécu traumatique d'être \"digéré\" normalement. L'EMDR a pour objectif de relancer le processus naturel de guérison du psychisme, en permettant à votre vécu - resté bloqué dans la mémoire traumatique - de rejoindre la mémoire autobiographique... et d'être ainsi classé dans vos \"archives personnelles\". Dans ce cadre, les techniques d'ancrage et de stabilisation émotionnelle sont autant de ressources précieuses, pour accompagner ce processus - à votre rythme et en toute sécurité",
+        "Le traumatisme, ça n'est pas tant l'évènement en lui-même que votre ressenti d'une insécurité extrême, au moment où il s'est produit. En situation de grand danger, le cerveau humain peut aller jusqu'à \"dysjoncter\" et empêcher ce vécu traumatique d'être \"digéré\" normalement. L'EMDR a pour objectif de relancer le processus naturel de guérison du psychisme, en permettant à votre vécu - resté bloqué dans la mémoire traumatique - de rejoindre la mémoire autobiographique... et d'être ainsi classé dans vos \"archives personnelles\". Dans ce cadre, les techniques d'ancrage et de stabilisation émotionnelle sont autant de ressources précieuses, pour accompagner ce processus - à votre rythme et en toute sécurité",
     },
     {
       icon: 'self_improvement',

@@ -25,39 +25,40 @@ export class SeoService {
   /** Mapping des chemins Angular -> métadonnées SEO spécifiques */
   private readonly routeMeta: Record<string, { title: string; description: string }> = {
     '/': {
-      title: 'Emilie Pommier — Psychothérapeute Intelligence Relationnelle Paris 10e | RDV en ligne',
+      title:
+        'Emilie Pommier - Thérapeute en Intelligence Relationnelle, EMDR, approche sensori-motrice et TCC | Paris 10e et 11e, mais aussi en visio | Prise de RDV en ligne',
       description:
-        "Emilie Pommier, psychothérapeute à Paris 10e. Intelligence Relationnelle de François Le Doze : guérison des blessures psychiques par l'engagement thérapeutique conscient. RDV en ligne.",
+        "Emilie Pommier, thérapeute à Paris 10e et 11e, mais aussi en visio. Guérison des blessures psychiques par l'engagement thérapeutique conscient, selon les approches thérapeutiques de l'Intelligence Relationnelle (modélisée par le Dr F. Le Doze), de l'EMDR, de la thérapie sensori-motrice et des TCC (thérapies cognitivo-comportementales). Prise de RDV en ligne.",
     },
     '/parcours': {
-      title: 'Mon parcours de psychothérapeute | Emilie Pommier — Paris 10e',
+      title: 'Mon parcours de thérapeute | Emilie Pommier - Paris 10e et 11e',
       description:
-        "Le parcours d'Emilie Pommier : formation, supervision, approche de l'Intelligence Relationnelle (François Le Doze) et cadre déontologique de la psychothérapie à Paris 10e.",
+        "Le parcours d'Emilie Pommier : expérience professionnelle ; formation et spécialisation aux approches sensori-motrice, de l'Intelligence Relationnelle (Dr François Le Doze), de l'EMDR et des TCC ; inter-/supervision et cadre déontologique de l'accompagnement thérapeutique | Paris 10e et 11e.",
     },
     '/tarifs': {
-      title: 'Tarifs et modalités | Emilie Pommier — Psychothérapeute Paris 10e',
+      title: 'Tarifs et modalités | Emilie Pommier - Thérapeute Paris 10e et 11e',
       description:
-        "Tarifs des séances de psychothérapie en cabinet (Paris 10e) et en visio : durées, fréquence recommandée, moyens de paiement et conditions d'annulation.",
+        "Tarifs des séances de thérapie en cabinet (Paris 10e et 11e) ou en visio : durées, fréquence recommandée, moyens de paiement et conditions d'annulation.",
     },
     '/via-carte': {
-      title: 'Réservez votre 1er échange gratuit 30 min | Emilie Pommier — Paris 10e',
+      title: 'Réservez votre 1er échange offert 30 min | Emilie Pommier - Paris 10e et 11e',
       description:
-        "Page dédiée aux scans QR depuis les cartes de visite : choisissez un créneau en cabinet (Paris 10e) ou en visio pour votre premier échange offert de 30 minutes.",
+        'Page dédiée aux scans QR depuis les cartes de visite : choisissez un créneau en cabinet (Paris 10e ou 11e) ou en visio pour votre premier échange, offert, de 30 minutes.',
     },
     '/mentionslegales': {
-      title: 'Mentions légales | Emilie Pommier — Psychothérapeute Paris',
+      title: 'Mentions légales | Emilie Pommier - Thérapeute Paris',
       description:
-        "Mentions légales du site emiliepommier.fr : éditeur, hébergeur, propriété intellectuelle et responsabilité professionnelle d'Emilie Pommier, psychothérapeute.",
+        "Mentions légales du site emiliepommier.fr : éditeur, hébergeur, propriété intellectuelle et responsabilité professionnelle d'Emilie Pommier, psychopraticienne.",
     },
     '/politiquedeconfidentialite': {
-      title: 'Politique de confidentialité | Emilie Pommier — Psychothérapie Paris',
+      title: 'Politique de confidentialité | Emilie Pommier - Thérapeute Paris',
       description:
-        "Politique de confidentialité d'emiliepommier.fr : données collectées, durée de conservation, droits RGPD et contact DPO.",
+        'Politique de confidentialité de emiliepommier.fr : données collectées, durée de conservation, règlementation RGPD et données personnelles, contact DPO.',
     },
     '/versionslegales/cgv': {
-      title: 'Conditions générales de vente | Emilie Pommier — Psychothérapie',
+      title: 'Conditions générales de vente | Emilie Pommier - Thérapeute Paris',
       description:
-        'Conditions générales de vente des séances de psychothérapie proposées par Emilie Pommier : tarif, règlement, annulation, rétractation.',
+        'Conditions générales de vente des séances de thérapie proposées par Emilie Pommier : tarif, règlement, annulation, rétractation.',
     },
     '/admin': {
       title: 'Administration',
@@ -124,11 +125,13 @@ export class SeoService {
   }
 
   private defaultKeywordsFor(path: string): string {
-    const base = 'psychothérapeute Paris, psychothérapie Paris 10e, Intelligence Relationnelle, François Le Doze, engagement thérapeutique conscient, guérison trauma, dissociation, blessure psychique';
+    const base =
+      'thérapeute Paris, thérapie Paris 10e et 11e, approche trauma-informée, psychotraumatisme, Intelligence Relationnelle, François Le Doze, engagement thérapeutique conscient, guérison des trauma, guérison des blessures, blessure psychique, dissociation, dissociation structurelle, traumatisme développemental, trauma de négligence';
     const extra: Record<string, string> = {
-      '/parcours': 'parcours psychothérapeute, formation, supervision, déontologie',
-      '/tarifs': 'tarifs psychothérapie, prix séance psy, séance visio, séance cabinet',
-      '/via-carte': 'QR code, carte de visite, réservation, premier échange gratuit, prise de rendez-vous',
+      '/parcours': 'parcours thérapeute, formation, supervision, déontologie',
+      '/tarifs': 'tarifs thérapie, prix séance en présentiel, visio-consultation, séance au cabinet',
+      '/via-carte':
+        'QR code, carte de visite, réservation, premier échange offert, prise de rendez-vous',
       '/mentionslegales': 'mentions légales',
       '/politiquedeconfidentialite': 'RGPD, données personnelles, confidentialité',
       '/versionslegales/cgv': 'CGV, conditions générales de vente, annulation séance',

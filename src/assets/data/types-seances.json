@@ -1,11 +1,11 @@
 [
   {
     "id": "prise-contact",
-    "nom": "Premier échange gratuit",
+    "nom": "Premier échange offert",
     "duree": 30,
     "contenu": "Premier échange, en visio, pour exposer vos besoins & attentes et nous assurer que mon approche vous correspond",
     "objectif": "Établir un premier contact et définir ensemble vos objectifs",
-    "description": "Premier échange gratuit - 30 minutes"
+    "description": "Premier échange offert - 30 minutes"
   },
   {
     "id": "rdv-1h",

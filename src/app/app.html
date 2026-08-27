@@ -120,11 +120,6 @@
       Ressentez-vous de l'épuisement ou de la lassitude, face au décalage entre ce que vous avez
       compris et ce que votre corps ou vos émotions continuent d'exprimer ?</p>
 
-    <div class="citation">~ On ne réécrit pas son histoire. Mais restaurer la sécurité intérieure,
-      c'est s'autoriser enfin à décharger ses fardeaux pour décider sur quelle étagère ranger certains
-      chapitres de sa vie ~
-    </div>
-
 
     <mat-expansion-panel class="expansion-panel-text">
       <mat-expansion-panel-header class="titre-paragraphe">
@@ -134,7 +129,7 @@
       <p class="content-text">
 
         Difficultés relationnelles, symptômes chroniques, anxiété, sensation d'être à fleur de peau ou - au contraire -
-        coupé.e de ses émotions...<br>
+        coupé.e de vos émotions...<br>
         N'y voyez plus une fatalité ou de simples traits de votre personnalité : bien souvent, ce sont des mécanismes d'adaptation mis en place très tôt dans votre vie pour vous
         protéger d'une situation perçue, par votre système nerveux, comme extrêmement dangereuse.<br>
         Bien qu'ils soient aujourd'hui devenus obsolètes, parfois même contraignants, ces mécanismes restent actifs - comme bloqués en vous.
@@ -154,8 +149,8 @@
     </mat-expansion-panel>
 
 
-    <app-vertical-card image="accompagnement_1.jpg" [imagePosition]="screenService.isSmallScreen() ? 'top' : 'right'">
-      <h3>Un premier échange gratuit <span style="color: var(--primary-500);">(30 min)</span></h3><br>
+    <app-vertical-card image="accompagnement_1.webp" alt='premier échange gratuit' [imagePosition]="screenService.isSmallScreen() ? 'top' : 'right'">
+      <h3>Un premier échange offert <span style="color: var(--primary-500);">(30 min)</span></h3><br>
       <p class="content-text">Parce que le choix d'un.e thérapeute est important et très personnel,
         je vous propose un premier contact <i>en visio</i>, sans aucun engagement.<br><br>
         <strong>Pour vous :</strong> c'est l'occasion de m'exposer votre besoin, de formuler vos attentes et de
@@ -167,7 +162,7 @@
 
     <br><br>
 
-    <app-vertical-card image="accompagnement_2.jpg" [imagePosition]="screenService.isSmallScreen() ? 'top' : 'left'">
+    <app-vertical-card image="accompagnement_2.webp" alt="séance individuelle" [imagePosition]="screenService.isSmallScreen() ? 'top' : 'left'">
       <h3>Des séances individuelles de <span style="color: var(--primary-500);">1h ou 1h30</span></h3>
       <p class="content-text">
         Durant ce temps qui est le vôtre, je m'engage à vous offrir  un espace sécure, bienveillant,
@@ -238,7 +233,7 @@
         <div class="apropos-engagements content-text">
           <strong>Mes engagements</strong>
           <ul>
-            <li>Premier échange gratuit</li>
+            <li>Premier échange offert</li>
             <li>Flexibilité du format</li>
             <li>Rythme adapté à vos besoins</li>
           </ul>
@@ -416,7 +411,7 @@
             }
 
             <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Message (préciser un 2e créneau de disponibilité)</mat-label>
+              <mat-label>Message (préciser vos disponibilités)</mat-label>
               <textarea matInput
                         [value]="message()"
                         (input)="message.set($any($event.target).value)"
@@ -606,12 +601,12 @@
 
           <div>
             <br>
-            Dans le 10e arr. (ici, la localisation Google Maps)<br>
+            Dans le 10e arr (<a target="_blank" href="https://maps.app.goo.gl/xm5Eutjh1n58qpE68?g_st=aw">localisation</a>).<br>
             > Accès par les lignes 8 et 9 (station Bonne Nouvelle) ou la ligne 7 (station Poissonnière)
 
             <br><br>
 
-            Dans le 11e arr. (ici, la localisation Google Maps)<br>
+            Dans le 11e arr. (<a target="_blank" href="https://maps.app.goo.gl/RsG8Cuyvmqt3HSGs7?g_st=aw">localisation</a>)<br>
             > Accès par les lignes 1 et 5 (station Bastille), la ligne 8 (station Ledru-Rollin) ou la ligne 9 (Voltaire)<br>
             ... à votre convenance
 
@@ -626,7 +621,7 @@
 
       } @else {
 
-        <app-vertical-card image="visio.jpg" [imagePosition]="screenService.isSmallScreen() ? 'top' : 'left'">
+        <app-vertical-card image="visio.webp" [imagePosition]="screenService.isSmallScreen() ? 'top' : 'left'">
 
           <div class="intro-seance">
             Pour celles et ceux qui vivent loin, qui voyagent souvent<br>ou qui préférent le
@@ -740,19 +735,25 @@
             <li>
               <a href="#" target="_blank" rel="noopener">
                 <mat-icon>article</mat-icon>
-                Les liens d'attachement 100 % illustrés<br> (G. Persiaux et Y. Micoud)
+                Ca n'est pas toi le problème, ton cerveau t'a protégée. Je t'explique (BD - Lise Desportes)
               </a>
             </li>
             <li>
               <a href="#" target="_blank" rel="noopener">
                 <mat-icon>article</mat-icon>
-                Les psycho-traumatismes 100 % illustrés<br> (G. Persiaux et Y. Micoud)
+                Les liens d'attachement 100 % illustrés (G. Persiaux et Y. Micoud)
               </a>
             </li>
             <li>
               <a href="#" target="_blank" rel="noopener">
                 <mat-icon>article</mat-icon>
-                L'anxiété et la dépression 100 % illustrés<br> (G. Persiaux et Y. Micoud)
+                Les psycho-traumatismes 100 % illustrés (G. Persiaux et Y. Micoud)
+              </a>
+            </li>
+            <li>
+              <a href="#" target="_blank" rel="noopener">
+                <mat-icon>article</mat-icon>
+                L'anxiété et la dépression 100 % illustrés (G. Persiaux et Y. Micoud)
               </a>
             </li>
             <li>
@@ -806,6 +807,10 @@
       <p>Restaurer un sentiment durable de sécurité intérieure<br>
         et apaiser vos blessures</p>
       <br>
+      <p>
+        <mat-icon style="margin-bottom: -11px;font-size: medium;">phone</mat-icon>
+        06 51 12 36 81
+      </p>
       <div class="footer-social">
         <a href="https://www.facebook.com/emilie.pommier.therapie" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
           <mat-icon>facebook</mat-icon>
