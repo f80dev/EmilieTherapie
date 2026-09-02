@@ -332,6 +332,22 @@ export class App implements OnInit {
     }
   }
 
+  protected share() {
+    let url=window.location.protocol
+    if (navigator.share) {
+      navigator.share({
+        title: 'Emilie Pommier Thérapeute',
+        url: url,
+      }).then(() => {
+        console.log('Merci pour le partage');
+      })
+        .catch(console.error);
+    } else {
+      navigator.clipboard.writeText(url).then(r => alert("lien copié dans le presse papier"));
+    }
+  }
+
+
   private saveUserDataToLocalStorage(): void {
     console.log('[LocalStorage] Attempting to save user data...');
     try {
