@@ -1,0 +1,1 @@
+import{V as i,qa as a}from"./chunk-PZ4HKJWI.js";var n=class t{ADMIN_PASSWORD="lapin123";isAuthenticated=a(!1);login(e){return e===this.ADMIN_PASSWORD?(this.isAuthenticated.set(!0),!0):!1}logout(){this.isAuthenticated.set(!1)}static \u0275fac=function(o){return new(o||t)};static \u0275prov=i({token:t,factory:t.\u0275fac,providedIn:"root"})};export{n as a};

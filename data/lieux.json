@@ -1,0 +1,25 @@
+[
+  {
+    "id": "cabinet-terapya10",
+    "nom": "Cabinet 1",
+    "adresse": "40bis rue du Faubourg Poissonnière, 75010 Paris",
+    "gps": {
+      "latitude": 48.8728,
+      "longitude": 2.3548
+    },
+    "indisponibilites": [
+      { "date": "2026-08-15", "time": "09:00", "duration": 75 },
+      { "date": "2026-08-20", "time": "14:00", "duration": 75 }
+    ]
+  },
+  {
+    "id": "cabinet-terapya11",
+    "nom": "Cabinet 2",
+    "adresse": "5 Passage Saint-Antoine, 75011 Paris",
+    "gps": {
+      "latitude": 48.8572,
+      "longitude": 2.3796
+    },
+    "indisponibilites": [{ "date": "2026-08-18", "time": "10:30", "duration": 75 }]
+  }
+]

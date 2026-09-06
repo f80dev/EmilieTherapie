@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="257"
+   height="232"
+   viewBox="0 0 257 232"
+   role="img"
+   aria-labelledby="title desc"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="logo.svg"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="5.6477107"
+     inkscape:cx="148.20164"
+     inkscape:cy="118.8092"
+     inkscape:window-width="1920"
+     inkscape:window-height="1010"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <title
+     id="title">Mère et enfant dans un cœur</title>
+  <desc
+     id="desc">Vectorisation manuelle fidèle du dessin fourni : un cœur stylisé forme le contour extérieur, avec les profils d’une mère et d’un enfant à l’intérieur.</desc>
+  <!-- Fond transparent. Pour retrouver le JPEG d’origine, décommenter :
+  <rect width="257" height="232" fill="#ffffff"/>
+  -->
+  <path
+     id="coeur-gauche"
+     d="M 128.1,44.98 C 116.8,33.62 99.1,22.64 81.18,21.42 59.16,19.92 39.2,30.77 30.99,49.77 c -8.79,20.35 -3.73,45.11 8.27,63.25 13.79,20.83 34.12,35.6 55.24,50.12 16.6,11.42 31.53,22.2 40.23,32.39 5.41,6.34 7.10919,13.54763 3.92,17.2 -2.42,3.45 -6.12,4.11 -8.28,0.57 -2.18277,-3.45115 -2.32723,-9.60595 4.4852,-17.77"
+     stroke="#333333"
+     stroke-width="1.42"
+     style="fill:none;stroke-linecap:round;stroke-linejoin:round"
+     sodipodi:nodetypes="ccccccccc" />
+  <path
+     id="coeur-droit-et-profil-adulte"
+     d="M 181.07278,125.12063 C 191.93775,138.75445 183.8,137.85 181.06,139.72 c -2.71,1.85 -3.37,3.43 -1.59,5.25 1.86,1.91 1.66,3.37 -0.64,4.64 2.46,1.6 1.78,3.46 -0.78,4.61 -1.47,0.66 -2.15,2.06 -1.28,3.98 2.3,5.03 2.36,9.91 -0.67,12.16 -4.33,3.21 -10.82,3.29 -17.33,3.28 -9.97,-0.03 -18.92642,17.07394 -23.95642,22.05394"
+     stroke="#333333"
+     stroke-width="1.42"
+     style="fill:none;stroke-linecap:round;stroke-linejoin:round"
+     sodipodi:nodetypes="ccccccccc" />
+  <path
+     id="chevelure-superieure"
+     d="m 101.3,71.43 c 16.9,-12.03 37.03,-12.77 51.98,-4.48 13.82,7.66 21.48,22.62 21.96,38.79 0.24,8.15 1.08,13.48 5.91,19.6"
+     stroke="#333333"
+     stroke-width="1.42"
+     style="fill:none;stroke-linecap:round;stroke-linejoin:round" />
+  <path
+     id="profil-enfant"
+     d="m 158.03919,91.158786 c 7.63108,4.576047 4.61245,27.242044 -12.58919,21.361214 1.14,4.85 -1.15,8.76 -5.56,12.16 -6.99,5.39 -13.17,11.66 -12.73,18.74 0.55,8.78 10.41,13.17 20.43,16.08 6.15,1.79 12.04,2.3 14.62,-0.6 2.72,-3.05 0.4,-6.94 4.07,-9.57 3.14,-2.24 3.99,-4.06 1.26,-5.65 3.11,-1.48 3.59561,-3.2748 1.10561,-4.4648 -2.91971,-2.52642 1.88838,1.03769 -0.63162,-0.65231 -2.23,-1.5 -1.03439,-6.49404 2.37561,-8.05404 6.45445,-2.19081 0.24959,-8.96006 -2.00041,-13.53006 3.32021,-23.238929 -4.48412,-21.143465 -12.95978,-28.002492"
+     stroke="#333333"
+     stroke-width="1.42"
+     style="fill:none;stroke-linecap:round;stroke-linejoin:round"
+     sodipodi:nodetypes="ccccccccccccc" />
+  <path
+     id="oeil"
+     d="m 154.22,120.52 c 2.81,2.56 5.34,3.41 7.89,2.72"
+     stroke="#333333"
+     stroke-width="1.25"
+     style="fill:none;stroke-linecap:round;stroke-linejoin:round" />
+  <path
+     id="arc-cyan"
+     d="m 129.49055,33.418095 c 20.20648,-8.368273 61.75106,-22.539212 86.72465,22.885774 8.20567,25.034166 -6.15012,53.317181 -29.86232,63.490701"
+     stroke="#c9e7e5"
+     stroke-width="1.05"
+     opacity="0.9"
+     style="fill:none;stroke-linecap:round;stroke-linejoin:round"
+     sodipodi:nodetypes="ccc" />
+</svg>

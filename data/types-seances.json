@@ -1,0 +1,26 @@
+[
+  {
+    "id": "prise-contact",
+    "nom": "Premier échange offert",
+    "duree": 30,
+    "contenu": "Premier échange, en visio, pour exposer vos besoins & attentes et nous assurer que mon approche vous correspond",
+    "objectif": "Établir un premier contact et définir ensemble vos objectifs",
+    "description": "Premier échange offert - 30 minutes"
+  },
+  {
+    "id": "rdv-1h",
+    "nom": "Séance de 1 heure",
+    "duree": 60,
+    "contenu": "Séance complète de suivi thérapeutique",
+    "objectif": "Travail approfondi sur vos problématiques",
+    "description": "Séance de suivi - 1 heure"
+  },
+  {
+    "id": "rdv-1h30",
+    "nom": "Séance de 1h30 - exploration approfondie ou séance d'EMDR",
+    "duree": 90,
+    "contenu": "Séance étendue pour un travail plus approfondi",
+    "objectif": "Travail approfondi et exploration en profondeur",
+    "description": "Séance approfondie - 1h30"
+  }
+]

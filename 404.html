@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Emilie Thérapie</title>
+
+  <script>
+    // Store the original path for Angular router to handle after page load
+    var originalPath = window.location.pathname;
+
+    // Remove trailing slash except for root
+    if (originalPath !== '/' && originalPath.endsWith('/')) {
+      originalPath = originalPath.slice(0, -1);
+    }
+
+    // Store the path that Angular should navigate to
+    sessionStorage.setItem('redirectTo', originalPath);
+
+    // Redirect to index.html for Angular to load
+    window.location.replace('/index.html');
+  </script>
+</head>
+
+<body>
+<!-- IE required at least 512 bytes of data to show non-default 404. -->
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</body>
+
+
+</html>

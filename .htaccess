@@ -1,0 +1,72 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Force HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # Force non-www to www (or remove if you prefer non-www)
+  # RewriteCond %{HTTP_HOST} ^emiliepommier\.fr$ [NC]
+  # RewriteRule ^(.*)$ https://www.emiliepommier.fr/$1 [R=301,L]
+
+  # Remove trailing slashes for consistency (except root)
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} (.+)/$
+  RewriteRule ^ %1 [R=301,L]
+
+  # If the request is for a file or directory that exists, serve it directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Otherwise, serve index.html for SPA routing
+  RewriteRule ^ /index.html [L]
+</IfModule>
+
+# Alternative for older Apache versions or if mod_rewrite is not available:
+# FallbackResource /index.html
+
+# Cache control for static assets
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Images - cache for 1 year
+  <FilesMatch "\.(jpg|jpeg|png|gif|svg|ico|webp)$">
+    ExpiresDefault "access plus 1 year"
+    Header append Cache-Control "public, immutable"
+  </FilesMatch>
+
+  # Fonts - cache for 1 year
+  <FilesMatch "\.(woff|woff2|ttf|otf|eot)$">
+    ExpiresDefault "access plus 1 year"
+    Header append Cache-Control "public, immutable"
+  </FilesMatch>
+
+  # CSS and JavaScript - cache for 1 year (Angular builds use content hashing)
+  <FilesMatch "\.(css|js)$">
+    ExpiresDefault "access plus 1 year"
+    Header append Cache-Control "public, immutable"
+  </FilesMatch>
+
+  # HTML - cache for 0 seconds (no cache to ensure updates)
+  <FilesMatch "\.html$">
+    ExpiresDefault "access plus 0 seconds"
+    Header append Cache-Control "no-cache, no-store, must-revalidate"
+  </FilesMatch>
+
+  # JSON data files - cache for 1 hour
+  <FilesMatch "\.json$">
+    ExpiresDefault "access plus 1 hour"
+    Header append Cache-Control "public"
+  </FilesMatch>
+</IfModule>
+
+# Additional headers for security and performance
+<IfModule mod_headers.c>
+  # Disable ETags for static assets (use Expires instead)
+  <FilesMatch "\.(jpg|jpeg|png|gif|svg|ico|webp|woff|woff2|ttf|otf|eot|css|js)$">
+    Header unset ETag
+    FileETag None
+  </FilesMatch>
+</IfModule>
