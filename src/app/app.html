@@ -293,7 +293,7 @@
     <div class="seance-type-toggle">
 
 
-      @if (selectedTypeSeance()!.id != 'prise-contact') {
+      @if (selectedTypeSeance() && selectedTypeSeance()!.id != 'prise-contact') {
         <mat-button-toggle-group [value]="seanceType()" (change)="seanceType.set($event.value)">
           <mat-button-toggle value="presentiel">
             <mat-icon>person</mat-icon>
@@ -308,7 +308,7 @@
 
 
 
-      @if (seanceType() === 'distant' || selectedTypeSeance()!.id == 'prise-contact') {
+      @if (seanceType() === 'distant' || (selectedTypeSeance() && selectedTypeSeance()!.id == 'prise-contact')) {
         <p class="seance-type-hint">
           Séance par visioconférence - Lien envoyé après confirmation du rdv
         </p>
@@ -840,7 +840,7 @@
     </div>
 
     <div class="footer-legal">
-      <p>© 2026 -
+      <p>v{{version}} © 2026 -
         <a href="/mentionslegales" target="_blank">Mentions légales</a>
         -
         <a href="/politiquedeconfidentialite" target="_blank">Politique de confidentialité</a>

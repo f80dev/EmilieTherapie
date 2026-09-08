@@ -39,6 +39,7 @@
     box-sizing: border-box;
   }
 
+
   .header-brand {
     display: flex;
     width: 100vw;
@@ -1219,3 +1220,10 @@ h3 {
   max-width: 500px;
   margin-top: 1rem;
 }
+
+.version {
+  display: inline-block;
+  font-size: 10px;
+  margin-left: 10px;
+}
+

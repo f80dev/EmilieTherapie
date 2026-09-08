@@ -561,6 +561,7 @@ export class App implements OnInit {
   }
 
   // Called when a date is selected in the calendar
+  version: string = packageJson.version;
   async onDateSelected(date: Date | null) {
     this.selectedDate.set(date);
     this.selectedTime.set('');
