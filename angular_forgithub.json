@@ -47,6 +47,10 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
+              "src/CNAME",
+              "src/404.html",
+              "src/_redirects",
+              "src/.htaccess",
               {
                 "glob": "**/*",
                 "input": "public"
