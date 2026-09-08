@@ -34,3 +34,4 @@ export class ViaCarte implements OnInit {
     this.router.navigate(['/'], { fragment: 'rdv' });
   }
 }
+
