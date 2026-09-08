@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "version": "",
-    "deploy": "ng build && gh-pages -d ./dist/emilietherapie/browser --repo https://github.com/f80dev/EmilieTherapie.git -f -t true -b site -m \\\"update from devnet\\\"\"",
+    "deploy_github": "ng build && gh-pages -d ./dist/emilietherapie/browser --repo https://github.com/f80dev/EmilieTherapie.git -f -t true -b site -m \\\"update from devnet\\\"\"",
+    "deploy": "ng build && npx wrangler pages deploy dist/emilietherapie/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
