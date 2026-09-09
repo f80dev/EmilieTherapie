@@ -109,7 +109,7 @@ export class App implements OnInit {
   message = signal('');
   selectedDate = signal<Date | null>(null);
   selectedTime = signal<string>('');
-  seanceType = signal<'callback' | 'distant' | 'presentiel'>('presentiel');
+  seanceType = signal<'callback' | 'distant' | 'presentiel'>('distant');
   selectedTypeSeance = signal<TypeSeance | null>(null);
   selectedLieu = signal<Lieu | null>(null);
   isMobileMenuOpen = signal(false);
@@ -293,6 +293,10 @@ export class App implements OnInit {
 
   selectTypeSeance(typeSeance: TypeSeance): void {
     this.selectedTypeSeance.set(typeSeance);
+    if(typeSeance.id==="prise-contact"){
+      this.seanceType.set("distant")
+      this.selectedLieu.set(null)
+    }
     this.selectedTime.set(''); // Reset time when type changes
     this.generateTimeSlots();
   }
@@ -434,14 +438,12 @@ export class App implements OnInit {
   }
 
   isFormValid(): boolean {
-    const lieuValid = this.seanceType() === 'distant' || this.selectedLieu() !== null;
+    const lieuValid = (this.seanceType() === 'distant' || this.selectedLieu() !== null);
     return (
       this.nom().trim().length > 0 &&
       this.prenom().trim().length > 0 &&
       this.email().trim().length > 0 &&
       this.email().includes('@') &&
-      this.telephone().trim().length > 0 &&
-      this.selectedLieu != null &&
       this.selectedTypeSeance != null &&
       this.selectedDate() !== null &&
       this.selectedTime() !== '' &&

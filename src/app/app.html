@@ -7,7 +7,7 @@
 
     </div>
     <div class="nav-links" [class.mobile-open]="isMobileMenuOpen()">
-      <button mat-icon-button (click)="share()"><mat-icon>share</mat-icon></button>
+      <button mat-icon-button aria-label="Partager" (click)="share()"><mat-icon>share</mat-icon></button>
       <button mat-button (click)="scrollTo('accompagnements'); isMobileMenuOpen.set(false)">Mes accompagnements</button>
       <button mat-button (click)="scrollTo('methode'); isMobileMenuOpen.set(false)">Mon approche</button>
       <button mat-button (click)="scrollTo('apropos'); isMobileMenuOpen.set(false)">Me connaître</button>
@@ -60,11 +60,11 @@
   <div class="hero-background"></div>
   <div class="hero-content">
     <div class="hero-title">Bienvenue</div>
-    <p class="hero-subtitle hero-description">
+    <h1 class="hero-subtitle hero-description">
       dans cet espace sécure<br>
       où déposer ce qui a été heurté, abîmé ou figé dans votre histoire<br>
       où retrouver l'apaisement dans le lien et une connexion authentique à vous-même
-    </p>
+    </h1>
 
     <div class="citation">~ Ce qui a été blessé dans le lien se guérit dans le lien ~ </div>
     <br>
@@ -96,7 +96,7 @@
 <section id="accompagnements" class="section accompagnements-section">
   <div class="content-section">
 
-    <h1 class="section-title">Mes accompagnements</h1>
+    <h2 class="section-title">Mes accompagnements</h2>
 
     J'accompagne chacun.e là où il/elle en est, à son rythme
     <div class="method-approaches">
@@ -209,9 +209,9 @@
   <div class="section-divider"></div>
 
   <div class="content-section">
-    <h1 class="section-title">
+    <h2 class="section-title">
       Me connaître
-    </h1>
+    </h2>
     <div class="apropos-content">
       <div class="apropos-image">
         <img src="emilie.webp" alt="Émilie Pommier" class="photo">
@@ -273,7 +273,7 @@
   <div class="section-divider"></div>
   <div class="content-section">
 
-    <h1 class="section-title">Réservez votre séance en quelques clics</h1>
+    <h2 class="section-title">Réservez votre séance en quelques clics</h2>
     <p class="intro-section">
       La consultation initiale permet de mieux faire connaissance et de préciser vos besoins
     </p>
@@ -450,7 +450,7 @@
   <div class="section-divider"></div>
 
   <div class="content-section">
-    <h1 class="section-title">Mon approche</h1>
+    <h2 class="section-title">Mon approche</h2>
 
     <div class="method-approaches">
       <mat-chip-set aria-label="symptomes" style="display: inline-block;margin: 20px;">
@@ -571,7 +571,7 @@
   <div class="section-divider"></div>
 
   <div class="content-section">
-    <h1 class="section-title">Consultations & tarifs</h1>
+    <h2 class="section-title">Consultations & tarifs</h2>
 
     <p class="intro-section">
       Un format flexible<br>
@@ -665,7 +665,7 @@
   <div class="section-divider"></div>
 
   <div class="content-section">
-    <h1 class="section-title">Ressources & questions</h1>
+    <h2 class="section-title">Ressources & questions</h2>
 
     <div class="ressources-intro ressources-spacing">
       <div class="ressources-grid">
