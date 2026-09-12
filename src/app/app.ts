@@ -21,6 +21,7 @@ import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { VerticalCard } from './vertical-card/vertical-card';
 import { ScreenService } from './screen.service';
 import { AnalyticsService } from './analytics.service';
+import { dateToStr, read_email_template } from '../main';
 
 interface BusySlot {
   time: string;
@@ -452,7 +453,9 @@ export class App implements OnInit {
     );
   }
 
-  submitAppointment() {
+
+
+  async submitAppointment() {
     if (!this.isFormValid()) {
       this.snackBar.open('Veuillez remplir tous les champs obligatoires', 'Fermer', {
         duration: 3000,
@@ -480,14 +483,14 @@ export class App implements OnInit {
     const lieuInfo =
       this.seanceType() === 'presentiel' && this.selectedLieu()
         ? `Lieu: ${this.selectedLieu()!.nom} - ${this.selectedLieu()!.adresse}`
-        : '';
+        : 'En visioconference';
 
     const typeSeanceInfo = this.selectedTypeSeance()
       ? `\nType de séance: ${this.selectedTypeSeance()!.description}`
       : '';
 
     const taskTitle = `RDV: ${this.prenom()} ${this.nom()} — ${dateStr} à ${this.selectedTime()}`;
-    const taskNotes = `Type: ${seanceTypeLabel}${typeSeanceInfo}${lieuInfo ? '\n' + lieuInfo : ''}\nEmail: ${this.email()}\nTéléphone: ${this.telephone()}\nMessage: ${this.message()}`;
+    const taskNotes = `${lieuInfo}\nEmail: ${this.email()}\nTéléphone: ${this.telephone()}\nMessage: ${this.message()}`;
 
     // Calculate start and end times for calendar event
     const selectedDate = this.selectedDate();
@@ -503,27 +506,20 @@ export class App implements OnInit {
 
       const formatDateTime = (d: Date) => d.toISOString();
 
-      // Format datetime in local timezone to avoid UTC conversion issues
-      // (toISOString() converts local time to UTC, causing timezone offset problems)
-      const formatDateTimeLocal = (d: Date) => {
-        const year = d.getFullYear();
-        const month = String(d.getMonth() + 1).padStart(2, '0');
-        const day = String(d.getDate()).padStart(2, '0');
-        const hours = String(d.getHours()).padStart(2, '0');
-        const minutes = String(d.getMinutes()).padStart(2, '0');
-        const seconds = String(d.getSeconds()).padStart(2, '0');
-        const ms = String(d.getMilliseconds()).padStart(3, '0');
-        return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${ms}`;
-      };
 
       // Add to Google Calendar as "à confirmer"
       this.http
         .post('/api/calendar/add-to-calendar', {
           title: taskTitle,
-          start_time: formatDateTimeLocal(startDateTime),
-          end_time: formatDateTimeLocal(endDateTime),
+          start_time: startDateTime,
+          end_time: endDateTime,
           description: taskNotes,
           email: this.email(),
+          email_body:await read_email_template("confirmation_demande",{
+            start_time: dateToStr(startDateTime),
+            firstname:this.prenom
+          }),
+          email_subject:"Réception de votre demande",
           phone: this.telephone(),
           seance_type: this.selectedTypeSeance()?.nom || seanceTypeLabel,
         })

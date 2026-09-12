@@ -30,6 +30,8 @@ import secrets
 from pathlib import Path
 from typing import Any
 
+import FastMCP
+
 logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------

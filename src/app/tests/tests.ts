@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { read_email_template } from '../../main';
 
 @Component({
   selector: 'app-tests',
@@ -14,20 +15,26 @@ export class Tests {
   private http = inject(HttpClient);
   private snackBar = inject(MatSnackBar);
 
-  sendTestEmail() {
+
+  async sendTestEmail() {
+    const body = await read_email_template('confirmation_demande', {firstname:"herve",start_time: '10:00'});
     const url = '/api/email/send';
-    this.http.post(url, {
-      to: 'test@example.com',
-      subject: 'Test Email',
-      body: 'This is a test email from EmilieTherapie'
-    }).subscribe({
-      next: () => {
-        this.snackBar.open('Email envoyé avec succès', 'Fermer', { duration: 3000 });
-      },
-      error: (err) => {
-        this.snackBar.open('Erreur lors de l\'envoi: ' + err.message, 'Fermer', { duration: 5000 });
-      },
-    });
+    this.http
+      .post(url, {
+        to: 'test@example.com',
+        subject: 'Test Email',
+        body: body,
+      })
+      .subscribe({
+        next: () => {
+          this.snackBar.open('Email envoyé avec succès', 'Fermer', { duration: 3000 });
+        },
+        error: (err) => {
+          this.snackBar.open("Erreur lors de l'envoi: " + err.message, 'Fermer', {
+            duration: 5000,
+          });
+        },
+      });
   }
 
   protected getDispos() {
@@ -39,7 +46,9 @@ export class Tests {
       },
       error: (err) => {
         console.error('Erreur lors de la récupération des dispos:', err);
-        this.snackBar.open('Erreur lors de la récupération des dispos: ' + err.message, 'Fermer', { duration: 5000 });
+        this.snackBar.open('Erreur lors de la récupération des dispos: ' + err.message, 'Fermer', {
+          duration: 5000,
+        });
       },
     });
   }

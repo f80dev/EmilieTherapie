@@ -9,7 +9,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { EmailDialog } from './email-dialog/email-dialog';
 import * as QRCode from 'qrcode';
-import { read_email_template } from '../../main';
+import { dateToStr, read_email_template } from '../../main';
 
 interface CalendarEvent {
   id: string;
@@ -66,6 +66,8 @@ export class Admin implements OnInit {
     });
   }
 
+
+
   formatDateTime(dateTimeStr: string): string {
     if (!dateTimeStr) return '';
     const date = new Date(dateTimeStr);
@@ -79,17 +81,20 @@ export class Admin implements OnInit {
     });
   }
 
-  getEventDetails(description: string): { email: string; phone: string; type: string } {
+
+
+  getEventDetails(description: string): { media:string,email: string; phone: string; type: string,lieu:string } {
     const lines = description.split('\n');
-    const details = { email: '', phone: '', type: '' };
+    const details = {media:'', lieu:'',email: '', phone: '', type: '' };
     for (const line of lines) {
       if (line.startsWith('Email: ')) details.email = line.replace('Email: ', '');
+      if (line.startsWith('En: ')) details.email = line.replace('En: ', '');
       if (line.startsWith('Téléphone: ')) details.phone = line.replace('Téléphone: ', '');
       if (line.startsWith('Type: ')) details.type = line.replace('Type: ', '');
+      if (line.startsWith('Lieu: ')) details.lieu = line.replace('Lieu: ', '');
     }
     return details;
   }
-
 
 
 
@@ -99,9 +104,32 @@ export class Admin implements OnInit {
     const emailMatch = event.description.match(emailRegex);
     const extractedEmail = emailMatch ? emailMatch[0] : '';
 
-    const email=await read_email_template('confirmation_rendezvous');
+    const descriptionLines = event.description.split('\n');
+    let lieuRendezVous = '';
+    for (const line of descriptionLines) {
+      if (line.startsWith('Lieu: ')) {
+        lieuRendezVous = line.replace('Lieu: ', '');
+        break;
+      }
+    }
 
-    this.http.post(`/api/calendar/confirm/`, {event_id:event.id,body:email,dest_email:extractedEmail}).subscribe({
+    const status=this.getEventDetails(event.description)
+
+    const body = await read_email_template(
+      status.media.indexOf("visio")>-1 ? 'confirmation_rendezvous_visio' : 'confirmation_rendezvous_surplace',
+      {
+        start_str: dateToStr(new Date(event.start)),
+        summary: event.summary,
+        lieu_rendezvous: lieuRendezVous,
+      },
+    );
+
+    this.http.post(`/api/calendar/confirm/`, {
+      event_id: event.id,
+      dest_email: extractedEmail,
+      email_body: body,
+      email_subject:"Confirmation de votre rendez-vous - "+event.summary,
+    }).subscribe({
       next: () => {
         this.snackBar.open('Événement confirmé', 'Fermer', { duration: 3000 });
         this.loadPendingEvents();
@@ -115,10 +143,11 @@ export class Admin implements OnInit {
 
 
 
-
-
   async cancelEvent(event: CalendarEvent) {
-    const emailBody = await read_email_template("cancel_rendezvous");
+    const emailBody = await read_email_template("cancel_rendezvous",{
+      start_str:dateToStr(new Date(event.start)),
+      summary: event.summary
+    });
 
     const dialogRef = this.dialog.open(EmailDialog, {
       width: '500px',
@@ -141,6 +170,8 @@ export class Admin implements OnInit {
       }
     });
   }
+
+
 
   sendEmail(event: CalendarEvent) {
     const dialogRef = this.dialog.open(EmailDialog, {

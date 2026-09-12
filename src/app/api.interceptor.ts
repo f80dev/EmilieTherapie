@@ -1,11 +1,10 @@
 import { HttpInterceptorFn } from '@angular/common/http';
-import { isDevMode } from '@angular/core';
 
-const API_BASE = 'https://api.emiliepommier.fr';
+declare const proxy:string
 
 export const apiInterceptor: HttpInterceptorFn = (req, next) => {
-  if (req.url.startsWith('/api') && !isDevMode()) {
-    const newUrl = `${API_BASE}${req.url}`;
+  if (req.url.startsWith('/api')) {
+    const newUrl = `${proxy}${req.url}`;
     const newReq = req.clone({ url: newUrl });
     return next(newReq);
   }

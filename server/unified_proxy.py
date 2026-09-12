@@ -214,6 +214,8 @@ def get_busy_slots(start: str, end: str) -> dict[str, list[dict[str, Any]]]:
     return busy_map
 
 
+
+
 @app.get("/api/calendar/list")
 def list_pending_events() -> list[dict[str, Any]]:
   """Récupère la liste de tous les événements à confirmer du calendrier.
@@ -338,7 +340,6 @@ def add_to_calendar(body: dict[str, str]) -> dict[str, Any]:
     description = body.get("description", "")
     email = body.get("email", "")
     phone = body.get("phone", "")
-    firstname=body.get("firstname", "")
     seance_type = body.get("seance_type", "")
 
     service = get_calendar_service()
@@ -371,7 +372,6 @@ def add_to_calendar(body: dict[str, str]) -> dict[str, Any]:
     confirm_link = f"{BASE_URL}/api/calendar/confirm/{event_id}"
     cancel_link = f"{BASE_URL}/api/calendar/events/{event_id}"
 
-    #result['description'] = f"{description}\n\nEmail: {email}\nTéléphone: {phone}\nType: {seance_type}\n\nStatut: En attente de confirmation\n\n---\nLiens :\n✅ Confirmer le rendez-vous : POST {confirm_link}\n❌ Annuler le rendez-vous : DELETE {cancel_link}"
     result['description'] = f"{description}\n\nEmail: {email}\nTéléphone: {phone}\nType: {seance_type}\n\nStatut: En attente de confirmation"
 
     # Mettre à jour l'événement avec les liens
@@ -381,28 +381,13 @@ def add_to_calendar(body: dict[str, str]) -> dict[str, Any]:
         body=result
     ).execute()
 
-    # DEBUG: Log the actual start_time value to diagnose the format issue
-    print(f"[DEBUG] start_time value before parsing: '{start_time}'")
-    print(f"[DEBUG] start_time repr: {repr(start_time)}")
-
-    # Handle both Z suffix (UTC) and timezone offset (+02:00) formats
-    try:
-        # Try Z suffix format first (UTC)
-        parsed_time = datetime.datetime.strptime(start_time, "%Y-%m-%dT%H:%M:%SZ")
-    except ValueError:
-        # Fall back to timezone offset format (+02:00 or -05:00 etc.)
-        try:
-            parsed_time = datetime.datetime.strptime(start_time, "%Y-%m-%dT%H:%M:%S%z")
-        except ValueError:
-            # Fall back to format with milliseconds but no timezone
-            import logging
-            logging.warning(f"add_to_calendar: date '{start_time}' doesn't match Z or %z formats, trying .SSS format")
-            parsed_time = datetime.datetime.strptime(start_time, "%Y-%m-%dT%H:%M:%S.%f")
-
-    start_time = datetime.datetime.strftime(parsed_time, "%d/%m/%Y à %H:%M")
-
-    email_subject = f"Demande de rendez-vous - {title}"
+    email_subject =body.get("email_subject")
     email_body = body.get("email_body")
+
+    logger.info(f"add_to_calendar: email_body from request = {email_body!r}, available keys = {list(body.keys()) if isinstance(body, dict) else 'not a dict'}")
+
+    if not email_body:
+        raise RuntimeError("Pas de model")
 
     send_email_smtp(email, email_subject, email_body, is_html=True)
 
@@ -468,7 +453,6 @@ def confirm_event(body: dict[str, str]) -> dict[str, Any]:
         lieu_rendezvous="https://meet.google.com/asj-rmvq-bwb" if "visio" in event["description"] else "lieu geographique"
 
 
-
         # if client_email and "@" in client_email:
         #     # Extraire les infos pour l'email
         #     start = event.get("start", {}).get("dateTime", "")
@@ -489,13 +473,13 @@ def confirm_event(body: dict[str, str]) -> dict[str, Any]:
 
             # Envoyer l'email de confirmation
         try:
-            email_subject = f"Confirmation de votre rendez-vous - {summary}"
-            email_body = body.get("body")
+            email_subject = body.get("email_subject")
+            email_body = body.get("email_body")
             send_email_smtp(body.get("dest_email"), email_subject, email_body, is_html=True)
             logger.info(f"Email de confirmation envoyé à {body.get('dest_email')}")
         except Exception as email_error:
             logger.error(f"Erreur lors de l'envoi de l'email de confirmation: {email_error}")
-            # On ne bloque pas la confirmation si l'email échoue
+            raise RuntimeError("Impossible d'envoyer le mail de confirmation")
 
     except Exception as e:
         logger.error(f"Erreur lors de la confirmation de l'événement: {e}")
@@ -518,24 +502,6 @@ def delete_event(event_id: str,email_body:str) -> dict[str, Any]:
         description = event.get("description", "")
         email_match = re.search(r'Email:\s*([^\n]+)', description)
         client_email = email_match.group(1).strip() if email_match else None
-
-        # summary = event.get("summary", "")
-        # # Enlever le préfixe "À CONFIRMER - " si présent
-        # if summary.startswith("À CONFIRMER - "):
-        #     summary = summary[15:]
-        # elif summary.startswith("À CONFIRMER "):
-        #     summary = summary[13:]
-
-        # start = event.get("start", {}).get("dateTime", "")
-        # if start:
-        #     try:
-        #         from datetime import datetime
-        #         start_dt = datetime.fromisoformat(start.replace('Z', '+00:00'))
-        #         start_str = start_dt.strftime("%d/%m/%Y à %H:%M")
-        #     except:
-        #         start_str = start
-        # else:
-        #     start_str = "Non spécifiée"
 
         # Supprimer l'événement
         service.events().delete(calendarId=EMAIL, eventId=event_id).execute()

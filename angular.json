@@ -43,6 +43,9 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "define": {
+              "proxy": "'http://localhost:8080'"
+            },
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -62,6 +65,9 @@
           },
           "configurations": {
             "production": {
+              "define": {
+                "proxy": "'https://api.emiliepommier.fr'"
+              },
               "baseHref": "/",
               "budgets": [
                 {
