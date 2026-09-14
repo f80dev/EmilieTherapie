@@ -477,20 +477,15 @@ export class App implements OnInit {
         })
       : '';
 
-    const seanceTypeLabel =
-      this.seanceType() === 'distant' ? 'À distance (visioconférence)' : 'En présentiel';
+    const seanceTypeLabel = (this.seanceType() === 'distant') ? 'En: visioconference' : 'En: présentiel'
 
-    const lieuInfo =
-      this.seanceType() === 'presentiel' && this.selectedLieu()
-        ? `Lieu: ${this.selectedLieu()!.nom} - ${this.selectedLieu()!.adresse}`
-        : 'En visioconference';
+    const lieu =
+      this.seanceType() === 'presentiel' && this.selectedLieu() ? `Lieu: ${this.selectedLieu()!.nom} - ${this.selectedLieu()!.adresse}` : 'Lieu: En visioconference';
 
-    const typeSeanceInfo = this.selectedTypeSeance()
-      ? `\nType de séance: ${this.selectedTypeSeance()!.description}`
-      : '';
+    const typeSeanceInfo = this.selectedTypeSeance() ? `\nType de séance: ${this.selectedTypeSeance()!.description}` : '';
 
     const taskTitle = `RDV: ${this.prenom()} ${this.nom()} — ${dateStr} à ${this.selectedTime()}`;
-    const taskNotes = `${lieuInfo}\nEmail: ${this.email()}\nTéléphone: ${this.telephone()}\nMessage: ${this.message()}`;
+    const taskNotes = `${typeSeanceInfo}\n${lieu}\nEmail: ${this.email()}\nTéléphone: ${this.telephone()}\nMessage: ${this.message()}`;
 
     // Calculate start and end times for calendar event
     const selectedDate = this.selectedDate();

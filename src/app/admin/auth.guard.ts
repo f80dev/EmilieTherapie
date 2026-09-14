@@ -1,8 +1,9 @@
 import { inject } from '@angular/core';
-import { CanActivateFn, Router } from '@angular/router';
+import { CanActivateFn, Router, UrlTree } from '@angular/router';
 import { AuthService } from './auth.service';
+import { ActivatedRouteSnapshot } from '@angular/router';
 
-export const authGuard: CanActivateFn = () => {
+export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
@@ -10,6 +11,11 @@ export const authGuard: CanActivateFn = () => {
     return true;
   }
 
-  router.navigate(['/admin/login']);
-  return false;
+  const password = route.queryParamMap.get('pwd');
+  if (password && authService.login(password)) {
+    return true;
+  }
+
+  const urlTree = router.createUrlTree(['/admin/login']);
+  return urlTree;
 };

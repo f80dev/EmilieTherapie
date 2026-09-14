@@ -92,7 +92,7 @@ def get_tasks_service():
     return _tasks_service
 
 
-def send_email_smtp(to_email: str, subject: str, body: str, is_html: bool = False) -> dict:
+def send_email_smtp(to_email: str, subject: str, body: str, is_html: bool = True) -> dict:
     """Send an email using Ionos SMTP server.
 
     Args:
@@ -418,80 +418,49 @@ def send_email(body: dict[str, str]) -> str:
 @app.post("/api/calendar/confirm")
 def confirm_event(body: dict[str, str]) -> dict[str, Any]:
     """Confirme un événement en changeant son statut à confirmed et enlevant le préfixe 'À CONFIRMER'."""
-    try:
-        service = get_calendar_service()
 
-        # Récupérer l'événement
-        event = service.events().get(calendarId=EMAIL, eventId=body.get("event_id")).execute()
+    service = get_calendar_service()
 
-        # Modifier le titre enlevant le préfixe "À CONFIRMER - "
-        summary = event.get("summary", "")
-        if summary.startswith("À CONFIRMER - "):
-            summary = summary[15:]  # Enlever "À CONFIRMER - "
-        elif summary.startswith("À CONFIRMER "):
-            summary = summary[13:]  # Enlever "À CONFIRMER "
+    # Récupérer l'événement
+    event = service.events().get(calendarId=EMAIL, eventId=body.get("event_id")).execute()
 
-        # Mettre à jour l'événement
-        event["summary"] = summary
-        event["status"] = "confirmed"
-        event["colorId"] = "2"  # Green color for confirmed
+    # Modifier le titre enlevant le préfixe "À CONFIRMER - "
+    summary = event.get("summary", "")
+    if summary.startswith("À CONFIRMER - "):
+        summary = summary[15:]  # Enlever "À CONFIRMER - "
+    elif summary.startswith("À CONFIRMER "):
+        summary = summary[13:]  # Enlever "À CONFIRMER "
 
-        result = service.events().update(
-            calendarId=EMAIL,
-            eventId=body.get("event_id"),
-            body=event
-        ).execute()
+    # Mettre à jour l'événement
+    event["summary"] = summary
+    event["status"] = "confirmed"
+    event["colorId"] = "2"  # Green color for confirmed
 
-        logger.info(f"Événement confirmé: {body.get('event_id')}")
+    result = service.events().update(
+        calendarId=EMAIL,
+        eventId=body.get("event_id"),
+        body=event
+    ).execute()
 
+    logger.info(f"Événement confirmé: {body.get('event_id')}")
 
+    # Envoyer l'email de confirmation
 
-        # Envoyer un email de confirmation
-        # description = event.get("description", "")
-        # email_match = re.search(r'Email:\s*([^\n]+)', description)
-        # client_email = email_match.group(1).strip() if email_match else None
-        lieu_rendezvous="https://meet.google.com/asj-rmvq-bwb" if "visio" in event["description"] else "lieu geographique"
+    email_subject = body.get("email_subject")
+    email_body = body.get("email_body")
+    send_email_smtp(body.get("dest_email"), email_subject, email_body, is_html=True)
 
-
-        # if client_email and "@" in client_email:
-        #     # Extraire les infos pour l'email
-        #     start = event.get("start", {}).get("dateTime", "")
-        #     end = event.get("end", {}).get("dateTime", "")
-        #
-        #     # Formater la date et l'heure
-        #     if start:
-        #         try:
-        #             from datetime import datetime
-        #             start_dt = datetime.fromisoformat(start.replace('Z', '+00:00'))
-        #               start_str = start_dt.strftime("%d/%m/%Y à %H:%M")
-        #           except:
-        #             start_str = start
-        #     else:
-        #         start_str = "Non spécifiée"
-        #
-
-
-            # Envoyer l'email de confirmation
-        try:
-            email_subject = body.get("email_subject")
-            email_body = body.get("email_body")
-            send_email_smtp(body.get("dest_email"), email_subject, email_body, is_html=True)
-            logger.info(f"Email de confirmation envoyé à {body.get('dest_email')}")
-        except Exception as email_error:
-            logger.error(f"Erreur lors de l'envoi de l'email de confirmation: {email_error}")
-            raise RuntimeError("Impossible d'envoyer le mail de confirmation")
-
-    except Exception as e:
-        logger.error(f"Erreur lors de la confirmation de l'événement: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+    return {"status": "confirmed", "eventId": body.get("event_id")}
 
 
 
 
 
-@app.delete("/api/calendar/events/{event_id}/{email_body}")
-def delete_event(event_id: str,email_body:str) -> dict[str, Any]:
-    """Supprime un événement du calendrier et envoie un email d'annulation au client."""
+
+
+@app.post("/api/calendar/events/{event_id}")
+def delete_event(event_id: str,body: dict[str, str]) -> dict[str, Any]:
+    """cancel_event Supprime un événement du calendrier et envoie un email d'annulation au client."""
     try:
         service = get_calendar_service()
 
@@ -511,7 +480,7 @@ def delete_event(event_id: str,email_body:str) -> dict[str, Any]:
         if client_email and "@" in client_email:
             try:
                 email_subject = f"Annulation de votre demande de rendez-vous"
-                send_email_smtp(client_email, email_subject, email_body, is_html=False)
+                send_email_smtp(client_email, email_subject, body.get["emailBody"], is_html=True)
                 logger.info(f"Email d'annulation envoyé à {client_email}")
             except Exception as email_error:
                 logger.error(f"Erreur lors de l'envoi de l'email d'annulation: {email_error}")
@@ -540,7 +509,7 @@ def send_email(body: dict[str, str]) -> dict[str, Any]:
     to_email = body.get("to", "")
     subject = body.get("subject", "")
     email_body = body.get("body", "")
-    is_html = body.get("is_html", False)
+    is_html = body.get("is_html", True)
 
     if not to_email or not subject or not email_body:
         raise HTTPException(status_code=400, detail="Missing required fields: to, subject, body")

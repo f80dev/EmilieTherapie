@@ -2,7 +2,8 @@
 <mat-dialog-content>
   <mat-form-field appearance="outline" style="width: 100%;">
     <mat-label>Message</mat-label>
-    <textarea matInput [(ngModel)]="emailBody" rows="10" placeholder="Saisissez votre message..."></textarea>
+<!--    <textarea matInput [(ngModel)]="emailBody" rows="10" placeholder="Saisissez votre message..."></textarea>-->
+    <div [innerHTML]="emailBody"></div>
   </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

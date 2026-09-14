@@ -23,7 +23,7 @@ export function dateToStr(dt:Date) : string {
 }
 
 export async function read_email_template(templateName: string,body:any=null): Promise<string> {
-  const response = await fetch(`/assets/${templateName}.html`);
+  const response = await fetch(`/${templateName}.html`);
   if (!response.ok) {
     throw new Error(`Failed to load email template: ${templateName}`);
   }

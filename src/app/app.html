@@ -387,13 +387,14 @@
           <form class="appointment-form">
             <div class="form-row">
               <mat-form-field appearance="outline">
-                <mat-label>Nom</mat-label>
-                <input matInput [value]="nom()" (input)="nom.set($any($event.target).value); onContactFieldChange()" required>
-              </mat-form-field>
-              <mat-form-field appearance="outline">
                 <mat-label>Prénom</mat-label>
                 <input matInput [value]="prenom()" (input)="prenom.set($any($event.target).value); onContactFieldChange()" required>
               </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Nom</mat-label>
+                <input matInput [value]="nom()" (input)="nom.set($any($event.target).value); onContactFieldChange()" required>
+              </mat-form-field>
+
             </div>
 
             <mat-form-field appearance="outline" class="full-width">
@@ -840,7 +841,7 @@
     </div>
 
     <div class="footer-legal">
-      <p>v{{version}} © 2026 -
+      <p>v{{version}} by <a href="https://af10.fr" target="_blank">AF10</a> © 2026 -
         <a href="/mentionslegales" target="_blank">Mentions légales</a>
         -
         <a href="/politiquedeconfidentialite" target="_blank">Politique de confidentialité</a>
