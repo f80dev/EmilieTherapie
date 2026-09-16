@@ -96,11 +96,13 @@ export class Admin implements OnInit, OnDestroy {
 
 
 
-  getEventDetails(description: string): { media:string,email: string; phone: string; type: string,lieu:string } {
+  getEventDetails(description: string): { firstname:string,lastname:string,media:string,email: string; phone: string; type: string,lieu:string } {
     const lines = description.split('\n');
-    const details = {media:'', lieu:'',email: '', phone: '', type: '' };
+    const details = {firstname:'',lastname:'',media:'', lieu:'',email: '', phone: '', type: '' };
     for (const line of lines) {
       if (line.startsWith('Email: ')) details.email = line.replace('Email: ', '');
+      if (line.startsWith('Prenom: ')) details.firstname = line.replace('Prenom: ', '');
+      if (line.startsWith('Nom: ')) details.lastname = line.replace('Nom: ', '');
       if (line.startsWith('En: ')) details.media = line.replace('En: ', '');
       if (line.startsWith('Téléphone: ')) details.phone = line.replace('Téléphone: ', '');
       if (line.startsWith('Type: ')) details.type = line.replace('Type: ', '');
@@ -125,6 +127,8 @@ export class Admin implements OnInit, OnDestroy {
       {
         start_str: dateToStr(new Date(event.start)),
         summary: event.summary,
+        firstname:status.firstname,
+        lastname:status.lastname,
         lieu_rendezvous: status.lieu,
       },
     );
@@ -149,9 +153,10 @@ export class Admin implements OnInit, OnDestroy {
 
 
   async cancelEvent(event: CalendarEvent) {
+    const detail=this.getEventDetails(event.description)
     const emailBody = await read_email_template("cancel_rendezvous",{
       start_str:dateToStr(new Date(event.start)),
-      firstname:"",
+      firstname:detail.firstname,
       summary: event.summary
     });
 

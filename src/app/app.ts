@@ -480,12 +480,14 @@ export class App implements OnInit {
     const seanceTypeLabel = (this.seanceType() === 'distant') ? 'En: visioconference' : 'En: présentiel'
 
     const lieu =
-      this.seanceType() === 'presentiel' && this.selectedLieu() ? `Lieu: ${this.selectedLieu()!.nom} - ${this.selectedLieu()!.adresse}` : 'Lieu: En visioconference';
+      this.seanceType() === 'presentiel' && this.selectedLieu()
+        ? `Lieu: ${this.selectedLieu()!.nom} - ${this.selectedLieu()!.adresse}`
+        : 'Lieu: En visioconference';
 
     const typeSeanceInfo = this.selectedTypeSeance() ? `\nType de séance: ${this.selectedTypeSeance()!.description}` : '';
 
     const taskTitle = `RDV: ${this.prenom()} ${this.nom()} — ${dateStr} à ${this.selectedTime()}`;
-    const taskNotes = `${typeSeanceInfo}\n${lieu}\nEmail: ${this.email()}\nTéléphone: ${this.telephone()}\nMessage: ${this.message()}`;
+    const taskNotes = `${typeSeanceInfo}\n${lieu}\nEmail: ${this.email()}\nTéléphone: ${this.telephone()}\nMessage: ${this.message()}\nPrenom: ${this.prenom}\nNom: ${this.nom}`;
 
     // Calculate start and end times for calendar event
     const selectedDate = this.selectedDate();
@@ -512,7 +514,8 @@ export class App implements OnInit {
           email: this.email(),
           email_body:await read_email_template("confirmation_demande",{
             start_time: dateToStr(startDateTime),
-            firstname:this.prenom
+            firstname:this.prenom,
+            lastname:this.nom
           }),
           email_subject:"Réception de votre demande",
           phone: this.telephone(),
