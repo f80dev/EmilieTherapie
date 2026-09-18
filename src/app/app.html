@@ -183,6 +183,12 @@
 
     </app-vertical-card>
 
+    <button mat-flat-button color="accent"
+            (click)="scrollTo('rdv'); isMobileMenuOpen.set(false); analytics.clickRdv('card-accompagnement')"
+            class="main-btn">
+      <mat-icon>calendar_today</mat-icon>
+      Prendre rendez-vous
+    </button>
 
 <!--    <div class="accompagnements-grid">-->
 <!--      <mat-card class="accompagnement-card">-->
@@ -204,66 +210,125 @@
 </section>
 
 
-<!-- About / Profile Section -->
-<section id="apropos" class="section apropos-section">
+<!-- Method Section -->
+<section id="methode" class="section methode-section">
   <div class="section-divider"></div>
 
   <div class="content-section">
-    <h2 class="section-title">
-      Me connaître
-    </h2>
-    <div class="apropos-content">
-      <div class="apropos-image">
-        <img src="emilie.webp" alt="Émilie Pommier" class="photo">
-      </div>
-      <div class="apropos-text">
+    <h2 class="section-title">Mon approche</h2>
 
+    <div class="method-approaches">
+      <mat-chip-set aria-label="symptomes" style="display: inline-block;margin: 20px;">
+        <mat-chip >Intégrative</mat-chip>
+        <mat-chip>Trauma-informée</mat-chip>
+        <mat-chip>Psycho-corporelle</mat-chip>
+      </mat-chip-set>
+    </div>
+
+    <p class="content-text">
+      <span class="titre-paragraphe">L'alliance de l'esprit, du coeur et du corps, pour une efficacité maximale</span>
+      <br><br>
+
+      Je sais combien volonté et analyse intellectuelle, seules, ne suffisent pas à
+      apaiser certaines blessures profondément ancrées en nous.<br>
+      Beaucoup pensent qu'<i>il suffit de comprendre l'origine de ses problèmes</i> pour les résoudre.<br>
+      Pourtant, je suis certaine que vous avez déjà fait l'expérience de ce décalage... épuisant : votre
+      esprit sait (rationnellement) que tout va bien, que vous êtes en sécurité, mais votre corps - lui - guette
+      le danger, réagit au moindre stimuli, il s'emballe tout seul voire vous fige.<br>
+      Nos réactions et nos blocages ne sont pas de simples "idées" ou faiblesses : il s'agit de mémoires implicites, traces vivantes de notre histoire,
+      profondément engrammées dans notre système nerveux.
+    </p>
+
+    <div class="citation">
+      ~ Le corps est bavard. Savoir l'écouter lorsqu'il chuchote, c'est lui éviter d'avoir à crier ~
+    </div><br>
+
+    <mat-expansion-panel class="expansion-panel-text">
+      <mat-expansion-panel-header class="titre-paragraphe">
+        Pour approfondir
+      </mat-expansion-panel-header>
+      <mat-panel-description>
         <p class="content-text">
-          Je suis Emilie, thérapeute et praticienne en psychologie.<br>
-          <br>
-          Avant de me consacrer pleinement à la relation d'aide, j'ai passé plus de
-          20 ans dans des métiers où écoute active, souci de l'impact et quête du juste équilibre
-          étaient au coeur de chaque projet.<br>
-          Aujourd'hui, ces expériences guident toujours mes accompagnements, mais j'ai choisi de me concentrer
-          sur l'<i>écologie intérieure</i>.<br>
-          Un retour à l'essentiel qui fait sens pour moi.<br>
-          <br>
-          J'ai également choisi de centrer ma pratique sur la personne et la sécurité relationnelle, pour offrir
-          à chacun.e un espace où restaurer progressivement cette fluidité naturelle entre tête, coeur et corps.<br>
-          Pour accompagner cette sensation unique de ré-alignement entre ce qui <i>se joue</i> en vous, ce que vous <i>éprouvez</i> et
-          ce que vous <i>comprenez</i> de tout cela...
-          et vous redonner ainsi élan et capacité d'agir.
+          En travaillant ensemble, sur la base d'une relation authentique et ajustée, nous restaurons au fil des séances
+          la capacité naturelle de votre système nerveux à s'apaiser, à sortir de schémas obsolètes et à retrouver la
+          stabilité intérieure à laquelle vous aspirez.<br><br>
+          Pour vous accompagner au mieux, je propose de travailler alternativement mais aussi de faire intéragir vos schémas de
+          pensée (approche cognitive) et vos états corporels (approche somatique).<br>Je combine ainsi un travail verbal doux
+          avec des expériences émotionnelles et sensorielles, pour restaurer votre équilibre intérieur.<br><br>
         </p>
+      </mat-panel-description>
+    </mat-expansion-panel>
 
-        <div class="apropos-engagements content-text">
-          <strong>Mes engagements</strong>
-          <ul>
-            <li>Premier échange offert</li>
-            <li>Flexibilité du format</li>
-            <li>Rythme adapté à vos besoins</li>
-          </ul>
+
+    <br><br><br>
+    <p class="intro-section">
+      Ma pratique s'articule autour de modèles thérapeutiques reconnus et complémentaires
+    </p>
+
+    <div class="principles-grid">
+      @for (principle of methodPrinciples; track principle.title) {
+        <div class="principle-card" [class.flipped]="flippedCards[principle.title]">
+          <div class="card-inner">
+            <div class="card-front"  (click)="flipCard(principle.title)">
+              <mat-icon class="principle-icon">{{ principle.icon }}</mat-icon>
+              <mat-card-title>{{ principle.title }}</mat-card-title>
+              <mat-card-content>
+                <p>{{ principle.description }}</p>
+              </mat-card-content>
+              <a class="flip-link">En savoir plus</a>
+            </div>
+            <div class="card-back" (click)="flipCard(principle.title)">
+
+              <mat-card-content>
+                <div style="color:white;text-align: left;font-size:0.85rem;line-height: 1.3;" [innerHTML]="principle.description_back"></div>
+              </mat-card-content>
+
+
+            </div>
+          </div>
         </div>
-
-
-      </div>
+      }
     </div>
 
+    <!--  <div class="methode-details">-->
+    <!--    <div class="detail-block">-->
+    <!--      <h3>-->
+    <!--        <mat-icon>lightbulb</mat-icon>-->
+    <!--        L'Engagement Thérapeutique Conscient-->
+    <!--      </h3>-->
+    <!--      <p>-->
+    <!--        A SUPPRIMER A PRIORI-->
+    <!--      </p>-->
+    <!--    </div>-->
+    <!--    <div class="detail-block">-->
+    <!--      <h3>-->
+    <!--        <mat-icon>healing</mat-icon>-->
+    <!--        Pour qui ?-->
+    <!--      </h3>-->
+    <!--      <p>-->
+    <!--        A SUPPRIMER A PRIORI-->
+    <!--      </p>-->
+    <!--    </div>-->
+    <!--  </div>-->
 
-    <div class="apropos-actions">
-      <a href="/parcours" mat-stroked-button class="standard-btn">
-        Mon parcours et mon éthique
-      </a>
-      <button mat-stroked-button (click)="scrollTo('methode')" class="standard-btn">
-        Découvrir mon approche
-      </button>
-    </div>
+    <br><br>
+    <p class="intro-section">
+      Vous voulez savoir si mon approche est faite pour vous ?<br>
+      Je me fais un plaisir d'échanger avec vous.
+    </p>
+
+    <button mat-flat-button color="accent"
+            (click)="scrollTo('rdv'); isMobileMenuOpen.set(false); analytics.clickRdv('card-accompagnement')"
+            class="main-btn">
+      <mat-icon>calendar_today</mat-icon>
+      Prendre rendez-vous
+    </button>
 
   </div>
 
 
+
 </section>
-
-
 
 
 
@@ -445,127 +510,64 @@
   </div>
 </section>
 
-
-<!-- Method Section -->
-<section id="methode" class="section methode-section">
+<!-- About / Profile Section -->
+<section id="apropos" class="section apropos-section">
   <div class="section-divider"></div>
 
   <div class="content-section">
-    <h2 class="section-title">Mon approche</h2>
+    <h2 class="section-title">
+      Me connaître
+    </h2>
+    <div class="apropos-content">
+      <div class="apropos-image">
+        <img src="emilie.webp" alt="Émilie Pommier" class="photo">
+      </div>
+      <div class="apropos-text">
 
-    <div class="method-approaches">
-      <mat-chip-set aria-label="symptomes" style="display: inline-block;margin: 20px;">
-        <mat-chip >Intégrative</mat-chip>
-        <mat-chip>Trauma-informée</mat-chip>
-        <mat-chip>Psycho-corporelle</mat-chip>
-      </mat-chip-set>
-    </div>
-
-    <p class="content-text">
-      <span class="titre-paragraphe">L'alliance de l'esprit, du coeur et du corps, pour une efficacité maximale</span>
-      <br><br>
-
-      Je sais combien volonté et analyse intellectuelle, seules, ne suffisent pas à
-      apaiser certaines blessures profondément ancrées en nous.<br>
-      Beaucoup pensent qu'<i>il suffit de comprendre l'origine de ses problèmes</i> pour les résoudre.<br>
-      Pourtant, je suis certaine que vous avez déjà fait l'expérience de ce décalage... épuisant : votre
-      esprit sait (rationnellement) que tout va bien, que vous êtes en sécurité, mais votre corps - lui - guette
-      le danger, réagit au moindre stimuli, il s'emballe tout seul voire vous fige.<br>
-      Nos réactions et nos blocages ne sont pas de simples "idées" ou faiblesses : il s'agit de mémoires implicites, traces vivantes de notre histoire,
-      profondément engrammées dans notre système nerveux.
-    </p>
-
-    <div class="citation">
-      ~ Le corps est bavard. Savoir l'écouter lorsqu'il chuchote, c'est lui éviter d'avoir à crier ~
-    </div><br>
-
-    <mat-expansion-panel class="expansion-panel-text">
-      <mat-expansion-panel-header class="titre-paragraphe">
-          Pour approfondir
-      </mat-expansion-panel-header>
-      <mat-panel-description>
         <p class="content-text">
-          En travaillant ensemble, sur la base d'une relation authentique et ajustée, nous restaurons au fil des séances
-          la capacité naturelle de votre système nerveux à s'apaiser, à sortir de schémas obsolètes et à retrouver la
-          stabilité intérieure à laquelle vous aspirez.<br><br>
-          Pour vous accompagner au mieux, je propose de travailler alternativement mais aussi de faire intéragir vos schémas de
-          pensée (approche cognitive) et vos états corporels (approche somatique).<br>Je combine ainsi un travail verbal doux
-          avec des expériences émotionnelles et sensorielles, pour restaurer votre équilibre intérieur.<br><br>
+          Je suis Emilie, thérapeute et praticienne en psychologie.<br>
+          <br>
+          Avant de me consacrer pleinement à la relation d'aide, j'ai passé plus de
+          20 ans dans des métiers où écoute active, souci de l'impact et quête du juste équilibre
+          étaient au coeur de chaque projet.<br>
+          Aujourd'hui, ces expériences guident toujours mes accompagnements, mais j'ai choisi de me concentrer
+          sur l'<i>écologie intérieure</i>.<br>
+          Un retour à l'essentiel qui fait sens pour moi.<br>
+          <br>
+          J'ai également choisi de centrer ma pratique sur la personne et la sécurité relationnelle, pour offrir
+          à chacun.e un espace où restaurer progressivement cette fluidité naturelle entre tête, coeur et corps.<br>
+          Pour accompagner cette sensation unique de ré-alignement entre ce qui <i>se joue</i> en vous, ce que vous <i>éprouvez</i> et
+          ce que vous <i>comprenez</i> de tout cela...
+          et vous redonner ainsi élan et capacité d'agir.
         </p>
-      </mat-panel-description>
-    </mat-expansion-panel>
 
-
-<br><br><br>
-    <p class="intro-section">
-      Ma pratique s'articule autour de modèles thérapeutiques reconnus et complémentaires
-    </p>
-
-    <div class="principles-grid">
-      @for (principle of methodPrinciples; track principle.title) {
-        <div class="principle-card" [class.flipped]="flippedCards[principle.title]">
-          <div class="card-inner">
-            <div class="card-front"  (click)="flipCard(principle.title)">
-              <mat-icon class="principle-icon">{{ principle.icon }}</mat-icon>
-              <mat-card-title>{{ principle.title }}</mat-card-title>
-              <mat-card-content>
-                <p>{{ principle.description }}</p>
-              </mat-card-content>
-              <a class="flip-link">En savoir plus</a>
-            </div>
-            <div class="card-back" (click)="flipCard(principle.title)">
-
-                <mat-card-content>
-                  <div style="color:white;text-align: left;font-size:0.85rem;line-height: 1.3;" [innerHTML]="principle.description_back"></div>
-                </mat-card-content>
-
-
-            </div>
-          </div>
+        <div class="apropos-engagements content-text">
+          <strong>Mes engagements</strong>
+          <ul>
+            <li>Premier échange offert</li>
+            <li>Flexibilité du format</li>
+            <li>Rythme adapté à vos besoins</li>
+          </ul>
         </div>
-      }
+
+
+      </div>
     </div>
 
-    <!--  <div class="methode-details">-->
-    <!--    <div class="detail-block">-->
-    <!--      <h3>-->
-    <!--        <mat-icon>lightbulb</mat-icon>-->
-    <!--        L'Engagement Thérapeutique Conscient-->
-    <!--      </h3>-->
-    <!--      <p>-->
-    <!--        A SUPPRIMER A PRIORI-->
-    <!--      </p>-->
-    <!--    </div>-->
-    <!--    <div class="detail-block">-->
-    <!--      <h3>-->
-    <!--        <mat-icon>healing</mat-icon>-->
-    <!--        Pour qui ?-->
-    <!--      </h3>-->
-    <!--      <p>-->
-    <!--        A SUPPRIMER A PRIORI-->
-    <!--      </p>-->
-    <!--    </div>-->
-    <!--  </div>-->
 
-    <br><br>
-    <p class="intro-section">
-      Vous voulez savoir si mon approche est faite pour vous ?<br>
-      Je me fais un plaisir d'échanger avec vous.
-    </p>
-
-    <button mat-flat-button color="accent"
-            (click)="scrollTo('rdv'); isMobileMenuOpen.set(false); analytics.clickRdv('card-accompagnement')"
-            class="main-btn">
-      <mat-icon>calendar_today</mat-icon>
-      Prendre rendez-vous
-    </button>
+    <div class="apropos-actions">
+      <a href="/parcours" mat-stroked-button class="standard-btn">
+        Mon parcours et mon éthique
+      </a>
+      <button mat-stroked-button (click)="scrollTo('methode')" class="standard-btn">
+        Découvrir mon approche
+      </button>
+    </div>
 
   </div>
 
 
-
 </section>
-
 
 <!-- Consultations & Tarifs Section -->
 <section id="consultations" class="section consultations-section">
@@ -679,7 +681,7 @@
             <li>
               <a href="https://www.arte.tv/fr/videos/127467-001-A/avons-nous-tous-un-trauma-cache/" target="_blank" rel="noopener">
                 <mat-icon>movie</mat-icon>
-                Avons-nous tous un trauma caché ? (ARTE, 2026 | 27 min)
+                Avons-nous tous un trauma caché ? (ARTE | 27 min)
               </a>
             </li>
             <li>
@@ -697,25 +699,25 @@
             <li>
               <a href="https://www.youtube.com/watch?v=qM56FRfZrl8" target="_blank" rel="noopener">
                 <mat-icon>movie</mat-icon>
-                La neuroplasticité expliquée simplement (Infloressens, 2016 | 2 min)
+                La neuroplasticité expliquée simplement (Infloressens | 2 min)
               </a>
             </li>
             <li>
               <a href="https://www.youtube.com/watch?v=n9IJttHPYno" target="_blank" rel="noopener">
                 <mat-icon>movie</mat-icon>
-                L'IFS - 1ère partie (J. Renault, 2020 | 5 min)
+                L'IFS - 1ère partie (J. Renault | 5 min)
               </a>
             </li>
             <li>
               <a href="https://www.youtube.com/watch?v=b20pWSOiXts" target="_blank" rel="noopener">
                 <mat-icon>movie</mat-icon>
-                L'IFS - 2ème partie (J. Renault, 2020 | 6 min)
+                L'IFS - 2ème partie (J. Renault | 6 min)
               </a>
             </li>
             <li>
               <a href="https://www.youtube.com/watch?v=MVkvosRMRPA" target="_blank" rel="noopener">
                 <mat-icon>movie</mat-icon>
-                La théorie de l'attachement (Sprouts, 2023 | 8 min)
+                La théorie de l'attachement (Sprouts | 8 min)
               </a>
             </li>
           </ul>
