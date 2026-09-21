@@ -302,6 +302,8 @@ export class App implements OnInit {
     this.generateTimeSlots();
   }
 
+
+
   private generateTimeSlots(): void {
     const duration = (this.selectedTypeSeance()?.duree || 60) + 15; // Add 15 min buffer between sessions
     const slots: string[] = [];
@@ -485,14 +487,15 @@ export class App implements OnInit {
         : 'Lieu: En visioconference';
 
     const typeSeanceInfo = this.selectedTypeSeance() ? `\nType de séance: ${this.selectedTypeSeance()!.description}` : '';
-
+    const typeSeanceDuration = this.selectedTypeSeance()?.duree || 60;
     const taskTitle = `RDV: ${this.prenom()} ${this.nom()} — ${dateStr} à ${this.selectedTime()}`;
-    const taskNotes = `${typeSeanceInfo}\n${lieu}\nEmail: ${this.email()}\nTéléphone: ${this.telephone()}\nMessage: ${this.message()}\nPrenom: ${this.prenom}\nNom: ${this.nom}`;
+    const taskNotes = `${typeSeanceInfo}\n${lieu}\nEmail: ${this.email()}\nTéléphone: ${this.telephone()}\nMessage: ${this.message()}\nPrenom: ${this.prenom()}\nNom: ${this.nom()}\nDurée: ${typeSeanceDuration}min`;
 
     // Calculate start and end times for calendar event
     const selectedDate = this.selectedDate();
     const selectedTime = this.selectedTime();
-    const typeSeanceDuration = this.selectedTypeSeance()?.duree || 60;
+
+
     if (selectedDate && selectedTime) {
       const [hours, minutes] = selectedTime.split(':').map(Number);
       const startDateTime = new Date(selectedDate);
@@ -512,12 +515,14 @@ export class App implements OnInit {
           end_time: endDateTime,
           description: taskNotes,
           email: this.email(),
-          email_body:await read_email_template("confirmation_demande",{
+          email_body: await read_email_template('confirmation_demande', {
             start_time: dateToStr(startDateTime),
-            firstname:this.prenom,
-            lastname:this.nom
+            firstname: this.prenom(),
+            lastname: this.nom(),
+            medium: this.seanceType() == 'distant' ? 'en visio' : 'en présentiel',
+            duration: typeSeanceDuration + "min",
           }),
-          email_subject:"Réception de votre demande",
+          email_subject: 'Réception de votre demande',
           phone: this.telephone(),
           seance_type: this.selectedTypeSeance()?.nom || seanceTypeLabel,
         })
@@ -526,7 +531,7 @@ export class App implements OnInit {
         });
     }
 
-    const message = `Merci ${this.prenom()} ! Votre demande de rendez-vous a bien été envoyée. Je vous contacterai sous 24h pour confirmer ce rendez-vous.`;
+    const message = `Merci ${this.prenom()} ! Votre demande de rendez-vous a bien été envoyée. Je vous contacterai sous 24 à 48h pour confirmer ce rendez-vous.`;
 
     this.snackBar.open(message, 'Fermer', {
       duration: 5000,

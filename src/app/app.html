@@ -419,7 +419,7 @@
                 <p class="no-slots">Fermé le dimanche</p>
               } @else {
                 @if (availableSlots().length > 0) {
-                  <h4>Horaires disponibles <span class="slot-duration">(durée 1h)</span></h4>
+                  <h4>Horaires disponibles</h4>
                   <div class="slots-grid">
                     @for (slot of availableSlots(); track slot) {
                       <button

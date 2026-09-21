@@ -75,11 +75,9 @@ export class Admin implements OnInit, OnDestroy {
         this.snackBar.open('Erreur lors du chargement des événements', 'Fermer', {
           duration: 3000,
         });
-      }
+      },
     });
   }
-
-
 
   formatDateTime(dateTimeStr: string): string {
     if (!dateTimeStr) return '';
@@ -90,15 +88,31 @@ export class Admin implements OnInit, OnDestroy {
       month: 'short',
       day: 'numeric',
       hour: '2-digit',
-      minute: '2-digit'
+      minute: '2-digit',
     });
   }
 
-
-
-  getEventDetails(description: string): { firstname:string,lastname:string,media:string,email: string; phone: string; type: string,lieu:string } {
+  getEventDetails(description: string): {
+    duration: string;
+    firstname: string;
+    lastname: string;
+    media: string;
+    email: string;
+    phone: string;
+    type: string;
+    lieu: string;
+  } {
     const lines = description.split('\n');
-    const details = {firstname:'',lastname:'',media:'', lieu:'',email: '', phone: '', type: '' };
+    const details = {
+      firstname: '',
+      lastname: '',
+      duration: '',
+      media: '',
+      lieu: '',
+      email: '',
+      phone: '',
+      type: '',
+    };
     for (const line of lines) {
       if (line.startsWith('Email: ')) details.email = line.replace('Email: ', '');
       if (line.startsWith('Prenom: ')) details.firstname = line.replace('Prenom: ', '');
@@ -107,57 +121,57 @@ export class Admin implements OnInit, OnDestroy {
       if (line.startsWith('Téléphone: ')) details.phone = line.replace('Téléphone: ', '');
       if (line.startsWith('Type: ')) details.type = line.replace('Type: ', '');
       if (line.startsWith('Lieu: ')) details.lieu = line.replace('Lieu: ', '');
+      if (line.startsWith('Durée: ')) details.duration = line.replace('Durée: ', '');
     }
     return details;
   }
-
-
-
 
   async confirmEvent(event: CalendarEvent) {
     const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
     const emailMatch = event.description.match(emailRegex);
     const extractedEmail = emailMatch ? emailMatch[0] : '';
 
-    const descriptionLines = event.description.split('\n');
-    const status=this.getEventDetails(event.description)
+    const status = this.getEventDetails(event.description);
 
     const body = await read_email_template(
-      status.lieu.indexOf("visio")>-1 ? 'confirmation_rendezvous_visio' : 'confirmation_rendezvous_surplace',
+      status.lieu.indexOf('visio') > -1
+        ? 'confirmation_rendezvous_visio'
+        : 'confirmation_rendezvous_surplace',
       {
         start_str: dateToStr(new Date(event.start)),
         summary: event.summary,
-        firstname:status.firstname,
-        lastname:status.lastname,
+        firstname: status.firstname,
+        lastname: status.lastname,
         lieu_rendezvous: status.lieu,
+        duration:status.duration
       },
     );
 
-    this.http.post(`/api/calendar/confirm`, {
-      event_id: event.id,
-      dest_email: extractedEmail,
-      email_body: body,
-      email_subject:"Confirmation de votre rendez-vous - "+event.summary,
-    }).subscribe({
-      next: () => {
-        this.snackBar.open('Événement confirmé', 'Fermer', { duration: 3000 });
-        this.loadPendingEvents();
-      },
-      error: (err) => {
-        console.error('Failed to confirm event:', err);
-        this.snackBar.open('Erreur lors de la confirmation', 'Fermer', { duration: 3000 });
-      }
-    });
+    this.http
+      .post(`/api/calendar/confirm`, {
+        event_id: event.id,
+        dest_email: extractedEmail,
+        email_body: body,
+        email_subject: 'Confirmation de votre rendez-vous - ' + event.summary,
+      })
+      .subscribe({
+        next: () => {
+          this.snackBar.open('Événement confirmé', 'Fermer', { duration: 3000 });
+          this.loadPendingEvents();
+        },
+        error: (err) => {
+          console.error('Failed to confirm event:', err);
+          this.snackBar.open('Erreur lors de la confirmation', 'Fermer', { duration: 3000 });
+        },
+      });
   }
 
-
-
   async cancelEvent(event: CalendarEvent) {
-    const detail=this.getEventDetails(event.description)
-    const emailBody = await read_email_template("cancel_rendezvous",{
-      start_str:dateToStr(new Date(event.start)),
-      firstname:detail.firstname,
-      summary: event.summary
+    const detail = this.getEventDetails(event.description);
+    const emailBody = await read_email_template('cancel_rendezvous', {
+      start_str: dateToStr(new Date(event.start)),
+      firstname: detail.firstname,
+      summary: event.summary,
     });
 
     const dialogRef = this.dialog.open(EmailDialog, {
@@ -183,8 +197,6 @@ export class Admin implements OnInit, OnDestroy {
     });
   }
 
-
-
   sendEmail(event: CalendarEvent) {
     const dialogRef = this.dialog.open(EmailDialog, {
       width: '500px',
@@ -198,8 +210,8 @@ export class Admin implements OnInit, OnDestroy {
           },
           error: (err) => {
             console.error('Failed to send email:', err);
-            this.snackBar.open('Erreur lors de l\'envoi de l\'email', 'Fermer', { duration: 3000 });
-          }
+            this.snackBar.open("Erreur lors de l'envoi de l'email", 'Fermer', { duration: 3000 });
+          },
         });
       }
     });
@@ -211,17 +223,19 @@ export class Admin implements OnInit, OnDestroy {
     const url = `${baseUrl}/via-carte?t=${timestamp}`;
     this.lastQrCodeUrl.set(url);
 
-    QRCode.toDataURL(url, { width: 512, margin: 2 }).then((dataUrl:any) => {
-      const link = document.createElement('a');
-      link.href = dataUrl;
-      link.download = `qrcode-carte-${timestamp}.png`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      this.snackBar.open('QR Code généré et téléchargé', 'Fermer', { duration: 3000 });
-    }).catch((err:any) => {
-      console.error('Failed to generate QR code:', err);
-      this.snackBar.open('Erreur lors de la génération du QR code', 'Fermer', { duration: 3000 });
-    });
+    QRCode.toDataURL(url, { width: 512, margin: 2 })
+      .then((dataUrl: any) => {
+        const link = document.createElement('a');
+        link.href = dataUrl;
+        link.download = `qrcode-carte-${timestamp}.png`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        this.snackBar.open('QR Code généré et téléchargé', 'Fermer', { duration: 3000 });
+      })
+      .catch((err: any) => {
+        console.error('Failed to generate QR code:', err);
+        this.snackBar.open('Erreur lors de la génération du QR code', 'Fermer', { duration: 3000 });
+      });
   }
 }
