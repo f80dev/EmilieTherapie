@@ -3,7 +3,10 @@
   <div class="header-content">
     <div class="header-brand">
         <img src="assets/logo.png" width="70" class="image-logo" alt="Émilie Pommier">
-      <span class="logo" (click)="scrollTo('accueil')">Emilie Pommier</span>
+        <div class="logo" (click)="scrollTo('accueil')">
+          Emilie Pommier
+          <div class="sous-logo">Thérapeute</div>
+        </div><br>
 
     </div>
     <div class="nav-links" [class.mobile-open]="isMobileMenuOpen()">

@@ -1,0 +1,11 @@
+Ajoute un nouveau composant de création de billet destiné au réseau sociaux accessible utniquement depuis le composant admin
+
+ce composant affiche une fenetre demandant
+
+- la cible du billet (description du profil des lecteurs visés sous forme de texte)
+- le sujet principale (sous forme de texte)
+- la longueur du billet (a sélectionner parmi une liste de 3 longueure court, moyen, long)
+- le réseau social visé sous forme d'une liste déroulante avec les principaux réseau
+
+une fois les informations ci-dessus fournies par l'utilisateur, celui ci actionne un bouton "fabrique le prompt"
+et le système fabrique un prompt idéale pour générer le billet avec des éléments de contexte pour alimenter le LLM issue d'un skill contenu dans le répertoire public

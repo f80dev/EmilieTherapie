@@ -62,6 +62,15 @@
     }
   }
 
+  .sous-logo {
+    font-size: small;
+    color: black;
+    opacity: 0.7;
+    width: 100%;
+    text-align: right;
+    margin-top:-7px;
+  }
+
   // .hamburger rules moved to src/styles.scss (GLOBAL). A scoped rule
   // here would beat the global mobile rule on specificity because of
   // the [_ngcontent-xxx] attributes Angular adds to component selectors.

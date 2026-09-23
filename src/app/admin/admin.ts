@@ -126,6 +126,10 @@ export class Admin implements OnInit, OnDestroy {
     return details;
   }
 
+
+
+
+
   async confirmEvent(event: CalendarEvent) {
     const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
     const emailMatch = event.description.match(emailRegex);
@@ -152,7 +156,7 @@ export class Admin implements OnInit, OnDestroy {
         event_id: event.id,
         dest_email: extractedEmail,
         email_body: body,
-        email_subject: 'Confirmation de votre rendez-vous - ' + event.summary,
+        email_subject: "Confirmation de votre rendez-vous le "+dateToStr(new Date(event.start))
       })
       .subscribe({
         next: () => {
@@ -165,6 +169,10 @@ export class Admin implements OnInit, OnDestroy {
         },
       });
   }
+
+
+
+
 
   async cancelEvent(event: CalendarEvent) {
     const detail = this.getEventDetails(event.description);
@@ -182,7 +190,10 @@ export class Admin implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe((confirmedEmailBody) => {
       if (confirmedEmailBody) {
         this.http
-          .post(`/api/calendar/events/${event.id}`, { emailBody: confirmedEmailBody })
+          .post(`/api/calendar/events/${event.id}`, {
+            emailBody: confirmedEmailBody,
+            emailSubject: 'Annulation pour votre demande de rendez-vous du ' + dateToStr(new Date(event.start)),
+          })
           .subscribe({
             next: () => {
               this.snackBar.open('Événement annulé', 'Fermer', { duration: 3000 });
@@ -196,6 +207,9 @@ export class Admin implements OnInit, OnDestroy {
       }
     });
   }
+
+
+
 
   sendEmail(event: CalendarEvent) {
     const dialogRef = this.dialog.open(EmailDialog, {
@@ -216,6 +230,9 @@ export class Admin implements OnInit, OnDestroy {
       }
     });
   }
+
+
+
 
   generateQrCode() {
     const timestamp = Date.now().toString(16);

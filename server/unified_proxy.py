@@ -479,8 +479,7 @@ def delete_event(event_id: str,body: dict[str, str]) -> dict[str, Any]:
         # Envoyer un email d'annulation au client
         if client_email and "@" in client_email:
             try:
-                email_subject = f"Annulation de votre demande de rendez-vous"
-                send_email_smtp(client_email, email_subject, body.get["emailBody"], is_html=True)
+                send_email_smtp(client_email, body.get("emailSubject"), body.get("emailBody"), is_html=True)
                 logger.info(f"Email d'annulation envoyé à {client_email}")
             except Exception as email_error:
                 logger.error(f"Erreur lors de l'envoi de l'email d'annulation: {email_error}")
