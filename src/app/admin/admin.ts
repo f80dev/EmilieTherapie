@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { EmailDialog } from './email-dialog/email-dialog';
+import { BilletDialog } from './billet-dialog/billet-dialog';
 import * as QRCode from 'qrcode';
 import { dateToStr, read_email_template } from '../../main';
 
@@ -233,6 +234,13 @@ export class Admin implements OnInit, OnDestroy {
 
 
 
+
+  openBilletDialog(): void {
+    this.dialog.open(BilletDialog, {
+      width: '640px',
+      maxWidth: '95vw',
+    });
+  }
 
   generateQrCode() {
     const timestamp = Date.now().toString(16);

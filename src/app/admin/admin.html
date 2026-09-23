@@ -2,6 +2,10 @@
   <mat-toolbar color="primary">
     <span>Administration - Événements à confirmer</span>
     <span class="spacer"></span>
+    <button mat-button (click)="openBilletDialog()">
+      <mat-icon>campaign</mat-icon>
+      Créer un billet
+    </button>
     <button mat-button (click)="generateQrCode()">
       <mat-icon>qr_code</mat-icon>
       Générer QR Code

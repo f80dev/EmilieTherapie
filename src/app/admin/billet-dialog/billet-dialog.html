@@ -1,0 +1,95 @@
+<h2 mat-dialog-title>Créer un billet pour les réseaux sociaux</h2>
+
+<mat-dialog-content>
+  <p class="hint">
+    Décrivez le billet à fabriquer : le prompt généré reprend ces informations
+    et le skill de rédaction du site.
+  </p>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Cible du billet</mat-label>
+    <textarea
+      matInput
+      rows="3"
+      class="input-cible"
+      [value]="cible()"
+      (input)="cible.set($any($event.target).value)"
+      placeholder="Profil des lecteurs visés (ex. : jeunes parents épuisés, personnes en burn-out…)"
+    ></textarea>
+    <mat-hint>À qui ce billet s'adresse-t-il ?</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Sujet principal</mat-label>
+    <textarea
+      matInput
+      rows="2"
+      class="input-sujet"
+      [value]="sujet()"
+      (input)="sujet.set($any($event.target).value)"
+      placeholder="Ex. : pourquoi le corps réagit avant la pensée"
+    ></textarea>
+  </mat-form-field>
+
+  <div class="select-row">
+    <mat-form-field appearance="outline">
+      <mat-label>Longueur</mat-label>
+      <mat-select
+        class="select-longueur"
+        [value]="longueur()"
+        (selectionChange)="longueur.set($event.value)"
+      >
+        @for (option of longueurs; track option.id) {
+          <mat-option [value]="option">{{ option.label }} ({{ option.mots }})</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Réseau social</mat-label>
+      <mat-select
+        class="select-reseau"
+        [value]="reseau()"
+        (selectionChange)="reseau.set($event.value)"
+      >
+        @for (option of reseaux; track option.id) {
+          <mat-option [value]="option">{{ option.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  @if (prompt()) {
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Prompt généré</mat-label>
+      <textarea
+        matInput
+        rows="14"
+        class="prompt-output"
+        [value]="prompt()"
+        (input)="prompt.set($any($event.target).value)"
+      ></textarea>
+      <mat-hint>Modifiable avant copie</mat-hint>
+    </mat-form-field>
+  }
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onClose()">Fermer</button>
+  @if (prompt()) {
+    <button mat-stroked-button class="copy-button" (click)="copierPrompt()">
+      <mat-icon>content_copy</mat-icon>
+      Copier le prompt
+    </button>
+  }
+  <button
+    mat-raised-button
+    color="primary"
+    class="build-button"
+    (click)="fabriquerPrompt()"
+    [disabled]="!isFormValid() || generating()"
+  >
+    <mat-icon>auto_awesome</mat-icon>
+    {{ generating() ? 'Génération…' : 'Fabrique le prompt' }}
+  </button>
+</mat-dialog-actions>

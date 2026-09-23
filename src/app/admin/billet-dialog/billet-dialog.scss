@@ -1,0 +1,41 @@
+.full-width {
+  width: 100%;
+}
+
+.hint {
+  margin: 0 0 16px;
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
+
+.select-row {
+  display: flex;
+  gap: 16px;
+
+  mat-form-field {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+textarea {
+  resize: vertical;
+}
+
+.prompt-output {
+  min-height: 240px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+mat-dialog-content {
+  min-width: 320px;
+}
+
+@media (max-width: 600px) {
+  .select-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}
