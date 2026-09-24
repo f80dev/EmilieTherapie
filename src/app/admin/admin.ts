@@ -45,6 +45,7 @@ export class Admin implements OnInit, OnDestroy {
   pendingEvents = signal<CalendarEvent[]>([]);
   loading = signal(false);
   lastQrCodeUrl = signal<string>('');
+  lastQrCodeDataUrl = signal<string>('');
 
   private refreshIntervalId: ReturnType<typeof setInterval> | null = null;
   private readonly REFRESH_INTERVAL_MS = 2 * 60 * 1000; // 2 minutes
@@ -235,14 +236,17 @@ export class Admin implements OnInit, OnDestroy {
     });
   }
 
+
+
   generateQrCode() {
     const timestamp = Date.now().toString(16);
     const baseUrl = window.location.origin;
-    const url = `${baseUrl}/via-carte?t=${timestamp}`;
+    const url = `${baseUrl}/from?t=${timestamp}`;
     this.lastQrCodeUrl.set(url);
 
     QRCode.toDataURL(url, { width: 512, margin: 2 })
       .then((dataUrl: any) => {
+        this.lastQrCodeDataUrl.set(dataUrl);
         const link = document.createElement('a');
         link.href = dataUrl;
         link.download = `qrcode-carte-${timestamp}.png`;
@@ -255,5 +259,34 @@ export class Admin implements OnInit, OnDestroy {
         console.error('Failed to generate QR code:', err);
         this.snackBar.open('Erreur lors de la génération du QR code', 'Fermer', { duration: 3000 });
       });
+  }
+
+  async copierUrl(): Promise<void> {
+    const url = this.lastQrCodeUrl();
+    if (!url) {
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      this.snackBar.open('URL copiée dans le presse-papiers', 'Fermer', { duration: 3000 });
+    } catch {
+      this.snackBar.open('Copie impossible — sélectionnez le lien manuellement', 'Fermer', { duration: 4000 });
+    }
+  }
+
+  async copierQrCode(): Promise<void> {
+    const dataUrl = this.lastQrCodeDataUrl();
+    if (!dataUrl) {
+      return;
+    }
+    try {
+      const blob = await (await fetch(dataUrl)).blob();
+      await navigator.clipboard.write([
+        new ClipboardItem({ [blob.type]: blob }),
+      ]);
+      this.snackBar.open('QR Code copié dans le presse-papiers', 'Fermer', { duration: 3000 });
+    } catch {
+      this.snackBar.open('Copie impossible — téléchargez le QR code', 'Fermer', { duration: 4000 });
+    }
   }
 }

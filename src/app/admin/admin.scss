@@ -37,6 +37,13 @@ mat-toolbar {
       text-decoration: underline;
     }
   }
+
+  .qr-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
 }
 
 .content {

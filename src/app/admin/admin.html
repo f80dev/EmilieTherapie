@@ -14,8 +14,18 @@
 
   @if (lastQrCodeUrl()) {
     <div class="qr-url-display">
-      <p>URL du QR Code :</p>
+      <p>URL de renvoi :</p>
       <a [href]="lastQrCodeUrl()" target="_blank">{{ lastQrCodeUrl() }}</a>
+      <div class="qr-actions">
+        <button mat-stroked-button (click)="copierUrl()">
+          <mat-icon>content_copy</mat-icon>
+          Copier l'URL
+        </button>
+        <button mat-stroked-button (click)="copierQrCode()">
+          <mat-icon>qr_code</mat-icon>
+          Copier le QR Code
+        </button>
+      </div>
     </div>
   }
 
