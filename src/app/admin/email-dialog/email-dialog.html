@@ -1,14 +1,16 @@
 <h2 mat-dialog-title>Votre message</h2>
 <mat-dialog-content>
-  <mat-form-field appearance="outline" style="width: 100%;">
-    <mat-label>Message</mat-label>
-<!--    <textarea matInput [(ngModel)]="emailBody" rows="10" placeholder="Saisissez votre message..."></textarea>-->
-    <div [innerHTML]="emailBody"></div>
-  </mat-form-field>
+  <quill-editor
+    [(ngModel)]="emailBody"
+    [modules]="editorModules"
+    [readOnly]="isPreview"
+    [styles]="{ height: '260px' }"
+    placeholder="Saisissez votre message...">
+  </quill-editor>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button (click)="onCancel()">Annuler</button>
-  <button mat-raised-button color="primary" (click)="onSend()" [disabled]="!emailBody.trim()">
+  <button mat-raised-button color="primary" (click)="onSend()" [disabled]="isBodyEmpty()">
     <mat-icon>send</mat-icon>
     Envoyer
   </button>

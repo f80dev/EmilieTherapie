@@ -127,10 +127,6 @@ export class Admin implements OnInit, OnDestroy {
     return details;
   }
 
-
-
-
-
   async confirmEvent(event: CalendarEvent) {
     const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
     const emailMatch = event.description.match(emailRegex);
@@ -148,7 +144,7 @@ export class Admin implements OnInit, OnDestroy {
         firstname: status.firstname,
         lastname: status.lastname,
         lieu_rendezvous: status.lieu,
-        duration:status.duration
+        duration: status.duration,
       },
     );
 
@@ -157,7 +153,7 @@ export class Admin implements OnInit, OnDestroy {
         event_id: event.id,
         dest_email: extractedEmail,
         email_body: body,
-        email_subject: "Confirmation de votre rendez-vous le "+dateToStr(new Date(event.start))
+        email_subject: 'Confirmation de votre rendez-vous le ' + dateToStr(new Date(event.start)),
       })
       .subscribe({
         next: () => {
@@ -170,10 +166,6 @@ export class Admin implements OnInit, OnDestroy {
         },
       });
   }
-
-
-
-
 
   async cancelEvent(event: CalendarEvent) {
     const detail = this.getEventDetails(event.description);
@@ -193,7 +185,8 @@ export class Admin implements OnInit, OnDestroy {
         this.http
           .post(`/api/calendar/events/${event.id}`, {
             emailBody: confirmedEmailBody,
-            emailSubject: 'Annulation pour votre demande de rendez-vous du ' + dateToStr(new Date(event.start)),
+            emailSubject:
+              'Annulation pour votre demande de rendez-vous du ' + dateToStr(new Date(event.start)),
           })
           .subscribe({
             next: () => {
@@ -209,12 +202,15 @@ export class Admin implements OnInit, OnDestroy {
     });
   }
 
+  async sendEmail(event: CalendarEvent) {
+    const detail = this.getEventDetails(event.description);
+    const emailBody = await read_email_template('envoi_message', {
+      firstname: detail.firstname
+    });
 
-
-
-  sendEmail(event: CalendarEvent) {
     const dialogRef = this.dialog.open(EmailDialog, {
       width: '500px',
+      data: { emailBody }
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -231,9 +227,6 @@ export class Admin implements OnInit, OnDestroy {
       }
     });
   }
-
-
-
 
   openBilletDialog(): void {
     this.dialog.open(BilletDialog, {
