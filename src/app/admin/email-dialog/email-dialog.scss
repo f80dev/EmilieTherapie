@@ -13,4 +13,17 @@ quill-editor {
   border-bottom-right-radius: 4px;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-size: 14px;
+  height: 260px;
+}
+
+@media (max-width: 600px) {
+  :host ::ng-deep .ql-container.ql-snow {
+    height: 180px;
+  }
+
+  mat-dialog-actions button {
+    flex: 1 1 100%;
+    min-height: 44px;
+    margin: 4px 0 0 !important;
+  }
 }

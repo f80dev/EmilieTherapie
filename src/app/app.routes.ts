@@ -13,7 +13,7 @@ export const routes: Routes = [
   },
 
   {
-    path: 'via',
+    path: 'from',
     loadComponent: () => import('./via-carte/via-carte').then((m) => m.ViaCarte),
   },
 

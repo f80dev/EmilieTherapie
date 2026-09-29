@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
 import { EmailDialog } from './email-dialog/email-dialog';
 import { BilletDialog } from './billet-dialog/billet-dialog';
 import * as QRCode from 'qrcode';
@@ -33,6 +34,7 @@ interface CalendarEvent {
     MatCardModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatTabsModule,
   ],
   templateUrl: './admin.html',
   styleUrl: './admin.scss',
@@ -46,6 +48,7 @@ export class Admin implements OnInit, OnDestroy {
   loading = signal(false);
   lastQrCodeUrl = signal<string>('');
   lastQrCodeDataUrl = signal<string>('');
+  homeUrl = signal<string>('');
 
   private refreshIntervalId: ReturnType<typeof setInterval> | null = null;
   private readonly REFRESH_INTERVAL_MS = 2 * 60 * 1000; // 2 minutes
@@ -178,6 +181,8 @@ export class Admin implements OnInit, OnDestroy {
 
     const dialogRef = this.dialog.open(EmailDialog, {
       width: '500px',
+      maxWidth: '95vw',
+      maxHeight: '90vh',
       data: { emailBody },
     });
 
@@ -211,6 +216,8 @@ export class Admin implements OnInit, OnDestroy {
 
     const dialogRef = this.dialog.open(EmailDialog, {
       width: '500px',
+      maxWidth: '95vw',
+      maxHeight: '90vh',
       data: { emailBody }
     });
 
@@ -233,6 +240,7 @@ export class Admin implements OnInit, OnDestroy {
     this.dialog.open(BilletDialog, {
       width: '640px',
       maxWidth: '95vw',
+      maxHeight: '90vh',
     });
   }
 
@@ -243,6 +251,7 @@ export class Admin implements OnInit, OnDestroy {
     const baseUrl = window.location.origin;
     const url = `${baseUrl}/from?t=${timestamp}`;
     this.lastQrCodeUrl.set(url);
+    this.homeUrl.set(`${baseUrl}/?t=${timestamp}`);
 
     QRCode.toDataURL(url, { width: 512, margin: 2 })
       .then((dataUrl: any) => {
@@ -261,13 +270,13 @@ export class Admin implements OnInit, OnDestroy {
       });
   }
 
-  async copierUrl(): Promise<void> {
-    const url = this.lastQrCodeUrl();
-    if (!url) {
+  async copierUrl(url?: string): Promise<void> {
+    const value = url ?? this.lastQrCodeUrl();
+    if (!value) {
       return;
     }
     try {
-      await navigator.clipboard.writeText(url);
+      await navigator.clipboard.writeText(value);
       this.snackBar.open('URL copiée dans le presse-papiers', 'Fermer', { duration: 3000 });
     } catch {
       this.snackBar.open('Copie impossible — sélectionnez le lien manuellement', 'Fermer', { duration: 4000 });

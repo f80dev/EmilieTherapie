@@ -39,4 +39,18 @@ mat-dialog-content {
     flex-direction: column;
     gap: 0;
   }
+
+  mat-dialog-content {
+    min-width: 0;
+  }
+
+  .full-width {
+    margin-bottom: 16px;
+  }
+
+  mat-dialog-actions button {
+    flex: 1 1 100%;
+    min-height: 44px;
+    margin: 4px 0 0 !important;
+  }
 }

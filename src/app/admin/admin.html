@@ -1,6 +1,9 @@
 <div class="admin-container">
   <mat-toolbar color="primary">
-    <span>Administration - Événements à confirmer</span>
+    <span class="toolbar-title">
+      <span class="title-full">Administration - Événements à confirmer</span>
+      <span class="title-short">Administration</span>
+    </span>
     <span class="spacer"></span>
     <button mat-button (click)="openBilletDialog()">
       <mat-icon>campaign</mat-icon>
@@ -14,18 +17,39 @@
 
   @if (lastQrCodeUrl()) {
     <div class="qr-url-display">
-      <p>URL de renvoi :</p>
-      <a [href]="lastQrCodeUrl()" target="_blank">{{ lastQrCodeUrl() }}</a>
-      <div class="qr-actions">
-        <button mat-stroked-button (click)="copierUrl()">
-          <mat-icon>content_copy</mat-icon>
-          Copier l'URL
-        </button>
-        <button mat-stroked-button (click)="copierQrCode()">
-          <mat-icon>qr_code</mat-icon>
-          Copier le QR Code
-        </button>
-      </div>
+      <mat-tab-group>
+        <mat-tab label="Lien pour carte de visite">
+          <div class="tab-content">
+            @if (lastQrCodeDataUrl()) {
+              <img [src]="lastQrCodeDataUrl()" alt="QR Code" class="qr-image" />
+            }
+            <p>URL de renvoi :</p>
+            <a [href]="lastQrCodeUrl()" target="_blank">{{ lastQrCodeUrl() }}</a>
+            <div class="qr-actions">
+              <button mat-stroked-button (click)="copierUrl()">
+                <mat-icon>content_copy</mat-icon>
+                Copier l'URL
+              </button>
+              <button mat-stroked-button (click)="copierQrCode()">
+                <mat-icon>qr_code</mat-icon>
+                Copier le QR Code
+              </button>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Lien homepage">
+          <div class="tab-content">
+            <p>Lien direct vers l'accueil :</p>
+            <a [href]="homeUrl()" target="_blank">{{ homeUrl() }}</a>
+            <div class="qr-actions">
+              <button mat-stroked-button (click)="copierUrl(homeUrl())">
+                <mat-icon>content_copy</mat-icon>
+                Copier l'URL
+              </button>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
     </div>
   }
 
