@@ -527,6 +527,149 @@ def send_email(body: dict[str, str]) -> dict[str, Any]:
 def health() -> dict[str, str]:
     return {"status": "ok"}
 
+
+# ---------------------------------------------------------------------------
+# Psybot — conversational RAG endpoint (MiniMax M3 + TF-IDF over server/knowledge/)
+# Stateless: history lives in the browser. Server only retrieves + forwards.
+# ---------------------------------------------------------------------------
+import re as _re
+try:
+    from rag import KnowledgeBase as _KnowledgeBase
+    from llm import MiniMaxClient as _MiniMaxClient, MiniMaxError as _MiniMaxError
+    _PSYBOT_ENABLED = True
+except Exception as _err:
+    logger.warning("Psybot modules unavailable: %s", _err)
+    _KnowledgeBase = None  # type: ignore
+    _MiniMaxClient = None  # type: ignore
+    _MiniMaxError = Exception  # type: ignore
+    _PSYBOT_ENABLED = False
+
+
+_kb: "_KnowledgeBase | None" = None
+_llm: "_MiniMaxClient | None" = None
+
+# Emergency keywords — bilingual, case-insensitive. ANY match short-circuits
+# the LLM and returns the safety message verbatim.
+_EMERGENCY_RE = _re.compile(
+    r"\b(suicide|suicid|me\s+tuer|me\s+faire\s+mal|en\s+finir|plus\s+envie\s+de\s+vivre|"
+    r"mourir|idees\s+suicid|tuer|mutiler|me\s+blesser|je\s+veux\s+disparaitre|"
+    r"ça\s+va\s+pas|je\s+suis\s+au\s+fond|je\s+n[\'e]en\s+peux\s+plus)\b",
+    _re.IGNORECASE,
+)
+
+_EMERGENCY_MESSAGE = (
+    "Ce que vous décrivez semble être une détresse importante. "
+    "Je ne suis pas un professionnel de santé et je ne peux pas vous aider directement.\n\n"
+    "En France, vous pouvez appeler :\n"
+    "• le **3114** (numéro national de prévention du suicide, gratuit, 24h/24, 7j/7)\n"
+    "• le **15** (SAMU) en cas d'urgence\n"
+    "• le **114** par SMS si vous êtes sourd·e ou malentendant·e\n\n"
+    "Si vous êtes en danger immédiat, contactez un proche ou les secours. "
+    "Vous n'êtes pas seul·e."
+)
+
+_PSYBOT_SYSTEM_PROMPT = """Tu es Psybot, l'assistant conversationnel du cabinet d'Emilie Pommier, \
+thérapeute à Paris 10e/11e et en visio. Emilie pratique l'Intelligence Relationnelle \
+(modélisée par le Dr François Le Doze), l'EMDR, la thérapie sensori-motrice et les TCC. \
+Son premier échange (30 minutes) est offert, sur rendez-vous : https://emiliepommier.fr/#rdv
+
+Ton rôle est strictement INFORMATIONNEL.
+
+RÈGLES ABSOLUES (aucune exception) :
+1. Tu ne poses AUCUN diagnostic, AUCUN avis thérapeutique personnalisé, AUCUNE promesse de guérison.
+2. Tu ne remplaces jamais un professionnel de santé mentale.
+3. Si l'utilisateur exprime une détresse aiguë ou une urgence, tu réponds par le message d'urgence ci-dessous, rien d'autre :
+   « {EMERGENCY} »
+4. Tu t'appuies sur les passages de contexte fournis pour répondre. Si la question dépasse ce cadre, dis-le explicitement (« je n'ai pas d'information fiable sur ce sujet précis »).
+5. Tu termines tes réponses par une invitation douce à prendre RDV quand c'est pertinent.
+6. Tu es sobre, bienveillant, jamais dramatique. Tu vouvoies l'utilisateur.
+
+CONTEXTE (passages RAG, tu dois t'appuyer dessus) :
+{context}
+""".replace("{EMERGENCY}", _EMERGENCY_MESSAGE)
+
+
+def _psybot_init() -> None:
+    """Lazy-init the RAG KB and LLM client (called on first request + lifespan)."""
+    global _kb, _llm
+    if not _PSYBOT_ENABLED:
+        return
+    if _kb is None:
+        _kb = _KnowledgeBase("knowledge")
+        logger.info("Psybot KB loaded: %d passages", len(_kb.passages))
+    if _llm is None:
+        _llm = _MiniMaxClient()
+        logger.info("Psybot LLM client initialized (mock=%s)", _llm.mock)
+
+
+@app.get("/api/health/psybot")
+def health_psybot() -> dict[str, Any]:
+    _psybot_init()
+    if not _PSYBOT_ENABLED or _kb is None:
+        raise HTTPException(status_code=503, detail="psybot not available")
+    return {
+        "status": "ok",
+        "corpus_size": len(_kb.passages),
+        "llm_mock": bool(_llm and _llm.mock),
+    }
+
+
+@app.post("/api/psybot/chat")
+def psybot_chat(body: dict[str, Any]) -> dict[str, Any]:
+    _psybot_init()
+    if not _PSYBOT_ENABLED or _kb is None or _llm is None:
+        raise HTTPException(status_code=503, detail="psybot not available")
+
+    message = (body.get("message") or "").strip()
+    history = body.get("history") or []  # list[{role, content}] — last 4 turns
+    if not message:
+        raise HTTPException(status_code=400, detail="message is required")
+    if len(message) > 1500:
+        raise HTTPException(status_code=400, detail="message too long (1500 chars max)")
+
+    # 1) Emergency short-circuit
+    if _EMERGENCY_RE.search(message):
+        return {
+            "answer": _EMERGENCY_MESSAGE,
+            "sources": [],
+            "emergency": True,
+        }
+
+    # 2) RAG retrieve
+    hits = _kb.search(message, top_k=3)
+    if hits:
+        context = "\n\n---\n\n".join(
+            f"[Source: {h['source']} — {h['title']}]\n{h['snippet']}" for h in hits
+        )
+    else:
+        context = "(aucun passage pertinent trouvé dans la base de connaissances)"
+
+    # 3) Build messages (system + recent history + new question)
+    messages: list[dict] = []
+    if isinstance(history, list):
+        for h in history[-4:]:
+            if isinstance(h, dict) and h.get("role") in ("user", "assistant"):
+                content = (h.get("content") or "").strip()
+                if content:
+                    messages.append({"role": h["role"], "content": content[:1500]})
+    messages.append({"role": "user", "content": message})
+
+    system = _PSYBOT_SYSTEM_PROMPT.replace("{context}", context)
+
+    # 4) LLM call
+    try:
+        answer = _llm.chat(messages, system=system, temperature=0.4, max_tokens=700)
+    except _MiniMaxError as e:
+        logger.error("Psybot LLM error: %s", e)
+        raise HTTPException(status_code=502, detail=f"LLM upstream error: {e}")
+
+    return {
+        "answer": answer,
+        "sources": [{"title": h["title"], "source": h["source"], "score": h["score"]} for h in hits],
+        "emergency": False,
+    }
+
+
 @app.get("/api/status_variables")
 def status_variable() -> dict:
     #http://127.0.0.1:8080/status
