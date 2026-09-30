@@ -1,0 +1,117 @@
+<section class="psybot-page">
+  <header class="psybot-header">
+    <h1>Psybot</h1>
+    <p class="subtitle">
+      Vos questions sur l'Intelligence Relationnelle, l'EMDR, la théorie polyvagale et l'attachement.
+    </p>
+  </header>
+
+  <aside class="disclaimer" role="note">
+    <mat-icon aria-hidden="true">info</mat-icon>
+    <p>
+      <strong>Assistant strictement informatif.</strong>
+      Psybot ne pose aucun diagnostic et ne remplace pas un professionnel de santé mentale.
+      En cas de détresse&nbsp;: <strong>3114</strong> (numéro national de prévention du suicide,
+      gratuit, 24h/24) ou <strong>15</strong> (SAMU).
+    </p>
+  </aside>
+
+  <div #scroll class="conversation">
+    @if (turns().length === 0) {
+      <div class="empty">
+        <mat-icon aria-hidden="true">forum</mat-icon>
+        <p>Posez votre première question. Quelques exemples&nbsp;:</p>
+        <ul>
+          <li>« C'est quoi l'EMDR ? »</li>
+          <li>« Qu'est-ce que l'Intelligence Relationnelle ? »</li>
+          <li>« Comment se développe un attachement sécurisé ? »</li>
+          <li>« Qu'est-ce que la dissociation traumatique ? »</li>
+        </ul>
+      </div>
+    }
+
+    @for (turn of turns(); track turn.ts) {
+      <article
+        class="bubble"
+        [class.user]="turn.role === 'user'"
+        [class.bot]="turn.role === 'bot'"
+        [class.emergency]="turn.emergency"
+      >
+        <div class="role">{{ turn.role === 'user' ? 'Vous' : 'Psybot' }}</div>
+        <div class="text" [innerText]="turn.text"></div>
+
+        @if (turn.sources && turn.sources.length > 0) {
+          <details class="sources">
+            <summary>{{ turn.sources.length }} source{{ turn.sources.length > 1 ? 's' : '' }} consultée{{ turn.sources.length > 1 ? 's' : '' }}</summary>
+            <ul>
+              @for (s of turn.sources; track s.source + s.title) {
+                <li>
+                  <span class="src-file">{{ s.source }}</span>
+                  — {{ s.title }}
+                  <span class="src-score">(score&nbsp;{{ s.score }})</span>
+                </li>
+              }
+            </ul>
+          </details>
+        }
+      </article>
+    }
+
+    @if (busy()) {
+      <article class="bubble bot typing">
+        <div class="role">Psybot</div>
+        <div class="text">
+          <mat-progress-spinner mode="indeterminate" diameter="18"></mat-progress-spinner>
+          Réponse en cours…
+        </div>
+      </article>
+    }
+  </div>
+
+  <form class="composer" (ngSubmit)="send()" autocomplete="off">
+    <mat-form-field appearance="outline" class="input">
+      <mat-label>Votre question</mat-label>
+      <textarea
+        matInput
+        rows="2"
+        [ngModel]="draft()"
+        (ngModelChange)="draft.set($event)"
+        (keydown)="onKeydown($event)"
+        name="draft"
+        placeholder="Posez votre question sur l'EMDR, l'IR, l'attachement…"
+        [disabled]="busy()"
+        maxlength="1500"
+      ></textarea>
+      <mat-hint align="end">{{ draft().length }} / 1500</mat-hint>
+    </mat-form-field>
+
+    <div class="actions">
+      <button
+        mat-stroked-button
+        type="button"
+        (click)="resetConversation()"
+        [disabled]="busy() || turns().length === 0"
+      >
+        <mat-icon>refresh</mat-icon>
+        Nouvelle conversation
+      </button>
+
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        [disabled]="busy() || draft().trim().length === 0"
+      >
+        @if (busy()) {
+          <mat-progress-spinner mode="indeterminate" diameter="18"></mat-progress-spinner>
+          Envoi…
+        } @else {
+          <ng-container>
+            <mat-icon>send</mat-icon>
+            Envoyer
+          </ng-container>
+        }
+      </button>
+    </div>
+  </form>
+</section>

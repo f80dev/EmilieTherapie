@@ -46,6 +46,11 @@ export const routes: Routes = [
   },
 
   {
+    path: 'psybot',
+    loadComponent: () => import('./psybot/psybot').then((m) => m.Psybot),
+  },
+
+  {
     path: 'admin',
     loadComponent: () => import('./admin/admin').then((m) => m.Admin),
     canActivate: [authGuard],
