@@ -64,6 +64,11 @@ export class SeoService {
       title: 'Administration',
       description: 'Espace administration du site.',
     },
+    '/psybot': {
+      title: 'Psybot — Assistant informatif EMDR & Intelligence Relationnelle | Emilie Pommier',
+      description:
+        "Posez vos questions sur l'EMDR, l'Intelligence Relationnelle (Dr F. Le Doze), la théorie polyvagale, l'attachement ou la blessure psychique. Assistant conversationnel strictement informatif — pas de diagnostic, pas d'avis thérapeutique personnalisé.",
+    },
     '/tests': {
       title: 'Tests',
       description: 'Page de tests techniques.',

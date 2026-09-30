@@ -26,6 +26,12 @@
   </url>
 
   <url>
+    <loc>https://emiliepommier.fr/psybot</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://emiliepommier.fr/versionslegales/cgv</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
