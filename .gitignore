@@ -45,5 +45,15 @@ Thumbs.db
 server/google_token.json
 google_token.json
 
+# Secrets / credentials (psybot + LLM API keys, service account JSON, env files)
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.jks
+google_account*.json
+server/.env
+
 /server/sitewebprincipal-3d2b451b6b63.json
 server/__pycache__/
