@@ -27,11 +27,9 @@ except ImportError:
 # Configuration
 # ---------------------------------------------------------------------------
 
-_MIMO_API_URL = os.environ.get(
-    "MIMO_API_URL", "https://api.mimo.mi.com/v1/chat/completions"
-).strip()
-_MIMO_DEFAULT_MODEL = os.environ.get("MIMO_MODEL", "mimo-v2-flash").strip()
-_MIMO_TIMEOUT_SEC = float(os.environ.get("MIMO_TIMEOUT", "30"))
+_MIMO_API_URL_DEFAULT = "https://api.mimo.mi.com/v1/chat/completions"
+_MIMO_DEFAULT_MODEL_DEFAULT = "mimo-v2-flash"
+_MIMO_TIMEOUT_SEC_DEFAULT = 30.0
 
 
 class MiMoError(RuntimeError):
@@ -51,10 +49,11 @@ class MiMoClient:
     mock: bool = False
 
     def __init__(self) -> None:
+        # Read env at construction time so tests can monkeypatch overrides.
         self.api_key = os.environ.get("MIMO_API_KEY", "").strip()
-        self.api_url = _MIMO_API_URL
-        self.model = _MIMO_DEFAULT_MODEL
-        self.timeout = _MIMO_TIMEOUT_SEC
+        self.api_url = os.environ.get("MIMO_API_URL", _MIMO_API_URL_DEFAULT).strip()
+        self.model = os.environ.get("MIMO_MODEL", _MIMO_DEFAULT_MODEL_DEFAULT).strip()
+        self.timeout = float(os.environ.get("MIMO_TIMEOUT", str(_MIMO_TIMEOUT_SEC_DEFAULT)))
         if not self.api_key:
             raise MiMoError("MIMO_API_KEY environment variable is not set")
 
