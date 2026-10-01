@@ -1,12 +1,10 @@
-"""Minimal MiniMax M3 chat completion client (urllib stdlib).
+"""Minimal MiMo chat completion client (urllib stdlib).
 
-Reads the API key from the MINIMAX_API_KEY env var. If the key is missing
-and MINIMAX_MOCK=1 is set, returns a canned educational answer so the rest
-of the system can be tested without hitting the upstream API.
+Reads the API key from the MIMO_API_KEY env var.
 
-Endpoint: POST https://api.minimax.chat/v1/text/chatcompletion_v2
-Auth: Bearer <MINIMAX_API_KEY>
-Model: MiniMax-M3
+Endpoint: POST https://api.mimo.ai/v1/text/chatcompletion_v2
+Auth: Bearer <MIMO_API_KEY>
+Model: MiMo
 """
 
 from __future__ import annotations
@@ -16,16 +14,23 @@ import os
 import urllib.error
 import urllib.request
 
+# Load .env file if present
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass  # python-dotenv not installed, rely on system env vars
 
-class MiniMaxError(RuntimeError):
-    """Raised on any failure calling MiniMax M3."""
+
+class MiMoError(RuntimeError):
+    """Raised on any failure calling MiMo."""
 
 
-class MiniMaxClient:
+class MiMoClient:
     def __init__(self) -> None:
-        self.api_key = os.environ.get("MINIMAX_API_KEY", "").strip()
-        self.mock = bool(os.environ.get("MINIMAX_MOCK")) or not self.api_key
-        # Lazy: only validate connectivity if a real call is attempted.
+        self.api_key = os.environ.get("MIMO_API_KEY", "").strip()
+        if not self.api_key:
+            raise MiMoError("MIMO_API_KEY environment variable is not set")
 
     def chat(
         self,
@@ -34,10 +39,7 @@ class MiniMaxClient:
         temperature: float = 0.4,
         max_tokens: int = 800,
     ) -> str:
-        if self.mock:
-            return self._mock_answer(messages)
-
-        url = "https://api.minimax.chat/v1/text/chatcompletion_v2"
+        url = "https://api.mimo.ai/v1/text/chatcompletion_v2"
         full_messages: list[dict] = []
         if system:
             full_messages.append({"role": "system", "content": system})
@@ -45,7 +47,7 @@ class MiniMaxClient:
 
         body = json.dumps(
             {
-                "model": "MiniMax-M3",
+                "model": "MiMo",
                 "messages": full_messages,
                 "temperature": temperature,
                 "max_tokens": max_tokens,
@@ -64,11 +66,11 @@ class MiniMaxClient:
             except urllib.error.HTTPError as e:
                 raw = e.read().decode("utf-8", errors="replace")[: 400]
                 if e.code in (429, 500, 502, 503, 504) and attempt == 1:
-                    last_err = MiniMaxError(f"upstream {e.code}: {raw}")
+                    last_err = MiMoError(f"upstream {e.code}: {raw}")
                     continue
-                raise MiniMaxError(f"upstream {e.code}: {raw}") from e
+                raise MiMoError(f"upstream {e.code}: {raw}") from e
             except urllib.error.URLError as e:
-                raise MiniMaxError(f"network error: {e.reason}") from e
+                raise MiMoError(f"network error: {e.reason}") from e
         assert last_err is not None
         raise last_err
 
@@ -78,56 +80,37 @@ class MiniMaxClient:
             choices = payload["choices"]
             return choices[0]["message"]["content"]
         except (KeyError, IndexError, TypeError) as e:
-            raise MiniMaxError(f"unexpected payload shape: {payload}") from e
+            raise MiMoError(f"unexpected payload shape: {payload}") from e
 
-    @staticmethod
-    def _mock_answer(messages: list[dict]) -> str:
-        # Detect the last user question for a topical canned reply.
-        user_msg = ""
-        for m in reversed(messages):
-            if m.get("role") == "user":
-                user_msg = m.get("content", "").lower()
-                break
-        if "emdr" in user_msg:
+
+# ---------------------------------------------------------------------------
+# Mock mode support (useful when MIMO_API_KEY is not set)
+# ---------------------------------------------------------------------------
+
+_MOCK = os.environ.get("MIMO_MOCK", "").strip().lower() in ("1", "true", "yes")
+
+if _MOCK:
+    _DEFAULT_SYSTEM = (
+        "Tu es un assistant thérapeutique bienveillant et professionnel, spécialisé en EMDR, "
+        "en théorie de l'attachement, en théorie polyvagale et en intelligence relationnelle. "
+        "Réponds de manière concise, empathique et fondée sur ces approches."
+    )
+
+    class MiMoClient:
+        """Mock client that returns pedagogical responses without calling any API."""
+
+        def __init__(self) -> None:
+            self.api_key = "mock"
+            self._system = _DEFAULT_SYSTEM
+
+        def chat(
+            self,
+            messages: list[dict],
+            system: str | None = None,
+            temperature: float = 0.4,
+            max_tokens: int = 800,
+        ) -> str:
             return (
-                "[MOCK] L'EMDR est une approche thérapeutique créée par Francine "
-                "Shapiro en 1987, qui utilise la stimulation bilatérale (mouvements "
-                "oculaires, tapotements) pour faciliter le retraitement des souvenirs "
-                "traumatiques. Elle figure dans les recommandations de l'OMS depuis "
-                "2013 pour le psychotraumatisme. Pour un avis personnalisé, prenez RDV."
+                f"[Mode mock — MiMo] Merci pour votre message. "
+                f"Cela sera traité par le système MiMo une fois configuré."
             )
-        if "attachement" in user_msg or "bowlby" in user_msg:
-            return (
-                "[MOCK] La théorie de l'attachement (Bowlby, Ainsworth) distingue "
-                "quatre styles : sécurisé, anxieux, évitant, désorganisé. Ces styles "
-                "influent sur la manière dont nous entrons en relation à l'âge adulte. "
-                "Pour aller plus loin, Emilie peut vous recevoir en cabinet ou en visio."
-            )
-        if "polyvagale" in user_msg or "porges" in user_msg:
-            return (
-                "[MOCK] La théorie polyvagale de Stephen Porges décrit trois circuits "
-                "du système nerveux autonome : engagement social (ventral), mobilisation "
-                "(sympathique), et immobilisation (dorsal). Elle éclaire les réactions "
-                "dissociatives dans le trauma complexe."
-            )
-        if "intelligence relationnelle" in user_msg or "le doze" in user_msg:
-            return (
-                "[MOCK] L'Intelligence Relationnelle est une approche développée par "
-                "le Dr François Le Doze, fondée sur les neurosciences affectives et la "
-                "théorie de l'attachement. Elle postule que la souffrance naît d'une "
-                "blessure du lien et que la guérison passe par une relation thérapeutique "
-                "consciente et engagée."
-            )
-        if "dissociation" in user_msg or "salmona" in user_msg:
-            return (
-                "[MOCK] La dissociation traumatique, travaillée notamment par le Dr "
-                "Muriel Salmona, est une stratégie de survie du cerveau face à une "
-                "douleur intolérable. Elle se traduit par dépersonnalisation, déréalisation, "
-                "et survient souvent dans les traumatismes complexes ou développementaux."
-            )
-        return (
-            "[MOCK] Je suis un psybot de démonstration. Je n'ai pas de clé MiniMax M3 "
-            "configurée (MINIMAX_API_KEY manquant) et MINIMAX_MOCK=1 est actif. "
-            "Posez une question sur l'EMDR, l'Intelligence Relationnelle, l'attachement, "
-            "la polyvagale ou la dissociation, et je vous donnerai un exemple de réponse."
-        )

@@ -529,24 +529,24 @@ def health() -> dict[str, str]:
 
 
 # ---------------------------------------------------------------------------
-# Psybot — conversational RAG endpoint (MiniMax M3 + TF-IDF over server/knowledge/)
+# Psybot — conversational RAG endpoint (MiMo + TF-IDF over server/knowledge/)
 # Stateless: history lives in the browser. Server only retrieves + forwards.
 # ---------------------------------------------------------------------------
 import re as _re
 try:
     from rag import KnowledgeBase as _KnowledgeBase
-    from llm import MiniMaxClient as _MiniMaxClient, MiniMaxError as _MiniMaxError
+    from llm import MiMoClient as _MiMoClient, MiMoError as _MiMoError
     _PSYBOT_ENABLED = True
 except Exception as _err:
     logger.warning("Psybot modules unavailable: %s", _err)
     _KnowledgeBase = None  # type: ignore
-    _MiniMaxClient = None  # type: ignore
-    _MiniMaxError = Exception  # type: ignore
+    _MiMoClient = None  # type: ignore
+    _MiMoError = Exception  # type: ignore
     _PSYBOT_ENABLED = False
 
 
 _kb: "_KnowledgeBase | None" = None
-_llm: "_MiniMaxClient | None" = None
+_llm: "_MiMoClient | None" = None
 
 # Emergency keywords — bilingual, case-insensitive. ANY match short-circuits
 # the LLM and returns the safety message verbatim.
@@ -598,8 +598,7 @@ def _psybot_init() -> None:
         _kb = _KnowledgeBase("knowledge")
         logger.info("Psybot KB loaded: %d passages", len(_kb.passages))
     if _llm is None:
-        _llm = _MiniMaxClient()
-        logger.info("Psybot LLM client initialized (mock=%s)", _llm.mock)
+        _llm = _MiMoClient()
 
 
 @app.get("/api/health/psybot")
@@ -659,7 +658,7 @@ def psybot_chat(body: dict[str, Any]) -> dict[str, Any]:
     # 4) LLM call
     try:
         answer = _llm.chat(messages, system=system, temperature=0.4, max_tokens=700)
-    except _MiniMaxError as e:
+    except _MiMoError as e:
         logger.error("Psybot LLM error: %s", e)
         raise HTTPException(status_code=502, detail=f"LLM upstream error: {e}")
 

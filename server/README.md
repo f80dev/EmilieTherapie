@@ -41,7 +41,7 @@ promesse de guérison. Détection de détresse → message d'urgence (3114 / 15 
       │
       ├─► Build system prompt + context + history (last 4 turns)
       │
-      └─► LLM (llm.py : MiniMax M3 via urllib stdlib)
+      └─► LLM (llm.py : MiMo via urllib stdlib)
             └─► Answer
 ```
 
@@ -49,9 +49,9 @@ promesse de guérison. Détection de détresse → message d'urgence (3114 / 15 
 
 | Nom | Requis | Description |
 |---|---|---|
-| `MINIMAX_API_KEY` | prod | Clé API MiniMax M3. À configurer comme variable secrète Cloud Run, jamais commiter. |
-| `MINIMAX_MOCK`    | optionnel | Si `=1`, active le mode mock (réponses pédagogiques sans appeler l'API). Actif par défaut si `MINIMAX_API_KEY` est absent. |
-| `MINIMAX_ENDPOINT`| optionnel | URL de l'API chat completions (défaut : `https://api.minimax.chat/v1/text/chatcompletion_v2`). À confirmer avec la doc officielle MiniMax. |
+| `MIMO_API_KEY` | prod | Clé API MiMo. À configurer comme variable secrète Cloud Run, jamais commiter. |
+| `MIMO_MOCK`    | optionnel | Si `=1`, active le mode mock (réponses pédagogiques sans appeler l'API). Actif par défaut si `MIMO_API_KEY` est absent. |
+| `MIMO_ENDPOINT`| optionnel | URL de l'API chat completions (défaut : `https://api.mimo.ai/v1/text/chatcompletion_v2`). À confirmer avec la doc officielle MiMo. |
 
 ### Endpoints
 
@@ -132,6 +132,6 @@ gcloud run deploy emilieproxy \
   --image gcr.io/PROJECT/emilieproxy \
   --region europe-west1 \
   --set-env-vars "GOOGLE_ACCOUNT=$(cat google_account.json)" \
-  --set-secrets "MINIMAX_API_KEY=projects/PROJECT/secrets/minimax-api-key:latest" \
+  --set-secrets "MIMO_API_KEY=projects/PROJECT/secrets/mimo-api-key:latest" \
   --allow-unauthenticated
 ```
