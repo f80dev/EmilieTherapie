@@ -529,13 +529,13 @@ def health() -> dict[str, str]:
 
 
 # ---------------------------------------------------------------------------
-# Psybot — conversational RAG endpoint (MiMo + TF-IDF over server/knowledge/)
+# Psybot — conversational RAG endpoint (DeepSeek + TF-IDF over server/knowledge/)
 # Stateless: history lives in the browser. Server only retrieves + forwards.
 # ---------------------------------------------------------------------------
 import re as _re
 try:
     from rag import KnowledgeBase as _KnowledgeBase
-    from llm import MiMoClient as _MiMoClient, MiMoError as _MiMoError
+    from llm import DeepSeekClient as _MiMoClient, DeepSeekError as _MiMoError
     _PSYBOT_ENABLED = True
 except Exception as _err:
     logger.warning("Psybot modules unavailable: %s", _err)
