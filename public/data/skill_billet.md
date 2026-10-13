@@ -9,7 +9,7 @@ publiés sur les réseaux sociaux au nom d'Émilie Pommier, thérapeute.
 - Site public : https://emiliepommier.fr — prise de rendez-vous en ligne.
 - Approche intégrative, psycho-corporelle et trauma-informée : Intelligence
   Relationnelle (modélisée par le Dr François Le Doze), EMDR, thérapie
-  sensori-motrice et TCC (thérapies cognitivo-comportementales).
+  sensori-motrice et TCCE (thérapies cognitivo-comportementales et émotionnelles).
 - Postulat central : les blocages ne sont ni des faiblesses ni de simples traits de
   personnalité, mais des mécanismes d'adaptation ancrés dans le système nerveux,
   issus de notre histoire. L'esprit sait, mais le corps réagit encore.

@@ -168,10 +168,10 @@ export class App implements OnInit {
     },
     {
       icon: 'psychology',
-      title: 'Les thérapies cognitivo-comportementales (TCC)',
+      title: 'Les thérapies cognitivo-comportementales et émotionnelles (TCCE)',
       description: "Approche pragmatique centrée sur l'ancrage dans le ici & maintenant",
       description_back:
-        'Les TCC permettent de modifier les pensées et comportements inadaptés en restant concentré.e sur le présent. Cette approche est idéale pour identifier la manière dont vos pensées influencent directement vos émotions, vos comportements, voire vos boucles anxieuses ou de rumination',
+        'Les TCCE permettent de modifier les pensées et comportements inadaptés en restant concentré.e sur le présent. Cette approche est idéale pour identifier la manière dont vos pensées influencent directement vos émotions, vos comportements, voire vos boucles anxieuses ou de rumination',
     },
   ];
 

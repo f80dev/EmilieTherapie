@@ -26,14 +26,14 @@ export class SeoService {
   private readonly routeMeta: Record<string, { title: string; description: string }> = {
     '/': {
       title:
-        'Emilie Pommier - Thérapeute en Intelligence Relationnelle, EMDR, approche sensori-motrice et TCC | Paris 10e et 11e, mais aussi en visio | Prise de RDV en ligne',
+        'Emilie Pommier - Thérapeute en Intelligence Relationnelle, EMDR, approche sensori-motrice et TCCE | Paris 10e et 11e, mais aussi en visio | Prise de RDV en ligne',
       description:
-        "Emilie Pommier, thérapeute à Paris 10e et 11e, mais aussi en visio. Guérison des blessures psychiques par l'engagement thérapeutique conscient, selon les approches thérapeutiques de l'Intelligence Relationnelle (modélisée par le Dr F. Le Doze), de l'EMDR, de la thérapie sensori-motrice et des TCC (thérapies cognitivo-comportementales). Prise de RDV en ligne.",
+        "Emilie Pommier, thérapeute à Paris 10e et 11e, mais aussi en visio. Guérison des blessures psychiques par l'engagement thérapeutique conscient, selon les approches thérapeutiques de l'Intelligence Relationnelle (modélisée par le Dr F. Le Doze), de l'EMDR, de la thérapie sensori-motrice et des TCCE (thérapies cognitivo-comportementales et émotionnelles). Prise de RDV en ligne.",
     },
     '/parcours': {
       title: 'Mon parcours de thérapeute | Emilie Pommier - Paris 10e et 11e',
       description:
-        "Le parcours d'Emilie Pommier : expérience professionnelle ; formation et spécialisation aux approches sensori-motrice, de l'Intelligence Relationnelle (Dr François Le Doze), de l'EMDR et des TCC ; inter-/supervision et cadre déontologique de l'accompagnement thérapeutique | Paris 10e et 11e.",
+        "Le parcours d'Emilie Pommier : expérience professionnelle ; formation et spécialisation aux approches sensori-motrice, de l'Intelligence Relationnelle (Dr François Le Doze), de l'EMDR et des TCCE ; inter-/supervision et cadre déontologique de l'accompagnement thérapeutique | Paris 10e et 11e.",
     },
     '/tarifs': {
       title: 'Tarifs et modalités | Emilie Pommier - Thérapeute Paris 10e et 11e',

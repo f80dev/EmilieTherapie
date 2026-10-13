@@ -19,7 +19,7 @@ L'un des piliers de l'IR est la notion d'**engagement thérapeutique conscient**
 
 L'IR se distingue :
 - de la psychanalyse classique par son ancrage neuroscientifique,
-- de la TCC par l'importance accordée à la dimension relationnelle et corporelle,
+- de la TCCE par l'importance accordée à la dimension relationnelle et corporelle,
 - de l'EMDR par son caractère relationnel (l'EMDR est une technique, l'IR un cadre).
 
 ### Sources
