@@ -1,6 +1,7 @@
 import { Component, signal, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,7 +16,9 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
+import { ConfirmRdvDialog, ConfirmRdvDialogData } from './confirm-rdv-dialog/confirm-rdv-dialog';
 import * as packageJson from '../../package.json';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { VerticalCard } from './vertical-card/vertical-card';
@@ -88,6 +91,7 @@ const SITE_VERSION = packageJson.version;
     MatButtonToggleModule,
     MatExpansionModule,
     MatSelectModule,
+    MatDialogModule,
     VerticalCard,
   ],
   templateUrl: './app.html',
@@ -96,6 +100,7 @@ const SITE_VERSION = packageJson.version;
 export class App implements OnInit {
   private http = inject(HttpClient);
   private snackBar = inject(MatSnackBar);
+  private dialog = inject(MatDialog);
   protected screenService = inject(ScreenService);
   protected analytics = inject(AnalyticsService);
 
@@ -466,6 +471,44 @@ export class App implements OnInit {
       return;
     }
 
+    const date = this.selectedDate();
+    const dateStr = date
+      ? date.toLocaleDateString('fr-FR', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })
+      : '';
+
+    const lieu = this.selectedLieu();
+    const dialogData: ConfirmRdvDialogData = {
+      dateStr,
+      heure: this.selectedTime(),
+      duree: this.selectedTypeSeance()?.duree || 60,
+      typeSeance: this.selectedTypeSeance()?.nom || '',
+      medium: this.seanceType() === 'distant' ? 'distant' : 'presentiel',
+      lieuNom: lieu?.nom,
+      lieuAdresse: lieu?.adresse,
+    };
+
+    const dialogRef = this.dialog.open(ConfirmRdvDialog, {
+      width: '520px',
+      maxWidth: '95vw',
+      data: dialogData,
+      disableClose: false,
+      autoFocus: 'dialog',
+    });
+
+    const confirmed = await firstValueFrom(dialogRef.afterClosed());
+    if (!confirmed) {
+      return;
+    }
+
+    await this.processAppointmentSubmission();
+  }
+
+  private async processAppointmentSubmission() {
     // Save user data to localStorage before submitting
     this.saveUserDataToLocalStorage();
 
@@ -527,6 +570,9 @@ export class App implements OnInit {
           seance_type: this.selectedTypeSeance()?.nom || seanceTypeLabel,
         })
         .subscribe({
+          next: (created: any) => {
+            this.notifyEmilie(created);
+          },
           error: (err) => console.error('Failed to add calendar event:', err),
         });
     }
@@ -611,5 +657,25 @@ export class App implements OnInit {
     const m = String(date.getMonth() + 1).padStart(2, '0');
     const d = String(date.getDate()).padStart(2, '0');
     return `${y}-${m}-${d}`;
+  }
+
+  private async notifyEmilie(created: any) {
+    const eventId = created?.id;
+    if (!eventId) {
+      console.warn('Cannot notify Emilie: missing event id in calendar response');
+      return;
+    }
+    const body = await read_email_template('nouvelle_demande', {
+      firstname: this.prenom(),
+      lastname: this.nom(),
+      start_time: dateToStr(new Date(this.selectedDate()!)),
+      duration: (this.selectedTypeSeance()?.duree || 60) + 'min',
+      medium: this.seanceType() == 'distant' ? 'en visio' : 'en présentiel',
+    });
+    this.http
+      .post('/api/sendemail', { event_id: eventId, body })
+      .subscribe({
+        error: (err) => console.error("Échec de l'envoi de la notification à Emilie:", err),
+      });
   }
 }

@@ -1,0 +1,68 @@
+<h2 mat-dialog-title>
+  Confirmation de votre demande
+</h2>
+
+<mat-dialog-content>
+  <p class="intro">
+    Veuillez vérifier les informations ci-dessous avant d'envoyer votre demande de rendez-vous :
+  </p>
+
+  <ul class="recap">
+    <li>
+      <mat-icon>calendar_today</mat-icon>
+      <div>
+        <strong>Date</strong>
+        <span>{{ data.dateStr }}</span>
+      </div>
+    </li>
+    <li>
+      <mat-icon>schedule</mat-icon>
+      <div>
+        <strong>Heure</strong>
+        <span>{{ data.heure }}</span>
+      </div>
+    </li>
+    <li>
+      <mat-icon>timelapse</mat-icon>
+      <div>
+        <strong>Durée</strong>
+        <span>{{ data.duree }} min</span>
+      </div>
+    </li>
+    <li>
+      <mat-icon>category</mat-icon>
+      <div>
+        <strong>Type de séance</strong>
+        <span>{{ data.typeSeance }}</span>
+      </div>
+    </li>
+    <li>
+      @if (data.medium === 'presentiel') {
+        <mat-icon>place</mat-icon>
+        <div>
+          <strong>Lieu</strong>
+          <span>{{ data.lieuNom }}<br><small>{{ data.lieuAdresse }}</small></span>
+        </div>
+      } @else {
+        <mat-icon>videocam</mat-icon>
+        <div>
+          <strong>En visio-consultation</strong>
+          <span>Le lien vous sera envoyé après confirmation.</span>
+        </div>
+      }
+    </li>
+  </ul>
+
+  <p class="note">
+    <mat-icon>info</mat-icon>
+    Vous recevrez une réponse sous 24 à 48h pour confirmer ce rendez-vous.
+  </p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Modifier</button>
+  <button mat-raised-button color="primary" (click)="onConfirm()">
+    <mat-icon>send</mat-icon>
+    Confirmer et envoyer
+  </button>
+</mat-dialog-actions>

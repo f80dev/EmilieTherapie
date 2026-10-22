@@ -138,10 +138,11 @@ export class Admin implements OnInit, OnDestroy {
 
     const status = this.getEventDetails(event.description);
 
+    let mail = status.lieu.indexOf('visio') > -1 ? 'confirmation_rendezvous_visio' : 'confirmation_rendezvous_surplace';
+    if(status.duration=="30min")mail = 'confirmation_rendezvous_visio_gratuit';  //TODO a vérifier
+
     const body = await read_email_template(
-      status.lieu.indexOf('visio') > -1
-        ? 'confirmation_rendezvous_visio'
-        : 'confirmation_rendezvous_surplace',
+      mail,
       {
         start_str: dateToStr(new Date(event.start)),
         summary: event.summary,

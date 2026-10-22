@@ -7,7 +7,7 @@
     "build": "node increment-version.js && ng build",
     "version": "",
     "deploy_github": "ng build && gh-pages -d ./dist/emilietherapie/browser --repo https://github.com/f80dev/EmilieTherapie.git -f -t true -b site -m \\\"update from devnet\\\"\"",
-    "deploy": "ng build && npx wrangler pages deploy dist/emilietherapie/browser",
+    "deploy": "ng build && npx wrangler pages deploy dist/emilietherapie/browser --project-name=website",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
